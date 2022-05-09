@@ -538,7 +538,14 @@ section
 .home
 {
 	width: 100%;
-	height: 904px;
+	height: 700px; 
+	background: #FFFFFF;
+}
+
+.register
+{
+	width: 100%;
+	height: 1200px; 
 	background: #FFFFFF;
 }
 
@@ -1183,12 +1190,27 @@ section
 .gallery
 {
 	width: 100%;
+	height : 100%;
 	padding-top: 88px;
 	padding-left: 44px;
 	padding-right: 44px;
 	padding-bottom: 42px;
 	margin-top: 99px;
+	position: center center;
 }
+
+.register_in
+{
+	width: 100%;
+	height : 100%;
+	padding-top: 88px;
+	padding-left: 44px;
+	padding-right: 44px;
+	padding-bottom: 42px;
+	margin-top: 99px;
+	position: center center;
+}
+
 .gallery_item a
 {
 	display: block;
@@ -1199,7 +1221,7 @@ section
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 100%;
+	width: 80%;
 	height: 100%;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -1207,7 +1229,32 @@ section
 }
 .gallery_title
 {
+	
+	background: rgba( 255, 255, 255, 0.6 );
+	box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+	backdrop-filter: blur( 8.5px );
+	-webkit-backdrop-filter: blur( 8.5px );
+	border-radius: 10px;
+	border: 1px solid rgba( 255, 255, 255, 0.18 );
+	width: 100%;
+	height: 300px;
+	position: center center;
+	padding-top: 30px;
+}
 
+.register_title
+{
+	
+	background: rgba( 255, 255, 255, 0.6 );
+	box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+	backdrop-filter: blur( 8.5px );
+	-webkit-backdrop-filter: blur( 8.5px );
+	border-radius: 10px;
+	border: 1px solid rgba( 255, 255, 255, 0.18 );
+	width: 100%;
+	height: 1200px;
+	position: center center;
+	padding-top: 30px;
 }
 .gallery_title ul li
 {
