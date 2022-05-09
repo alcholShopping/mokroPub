@@ -2,9 +2,7 @@
 /* CSS Document */
 
 /******************************
-
 [Table of Contents]
-
 1. Fonts
 2. Body and some general stuff
 3. Header
@@ -23,8 +21,6 @@
 10. Testimonials
 11. Newsletter
 12. Footer
-
-
 ******************************/
 
 /***********
@@ -67,7 +63,7 @@ body
 	font-family: 'Open Sans', sans-serif;
 	font-size: 14px;
 	font-weight: 400;
-	background: #FFFFFF;
+	background: #111111;
 	color: #2f2f2f;
 }
 div
@@ -354,16 +350,18 @@ section
 	-o-transform: translateY(4px);
 	transform: translateY(4px);
 }
-.main_nav ul li
+.main_nav >ul >li
 {
-	display: inline-block;
-	margin-right: 50px;
+	display: inline;
+	margin-left: 25px;
+	margin-right: 25px;
+	width:120px;
 }
-.main_nav ul li:last-child
+.main_nav >ul >li:last-child
 {
 	margin-right: 0;
 }
-.main_nav ul li a
+.main_nav >ul >li >a
 {
 	font-size: 12px;
 	text-transform: uppercase;
@@ -376,11 +374,48 @@ section
 	-o-transition: all 200ms ease;
 	transition: all 200ms ease;
 }
-.main_nav ul li a:hover
+.main_nav >ul >li >a:hover
 {
 	color: #937c6f;
 }
+.submenu {
+	position: absolute;
+	top: 25px;
+	display: none;
+}
 
+.submenu li
+{
+	background-color: #ffffff;
+	padding-left: 10px;
+	padding-right:10px;
+
+}
+.submenu li:hover
+{
+	background-color:#937c6f;
+}
+.submenu >li >a
+{
+	display:block;
+	font-size: 12px;
+	color: #2f2f2f;
+	line-height:30px;
+	font-weight: 500;
+	letter-spacing: 0.2em;
+	-webkit-transition: all 200ms ease;
+	-moz-transition: all 200ms ease;
+	-ms-transition: all 200ms ease;
+	-o-transition: all 200ms ease;
+	transition: all 200ms ease;
+	text-align: center;
+	
+}
+.submenu li a:hover
+{
+	color: #ffffff;
+	font-weight: 600;
+}
 /*********************************
 3.3 Header - Search
 *********************************/

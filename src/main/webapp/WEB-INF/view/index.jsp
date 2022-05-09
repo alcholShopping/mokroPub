@@ -18,6 +18,8 @@
 <link href="plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main_styles.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/responsive.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 </head>
 <body>
 <div class="super_container">
@@ -28,7 +30,20 @@
 			<div class="logo"><a href="#">목로주점木壚酒店</a></div>
 			<nav class="main_nav">
 				<ul>
-					<li><a href="${pageContext.request.contextPath}/categoryProductListController">주류</a></li>
+					<li class="actionHover"><a href="#">주종</a>
+						<ul class="submenu">
+						<%
+							List<Category> list = new ArrayList<>();
+							Category category = new Category();
+							list =(List<Category>)request.getAttribute("list");
+							for(Category c : list){
+						%>
+							<li><a href="${pageContext.request.contextPath}/categoryProductListController?categoryNo=<%=c.getCategoryNo()%>"><%=c.getType()%></a></li>
+						<%		
+							}
+						%>
+						</ul>
+						</li>
 					<li><a href="#">지역</a></li>
 					<li><a href="#">인기순</a></li>
 					<li><a href="#">커뮤니티</a></li>
@@ -73,17 +88,17 @@
 	<!-- line 29줄 nav에 넣어야 할 list(주류) 이것듦을 hover처리 해야함 -->
 		<div>
 		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-			<%
-				List<Category> list = new ArrayList<>();
-				Category category = new Category();
-				list =(List<Category>)request.getAttribute("list");
-				for(Category c : list){
-			%>
-				<div><a href="${pageContext.request.contextPath}/categoryProductListController?categoryNo=<%=c.getCategoryNo()%>"><%=c.getType()%></a></div>
-			<%		
-				}
-			%>
+
 		</div>
 	</div>
 </body>
+<script>
+$(".actionHover").mouseover( function(){ 
+	$(".submenu").stop().slideDown(500); 
+	}) 
+	$(".actionHover").mouseout(function(){
+		$(".submenu").stop().slideUp(1000); 
+	})
+
+</script>
 </html>
