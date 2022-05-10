@@ -2,6 +2,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="dao.*"%>
 <%@ page import="vo.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -79,7 +80,25 @@
 						</div>
 					</a>
 				</div>
+				
+				<div>
+			    	
+			    </div>
+				
 			</div>
+				<div class="logo">
+					<c:if test="${sessionMemberId != null}">
+						${sessionMemberId}님 반갑습니다.
+						<a href="LogoutController">로그아웃</a>
+					</c:if>
+					
+					<c:if test="${sessionMemberId == null}">
+						<a href="LoginController">로그인 해주세요!</a>
+					</c:if>
+
+				</div>
+				
+				
 			</div>
 	</header>
 	
