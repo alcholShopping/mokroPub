@@ -30,9 +30,7 @@ public class IndexController extends HttpServlet {
 //			}
 		   
 		// 상단바 주류 올릴시(hover)
-		List<Category> list = new ArrayList<>();
-		Category category = new Category();
-		list = indexDao.selectCategoryList();
+		List<Category> list = indexDao.selectCategoryList();
 		// 디버깅 
 		for(Category c : list) {
 			System.out.println(c.toString());

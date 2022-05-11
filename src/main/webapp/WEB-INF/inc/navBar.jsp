@@ -8,7 +8,7 @@
 	<div
 		class="header_inner d-flex flex-row align-items-center justify-content-start">
 		<div class="logo">
-			<a href="#">목로주점木壚酒店</a>
+			<a href="${pageContext.request.contextPath}/indexController">목로주점木壚酒店</a>
 		</div>
 		<nav class="main_nav">
 			<ul>
