@@ -59,7 +59,6 @@
                   </div>
                   <div class="product_options">
                      <div class="product_buy product_option"><img src="images/shopping-bag-white.svg" alt=""></div>
-                     <div class="product_fav product_option">+</div>
                   </div>
                </div>
 
@@ -71,6 +70,8 @@
          %>
       </div>
    </div>
-   </div>
+	<!-- Footer -->
+	<jsp:include page="../../../WEB-INF/inc/footer.jsp"></jsp:include>
+</div>
 </body>
 </html>

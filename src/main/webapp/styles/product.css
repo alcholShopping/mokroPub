@@ -803,11 +803,11 @@ section
 6.3 Product Content
 *********************************/
 
-.product_name
+.product_one_name
 {
 	font-size: 30px;
 	font-weight: 600;
-	color: #232323;
+	color: #8a8a8a;
 	line-height: 0.75;
 }
 .product_price
@@ -815,7 +815,7 @@ section
 	font-size: 24px;
 	font-weight: 600;
 	margin-top: 9px;
-	color: #8a8a8a;
+	color: #232323; 
 }
 .rating
 {

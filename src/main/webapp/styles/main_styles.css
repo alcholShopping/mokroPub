@@ -1027,6 +1027,13 @@ margin-bottom: 30px;
 {
    color: #937c6f;
 }
+.product_one_name
+{
+	font-size: 30px;
+	font-weight: 600;
+	color: #232323;
+	line-height: 0.75;
+}
 .product_price
 {
    font-size: 24px;
@@ -1231,7 +1238,24 @@ margin-bottom: 30px;
 {
    margin-top: 36px;
 }
-
+.price_table{
+	width: 1140px;
+	height: 65px;
+	margin: 0 auto;
+}
+.price_table td:hover{
+ 	background-color: #d6cdca;
+ 	 font-weight: 600;
+}
+.price_table a{
+	color: #937c6f;
+	font-size: 15px;
+	text-align: center;
+	 font-weight: 500;
+}
+.price_table td a:hover{
+	 font-weight: 600;
+}
 /*********************************
 9. Gallery
 *********************************/
@@ -1519,13 +1543,16 @@ margin-bottom: 30px;
 
 .footer
 {
-   padding-top: 80px;
+   position:fixed;
+   padding-top: 25px;
+   background-color: #232323;
+   bottom: 0;
+   width:100%;
 }
 .footer_logo a
 {
    font-family: 'Lucida', serif;
    font-size: 60px;
-   color: #232323;
 }
 .footer_nav
 {
@@ -1534,63 +1561,20 @@ margin-bottom: 30px;
 .footer_nav ul li
 {
    display: inline-block;
-   margin-right: 53px;
+   margin-right: 45px;
+   color: #bbbbbb;
 }
 .footer_nav ul li:last-child
 {
    margin-right: 0;
 }
-.footer_nav ul li a
-{
-   font-size: 12px;
-   text-transform: uppercase;
-   color: #232323;
-   font-weight: 600;
-   letter-spacing: 0.2em;
-   -webkit-transition: all 200ms ease;
-   -moz-transition: all 200ms ease;
-   -ms-transition: all 200ms ease;
-   -o-transition: all 200ms ease;
-   transition: all 200ms ease;
-}
-.footer_nav ul li a:hover
-{
-   color: #937c6f;
-}
-.footer_social
-{
-   margin-top: 51px;
-}
-.footer_social ul li
-{
-   display: inline-block;
-   margin-right: 36px;
-}
-.footer_social ul li:last-child
-{
-   margin-right: 0;
-}
-.footer_social ul li a i
-{
-   font-size: 24px;
-   color: #937c6f;
-   -webkit-transition: all 200ms ease;
-   -moz-transition: all 200ms ease;
-   -ms-transition: all 200ms ease;
-   -o-transition: all 200ms ease;
-   transition: all 200ms ease;
-}
-.footer_social ul li a i:hover
-{
-   color: #e0e3e4;
-}
 .copyright
 {
-   margin-top: 56px;
-   padding-bottom: 13px;
+   margin-top: 25px;
+   padding-bottom: 25px;
    font-family: 'Lucida', serif;
    font-size: 12px;
-   color: #232323;
+   color: #bbbbbb;
 }
 
 .nullbox{

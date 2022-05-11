@@ -31,14 +31,28 @@
 	</div>
 	<div class="container">
 		<div class="row">
-			<div class="col">
+         	<div class="col">
 				<div class="section_title_container text-center">
-					<div class="section_title">
-						<a href="priceProductListController?startPrice=0&endPrice=5000">0~5000</a>
-						<a href="priceProductListController?startPrice=5000&endPrice=10000">5000~10000</a>
-						<a href="priceProductListController?startPrice=10000&endPrice=15000">10000~15000</a>
-						<a href="priceProductListController?startPrice=20000">20000</a>
-					</div>
+				 <div class="section_subtitle">목로주점</div>
+				 <br>
+					<table class="table-bordered price_table">
+						<tr>
+							<td>
+								<a href="priceProductListController?startPrice=0&endPrice=5000">5000원 이하</a>
+							</td>
+							<td>
+								<a href="priceProductListController?startPrice=5000&endPrice=10000">5000원 ~ 10000원</a>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<a href="priceProductListController?startPrice=10000&endPrice=15000">10000원 ~ 15000원</a>
+							</td>
+							<td>
+								<a href="priceProductListController?startPrice=20000&endPrice=999999">20000원 이상</a>
+							</td>
+						</tr>
+					</table>
 				</div>
 			</div>
 		</div>
@@ -74,7 +88,6 @@
 							<div class="product_buy product_option">
 								<img src="images/shopping-bag-white.svg" alt="">
 							</div>
-							<div class="product_fav product_option">+</div>
 						</div>
 					</div>
 				</div>
@@ -84,6 +97,8 @@
 			%>
 		</div>
 	</div>
+	<!-- Footer -->
+	<jsp:include page="../../../WEB-INF/inc/footer.jsp"></jsp:include>
 </div>
 </body>
 </html>
