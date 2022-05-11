@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,20 +15,22 @@ import javax.servlet.http.HttpSession;
 import dao.IndexDao;
 import vo.Category;
 
-	
-@WebServlet("/indexController")
-public class IndexController extends HttpServlet {
-	private IndexDao indexDao = new IndexDao();
+/**
+ * Servlet implementation class MyPageController
+ */
+@WebServlet("/myPageController")
+public class MyPageController extends HttpServlet {
+	private IndexDao indexDao =new IndexDao();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		
-//		//로그인 여부 확인 로직(세션이용)
-//		   HttpSession session = request.getSession();
-//		   String sessionMemberId = (String)session.getAttribute("sessionMemberId");
-//		   if(sessionMemberId == null) {
-//				// 이미 로그인이 되어 있는 상태라면
-//			   response.sendRedirect(request.getContextPath()+"/LoginController");
-//			}
+		/*
+		//로그인 여부 확인 로직(세션이용)
+		   HttpSession session = request.getSession();
+		   String sessionMemberId = (String)session.getAttribute("sessionMemberId");
+		   if(sessionMemberId == null) {
+				// 이미 로그인이 되어 있는 상태라면
+			   response.sendRedirect(request.getContextPath()+"/LoginController");
+			}
+			*/
 		   
 		// 상단바 주류 올릴시(hover)
 		List<Category> list = new ArrayList<>();
@@ -39,12 +42,14 @@ public class IndexController extends HttpServlet {
 		}
 		request.setAttribute("list", list);
 		
-		request.getRequestDispatcher("/WEB-INF/view/index.jsp").forward(request, response);
 		
+		
+		request.getRequestDispatcher("/WEB-INF/view/myPage/myPage.jsp").forward(request, response);
 	}
 
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 	}
 
 }

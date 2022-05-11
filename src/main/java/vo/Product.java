@@ -70,10 +70,10 @@ public class Product {
 	public void setExpirationDate(String expirationDate) {
 		this.expirationDate = expirationDate;
 	}
-	public int getAlcholLevel() {
+	public int getAlcoholLevel() {
 		return alcoholLevel;
 	}
-	public void setAlcholLevel(int alcholLevel) {
+	public void setAlcoholLevel(int alcholLevel) {
 		this.alcoholLevel = alcholLevel;
 	}
 	public String getFactory() {

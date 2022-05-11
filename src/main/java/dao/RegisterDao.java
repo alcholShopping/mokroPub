@@ -9,8 +9,6 @@ public class RegisterDao {
 	// 소비자 회원가입
 	public int registerByCustomer(Customer customer) throws Exception {
 		int row = 99;
-		
-		Class.forName("org.mariadb.jdbc.Driver");
 		Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/mokropub","root","java1234");
 		PreparedStatement stmt = null;
 
