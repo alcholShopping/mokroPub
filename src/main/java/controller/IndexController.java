@@ -10,20 +10,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.indexDao;
+import dao.IndexDao;
 import vo.Category;
 
 	
 @WebServlet("/indexController")
 public class IndexController extends HttpServlet {
-	private indexDao indexDao = new indexDao();
+	private IndexDao indexDao = new IndexDao();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 로그인 확인
 		
 		// 상단바 주류 올릴시(hover)
-		List<Category> list = new ArrayList<>();
-		Category category = new Category();
-		list = indexDao.selectCategoryList();
+		List<Category> list = indexDao.selectCategoryList();
 		// 디버깅 
 		for(Category c : list) {
 			System.out.println(c.toString());

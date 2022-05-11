@@ -10,7 +10,7 @@ import java.util.List;
 import util.DBUtil;
 import vo.Category;
 
-public class indexDao {
+public class IndexDao {
 	// nav에 주류리스트 출력
 	public List<Category> selectCategoryList()	{
 		List<Category> list = new ArrayList<>();

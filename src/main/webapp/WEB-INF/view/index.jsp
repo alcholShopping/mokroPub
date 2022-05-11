@@ -45,7 +45,7 @@
 						</ul>
 						</li>
 					<li><a href="#">지역</a></li>
-					<li><a href="#">인기순</a></li>
+					<li><a href="${pageContext.request.contextPath}/bestProductListController">인기순</a></li>
 					<li><a href="#">커뮤니티</a></li>
 					<li><a href="#">contact</a></li>
 				</ul>
