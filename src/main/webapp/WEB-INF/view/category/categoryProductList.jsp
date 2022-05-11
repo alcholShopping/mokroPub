@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,50 +20,10 @@
 <body>
 <div class="super_container">
 <!-- Header -->
+<jsp:include page="../../../WEB-INF/inc/navBar.jsp"></jsp:include>
 
-	<header class="header">
-		<div class="header_inner d-flex flex-row align-items-center justify-content-start">
-			<div class="logo"><a href="#">목로주점</a></div>
-			<nav class="main_nav">
-				<ul>
-					<li><a href="${pageContext.request.contextPath}/categoryProductListController?">주류</a></li>
-					<li><a href="#">지역</a></li>
-					<li><a href="#">인기순</a></li>
-					<li><a href="#">커뮤니티</a></li>
-					<li><a href="#">contact</a></li>
-				</ul>
-			</nav>
-			<div class="header_content ml-auto">
-				<div class="search header_search">
-					<form action="#">
-						<input type="search" class="search_input" required="required">
-						<button type="submit" id="search_button" class="search_button"><img src="images/magnifying-glass.svg" alt=""></button>
-					</form>
-				</div>
-				<div class="shopping">
-					<!-- Cart -->
-					<a href="#">
-						<div class="cart">
-							<img src="images/shopping-bag.svg" alt="">
-							<div class="cart_num_container">
-								<div class="cart_num_inner">
-									<div class="cart_num">1</div>
-								</div>
-							</div>
-						</div>
-					</a>
-					
-					<!-- Avatar -->
-					<a href="#">
-						<div class="avatar">
-							<img src="images/avatar.svg" alt="">
-						</div>
-					</a>
-				</div>
-			</div>
-			</div>
-	</header>
-	
+<jsp:include page="../../../WEB-INF/inc/footer.jsp"></jsp:include>
+
 	<!-- -------------------------------------- nav 끝-------------------------------------- -->
 
 </div>

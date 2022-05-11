@@ -13,7 +13,6 @@ public class LoginDao {
         ResultSet rs = null;
         String sql = "SELECT consumer_id  from consumer where consumer_id= ? and password = PASSWORD(?)";
 
-        Class.forName("org.mariadb.jdbc.Driver");
         conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/mokropub","root","java1234");
         stmt = conn.prepareStatement(sql);
 		stmt.setString(1, id);
