@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.*"%>
+<%@ page import="dao.*"%>
+<%@ page import="vo.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,14 +21,89 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/responsive.css">
 </head>
 <body>
+<%
+	int categoryNo = (Integer)request.getAttribute("categoryNo");
+	int currentPage = (Integer)request.getAttribute("currentPage");
+	int total = (Integer)request.getAttribute("total");
+	int lastPage = (Integer)request.getAttribute("lastPage");
+	
+	// 카테고리 타입을 출력
+	String type = (String)request.getAttribute("type");
+
+%>
+
 <div class="super_container">
 <!-- Header -->
 <jsp:include page="../../../WEB-INF/inc/navBar.jsp"></jsp:include>
+	
+	<!-- contents -->
+	<div class="nullbox">
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<div class="section_title_container text-center">
+					<div class="section_subtitle">목로주점</div>
+						<div class="section_title"><%=type%> (<%=total%>)</div>
+				</div>
+			</div>
+		</div>
+		<div class="row products_container">
+			<!-- Product -->
+			<%
+				// 카테고리 타입에 따른 상품 리스트 출력 
+				List<Product> list = new ArrayList<>();
+				Product product = new Product();
+				list =(List<Product>)request.getAttribute("list");
+				for(Product p : list){
+			%>
+			<div class="col-lg-4 product_col">
 
-<jsp:include page="../../../WEB-INF/inc/footer.jsp"></jsp:include>
+			<div class="product">
 
-	<!-- -------------------------------------- nav 끝-------------------------------------- -->
+					<div class="product_image">
+						<a href="${pageContext.request.contextPath}/productOneController?productNo=<%=p.getProductNo()%>">
+							<img src="images/product_1.jpg" alt="">
+						</a>
+					</div>
+					<div class="product_content clearfix">
+					
+						<div class="product_info">
+							<div class="product_name">
+								<a href="${pageContext.request.contextPath}/productOneController?productNo=<%=p.getProductNo()%>">
+								<%=p.getName()%> <%=p.getVolume()%>ml <%=p.getAlcoholLevel()%>도
+								</a>
+							</div>
+							<div class="product_price">
+								<a href="${pageContext.request.contextPath}/productOneController?productNo=<%=p.getProductNo()%>">
+								<%=p.getPrice()%>원
+								</a>
+							</div>
+						</div>
+						</a>
+						<div class="product_options">
+							<div class="product_buy product_option"><img src="images/shopping-bag-white.svg" alt=""></div>
+							<div class="product_fav product_option">+</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		<%
+			}
+		%>
+		</div>
+		<div class="pagebutton text-center">
+			<!-- 이전 버튼 -->
+			<%if(currentPage > 1){ %>
+				<a href="${pageContext.request.contextPath}/categoryProductListController?currentPage=<%=currentPage-1%>&categoryNo=<%=categoryNo%>" class="btn btn-link">이전</a>
+			<% } %>	
 
+			<!-- 다음 버튼 -->
+			<% if(currentPage < lastPage){ %>
+			<a href="${pageContext.request.contextPath}/categoryProductListController?currentPage=<%=currentPage+1%>&categoryNo=<%=categoryNo%>" class="btn btn-link">다음</a>
+			<% } %>	
+		</div>
+	</div>
 </div>
 </body>
 </html>
