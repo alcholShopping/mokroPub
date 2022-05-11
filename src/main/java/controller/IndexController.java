@@ -35,7 +35,7 @@ public class IndexController extends HttpServlet {
 		for(Category c : list) {
 			System.out.println(c.toString());
 		}
-		request.setAttribute("list", list);
+		request.setAttribute("categoryList", list);
 		
 		request.getRequestDispatcher("/WEB-INF/view/index.jsp").forward(request, response);
 		

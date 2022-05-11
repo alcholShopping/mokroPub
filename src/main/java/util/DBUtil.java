@@ -11,11 +11,9 @@ public class DBUtil {
 			Class.forName("org.mariadb.jdbc.Driver");
 			String dburl = "jdbc:mariadb://localhost:3306/mokroPub";
 			String dbuser = "root";
-			String dbpw = "java1234";
+			String dbpw = "java1234";	
 			conn = DriverManager.getConnection(dburl,dbuser,dbpw);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return conn;

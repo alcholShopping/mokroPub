@@ -18,8 +18,7 @@ import vo.*;
 
 @WebServlet("/RegisterController")
 public class RegisterController extends HttpServlet {
-	private indexDao indexDao = new indexDao();
-       
+	private IndexDao indexDao = new IndexDao();    
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 로그인 확인
