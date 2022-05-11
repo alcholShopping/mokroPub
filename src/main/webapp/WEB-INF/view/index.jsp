@@ -2,6 +2,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="dao.*"%>
 <%@ page import="vo.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,13 +12,13 @@
 <meta name="description" content="Wish shop project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/bootstrap4/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main_styles.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/responsive.css">
 <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
 <link href="plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main_styles.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/responsive.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 </head>
@@ -56,17 +57,17 @@
 				<div class="search header_search">
 					<form action="#">
 						<input type="search" class="search_input" required="required">
-						<button type="submit" id="search_button" class="search_button"><img src="images/magnifying-glass.svg" alt=""></button>
+						<button type="submit" id="search_button" class="search_button"><img src="${pageContext.request.contextPath}/images/magnifying-glass.svg" alt=""></button>
 					</form>
 				</div>
 				<!-- Cart -->
 				<div class="shopping">
 					<a href="#">
 						<div class="cart">
-							<img src="images/shopping-bag.svg" alt="">
+							<img src="${pageContext.request.contextPath}/images/shopping-bag.svg" alt="">
 							<div class="cart_num_container">
 								<div class="cart_num_inner">
-									<div class="cart_num">1</div>
+									<div class="cart_num">0</div>
 								</div>
 							</div>
 						</div>
@@ -75,11 +76,29 @@
 					<!-- Avatar -->
 					<a href="#">
 						<div class="avatar">
-							<img src="images/avatar.svg" alt="">
+							<img src="${pageContext.request.contextPath}/images/avatar.svg" alt="">
 						</div>
 					</a>
 				</div>
+				
+				<div>
+			    	
+			    </div>
+				
 			</div>
+				<div class="logo">
+					<c:if test="${sessionMemberId != null}">
+						${sessionMemberId}님 반갑습니다.
+						<a href="LogoutController">로그아웃</a>
+					</c:if>
+					
+					<c:if test="${sessionMemberId == null}">
+						<a href="LoginController">로그인 해주세요!</a>
+					</c:if>
+
+				</div>
+				
+				
 			</div>
 	</header>
 	
@@ -99,6 +118,5 @@ $(".actionHover").mouseover( function(){
 	$(".actionHover").mouseout(function(){
 		$(".submenu").stop().slideUp(1000); 
 	})
-
 </script>
 </html>
