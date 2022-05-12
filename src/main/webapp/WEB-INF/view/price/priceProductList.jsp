@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="java.util.*"%>
-<%@ page import="dao.*"%>
-<%@ page import="vo.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +22,6 @@
 <div class="super_container">
 	<!-- Header -->
 	<jsp:include page="../../../WEB-INF/inc/navBar.jsp"></jsp:include>
-	
 	<!-- contents -->
 	<div class="nullbox">
 	</div>
@@ -58,29 +54,25 @@
 		</div>
 		<div class="row products_container">
 			<!-- Product -->
-			<%
-				List<Product> list = new ArrayList<>();
-				Product product = new Product();
-				list = (List<Product>) request.getAttribute("list");
-				for (Product p : list) {
-			%>
+			<c:forEach items="${list}" var="p">
+			
 			<div class="col-lg-4 product_col">
 				<div class="product">
 					<div class="product_image">
-						<a href="${pageContext.request.contextPath}/ProductOneController?productNo=<%=p.getProductNo()%>">
+						<a href="${pageContext.request.contextPath}/productOneController?productNo=${p.getProductNo()}">
 								<img src="images/product_1.jpg" alt="">
 						</a>
 					</div>
 					<div class="product_content clearfix">
 						<div class="product_info">
 							<div class="product_name">
-								<a href="${pageContext.request.contextPath}/ProductOneController?productNo=<%=p.getProductNo()%>">
-									<%=p.getName()%> <%=p.getVolume()%>ml <%=p.getAlcoholLevel()%>도
+								<a href="${pageContext.request.contextPath}/productOneController?productNo=${p.getProductNo()}">
+										${p.getName()} ${p.getVolume()}ml ${p.getAlcoholLevel()}도
 								</a>
 							</div>
 							<div class="product_price">
-								<a href="${pageContext.request.contextPath}/ProductOneController?productNo=<%=p.getProductNo()%>">
-									<%=p.getPrice()%>원
+								<a href="${pageContext.request.contextPath}/productOneController?productNo=${p.getProductNo()}">
+								${p.getPrice()}원 
 								</a>
 							</div>
 						</div>
@@ -92,9 +84,7 @@
 					</div>
 				</div>
 			</div>
-			<%
-				}
-			%>
+			</c:forEach>
 		</div>
 	</div>
 	<!-- Footer -->

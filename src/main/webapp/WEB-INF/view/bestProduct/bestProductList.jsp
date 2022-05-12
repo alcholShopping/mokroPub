@@ -46,14 +46,20 @@
          <div class="product">
 
                <div class="product_image">
-               <a href="${pageContext.request.contextPath}/bestProductListController?productNo=${item.productNo}">
+               <a href="${pageContext.request.contextPath}/productOneController?productNo=${item.productNo}">
                   <img src="images/product_1.jpg" alt="">
                   </a>
                </div>
                <div class="product_content clearfix">
                   <div class="product_info">
-                     <div class="product_name"><a href="#">${item.name} ${item.volume}ml ${item.alcoholLevel}도</a></div>
-                     <div class="product_price">${item.price}원</div>
+                     <div class="product_name">
+                     <a href="${pageContext.request.contextPath}/productOneController?productNo=${item.productNo}">
+                     ${item.name} ${item.volume}ml ${item.alcoholLevel}도</a></div>
+                     <div class="product_price">
+                     <a href="${pageContext.request.contextPath}/productOneController?productNo=${item.productNo}">
+                     ${item.price}원
+                     </a>
+                     </div>
                   </div>
                   <div class="product_options">
                      <div class="product_buy product_option"><img src="images/shopping-bag-white.svg" alt=""></div>
