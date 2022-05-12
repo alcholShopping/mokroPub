@@ -33,7 +33,7 @@ public class RegisterController extends HttpServlet {
 		}
 		request.setAttribute("list", list);
 				
-		request.getRequestDispatcher("/WEB-INF/view/register.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/login/register.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -46,8 +46,11 @@ public class RegisterController extends HttpServlet {
 		String password = request.getParameter("password");
 		String passwordRe = request.getParameter("passwordRe");
 		String name = request.getParameter("name");
-		String address = request.getParameter("address");
-		String zipCode = request.getParameter("zipCode");
+		String addressResult = request.getParameter("addressResult");
+		String zipCode;
+		System.out.println(addressResult+"<<<<<<Address");
+		System.out.println(addressResult.length()-5+"<<<<<<address.length()-5");
+		zipCode = addressResult.substring(addressResult.length()-5, addressResult.length());
 		String detailedAddress = request.getParameter("detailedAddress");
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
@@ -64,7 +67,7 @@ public class RegisterController extends HttpServlet {
 		co.setConsumerId(customerId);
 		co.setPassword(password);
 		co.setName(name);
-		co.setAddress(address);
+		co.setAddress(addressResult);
 		co.setZipCode(zipCode);
 		co.setDetailedAddress(detailedAddress);
 		co.setEmail(email);

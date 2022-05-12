@@ -41,23 +41,29 @@ public class RegisterDao {
 	public List<Map<String, Object>> selectAddressListBySearch(String searchAddr) throws Exception {
 		List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
 		
-
+		/*
+		 SELECT address_no, CONCAT(country," ",city," ",town," ",road_name) AS searchAddr, zipcode 
+			FROM address
+			WHERE CONCAT(country," ",city," ",town," ",road_name) LIKE ?;
+		 */
 		
+		System.out.println(searchAddr+"<<<<<<<<<<받아온 주소");
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT id, CONCAT(zip_code,province,city,town,street) addr FROM address WHERE CONCAT(province,city,town,street) LIKE ?";
+		String sql = " SELECT address_no, CONCAT(country,\" \",city,\" \",town,\" \",road_name) AS searchAddr, zipcode FROM address WHERE CONCAT(country,\" \",city,\" \",town,\" \",road_name) LIKE ?";
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/mokropub","root","java1234");
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, "%"+searchAddr+"%");
 			rs = stmt.executeQuery();
 			while(rs.next()) {
 				Map<String, Object> m = new HashMap<>();
-				m.put("id", rs.getInt("id"));
-				m.put("addr", rs.getString("addr"));
-				list.add(m);
+				m.put("id", rs.getInt("address_no"));
+				m.put("addr", rs.getString("searchAddr"));
+				m.put("zipcode", rs.getString("zipcode"));
+				list.add(m); 
 			}
-
+			System.out.println(list+"<------------list");
 				conn.close();
 				stmt.close();
 				rs.close();

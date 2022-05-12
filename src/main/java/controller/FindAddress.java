@@ -16,13 +16,13 @@ public class FindAddress extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/view/findAddress.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/login/register.jsp").forward(request, response);
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-			String searchAddr = request.getParameter("searchAddr");
+			String searchAddr = request.getParameter("address");
 			
 			RegisterDao rd = new RegisterDao();
 			List<Map<String, Object>> list = null;
@@ -34,7 +34,7 @@ public class FindAddress extends HttpServlet {
 			}
 
 			request.setAttribute("searchList", list);
-			request.getRequestDispatcher("/WEB-INF/view/findAddress.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/view/login/register.jsp").forward(request, response);
 		
 	}
 
