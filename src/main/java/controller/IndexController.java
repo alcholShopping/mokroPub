@@ -11,31 +11,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.CartDao;
 import dao.IndexDao;
 import vo.Category;
 
 	
 @WebServlet("/indexController")
 public class IndexController extends HttpServlet {
-	private IndexDao indexDao = new IndexDao();
+	private CartDao cartDao = new CartDao();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		
-//		//로그인 여부 확인 로직(세션이용)
-//		   HttpSession session = request.getSession();
-//		   String sessionMemberId = (String)session.getAttribute("sessionMemberId");
-//		   if(sessionMemberId == null) {
-//				// 이미 로그인이 되어 있는 상태라면
-//			   response.sendRedirect(request.getContextPath()+"/LoginController");
-//			}
-		 		
-		// 상단바 주류 올릴시(hover)
-		List<Category> list = indexDao.selectCategoryList();
-		// 디버깅 
-		for(Category c : list) {
-			System.out.println(c.toString());
-		}
-		request.setAttribute("categoryList", list);
+		//로그인 여부 확인 로직(세션이용)
+		HttpSession session = request.getSession();
+		String sessionMemberId = (String)session.getAttribute("sessionMemberId");		
+		// 아이디를 번호로 교체
+		int consumerId = cartDao.changeConsumerIdToNo(sessionMemberId);
+		// -----------------------------디버깅-----------------------------
+		System.out.println(consumerId + " <-- consumerId doGet() insertProductInCartController");
+		// 장바구니 담긴 갯수 
+		int cartCount = cartDao.CartCountNum(consumerId);
+		System.out.println(cartCount + "cartCount=================================");
+		session.setAttribute("cartCount", cartCount);
 		
 		request.getRequestDispatcher("/WEB-INF/view/index.jsp").forward(request, response);
 		
