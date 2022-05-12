@@ -28,8 +28,7 @@ public class IndexController extends HttpServlet {
 //				// 이미 로그인이 되어 있는 상태라면
 //			   response.sendRedirect(request.getContextPath()+"/LoginController");
 //			}
-		   
-		
+		 		
 		// 상단바 주류 올릴시(hover)
 		List<Category> list = indexDao.selectCategoryList();
 		// 디버깅 

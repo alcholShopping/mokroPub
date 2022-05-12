@@ -19,53 +19,16 @@
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
 <link href="plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
-
-
 </head>
 <body>
 <div class="super_container">
-<!-- Header -->	
-<jsp:include page="/WEB-INF/inc/navBar.jsp"></jsp:include>
-	
-	<!-- -------------------------------------- nav 끝-------------------------------------- -->
-		<div>
-		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-		</div>
-		
-		<!-- Footer -->
-
-	<footer class="footer">
-		<div class="container">
-			<div class="row">
-				<div class="col text-center">
-					<div class="footer_logo"><a href="#">목로주점木壚酒店</a></div>
-					<nav class="footer_nav">
-						<ul>
-							<div><li>서울특별시 광진구 천호대로 515 목로주점 사무실</li></div>
-							<div><li>대표 : 오렌지조</li></div>
-							<div><li>사업자 등록번호 : 405-85-08714</li></div>
-							<div><li>대표번호 : 070-1111-2222</li></div>
-							<div><li>이메일 : 123@naver.com</li></div>
-						</ul>
-					</nav>
-					<div class="footer_social">
-						<ul>
-							<li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-							<li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-							<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-							<li><a href="#"><i class="fa fa-reddit-alien" aria-hidden="true"></i></a></li>
-							<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-						</ul>
-					</div>
-					<div class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-		Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-		<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
-				</div>
-			</div>
-		</div>
-	</footer>
+	<!-- Header -->	
+	<jsp:include page="/WEB-INF/inc/navBar.jsp"></jsp:include>
+	<!-- contents -->
+	<div class="nullbox">
 	</div>
-	
+	<!-- Footer -->	
+	<jsp:include page="/WEB-INF/inc/footer.jsp"></jsp:include>
+</div>
 </body>
 </html>

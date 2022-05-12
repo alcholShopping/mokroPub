@@ -33,7 +33,7 @@ public class BestProductListController extends HttpServlet {
 			System.out.println(m.get("alcoholLevel") + " <-- alcoholLevel doGet() bestProductListController");
 			System.out.println(m.get("ranking") + " <-- ranking doGet() bestProductListController");
 		}
-		request.setAttribute("list", list);
+		request.setAttribute("BestProductList", list);
 		
 		request.getRequestDispatcher("/WEB-INF/view/bestProduct/bestProductList.jsp").forward(request, response);
 		

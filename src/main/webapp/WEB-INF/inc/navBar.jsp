@@ -5,8 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <header class="header">
-	<div
-		class="header_inner d-flex flex-row align-items-center justify-content-start">
+	<div class="header_inner d-flex flex-row align-items-center justify-content-start">
 		<div class="logo">
 			<a href="${pageContext.request.contextPath}/indexController">목로주점木壚酒店</a>
 		</div>
@@ -75,11 +74,11 @@
 		</div>
 	</div>
 	<script>
-$(".actionHover").mouseover( function(){ 
-	$(".submenu").stop().slideDown(500); 
-	}) 
-	$(".actionHover").mouseout(function(){
-		$(".submenu").stop().slideUp(1000); 
-	})
-</script>
+		$(".actionHover").mouseover( function(){ 
+			$(".submenu").stop().slideDown(500); 
+			}) 
+		$(".actionHover").mouseout(function(){
+			$(".submenu").stop().slideUp(1000); 
+		})
+	</script>
 </header>
