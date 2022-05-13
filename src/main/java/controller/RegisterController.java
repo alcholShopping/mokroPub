@@ -47,13 +47,33 @@ public class RegisterController extends HttpServlet {
 		int row = 999;
 		
 		// register.jsp에서 값을 받아옴
-		String addressResult = request.getParameter("addressResult");
 		String consumerPwRe = request.getParameter("consumerPwRe"); // 비밀번호 재입력 (확인용)
 		// consumer에 값 정재
 		Consumer consumer = new Consumer();
+		
+		
+		String consumerId = request.getParameter("consumerId");
+		String consumerPw = request.getParameter("consumerPw");
+		String passwordRe = request.getParameter("consumerPwRe");
+		String name = request.getParameter("consumerName");
+		String addressResult = request.getParameter("addressResult");
+		String zipCode;
+		zipCode = addressResult.substring(addressResult.length()-5, addressResult.length());
+		String detailedAddress = request.getParameter("detailedAddress");
+		String email = request.getParameter("email");
+		String phone = request.getParameter("phone");
+		String residentNumber = request.getParameter("residentNumber");
+		String accountNumber = request.getParameter("account");
+		
+		//성인인증용
+		int birthYear = Integer.parseInt(request.getParameter("birthYear"));
+				
+		//성인인가요?
+		int yearNow = Calendar.getInstance().get(Calendar.YEAR);
 		consumer.setConsumerId(request.getParameter("consumerId"));
 		consumer.setPassword(request.getParameter("consumerPw"));
-		consumer.setName(request.getParameter("consumerName"));
+		consumer.setName(request.
+				getParameter("consumerName"));
 		consumer.setEmail(request.getParameter("email"));
 		consumer.setPhone(request.getParameter("phone"));
 		consumer.setResidentNumber(request.getParameter("residentNumber"));
@@ -75,12 +95,8 @@ public class RegisterController extends HttpServlet {
 		System.out.println(consumer.getDetailedAddr() + " <-- getDetailedAddr() doPost() registerController");
 		System.out.println(addressResult + " <-- addressResult doPost() registerController");
 		System.out.println(consumerPwRe + " <-- consumerPwRe doPost() registerController");
-				
-		//성인인증용
-		int birthYear = Integer.parseInt(request.getParameter("birthYear"));		
-				
-		//성인인가요?
-		int yearNow = Calendar.getInstance().get(Calendar.YEAR);
+
+		
 		
 		try {
 			row = registerDao.registerByCustomer(consumer);
@@ -89,9 +105,9 @@ public class RegisterController extends HttpServlet {
 		}
 		
 		if(row == 1) {
-			response.sendRedirect("LoginController");
+			response.sendRedirect("loginController");
 		} else {
-			response.sendRedirect("RegisterController");
+			response.sendRedirect("registerController");
 		}
 	}
 

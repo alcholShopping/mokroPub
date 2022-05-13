@@ -4,31 +4,108 @@
 <%@ page import="dao.*"%>
 <%@ page import="vo.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>login</title>
+<title>index</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Wish shop project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/bootstrap4/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main_styles.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/responsive.css">
-<link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
-<link href="plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/styles/bootstrap4/bootstrap.min.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/styles/main_styles.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/styles/responsive.css">
+<link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css"
+	href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css"
+	href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css"
+	href="plugins/OwlCarousel2-2.2.1/animate.css">
+<link href="plugins/colorbox/colorbox.css" rel="stylesheet"
+	type="text/css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+</script>
+
+<style>
+	.helper {
+    	color: #FF0000;
+    }
+</style>
 </head>
 <body>
 	<div class="super_container">
-	<!-- Header -->
-	<jsp:include page="../../../WEB-INF/inc/navBar.jsp"></jsp:include>
+	<header class="header">
+		<div class="header_inner d-flex flex-row align-items-center justify-content-start">
+			<div class="logo">
+				<a href="${pageContext.request.contextPath}/indexController">목로주점木壚酒店</a>
+			</div>
+			<nav class="main_nav">
+				<ul>
+					<li class="actionHover"><a href="#">주종</a>
+						<ul class="submenu">
+							<li><a href="${pageContext.request.contextPath}/categoryProductListController?categoryNo=1">증류수</a></li>
+							<li><a href="${pageContext.request.contextPath}/categoryProductListController?categoryNo=2">리큐르</a></li>
+							<li><a href="${pageContext.request.contextPath}/categoryProductListController?categoryNo=3">막걸리</a></li>
+							<li><a href="${pageContext.request.contextPath}/categoryProductListController?categoryNo=4">약주</a></li>
+							<li><a href="${pageContext.request.contextPath}/categoryProductListController?categoryNo=5">청주</a></li>
+							<li><a href="${pageContext.request.contextPath}/categoryProductListController?categoryNo=6">과실주</a></li>
+							<li><a href="${pageContext.request.contextPath}/categoryProductListController?categoryNo=7">기타주류</a></li>
+						</ul></li>
+					<li><a
+						href="${pageContext.request.contextPath}/priceProductListController">가격순</a></li>
+					<li><a href="${pageContext.request.contextPath}/bestProductListController">인기순</a></li>
+					<li><a href="#">커뮤니티</a></li>
+					<li><a href="#">contact</a></li>
+				</ul>
+			</nav>
+	
+			<div class="header_content">
+				<!-- search -->
+				<div class="search header_search">
+					<form action="#">
+						<input type="search" class="search_input" value=">>상세검색 >>" readonly="readonly">
+						<button type="submit" id="search_button" class="search_button">
+							<img
+								src="${pageContext.request.contextPath}/images/magnifying-glass.svg"alt="">
+						</button>
+					</form>
+				</div>
+				<!-- Cart -->
+				<div class="shopping">
+					<a href="#">
+						<div class="cart">
+							<img
+								src="${pageContext.request.contextPath}/images/shopping-bag.svg"alt="">
+							<div class="cart_num_container">
+								<div class="cart_num_inner">
+									<div class="cart_num">0</div>
+								</div>
+							</div>
+						</div>
+					</a>
+	
+					<!-- Avatar -->
+					<a href="#">
+						<div class="avatar">
+							<img src="${pageContext.request.contextPath}/images/avatar.svg"alt="">
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</header>
 
-	<!-- content -->
-	<div class="register">
+		<!-- -------------------------------------- nav 끝-------------------------------------- -->
+		<div class="register">
+
 			<div class="gallery">
 				<!--  <div class="gallery_image" style="background-image:url(images/temp_main1.jpg)"></div>  -->
 				<div class="container">
@@ -50,7 +127,7 @@
 													<select name="addressResult" class="form-control">
 														<option value="" >::: 주소 선택 :::</option>
 														<c:forEach var="m" items="${searchList}">
-															<option value="${m.addr} ${m.zipcode}">${m.addr} ${m.zipcode}</option>
+															<option value="${m.searchAddr} ${m.zipcode}">${m.searchAddr} ${m.zipcode}</option>
 														</c:forEach>
 													</select>
 												</div>												
@@ -109,7 +186,7 @@
 										</tr>
 
 										<tr>
-											<th>전화번호</th>
+											<th>전화번호(-를 포함하여 입력)</th>
 
 											<th><input type="text" class="form-control"
 												placeholder="010-4123-5342" name="phone" id="phone">
@@ -128,7 +205,7 @@
 											<th>태어난 연도</th>
 
 											<th><input type="number" class="form-control"
-												placeholder="1998" name="birthYear" id="birthYear" >
+												placeholder="1998" name="birthYear" id="birthYear" value="" >
 												<span id="birthYearHelper" class="helper"></span></th>
 										</tr>
 
@@ -144,7 +221,7 @@
 										<tr>
 
 											<th colspan="2">
-												<button type="submit" class="btn btn-primary">제출</button>
+												<button type="submit" class="btn btn-primary" id="registerBtn">제출</button>
 												<a href="${pageContext.request.contextPath}/indexController" type="submit" class="btn btn-primary">취소</button>
 											</th>
 										</tr>
@@ -164,18 +241,13 @@
 		</div>
 </body>
 <script>
-	$(".actionHover").mouseover( function(){ 
-		$(".submenu").stop().slideDown(500); 
-		}) 
-		$(".actionHover").mouseout(function(){
-			$(".submenu").stop().slideUp(1000); 
-		})
-	
+
 	$('#id').blur(function(){
-		if($('#id').val().length <= 5 && '#id').val().length >= 21) {
-			$('#idHelper').text('id는 5글자 이상 20글자만 가능합니다');
+		if( ($('#id').val().length < 4) || ($('#id').val().length > 20) ) {
+			console.log('아이디 갯수' + $('#id').val().length);
+			$('#idHelper').text('id는 4글자 이상 20글자만 가능합니다');
 			$('#id').focus();
-		} else {
+		}else{
 			$('#idHelper').text('');
 		}
 	});
@@ -191,25 +263,7 @@
 			$('#pwHelper').text('');
 		}
 	});
-	
-	$('#birthYear').blur(function() {
-		if($('#birthYear').val() == '') {
-			$('#birthYearHelper').text('birth을 입력하세요');
-			$('#birthYear').focus();
-		} else {
-			$('#birthYearHelper').text('');
-			// age 계산
-			let today = new Date();
-			let y = today.getFullYear();
-			let age = y - Number($('#birthYear').val().substr(0, 4));
-			$('#age').val(age);
-			if(age < 19) {
-				$('#birthYearHelper').text('성인만 가입가능합니다.');
-				$('#birthYear').focus();
-			}
-		}
-	});
-	
+
 	$('#name').blur(function() {
 		if($('#name').val() == '') {
 			$('#nameHelper').text('이름을 입력해주세요');
@@ -220,7 +274,7 @@
 	});
 	
 	$('#email').blur(function() {
-		if($('#email').val() == '') {
+		if($('#email').val().includes('@') == false) {
 			$('#emailHelper').text('이메일을 입력해주세요');
 			$('#email').focus();
 		} else {
@@ -228,9 +282,10 @@
 		}
 	});
 	
+	// 11자리를 입력해야함 하이픈 포함
 	$('#phone').blur(function() {
-		if($('#phone').val() == '') {
-			$('#phoneHelper').text('번호을 입력해주세요');
+		if($('#phone').val().length != 13) {
+			$('#phoneHelper').text('휴대전화를 입력해주세요');
 			$('#phone').focus();
 		} else {
 			$('#phoneHelper').text('');
@@ -238,16 +293,49 @@
 		}
 	});
 	
+	// 주민등록번호를 입력후 앞 두자리 변수
+	let two = 0;
+	let sex = 0;
+	let ageY = 0; // 태어난 연도
+	let age = 0; // 나이
 	$('#residentNumber').blur(function() {
-		if($('#residentNumber').val() == '') {
+		if($('#residentNumber').val().length != 14) {
 			$('#residentNumberHelper').text('주민번호을 입력해주세요');
 			$('#residentNumber').focus();
 		} else {
 			$('#residentNumberHelper').text('');
-
+			two = $('#residentNumber').val().substr(0,2);
+			sex = $('#residentNumber').val().substr(7,1);
+			console.log('주민등록번호앞 두자리' + two);
+			console.log('주민등록번호 뒷 한자리' + sex);
+			
+			// 두자리 나이 판별 
+			if( (sex == 1) || (sex == 2) ){
+				ageY = 19 + two;
+				console.log('태어난 연도' + ageY);
+			}else if( (sex == 3) || (sex == 4) ){
+				ageY = 20 + two;
+				console.log('태어난 연도' + ageY);
+			}
+			
+			// 현재 연도 출력
+			let today = new Date();
+			let y = today.getFullYear();
+			
+			//나이 판별
+			age = y - ageY;
+			console.log('나이' + age);
+			
+			// 태어난 연도 값 넘겨주기
+			$('input#birthYear').val(ageY);
+			
+			if(age < 19) {
+				console.log('성인만 가입가능합니다.');
+				alert('성인만 가입가능합니다.');
+			}
 		}
 	});
-	
+
 	$('#accountNumber').blur(function() {
 		if($('#accountNumber').val() == '') {
 			$('#accountNumberHelper').text('계좌를 입력해주세요');
@@ -257,14 +345,7 @@
 
 		}
 	});
-
-	$(".actionHover").mouseover( function(){ 
-		$(".submenu").stop().slideDown(500); 
-		}) 
-	$(".actionHover").mouseout(function(){
-		$(".submenu").stop().slideUp(1000); 
-	})
-
+	
 </script>
 
 </html>
