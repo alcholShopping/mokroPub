@@ -23,68 +23,8 @@
 </head>
 <body>
 	<div class="super_container">
-	<header class="header">
-		<div class="header_inner d-flex flex-row align-items-center justify-content-start">
-			<div class="logo">
-				<a href="${pageContext.request.contextPath}/indexController">목로주점木壚酒店</a>
-			</div>
-			
-			<nav class="main_nav">
-				<ul>
-					<li class="actionHover"><a href="#">주종</a>
-						<ul class="submenu">
-							<li><a href="${pageContext.request.contextPath}/categoryProductListController?categoryNo=1">증류수</a></li>
-							<li><a href="${pageContext.request.contextPath}/categoryProductListController?categoryNo=2">리큐르</a></li>
-							<li><a href="${pageContext.request.contextPath}/categoryProductListController?categoryNo=3">막걸리</a></li>
-							<li><a href="${pageContext.request.contextPath}/categoryProductListController?categoryNo=4">약주</a></li>
-							<li><a href="${pageContext.request.contextPath}/categoryProductListController?categoryNo=5">청주</a></li>
-							<li><a href="${pageContext.request.contextPath}/categoryProductListController?categoryNo=6">과실주</a></li>
-							<li><a href="${pageContext.request.contextPath}/categoryProductListController?categoryNo=7">기타주류</a></li>
-						</ul></li>
-					<li><a
-						href="${pageContext.request.contextPath}/priceProductListController">가격순</a></li>
-					<li><a href="${pageContext.request.contextPath}/bestProductListController">인기순</a></li>
-					<li><a href="#">커뮤니티</a></li>
-					<li><a href="#">contact</a></li>
-				</ul>
-			</nav>
-	
-			<div class="header_content">
-				<!-- search -->
-				<div class="search header_search">
-					<form action="#">
-						<input type="search" class="search_input" value=">>상세검색 >>" readonly="readonly">
-						<button type="submit" id="search_button" class="search_button">
-							<img
-								src="${pageContext.request.contextPath}/images/magnifying-glass.svg"alt="">
-						</button>
-					</form>
-				</div>
-				<!-- Cart -->
-				<div class="shopping">
-					<a href="#">
-						<div class="cart">
-							<img
-								src="${pageContext.request.contextPath}/images/shopping-bag.svg"alt="">
-							<div class="cart_num_container">
-								<div class="cart_num_inner">
-									<div class="cart_num">0</div>
-								</div>
-							</div>
-						</div>
-					</a>
-	
-					<!-- Avatar -->
-					<a href="#">
-						<div class="avatar">
-							<img src="${pageContext.request.contextPath}/images/avatar.svg"
-								alt="">
-						</div>
-					</a>
-				</div>
-			</div>
-		</div>
-	</header>
+	<!-- Header -->
+	<jsp:include page="../../../WEB-INF/inc/navBar.jsp"></jsp:include>
 	
 		<!-- -------------------------------------- nav 끝-------------------------------------- -->
 		<div class="register">

@@ -21,17 +21,27 @@ public class PriceProductListController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Product> list = new ArrayList<>();
 		int startPrice = 0;
-		int endPrice = 99999999;
+		int endPrice = 9999999;
+
 		if(request.getParameter("startPrice")!=null) {
 			startPrice = Integer.parseInt(request.getParameter("startPrice"));
 		}
-		if(request.getParameter("startPrice") != null) {
+		if(request.getParameter("endPrice") != null) {
 			endPrice = Integer.parseInt(request.getParameter("endPrice"));
 		}
 		
-		list = priceDao.seleselectPriceByPage(startPrice, endPrice);
+		if(request.getParameter("cnt") == null) {
+			list = priceDao.seleselectPriceByPageAsc(startPrice, endPrice);
+		}else {
+			list = priceDao.seleselectPriceByPageDesc(startPrice, endPrice);
+		}
+		
+
 		
 		request.setAttribute("list", list);
+		request.setAttribute("startPrice",startPrice);
+		request.setAttribute("endPrice",endPrice);
+		
 		request.getRequestDispatcher("/WEB-INF/view/price/priceProductList.jsp").forward(request, response);
 		
 	}

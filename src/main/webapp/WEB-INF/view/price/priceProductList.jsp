@@ -45,9 +45,81 @@
 								<a href="priceProductListController?startPrice=10000&endPrice=15000">10000원 ~ 15000원</a>
 							</td>
 							<td>
-								<a href="priceProductListController?startPrice=20000&endPrice=999999">20000원 이상</a>
+								<a href="priceProductListController?startPrice=20000&endPrice=9999999">20000원 이상</a>
 							</td>
 						</tr>
+						<%
+							int startPrice=(Integer)request.getAttribute("startPrice");
+							int endPrice=(Integer)request.getAttribute("endPrice");
+							if(startPrice == 0 && endPrice == 9999999){
+						%>	
+								<tr>
+									<td>
+										<a href="priceProductListController?startPrice=0&endPrice=9999999">낮은순</a>
+									</td>
+									<td>
+										<a href="priceProductListController?startPrice=0&endPrice=9999999&cnt=1">높은순</a>
+									</td>
+								</tr>
+						<% 
+							}		
+						%>
+						<%
+							if(startPrice == 0 && endPrice == 5000){
+						%>	
+								<tr>
+									<td>
+										<a href="priceProductListController?startPrice=0&endPrice=5000">낮은순</a>
+									</td>
+									<td>
+										<a href="priceProductListController?startPrice=0&endPrice=5000&cnt=1">높은순</a>
+									</td>
+								</tr>
+						<% 
+							}		
+						%>
+						<%
+							if(startPrice == 5000 && endPrice == 10000){
+						%>	
+								<tr>
+									<td>
+										<a href="priceProductListController?startPrice=5000&endPrice=10000">낮은순</a>
+									</td>
+									<td>
+										<a href="priceProductListController?startPrice=5000&endPrice=10000&cnt=1">높은순</a>
+									</td>
+								</tr>
+						<% 
+							}		
+						%>
+						<%
+							if(startPrice == 10000 && endPrice == 15000){
+						%>	
+								<tr>
+									<td>
+										<a href="priceProductListController?startPrice=10000&endPrice=15000">낮은순</a>
+									</td>
+									<td>
+										<a href="priceProductListController?startPrice=10000&endPrice=15000&cnt=1">높은순</a>
+									</td>
+								</tr>
+						<% 
+							}		
+						%>
+						<%
+							if(startPrice == 20000 && endPrice == 9999999){
+						%>	
+								<tr>
+									<td>
+										<a href="priceProductListController?startPrice=20000&endPrice=9999999">낮은순</a>
+									</td>
+									<td>
+										<a href="priceProductListController?startPrice=20000&endPrice=9999999&cnt=1">높은순</a>
+									</td>
+								</tr>
+						<% 
+							}		
+						%>
 					</table>
 				</div>
 			</div>
@@ -55,7 +127,6 @@
 		<div class="row products_container">
 			<!-- Product -->
 			<c:forEach items="${list}" var="p">
-			
 			<div class="col-lg-4 product_col">
 				<div class="product">
 					<div class="product_image">
@@ -77,9 +148,11 @@
 							</div>
 						</div>
 						<div class="product_options">
-							<div class="product_buy product_option">
+							<a href ="${pageContext.request.contextPath}/insertProductInCartController?productNo=${p.getProductNo()}">
+								<div class="product_buy product_option">
 								<img src="images/shopping-bag-white.svg" alt="">
-							</div>
+								</div>
+							</a>
 						</div>
 					</div>
 				</div>

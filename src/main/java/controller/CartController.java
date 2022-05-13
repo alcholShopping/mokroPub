@@ -23,7 +23,8 @@ public class CartController extends HttpServlet {
 		String sessionMemberId = (String)session.getAttribute("sessionMemberId");
 		if(sessionMemberId == null) {
 			// 로그인 안되어있을시에 LoginController 이동
-			response.sendRedirect(request.getContextPath()+"/LoginController");
+			response.sendRedirect(request.getContextPath()+"/loginController");
+			return;
 		}
 		
 		// 아이디를 번호로 교체
@@ -41,13 +42,22 @@ public class CartController extends HttpServlet {
 			System.out.println(m.get("count") + " <-- volume doGet() CartController ");
 			System.out.println(m.get("picture") + " <-- picture doGet() CartController ");
 		}
-		request.setAttribute("cartList", cartList);
-
+		
 		// 장바구니 담긴 갯수 
 		int cartCount = cartDao.CartCountNum(consumerId);
-		System.out.println(cartCount + "cartCount=================================");
+		System.out.println(cartCount + "cartCount doGet() CartController");
 		session.setAttribute("cartCount", cartCount);
+		
+		// 전체 삭제 버튼을 클릭 했는지 0이면 클릭 안함 1이면 클릭 함
+		String deleteBtn = request.getParameter("deleteBtn");
+		
+		if(deleteBtn != null ) {
+			// cartNo에 따른 장바구니 삭제 (전체삭제)
+			System.out.println("삭제 버튼 눌림");
+			cartDao.DeleteProductInCartAll(consumerId);
+		}
 
+		request.setAttribute("cartList", cartList);
 		request.getRequestDispatcher("/WEB-INF/view/cart/cartList.jsp").forward(request, response);
 	}
 
@@ -59,17 +69,19 @@ public class CartController extends HttpServlet {
 			// 로그인 안되어있을시에 LoginController 이동
 			response.sendRedirect(request.getContextPath()+"/LoginController");
 		}
-		
-		int cartNo = 0;
-		cartNo = Integer.parseInt(request.getParameter("cartNo"));
-		
-		// cartNo에 따른 장바구니 삭제
-		cartDao.DeleteProductInCart(cartNo);
-		
 		// 아이디를 번호로 교체
 		int consumerId = cartDao.changeConsumerIdToNo(sessionMemberId);
 		// -----------------------------디버깅-----------------------------
-		System.out.println(consumerId + " <-- consumerId doGet() insertProductInCartController");
+		System.out.println(consumerId + " <-- consumerId doGet() CartController");
+		
+		
+		Integer.parseInt(request.getParameter("cartNo"));
+		
+		 
+		int cartNo = Integer.parseInt(request.getParameter("cartNo"));
+		// cartNo에 따른 장바구니 삭제 (단일삭제)
+		cartDao.DeleteProductInCart(cartNo);
+		
 		// 장바구니 담긴 갯수 
 		int cartCount = cartDao.CartCountNum(consumerId);
 		System.out.println(cartCount + "cartCount=================================");

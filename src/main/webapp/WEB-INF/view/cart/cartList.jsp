@@ -30,8 +30,14 @@
 	
 	<!--  구현영역  -->
 	<div class="container">
+	
       <div class="row">
          <div class="col">
+         <div class="float-right">
+         	<a href="${pageContext.request.contextPath}/cartController?deleteBtn=delete">
+				<div class="btn btn-outline-secondary btn-sm">모두삭제</div>
+			</a>
+		</div>
 					<table class ="table table-bordered">
 					<c:forEach items="${cartList}" var="item">
 						<form method="post" action="${pageContext.request.contextPath}/cartController">
@@ -58,10 +64,12 @@
 							</td>
 						</tr>
 						</form>
+						
 					</c:forEach>
 				</table>  
-			</div>
+			</div>  
 	</div>
+	
 </div>
 	<!-- Footer -->	
 	<jsp:include page="../../../WEB-INF/inc/footer.jsp"></jsp:include>

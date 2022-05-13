@@ -46,7 +46,7 @@ public class CartDao {
 	}
 	
 	// 상품이 이미 장바구니에 존재한다면 수량을 하나 추가
-	public void updateProductInCart(int productNo, int consumerId) {
+	public void updateProductInCart(int productNo, int count, int consumerId) {
 		int row = 0;
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -54,14 +54,15 @@ public class CartDao {
 		
 		// CART에 있는 상품의 개수를 업데이트
 		String sql=" UPDATE cart "
-				+ " SET COUNT = COUNT + 1 "
+				+ " SET COUNT = COUNT + ? "
 				+ " WHERE consumer_no = ? AND product_no = ? ";
 		
 		try {
 			conn = DBUtil.getConnection();
 			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, consumerId);
-			stmt.setInt(2, productNo);
+			stmt.setInt(1, count);
+			stmt.setInt(2, consumerId);
+			stmt.setInt(3, productNo);
 			row = stmt.executeUpdate();
 			if(row == 1) {
 				System.out.println("입력성공");
@@ -193,9 +194,9 @@ public class CartDao {
 		return consumerList;
 	}
 	
-	//장바구니 삭제
+	//장바구니에 상품 단일 삭제
 	public void DeleteProductInCart(int cartNo) {
-		int row=0;
+		int row = 0;
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		
@@ -209,9 +210,9 @@ public class CartDao {
 
 			row = stmt.executeUpdate();
 			if(row == 1) {
-				System.out.println("삭제 성공");
+				System.out.println("단일 상품 삭제 성공");
 			} else {
-				System.out.println("삭제 실패");
+				System.out.println("단일 상품 삭제 실패");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -224,6 +225,37 @@ public class CartDao {
 		} 
 	}
 	
+	//장바구니에 상품 단일 삭제
+	public void DeleteProductInCartAll(int consumerId) {
+		int row = 0;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+			
+		// 장바구니 삭제 쿼리
+		String sql = " DELETE FROM cart WHERE consumer_no = ? ";
+			
+		try {
+			conn = DBUtil.getConnection();
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, consumerId);
+
+			row = stmt.executeUpdate();
+			if(row == 1) {
+				System.out.println("전체 상품 삭제 성공");
+			} else {
+				System.out.println("전체 상품 삭제 실패");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} 
+	}
+		
 	//상단바 장바구니 담긴 개수
 	public int CartCountNum(int cunsumerId) {
 		int cnt = 0;

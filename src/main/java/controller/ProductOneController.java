@@ -55,7 +55,8 @@ public class ProductOneController extends HttpServlet {
 			System.out.println(m.get("categoryType") + " <-- categoryType doGet() ProductOneController ");
 			System.out.println(m.get("companyName") + " <--companyName doGet() ProductOneController ");		
 		}
-
+		
+		request.setAttribute("productNo", productNo);
 		request.setAttribute("list", list);
 		
 		request.getRequestDispatcher("/WEB-INF/view/product/productOne.jsp").forward(request, response);

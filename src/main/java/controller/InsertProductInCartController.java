@@ -21,7 +21,8 @@ public class InsertProductInCartController extends HttpServlet {
 		   String sessionMemberId = (String)session.getAttribute("sessionMemberId");
 		   if(sessionMemberId == null) {
 				// 로그인 안되어있을시에 LoginController 이동
-			   response.sendRedirect(request.getContextPath()+"/LoginController");
+			   response.sendRedirect(request.getContextPath()+"/loginController");
+			   return;
 			}
 		
 		// productNo을 받아옴
@@ -32,16 +33,15 @@ public class InsertProductInCartController extends HttpServlet {
 			response.sendRedirect("/indexController");
 		}
 		
-		// categoryNo을 받아옴
-		int categoryNo = Integer.parseInt(request.getParameter("categoryNo"));
-		System.out.println(categoryNo + " <-- categoryNo categoryProductListController");
-		if(categoryNo == 0) { // 카테고리 번호가 없을 시
-			System.out.println(productNo + "categoryNo이 존재하지 않음 doGet() insertProductInCartController");
-			response.sendRedirect("/indexController");
+
+		int count = 0;
+		
+		if(request.getParameter("count")!= null) {
+			count = Integer.parseInt(request.getParameter("count"));
+			System.out.println(count+"<=====================count");	
+		}else {
+			count  = 1; // 수량 1개  
 		}
-		
-		
-		int count  = 1; // 수량 1개  
 		
 		// 아이디를 번호로 교체
 		int consumerId = cartDao.changeConsumerIdToNo(sessionMemberId);
@@ -62,7 +62,7 @@ public class InsertProductInCartController extends HttpServlet {
 			
 		}else {
 			// 같은 상품이 존재한다면 update
-			cartDao.updateProductInCart(productNo, consumerId);
+			cartDao.updateProductInCart(productNo, count, consumerId);
 			// -----------------------------디버깅-----------------------------
 			System.out.println("상품의 수량을 추가했습니다." + " <-- productCnt doGet() insertProductInCartController");
 		}

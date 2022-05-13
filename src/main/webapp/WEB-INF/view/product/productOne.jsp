@@ -123,20 +123,19 @@
 						</div>
 						
 						<!-- Product Quantity -->
+					<form method="get" action="${pageContext.request.contextPath}/insertProductInCartController">
 						<div class="product_quantity_container">
 							<span>수량</span>
 							<div class="product_quantity clearfix">
-								<input type="number" name="count" value="1">
-								<div class="quantity_buttons">
-									<div id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fa fa-caret-up" aria-hidden="true"></i></div>
-									<div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fa fa-caret-down" aria-hidden="true"></i></div>
-								</div>
+								<input type="number" name = "count" value="1">
+								<input type="number" name = "productNo" value="<%=request.getAttribute("productNo")%>">
 							</div>
 						</div>
 						<!-- Product Size -->
 						<div class="product_size_container">
-							<div class="button cart_button"><a href="#">add to cart</a></div>
+							<button type="submit">add to cart</button>
 						</div>
+						</form>
 						
 					</div>
 				</div>

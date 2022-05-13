@@ -62,12 +62,14 @@
                      </div>
                   </div>
                   <div class="product_options">
-                     <div class="product_buy product_option"><img src="images/shopping-bag-white.svg" alt=""></div>
-                  </div>
+						<a href ="${pageContext.request.contextPath}/insertProductInCartController?productNo=${p.getProductNo()}">
+							<div class="product_buy product_option">
+							<img src="images/shopping-bag-white.svg" alt="">
+							</div>
+						</a>
+					</div>
                </div>
-
             </div>
-
          </div>
          </c:forEach>
       </div>

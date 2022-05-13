@@ -72,11 +72,11 @@
 							</div>
 						</div>
 						<div class="product_options">
+						<a href ="${pageContext.request.contextPath}/insertProductInCartController?productNo=${p.getProductNo()}">
 							<div class="product_buy product_option">
-							<a href ="${pageContext.request.contextPath}/insertProductInCartController?productNo=${p.getProductNo()}&categoryNo=<%=categoryNo%>">
 							<img src="images/shopping-bag-white.svg" alt="">
-							</a>
 							</div>
+							</a>
 						</div>
 					</div>
 				</div>
