@@ -48,78 +48,60 @@
 								<a href="priceProductListController?startPrice=20000&endPrice=9999999">20000원 이상</a>
 							</td>
 						</tr>
-						<%
-							int startPrice=(Integer)request.getAttribute("startPrice");
-							int endPrice=(Integer)request.getAttribute("endPrice");
-							if(startPrice == 0 && endPrice == 9999999){
-						%>	
-								<tr>
-									<td>
-										<a href="priceProductListController?startPrice=0&endPrice=9999999">낮은순</a>
-									</td>
-									<td>
-										<a href="priceProductListController?startPrice=0&endPrice=9999999&cnt=1">높은순</a>
-									</td>
-								</tr>
-						<% 
-							}		
-						%>
-						<%
-							if(startPrice == 0 && endPrice == 5000){
-						%>	
-								<tr>
-									<td>
-										<a href="priceProductListController?startPrice=0&endPrice=5000">낮은순</a>
-									</td>
-									<td>
-										<a href="priceProductListController?startPrice=0&endPrice=5000&cnt=1">높은순</a>
-									</td>
-								</tr>
-						<% 
-							}		
-						%>
-						<%
-							if(startPrice == 5000 && endPrice == 10000){
-						%>	
-								<tr>
-									<td>
-										<a href="priceProductListController?startPrice=5000&endPrice=10000">낮은순</a>
-									</td>
-									<td>
-										<a href="priceProductListController?startPrice=5000&endPrice=10000&cnt=1">높은순</a>
-									</td>
-								</tr>
-						<% 
-							}		
-						%>
-						<%
-							if(startPrice == 10000 && endPrice == 15000){
-						%>	
-								<tr>
-									<td>
-										<a href="priceProductListController?startPrice=10000&endPrice=15000">낮은순</a>
-									</td>
-									<td>
-										<a href="priceProductListController?startPrice=10000&endPrice=15000&cnt=1">높은순</a>
-									</td>
-								</tr>
-						<% 
-							}		
-						%>
-						<%
-							if(startPrice == 20000 && endPrice == 9999999){
-						%>	
-								<tr>
-									<td>
-										<a href="priceProductListController?startPrice=20000&endPrice=9999999">낮은순</a>
-									</td>
-									<td>
-										<a href="priceProductListController?startPrice=20000&endPrice=9999999&cnt=1">높은순</a>
-									</td>
-								</tr>
-						<% 
-							}		
-						%>
+						 
+					<c:if test="${startPrice == 0 && endPrice == 9999999}" >
+							<tr>
+								<td>
+									<a href="priceProductListController?startPrice=0&endPrice=9999999">낮은순</a>
+								</td>
+								<td>
+									<a href="priceProductListController?startPrice=0&endPrice=9999999&cnt=1">높은순</a>
+								</td>
+							</tr>
+					</c:if>
+				
+					<c:if test="${startPrice == 0 && endPrice == 5000}" >
+						<tr>
+							<td>
+								<a href="priceProductListController?startPrice=0&endPrice=5000">낮은순</a>
+							</td>
+							<td>
+								<a href="priceProductListController?startPrice=0&endPrice=5000&cnt=1">높은순</a>
+							</td>
+						</tr>
+					</c:if>
+							
+					<c:if test="${startPrice == 5000 && endPrice == 10000}" >
+						<tr>
+							<td>
+								<a href="priceProductListController?startPrice=5000&endPrice=10000">낮은순</a>
+							</td>
+							<td>
+								<a href="priceProductListController?startPrice=5000&endPrice=10000&cnt=1">높은순</a>
+							</td>
+						</tr>
+					</c:if>
+					<c:if test="${startPrice == 10000 && endPrice == 15000}" >
+						<tr>
+							<td>
+								<a href="priceProductListController?startPrice=10000&endPrice=15000">낮은순</a>
+							</td>
+							<td>
+								<a href="priceProductListController?startPrice=10000&endPrice=15000&cnt=1">높은순</a>
+							</td>
+						</tr>
+					</c:if>
+					<c:if test="${startPrice == 20000 && endPrice == 9999999}" >
+						<tr>
+							<td>
+								<a href="priceProductListController?startPrice=20000&endPrice=9999999">낮은순</a>
+							</td>
+							<td>
+								<a href="priceProductListController?startPrice=20000&endPrice=9999999&cnt=1">높은순</a>
+							</td>
+						</tr>
+					</c:if>
+
 					</table>
 				</div>
 			</div>

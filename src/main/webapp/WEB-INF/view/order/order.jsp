@@ -30,29 +30,25 @@
 	
 	<!--  구현영역  -->
 	<div class="container">
-	<div class="row">
-				<div class="col">
-					<div class="section_title_container text-center">
-						<div class="section_subtitle">목로주점</div>
-						<div class="section_title">장바구니</div>
-					</div>
-				</div>
-			</div>
+	
       <div class="row">
          <div class="col">
          <div class="float-right">
-         	<a href="${pageContext.request.contextPath}/deleteProductInCartController">
-				<div class="btn btn-outline-secondary btn-sm">모두삭제</div>
-			</a>
+         
 		</div>
+		
+		<h2>주문 테이블</h2>
 					<table class ="table table-bordered">
 					<c:forEach items="${cartList}" var="item">
-						<form method="post" action="${pageContext.request.contextPath}/deleteProductInCartController">
-						<tr>
 
+						<tr>
 							<td>
-								<input type="hidden" value="${item.cartNo}" name="cartNo" >
-								<input type="hidden" value="${item.productNo}" name="cartNo">
+								<input type="text" value="${item.cartNo}" name="cartNo">
+							</td>
+							<td>
+								<input type="text" value="${item.productNo}" name="cartNo">
+							</td>
+							<td>
 								<img src="images/product_1.jpg" width="150px">
 							<br>
 								${item.picture}
@@ -69,35 +65,33 @@
 								<div class="selectCount">
 									<ul class="countList">
 										<li class="currentCount">현재수량 : ${item.count}
-											<ul class="submitCount">
-												<li>
-												<a href="${pageContext.request.contextPath}/updateProductInCartController?count=1&productNo=${item.productNo}">1</a>
-												</li>
-												<li>
-												<a href="${pageContext.request.contextPath}/updateProductInCartController?count=2&productNo=${item.productNo}">2</a>
-												</li>
-												<li>
-												<a href="${pageContext.request.contextPath}/updateProductInCartController?count=3&productNo=${item.productNo}">3</a>
-												</li>
-												<li>
-												<a href="${pageContext.request.contextPath}/updateProductInCartController?count=4&productNo=${item.productNo}">4</a>
-												</li>
-												<li>
-												<a href="${pageContext.request.contextPath}/updateProductInCartController?count=5&productNo=${item.productNo}">5</a>
-												</li>
-											</ul>
 										</li>
 									</ul>
 								</div>
 							</td>
-							<td>
-								<button type="submit">x</button>
-							</td>
 						</tr>
-						</form>
+						
 						
 					</c:forEach>
-				</table>  
+				  
+				<tr>
+					<td></td>
+			
+					<td></td>
+					<td></td>
+				
+					<td></td>
+					<td>총 금액 : ${totalPrice}</td>
+					<td>주문 수량 : ${cartCount} </td>
+					
+				
+					</tr>
+
+				</table>
+				
+				<form method="post" action="${pageContext.request.contextPath}/deleteProductInCartController">
+				<button type="submit" class="btn btn-primary">주문하기</button>
+				</form>
 			</div>  
 	</div>
 	

@@ -10,23 +10,52 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import dao.CartDao;
 import dao.ProductDao;
 
 
 
 @WebServlet("/productOneController")
 public class ProductOneController extends HttpServlet {
-	private ProductDao productDao = new ProductDao();
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// index.jsp 로부터 넘어온 categoryNo을 받아옴
+	private ProductDao productDao;
+	private CartDao cartDao;
+;	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		cartDao = new CartDao();
+		//로그인 여부 확인 로직(세션이용)
+		HttpSession session = request.getSession();
+		String sessionMemberId = (String)session.getAttribute("sessionMemberId");
+
+		// productNo을 받아옴
 		int productNo = Integer.parseInt(request.getParameter("productNo"));
-		System.out.println(productNo + " <-- productNo ProductOneController");
-		if(productNo == 0) { // 카테고리 번호가 없을 시
+		System.out.println(productNo + " <-- productNo categoryProductListController");
+		if(productNo == 0) { // 상품 번호가 없을 시
+			System.out.println(productNo + "productNo이 존재하지 않음 doGet() insertProductInCartController");
 			response.sendRedirect("/indexController");
 		}
 		
-		// 인기순(order주문 순으로 보여주기)
+
+		int count = 0;
+		
+		if(request.getParameter("count")!= null) {
+			count = Integer.parseInt(request.getParameter("count"));
+			System.out.println(count+"<=====================count");	
+		}
+		// 아이디를 번호로 교체
+		int consumerId = cartDao.changeConsumerIdToNo(sessionMemberId);
+		// -----------------------------디버깅-----------------------------
+		System.out.println(consumerId + " <-- consumerId doGet() insertProductInCartController");
+		
+		if(count != 0) {
+			// 상품 상세보기에서 받아온 갯수만 큼 더 플러스
+			cartDao.insertProductOneInCart(productNo,count,consumerId);
+			response.sendRedirect("cartController");
+			return;
+		}
+	
+		productDao = new ProductDao();
+		
 		List<Map<String,Object>> list = productDao.selectProductOne(productNo);
 						
 		// -----------------------------디버깅-----------------------------
@@ -55,7 +84,7 @@ public class ProductOneController extends HttpServlet {
 			System.out.println(m.get("categoryType") + " <-- categoryType doGet() ProductOneController ");
 			System.out.println(m.get("companyName") + " <--companyName doGet() ProductOneController ");		
 		}
-		
+
 		request.setAttribute("productNo", productNo);
 		request.setAttribute("list", list);
 		

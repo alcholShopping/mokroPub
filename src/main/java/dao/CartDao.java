@@ -46,14 +46,14 @@ public class CartDao {
 	}
 	
 	// 상품이 이미 장바구니에 존재한다면 수량을 하나 추가
-	public void updateProductInCart(int productNo, int count, int consumerId) {
+	public void insertProductOneInCart(int productNo, int count, int consumerId) {
 		int row = 0;
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		
 		// CART에 있는 상품의 개수를 업데이트
-		String sql=" UPDATE cart "
+		String sql = " UPDATE cart "
 				+ " SET COUNT = COUNT + ? "
 				+ " WHERE consumer_no = ? AND product_no = ? ";
 		
@@ -81,6 +81,41 @@ public class CartDao {
 		} 
 	}
 	
+	// 상품이 이미 장바구니에 존재한다면 클릭한 갯수로 SET
+	public void updateProductInCartSelectClick(int productNo, int count, int consumerId) {
+		int row = 0;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+			
+		// CART에 있는 상품의 개수를 업데이트
+		String sql=" UPDATE cart "
+				+ " SET COUNT = ? "
+				+ " WHERE consumer_no = ? AND product_no = ? ";
+		try {
+			conn = DBUtil.getConnection();
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, count);
+			stmt.setInt(2, consumerId);
+			stmt.setInt(3, productNo);
+			row = stmt.executeUpdate();
+			if(row == 1) {
+				System.out.println("입력성공");
+			} else {
+				System.out.println("입력실패");
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} 
+	}
+		
 	// 사용자아이디를 숫자로 변경
 	public int changeConsumerIdToNo(String sessionMemberId) {
 		int consumerId = 0;
@@ -154,7 +189,7 @@ public class CartDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		// 사용자가 담은 장바구니 리스트
-		String sql = " SELECT c.cart_no cartNo, CONCAT(p.name,\" \",p.volume,\"ml \",p.alcohol_level,\"도\") name, p.price price, c.count count, p.picture picture "
+		String sql = " SELECT p.product_no productNo, c.cart_no cartNo, CONCAT(p.name,\" \",p.volume,\"ml \",p.alcohol_level,\"도\") name, p.price price, c.count count, p.picture picture "
 				+ " FROM cart c INNER JOIN product p  "
 				+ " ON c.product_no = p.product_no "
 				+ " WHERE c.consumer_no = ?  ";
@@ -166,6 +201,7 @@ public class CartDao {
 			rs = stmt.executeQuery();
 			while(rs.next()) {
 				Map<String, Object> m = new HashMap<String, Object>();
+				m.put("productNo", rs.getInt("productNo"));
 				m.put("cartNo", rs.getInt("cartNo"));
 				m.put("name", rs.getString("name"));
 				m.put("price", rs.getInt("price"));
@@ -173,6 +209,7 @@ public class CartDao {
 				m.put("picture", rs.getString("picture"));	
 
 				// 디버깅
+				System.out.println(m.get("productNo") + " <-- productNo selectConsumerCartList() CartDao ");
 				System.out.println(m.get("cartNo") + " <-- cartNo selectConsumerCartList() CartDao ");
 				System.out.println(m.get("name") + " <-- name selectConsumerCartList() CartDao ");
 				System.out.println(m.get("price") + " <-- price selectConsumerCartList() CartDao ");
