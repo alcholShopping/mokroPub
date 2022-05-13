@@ -51,14 +51,14 @@
 				</a>
 
 				<!-- Avatar -->
-				<a href="#">
+				<a href="${pageContext.request.contextPath}/consumerOneController">
 					<div class="avatar">
 						<img src="${pageContext.request.contextPath}/images/avatar.svg" alt="">
 					</div>
 				</a>
 				<span class="login">
 					<c:if test="${sessionMemberId != null}">
-						${sessionMemberId}님 &nbsp;
+						<a href="${pageContext.request.contextPath}/consumerOneController">${sessionMemberId}님 </a> &nbsp;
 						<a href="${pageContext.request.contextPath}/logoutController" class="btn btn-outline-secondary">로그아웃</a>
 					</c:if>
 					<c:if test="${sessionMemberId == null}">

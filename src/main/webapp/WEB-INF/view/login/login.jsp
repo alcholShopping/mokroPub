@@ -23,8 +23,8 @@
 </head>
 <body>
 	<div class="super_container">
-	<!-- Header -->
-	<jsp:include page="../../../WEB-INF/inc/navBar.jsp"></jsp:include>
+		<!-- Header -->
+		<jsp:include page="../../../WEB-INF/inc/navBar.jsp"></jsp:include>
 	
 		<!-- -------------------------------------- nav 끝-------------------------------------- -->
 		<div class="register">
@@ -53,7 +53,7 @@
 										<tr>
 											<td colspan="2">
 												<button type="submit" class="btn btn-primary">로그인</button>
-												<a href="${pageContext.request.contextPath}/registerController" type="submit" class="btn btn-primary">`</button>
+												<a href="${pageContext.request.contextPath}/registerController" type="submit" class="btn btn-primary">회원가입</button>
 											</td>
 										
 										<tr>
