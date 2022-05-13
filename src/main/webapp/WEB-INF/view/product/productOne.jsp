@@ -32,10 +32,9 @@
 	<div class="product">
 		<div class="container">
 			<div class="row product_row">
-			<%
-            	List<Map<String,Object>> list = (List<Map<String,Object>>)request.getAttribute("list");
-                for(Map m : list){
-            %>
+
+            	<c:forEach var="m" items="${list}">
+            	
 				<!-- Product Image -->
 				<div class="col-lg-7">
 					<div class="product_image">
@@ -48,10 +47,10 @@
 				<!-- Product Content -->
 				<div class="col-lg-5">
 					<div class="product_content">
-						<div class="product_one_name"><%=m.get("name")%> <%=m.get("volume")%>ml <%=m.get("alcoholLevel")%>도</div>
-						<div class="product_price"><%=m.get("price")%>원</div>
-						<div class="product_price">제조연원일 : <%=m.get("manufactureDate")%></div>
-						<div class="product_price">유통기한 : <%=m.get("expirationDate")%></div>
+						<div class="product_one_name">${m.name} ${m.volume} ${m.alcoholLevel} 도</div>
+						<div class="product_price">${m.price}원</div>
+						<div class="product_price">제조연원일 : ${m.manufactureDate}</div>
+						<div class="product_price">유통기한 : ${m.expirationDate}</div>
 						<br>
 						
 						<!-- In Stock -->
@@ -61,74 +60,74 @@
 							<table>
 								<tr>
 									<td>원료</td>
-									<td><%=m.get("materialName")%></td>
+									<td>${m.materialName}</td>
 								</tr>
 								<tr>
 									<td>원산지</td>
-									<td><%=m.get("originName")%></td>
+									<td>${m.originName}</td>
 								</tr>
 								<tr>
 									<td>주종</td>
-									<td><%=m.get("categoryType")%></td>
+									<td>${m.categoryType}</td>
 								</tr>
 								<tr>
 									<td>색상</td>
-									<td><%=m.get("color")%></td>
+									<td>${m.color}</td>
 								</tr>
 								<tr>
 									<td>향</td>
-									<td><%=m.get("smell")%></td>
+									<td>${m.smell}</td>
 								</tr>
 								<tr>
 									<td>당도</td>
-									<td><%=m.get("sweet")%></td>
+									<td>${m.sweet}</td>
 								</tr>
 								<tr>
 									<td>숙성도</td>
-									<td><%=m.get("maturity")%></td>
+									<td>${m.maturity}</td>
 								</tr>
 								<tr>
 									<td>산미</td>
-									<td><%=m.get("acidity")%></td>
+									<td>${m.acidity}</td>
 								</tr>
 								<tr>
 									<td>바디감</td>
-									<td><%=m.get("thin")%></td>
+									<td>${m.thin}</td>
 								</tr>
 								<tr>
 									<td>청량감</td>
-									<td><%=m.get("refreshment")%></td>
+									<td>${m.refreshment}</td>
 								</tr>
 								<tr>
 									<td>재질</td>
-									<td><%=m.get("bottle")%></td>
+									<td>${m.bottle}</td>
 								</tr>
 								<tr>
 									<td>지역</td>
-									<td><%=m.get("region")%></td>
+									<td>${m.region}</td>
 								</tr>
 								<tr>
 									<td>품목보고번호</td>
-									<td><%=m.get("report_number")%></td>
+									<td>${m.report_number}</td>
 								</tr>
 								<tr>
 									<td>제조회사</td>
-									<td><%=m.get("companyName")%></td>
+									<td>${m.companyName}</td>
 								</tr>
 								<tr>
 									<td>제조공장</td>
-									<td><%=m.get("factory")%></td>
+									<td>${m.factory}</td>
 								</tr>
 							</table>		
 						</div>
 						
 						<!-- Product Quantity -->
-					<form method="get" action="${pageContext.request.contextPath}/insertProductInCartController">
+					<form method="get" action="${pageContext.request.contextPath}/productOneController">
 						<div class="product_quantity_container">
 							<span>수량</span>
 							<div class="product_quantity clearfix">
-								<input type="number" name = "count" value="1">
-								<input type="number" name = "productNo" value="<%=request.getAttribute("productNo")%>">
+								<input type="number" name = "count" value="1" max="5">
+								<input type="number" name = "productNo" value="${productNo}">
 							</div>
 						</div>
 						<!-- Product Size -->
@@ -141,11 +140,9 @@
 				</div>
 					<!-- Product Memo(설명) -->
 				<div class="product_text">
-					<p><%=m.get("memo")%></p>
+					<p>${m.memo}</p>
 				</div>
-				<%
-                }
-				%>
+				</c:forEach>
 			</div>		
 		</div>
 	</div>

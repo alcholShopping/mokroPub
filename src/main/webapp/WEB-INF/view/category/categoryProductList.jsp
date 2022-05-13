@@ -41,7 +41,7 @@
 			<div class="col">
 				<div class="section_title_container text-center">
 					<div class="section_subtitle">목로주점</div>
-						<div class="section_title"><%=type%> (<%=total%>)</div>
+						<div class="section_title">${type} (${total})</div>
 				</div>
 			</div>
 		</div>
@@ -85,14 +85,14 @@
 		</div>
 		<div class="pagebutton text-center">
 			<!-- 이전 버튼 -->
-			<%if(currentPage > 1){ %>
+			<c:if test="${currentPage > 1}">
 				<a href="${pageContext.request.contextPath}/categoryProductListController?currentPage=<%=currentPage-1%>&categoryNo=<%=categoryNo%>" class="btn btn-link">이전</a>
-			<% } %>	
+			</c:if>
 
 			<!-- 다음 버튼 -->
-			<% if(currentPage < lastPage){ %>
-			<a href="${pageContext.request.contextPath}/categoryProductListController?currentPage=<%=currentPage+1%>&categoryNo=<%=categoryNo%>" class="btn btn-link">다음</a>
-			<% } %>	
+			<c:if test="${currentPage < lastPage}">
+				<a href="${pageContext.request.contextPath}/categoryProductListController?currentPage=<%=currentPage+1%>&categoryNo=<%=categoryNo%>" class="btn btn-link">다음</a>
+			</c:if>
 		</div>
 	</div>
 

@@ -34,8 +34,10 @@ public class CartController extends HttpServlet {
 				
 		// 사용자 번호로 장바구니 리스트 호출 > hashmap
 		List<Map<String,Object>> cartList = cartDao.selectConsumerCartList(consumerId);
+		
 		// 디버깅
 		for(Map m : cartList) {
+			System.out.println(m.get("productNo") + " <-- productNo doGet() CartController ");
 			System.out.println(m.get("cartNo") + " <-- cartNo doGet() CartController ");
 			System.out.println(m.get("name") + " <-- name doGet() CartController ");
 			System.out.println(m.get("price") + " <-- price doGet() CartController ");
@@ -48,14 +50,7 @@ public class CartController extends HttpServlet {
 		System.out.println(cartCount + "cartCount doGet() CartController");
 		session.setAttribute("cartCount", cartCount);
 		
-		// 전체 삭제 버튼을 클릭 했는지 0이면 클릭 안함 1이면 클릭 함
-		String deleteBtn = request.getParameter("deleteBtn");
-		
-		if(deleteBtn != null ) {
-			// cartNo에 따른 장바구니 삭제 (전체삭제)
-			System.out.println("삭제 버튼 눌림");
-			cartDao.DeleteProductInCartAll(consumerId);
-		}
+	
 
 		request.setAttribute("cartList", cartList);
 		request.getRequestDispatcher("/WEB-INF/view/cart/cartList.jsp").forward(request, response);
@@ -78,9 +73,7 @@ public class CartController extends HttpServlet {
 		Integer.parseInt(request.getParameter("cartNo"));
 		
 		 
-		int cartNo = Integer.parseInt(request.getParameter("cartNo"));
-		// cartNo에 따른 장바구니 삭제 (단일삭제)
-		cartDao.DeleteProductInCart(cartNo);
+
 		
 		// 장바구니 담긴 갯수 
 		int cartCount = cartDao.CartCountNum(consumerId);
