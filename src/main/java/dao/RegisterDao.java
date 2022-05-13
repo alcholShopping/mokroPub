@@ -57,7 +57,7 @@ public class RegisterDao {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		String sql = " SELECT address_no addressNo, CONCAT(province,\" \",city,\" \",town,\" \",street) searchAddr, zipcode FROM address WHERE CONCAT(province,\" \",city,\" \",town,\" \",street) LIKE ?";
+		String sql = " SELECT address_no, CONCAT(province,\" \",city,\" \",town,\" \",street) searchAddr,zipcode FROM address WHERE CONCAT(province,\" \",city,\" \",town,\" \",street) LIKE ?";
 			conn = DBUtil.getConnection();
 			try {
 				stmt = conn.prepareStatement(sql);
@@ -65,7 +65,7 @@ public class RegisterDao {
 				rs = stmt.executeQuery();
 				while(rs.next()) {
 					Map<String, Object> m = new HashMap<>();
-					m.put("addressNo", rs.getInt("addressNo"));
+					m.put("id", rs.getInt("address_no"));
 					m.put("searchAddr", rs.getString("searchAddr"));
 					m.put("zipcode", rs.getString("zipcode"));
 					list.add(m); 
