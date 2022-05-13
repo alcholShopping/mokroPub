@@ -64,10 +64,10 @@
 				<span class="login">
 					<c:if test="${sessionMemberId != null}">
 						${sessionMemberId}님 &nbsp;
-						<a href="LogoutController" class="btn btn-outline-secondary">로그아웃</a>
+						<a href="${pageContext.request.contextPath}/logoutController" class="btn btn-outline-secondary">로그아웃</a>
 					</c:if>
 					<c:if test="${sessionMemberId == null}">
-						<a href="LoginController" class="btn btn-outline-secondary">로그인</a>
+						<a href="${pageContext.request.contextPath}/loginController" class="btn btn-outline-secondary">로그인</a>
 					</c:if>
 				</span>
 			</div>

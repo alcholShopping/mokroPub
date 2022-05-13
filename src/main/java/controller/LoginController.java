@@ -15,48 +15,48 @@ import dao.*;
 import vo.*;
 
 	
-@WebServlet("/LoginController")
+@WebServlet("/loginController")
 public class LoginController extends HttpServlet {
-	private IndexDao indexDao = new IndexDao();
+	private LoginDao loginDao = new LoginDao();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 로그인 확인
 		
-		// 상단바 주류 올릴시(hover)
-		List<Category> list = new ArrayList<>();
-		Category category = new Category();
-		list = indexDao.selectCategoryList();
-		// 디버깅 
-		for(Category c : list) {
-			System.out.println(c.toString());
-		}
-		request.setAttribute("list", list);
-		
+		// 로그인 상태 확인
+		HttpSession session = request.getSession();
+		String sessionMemberId = (String)session.getAttribute("sessionMemberId");
+		if(sessionMemberId != null) {
+			// 이미 로그인이 되어 있는 상태라면
+			response.sendRedirect(request.getContextPath()+"/indexController"); // 초기화면으로
+		}	
 		request.getRequestDispatcher("/WEB-INF/view/login/login.jsp").forward(request, response);
 		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
+		String userId = request.getParameter("userId");
+		String userPw = request.getParameter("userPw");
 		
-		String sessionMemberId = null;
+		// 디버깅
+		System.out.println(userId + " <-- userId doPost() loginController");
+		System.out.println(userPw + " <-- userPw doPost() loginController");
 
-		LoginDao ld = new LoginDao();
-		try {
-			sessionMemberId = ld.selectMemberByIdPw(id, pw);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		if(sessionMemberId == null) {
-			// 로그인 실패시 로그인폼을 재요청
-			response.sendRedirect(request.getContextPath()+"/LoginController");
+		String checkId = loginDao.selectMemberByIdPw(userId, userPw);
+		System.out.println(checkId + " <-- checkId doPost() loginController"); // 디버깅
+		
+		// 로그인 실패시
+		 if(checkId == null) {
+			System.out.println("로그인 실패!");
+			response.sendRedirect(request.getContextPath()+"/loginController");
 			return;
-		} 
-		// 현재 연결한 client(browser)의 세션값을 받아을 받아서 httpsession 객체를 만들어 저장
-			HttpSession session = request.getSession();
-			session.setAttribute("sessionMemberId", sessionMemberId);
-			response.sendRedirect(request.getContextPath()+"/indexController");
+		} 		
+		
+		String sessionMemberId = userId; // sessionId 저장
+		
+		System.out.println(sessionMemberId + " <-- sessionMemberId After login doPost() loginController");
+		
+		// sessionMemberId 세션에 저장
+		HttpSession session = request.getSession();
+		session.setAttribute("sessionMemberId", sessionMemberId);
+		response.sendRedirect(request.getContextPath()+"/indexController");
 	}
 
 }

@@ -104,15 +104,7 @@
 	</header>
 
 		<!-- -------------------------------------- nav 끝-------------------------------------- -->
-
-
-
-
-		<!-- Home -->
-
 		<div class="register">
-
-			<!-- Home Slider -->
 
 			<div class="gallery">
 				<!--  <div class="gallery_image" style="background-image:url(images/temp_main1.jpg)"></div>  -->
@@ -120,22 +112,17 @@
 					<div class="row">
 						<div class="col">
 							<div class="register_title text-center">
-
-								<form action="RegisterController" method="post">
-
+								<form action="registerController" method="post">
 									<h2>회원가입</h2>
 									<table class="table">
-									 	
 										<tr>
-											<th>주소 검색 <br><br><br> 주소 등록 <br><br><br>상세주소</th>
+											<th>주소 검색 <br><br><br> 주소 등록 <br><br><br>상세주소</th> <!-- 주소 검색 -->
 											<th>
 												<div class="input-group mb-3">
 													<input type="text" class="form-control"
 														placeholder="소하동 32번지" name="address" id="address">
-													<button type="submit" onclick="javascript: form.action='FindAddress';">검색하기</button>
-												</div>
-												
-												
+													<button type="submit" onclick="javascript: form.action='findAddressController';">검색하기</button>
+												</div>										
 												<div>
 													<select name="addressResult" class="form-control">
 														<option value="" >::: 주소 선택 :::</option>
@@ -143,16 +130,13 @@
 															<option value="${m.addr} ${m.zipcode}">${m.addr} ${m.zipcode}</option>
 														</c:forEach>
 													</select>
-												</div>
-												
+												</div>												
 												<br>
 												<div>
 												<input type="text" class="form-control"
 												placeholder="302호" name="detailedAddress" id="detailedAddress">
 												<span id="detailedAddressHelper" class="helper"></span>
 												</div>
-
-												
 											</th>
 										</tr>
 										
@@ -161,7 +145,7 @@
 
 											<th>
 											<input type="text" class="form-control"
-												placeholder="Enter ID" name="customerId" id="id">
+												placeholder="Enter ID" name="consumerId" id="id">
 												<span id="idHelper" class="helper"></span>
 											</th>
 										</tr>
@@ -171,7 +155,7 @@
 
 											<th>
 											<input type="password" class="form-control"
-												placeholder="Enter password" name="password" id="pw">
+												placeholder="Enter password" name="consumerPw" id="pw">
 											<span id="pwHelper" class="helper"></span>
 											</th>
 										</tr>
@@ -180,7 +164,7 @@
 											<th>비밀번호 재입력</th>
 
 											<th><input type="password" class="form-control"
-												placeholder="Re password" name="passwordRe" id="pwConfirm">
+												placeholder="Re password" name="consumerPwRe" id="pwConfirm">
 												<span id="pwConfirmHelper" class="helper"></span></th>
 										</tr>
 
@@ -188,7 +172,7 @@
 											<th>이름</th>
 
 											<th><input type="text" class="form-control"
-												placeholder="Won Seoung Hyun" name="name" id="name">
+												placeholder="Won Seoung Hyun" name="consumerName" id="name">
 												<span id="nameHelper" class="helper"></span></th>
 										</tr>
 
@@ -221,7 +205,7 @@
 											<th>태어난 연도</th>
 
 											<th><input type="number" class="form-control"
-												placeholder="1998" name="birthYear" id="birthYear">
+												placeholder="1998" name="birthYear" id="birthYear" >
 												<span id="birthYearHelper" class="helper"></span></th>
 										</tr>
 
@@ -229,7 +213,7 @@
 											<th>계좌번호</th>
 
 											<th><input type="text" class="form-control"
-												placeholder="NH농협 302-1302-1392-443" name="accountNumber" id="accountNumber">
+												placeholder="NH농협 302-1302-1392-443" name="account" id="accountNumber">
 												<span id="accountNumberHelper" class="helper"></span>
 											</th>
 										</tr>
@@ -238,7 +222,7 @@
 
 											<th colspan="2">
 												<button type="submit" class="btn btn-primary">제출</button>
-												<a href="indexController" type="submit" class="btn btn-primary">취소</button>
+												<a href="${pageContext.request.contextPath}/indexController" type="submit" class="btn btn-primary">취소</button>
 											</th>
 										</tr>
 
@@ -257,17 +241,16 @@
 		</div>
 </body>
 <script>
-$(".actionHover").mouseover( function(){ 
-	$(".submenu").stop().slideDown(500); 
-	}) 
-	$(".actionHover").mouseout(function(){
-		$(".submenu").stop().slideUp(1000); 
-	})
-	
+	$(".actionHover").mouseover( function(){ 
+		$(".submenu").stop().slideDown(500); 
+		}) 
+		$(".actionHover").mouseout(function(){
+			$(".submenu").stop().slideUp(1000); 
+		})
 	
 	$('#id').blur(function(){
-		if($('#id').val().length < 4) {
-			$('#idHelper').text('id는 4자이상');
+		if($('#id').val().length <= 5 && '#id').val().length >= 21) {
+			$('#idHelper').text('id는 5글자 이상 20글자만 가능합니다');
 			$('#id').focus();
 		} else {
 			$('#idHelper').text('');
@@ -285,7 +268,6 @@ $(".actionHover").mouseover( function(){
 			$('#pwHelper').text('');
 		}
 	});
-	
 	
 	$('#birthYear').blur(function() {
 		if($('#birthYear').val() == '') {
@@ -311,7 +293,6 @@ $(".actionHover").mouseover( function(){
 			$('#name').focus();
 		} else {
 			$('#nameHelper').text('');
-
 		}
 	});
 	
@@ -321,7 +302,6 @@ $(".actionHover").mouseover( function(){
 			$('#email').focus();
 		} else {
 			$('#emailHelper').text('');
-
 		}
 	});
 	
@@ -334,6 +314,7 @@ $(".actionHover").mouseover( function(){
 
 		}
 	});
+	
 	$('#residentNumber').blur(function() {
 		if($('#residentNumber').val() == '') {
 			$('#residentNumberHelper').text('주민번호을 입력해주세요');
@@ -343,6 +324,7 @@ $(".actionHover").mouseover( function(){
 
 		}
 	});
+	
 	$('#accountNumber').blur(function() {
 		if($('#accountNumber').val() == '') {
 			$('#accountNumberHelper').text('계좌를 입력해주세요');
