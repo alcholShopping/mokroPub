@@ -19,7 +19,6 @@ import vo.*;
 public class LoginController extends HttpServlet {
 	private LoginDao loginDao = new LoginDao();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		// 로그인 상태 확인
 		HttpSession session = request.getSession();
 		String sessionMemberId = (String)session.getAttribute("sessionMemberId");

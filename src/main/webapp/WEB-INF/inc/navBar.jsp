@@ -1,7 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.*"%>
-<%@ page import="dao.*"%>
-<%@ page import="vo.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <header class="header">
@@ -35,20 +32,19 @@
 				<form action="#">
 					<input type="search" class="search_input" value=">>상세검색 >>" readonly="readonly">
 					<button type="submit" id="search_button" class="search_button">
-						<img
-							src="${pageContext.request.contextPath}/images/magnifying-glass.svg"alt="">
+						<img src="${pageContext.request.contextPath}/images/magnifying-glass.svg"alt="">
 					</button>
 				</form>
 			</div>
 			<!-- Cart -->
 			<div class="shopping">
-				<a href="#">
+				<a href="${pageContext.request.contextPath}/cartController">
 					<div class="cart">
 						<img
 							src="${pageContext.request.contextPath}/images/shopping-bag.svg"alt="">
 						<div class="cart_num_container">
 							<div class="cart_num_inner">
-								<div class="cart_num">0</div>
+								<div class="cart_num">${cartCount}</div>
 							</div>
 						</div>
 					</div>
@@ -57,8 +53,7 @@
 				<!-- Avatar -->
 				<a href="#">
 					<div class="avatar">
-						<img src="${pageContext.request.contextPath}/images/avatar.svg"
-							alt="">
+						<img src="${pageContext.request.contextPath}/images/avatar.svg" alt="">
 					</div>
 				</a>
 				<span class="login">
