@@ -36,9 +36,62 @@
 							<h1>${sessionMemberId}님의 회원정보</h1>
 								<table class = "table text-center">
 									<tr>
-										<td>회원정보 확인</td>
-									</tr>						
+										<th>회원 아이디</th>
+										<th>
+											<input type="text" class="form-control" value ="${consumerList[0].consumerId}" name="consumerId" id="consumerId">
+										</th>
+									</tr>
+									<tr>
+										<th>회원 이름</th>
+										<th>
+											<input type="text" class="form-control" value ="${consumerList[0].name}" name="consumerName" id="consumerName">
+										</th>
+									</tr>
+									<tr>
+										<th>회원 전화번호</th>
+										<th>
+											<input type="text" class="form-control" value ="${consumerList[0].phone}" name="consumerPhone" id="consumerPhone">
+										</th>
+									</tr>
+									<tr>
+										<th>회원 이메일</th>
+										<th>
+											<input type="text" class="form-control" value ="${consumerList[0].email}" name="consumerEmail" id="consumerEmail">
+										</th>
+									</tr>
+									<tr>
+										<th>회원 주소</th>
+										<th>
+											<input type="text" class="form-control" value ="${consumerList[0].address}" name="consumerAddress" id="consumerAddress">
+										</th>
+									</tr>
+									<tr>
+										<th>회원 상세주소</th>
+										<th>
+											<input type="text" class="form-control" value ="${consumerList[0].detailedAddr}" name="consumerDetailedAddress" id="consumerDetailedAddress">
+										</th>
+									</tr>
+									<tr>
+										<th>회원 등급</th>
+										<th>
+											<input type="text" class="form-control" value ="${consumerLevelText}" name="consumerLevel" id="consumerLevel">
+										</th>
+									</tr>
+									<tr>
+										<th>회원 계좌</th>
+										<th>
+											<input type="text" class="form-control" value ="${consumerList[0].account}" name="consumerAccount" id="consumerAccount">
+										</th>
+									</tr>
+									<tr>
+										<th>회원 생성 날짜</th>
+										<th>
+											<input type="text" class="form-control" value ="${consumerList[0].createDate}" name="consumerCreateDate" id="consumerCreateDate">
+										</th>
+									</tr>
+									
 								</table>
+								<a href="#">회원정보 수정</a>
 							</div>
 						</div>
 					</div>
@@ -52,6 +105,7 @@
 		$(".actionHover").mouseover( function(){ 
 			$(".submenu").stop().slideDown(500); 
 			}) 
+			
 		$(".actionHover").mouseout(function(){
 			$(".submenu").stop().slideUp(1000); 
 		})

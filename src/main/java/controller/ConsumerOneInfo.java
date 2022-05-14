@@ -10,11 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.ConsumerDao;
 import vo.Consumer;
 
 @WebServlet("/consumerOneInfo")
 public class ConsumerOneInfo extends HttpServlet {
-
+	private ConsumerDao consumerDao = new ConsumerDao();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 로그인 확인
 		HttpSession session = request.getSession();
@@ -26,10 +27,32 @@ public class ConsumerOneInfo extends HttpServlet {
 			response.sendRedirect(request.getContextPath()+"/loginController");
 			return;
 		}
+		
 		// consumerlist를 보여줘는 메서드 실행
-		List<Consumer> consumerList = null; // 메서드 실행해야함
+		List<Consumer> consumerList = consumerDao.selectConsumerOneInfo(sessionMemberId);
+		
+		// 회원등급을 숫자가 아닌 글자로 --> 얼마나 등급이 있을지 몰라서 우선 1일떄 VIP라고 정함
+		String consumerLevelText = "";
+		if( consumerList.get(0).getConsumerLevel() == 1) {
+			consumerLevelText = "VIP";
+		}
+		
+		// 디버깅
+		for(Consumer consumer : consumerList) {
+			System.out.println(consumer.getConsumerId() + " <-- consumerId doGet() consumerOneInfo ");
+			System.out.println(consumer.getName() + " <-- name doGet() consumerOneInfo ");
+			System.out.println(consumer.getPhone() + " <-- phone doGet() consumerOneInfo ");
+			System.out.println(consumer.getEmail() + " <-- email doGet() consumerOneInfo ");
+			System.out.println(consumer.getAddress() + " <-- address doGet() consumerOneInfo ");
+			System.out.println(consumer.getDetailedAddr() + " <-- detailedAddress doGet() consumerOneInfo ");
+			System.out.println(consumer.getConsumerLevel() + " <-- consumerLevel doGet() consumerOneInfo ");
+			System.out.println(consumer.getAccount() + " <-- ACCOUNT doGet() consumerOneInfo ");
+			System.out.println(consumer.getCreateDate() + " <-- createDate doGet() consumerOneInfo ");
+		}
+		System.out.println(consumerLevelText + " <-- consumerLevelText doGet() consumerOneInfo");
 		
 		request.setAttribute("consumerList", consumerList);
+		request.setAttribute("consumerLevelText", consumerLevelText);
 		
 		request.getRequestDispatcher("/WEB-INF/view/consumer/consumerOneInfo.jsp").forward(request, response);		
 	}
