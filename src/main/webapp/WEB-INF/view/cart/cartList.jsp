@@ -42,7 +42,6 @@
       <div class="row">
          <div class="col">
 					<table class ="table table-bordered">
-					<c:forEach items="${cartList}" var="item">
 						<form method="post" action="${pageContext.request.contextPath}/deleteProductInCartController">
 						<tr>
 		                     <td>상품사진</td>
@@ -57,8 +56,8 @@
 		                        </div>
 		                     </td>
 	                  	</tr>
+	                  	<c:forEach items="${cartList}" var="item">
 						<tr>
-
 							<td>
 								<input type="hidden" value="${item.cartNo}" name="cartNo" >
 								<input type="hidden" value="${item.productNo}" name="cartNo">
@@ -77,8 +76,8 @@
 
 							<td>
 							<script>
-										if(${item.count > 5}){
-											alert("${item.name}의 수량은 5개까지만 등록 가능합니다.");
+									if(${item.count > 5}){
+										alert("${item.name}의 수량은 5개까지만 등록 가능합니다.");
 										}
 							</script>
 								<div class="selectCount">
@@ -99,14 +98,13 @@
 							</td>
 						</tr>
 						</form>
-						
 					</c:forEach>
 				</table>  
 			</div>  
 	</div>
 	<!--  주문하기 버튼 -->
 	<div class="text-center orderBar">
-      <a href="#" class="orderBtn">주문하기</a>
+      <a href="${pageContext.request.contextPath}/orderController" class="orderBtn">주문하기</a>
    </div>
 </div>
 	<!-- Footer -->	
