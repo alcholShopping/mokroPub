@@ -220,7 +220,7 @@
 										<tr>
 
 											<th colspan="2">
-												<button type="submit" class="btn btn-primary" id="registerBtn">제출</button>
+												<input type="button" value="제출" class="btn btn-primary" id="registerBtn">
 												<a href="${pageContext.request.contextPath}/indexController" type="submit" class="btn btn-primary">취소</button>
 											</th>
 										</tr>
@@ -342,6 +342,35 @@
 		} else {
 			$('#accountNumberHelper').text('');
 
+		}
+	});
+	
+	// 빈칸확인
+	$('#registerBtn').click(function(){
+		if($('#id').val.length == 0){ // 아이디의 길이가 0이면
+			$('#registerBtn').disabled = false;
+			console.log('입력한 값을 확인해주세요');
+		} else if($('#pw').val.length == 0 || $('#pwConfirm').val.length == 0){ // pw와 pwConfirm의 길이가 0이면
+			$('#registerBtn').disabled = false;
+			console.log('입력한 값을 확인해주세요');
+		} else if($('#name').val.length == 0 ){ // 이름의 길이가 0이면
+			$('#registerBtn').disabled = false;
+			console.log('입력한 값을 확인해주세요');
+		} else if($('#email').val.length == 0 ){ // email의 길이가 0이면
+			$('#registerBtn').disabled = false;
+			console.log('입력한 값을 확인해주세요');
+		} else if($('#phone').val.length == 0 ){ // phone의 길이가 0이면
+			$('#registerBtn').disabled = false;
+			console.log('입력한 값을 확인해주세요');
+		} else if($('#name').val.length == 0 ){ // name의 길이가 0이면
+			$('#residentNumber').disabled = false;
+			console.log('입력한 값을 확인해주세요');
+		} else if($('#accountNumber').val.length == 0 ){ // accountNumber의 길이가 0이면
+			$('#registerBtn').disabled = false; // 버튼 비활성화
+			console.log('입력한 값을 확인해주세요');
+		} else{
+			$('#registerBtn').disabled = true;
+			console.log('입력완료');
 		}
 	});
 	

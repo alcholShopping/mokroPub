@@ -48,6 +48,7 @@ public class ConsumerOneInfo extends HttpServlet {
 			System.out.println(consumer.getConsumerLevel() + " <-- consumerLevel doGet() consumerOneInfo ");
 			System.out.println(consumer.getAccount() + " <-- ACCOUNT doGet() consumerOneInfo ");
 			System.out.println(consumer.getCreateDate() + " <-- createDate doGet() consumerOneInfo ");
+			System.out.println(consumer.getUpdateDate() + " <-- updateDate doGet() consumerOneInfo ");
 		}
 		System.out.println(consumerLevelText + " <-- consumerLevelText doGet() consumerOneInfo");
 		

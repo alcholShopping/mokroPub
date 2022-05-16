@@ -53,7 +53,8 @@
 										<tr>
 											<td colspan="2">
 												<button type="submit" class="btn btn-primary">로그인</button>
-												<a href="${pageContext.request.contextPath}/registerController" type="submit" class="btn btn-primary">회원가입</button>
+												<a href="${pageContext.request.contextPath}/registerController" type="submit" class="btn btn-primary">회원가입 </button>
+												<a href="${pageContext.request.contextPath}/findConsumerPwController" type="submit" class="btn btn-primary"> 비밀번호 찾기</button>
 											</td>
 										
 										<tr>
