@@ -22,7 +22,11 @@ public class PriceProductListController extends HttpServlet {
 		List<Product> list = new ArrayList<>();
 		int startPrice = 0;
 		int endPrice = 9999999;
+		int cnt=0;
 
+
+
+	
 		if(request.getParameter("startPrice")!=null) {
 			startPrice = Integer.parseInt(request.getParameter("startPrice"));
 		}
@@ -30,14 +34,44 @@ public class PriceProductListController extends HttpServlet {
 			endPrice = Integer.parseInt(request.getParameter("endPrice"));
 		}
 		
-		if(request.getParameter("cnt") == null) {
-			list = priceDao.seleselectPriceByPageAsc(startPrice, endPrice);
-		}else {
-			list = priceDao.seleselectPriceByPageDesc(startPrice, endPrice);
+		
+		//페이직 작업
+		int totalData = priceDao.selectPriceTotal(startPrice, endPrice);
+		int currentPage = 1;
+		// 현재 페이지 , 마지막 페이지
+		if(request.getParameter("currentPage") != null) {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
+		
+		int rowPerPage = 6;
+		int beginRow = (currentPage-1) * rowPerPage; 
+		int lastPage = (int)(Math.ceil((double)totalData/(double)rowPerPage)); 
+		// -----------------------------�뵒踰꾧퉭-----------------------------
+		System.out.println(currentPage + " <-- currentPage doGet() PriceProductListController");	
+		System.out.println(totalData + " <-- currentPage doGet() PriceProductListController");
+		System.out.println(rowPerPage + " <-- rowPerPage doGet() PriceProductListController");
+		System.out.println(beginRow + " <-- beginRow doGet() PriceProductListController");
+		System.out.println(currentPage + " <-- currentPage doGet() PriceProductListController");
+		System.out.println(lastPage+"<-- lastPage doGet() PriceProductListController");
+		
+		
+		list = priceDao.seleselectPriceByPageAsc(startPrice, endPrice,beginRow,rowPerPage);
+		if(request.getParameter("cnt") == null) {
+			list = priceDao.seleselectPriceByPageAsc(startPrice, endPrice,beginRow,rowPerPage);
+		}else {
+			//높은순, 낮은순을 판단해주는 변수
+			cnt = Integer.parseInt(request.getParameter("cnt"));
+			list = priceDao.seleselectPriceByPageDesc(startPrice, endPrice,beginRow,rowPerPage);
+		}
+
 		
 
 		
+
+		
+		request.setAttribute("cnt",cnt);
+		request.setAttribute("currentPage", currentPage);
+		request.setAttribute("lastPage" , lastPage);
 		request.setAttribute("list", list);
 		request.setAttribute("startPrice",startPrice);
 		request.setAttribute("endPrice",endPrice);

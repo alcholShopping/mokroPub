@@ -1579,3 +1579,24 @@ margin-bottom: 30px;
 .nullbox{
    height: 120px;
 }
+.orderBar{
+   z-index:100px;
+   position:relative;
+   margin:0 auto;
+   height:50px;
+   width:130px;
+   background-color:#937c6f;
+   border-radius: 5px;
+}
+.orderBtn{
+   font-size : 25px;
+   line-height: 50px;
+   color:#ffffff;
+   text-decoration: none;
+}
+.orderBar:hover{
+   background-color:#dddddd;
+}
+.orderBtn:hover{
+   color:#ffffff;
+}

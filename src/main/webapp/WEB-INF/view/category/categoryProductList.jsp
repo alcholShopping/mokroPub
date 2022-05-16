@@ -71,12 +71,12 @@
 								</a>
 							</div>
 						</div>
-						<div class="product_options">
+						<div class="product_options cnt">
 						<a href ="${pageContext.request.contextPath}/insertProductInCartController?productNo=${p.getProductNo()}">
 							<div class="product_buy product_option">
 							<img src="images/shopping-bag-white.svg" alt="">
 							</div>
-							</a>
+						</a>
 						</div>
 					</div>
 				</div>
@@ -100,4 +100,7 @@
 	<jsp:include page="../../../WEB-INF/inc/footer.jsp"></jsp:include>
 </div>
 </body>
+<script>
+
+</script>
 </html>
