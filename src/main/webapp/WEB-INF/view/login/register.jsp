@@ -111,7 +111,7 @@
 					<div class="row">
 						<div class="col">
 							<div class="register_title text-center">
-								<form action="registerController" method="post">
+								<form action="registerController" method="post" name="registerForm">
 									<h2>회원가입</h2>
 									<table class="table">
 										<tr>
@@ -220,7 +220,7 @@
 										<tr>
 
 											<th colspan="2">
-												<input type="button" value="제출" class="btn btn-primary" id="registerBtn">
+												<button type="button" class="btn btn-primary" id="registerBtn" onclick="memberJoinCheck()">회원가입</button>
 												<a href="${pageContext.request.contextPath}/indexController" type="submit" class="btn btn-primary">취소</button>
 											</th>
 										</tr>
@@ -331,6 +331,7 @@
 			if(age < 19) {
 				console.log('성인만 가입가능합니다.');
 				alert('성인만 가입가능합니다.');
+				return;
 			}
 		}
 	});
@@ -341,38 +342,77 @@
 			$('#accountNumber').focus();
 		} else {
 			$('#accountNumberHelper').text('');
-
 		}
 	});
 	
-	// 빈칸확인
-	$('#registerBtn').click(function(){
-		if($('#id').val.length == 0){ // 아이디의 길이가 0이면
-			$('#registerBtn').disabled = false;
-			console.log('입력한 값을 확인해주세요');
-		} else if($('#pw').val.length == 0 || $('#pwConfirm').val.length == 0){ // pw와 pwConfirm의 길이가 0이면
-			$('#registerBtn').disabled = false;
-			console.log('입력한 값을 확인해주세요');
-		} else if($('#name').val.length == 0 ){ // 이름의 길이가 0이면
-			$('#registerBtn').disabled = false;
-			console.log('입력한 값을 확인해주세요');
-		} else if($('#email').val.length == 0 ){ // email의 길이가 0이면
-			$('#registerBtn').disabled = false;
-			console.log('입력한 값을 확인해주세요');
-		} else if($('#phone').val.length == 0 ){ // phone의 길이가 0이면
-			$('#registerBtn').disabled = false;
-			console.log('입력한 값을 확인해주세요');
-		} else if($('#name').val.length == 0 ){ // name의 길이가 0이면
-			$('#residentNumber').disabled = false;
-			console.log('입력한 값을 확인해주세요');
-		} else if($('#accountNumber').val.length == 0 ){ // accountNumber의 길이가 0이면
-			$('#registerBtn').disabled = false; // 버튼 비활성화
-			console.log('입력한 값을 확인해주세요');
-		} else{
-			$('#registerBtn').disabled = true;
-			console.log('입력완료');
+	// 빈칸 확인	
+	function memberJoinCheck(){
+		var r = registerForm;
+		r.action ='registerController';
+
+		if(r.addressResult.value.trim() == ""){
+			alert('주소를 입력하세요');
+			return;
 		}
-	});
+		if(r.detailedAddress.value.trim() == ""){
+			alert('상세주소를 입력하세요');
+			r.detailedAddress.focus();
+			return;
+		}
+		if(r.address.value.trim() == ""){
+			alert('주소를 입력하세요');
+			r.address.focus();
+			return;
+		}
+		if(r.id.value.trim() == ""){ // 아이디 빈칸 검사
+			alert('아이디를 입력하세요');
+			r.id.focus();
+			return;
+		}
+		if(r.pw.value.trim() == ""){ // 비밀번호 빈칸 검사
+			alert('비밀번호를 입력하세요');
+			r.pw.focus();
+			return;
+		}
+		if(r.pwConfirm.value.trim() == ""){ // 비밀번호 재입력 빈칸 검사
+			alert('비밀번호 재입력을 입력하세요');
+			r.pwConfirm.focus();
+			return;
+		}
+		if(r.name.value.trim() == ""){ // 이름 빈칸 검사
+			alert('이름을 입력하세요');
+			$('name').focus();
+			return;
+		}
+		if(r.email.value.trim() == ""){ // 이메일 빈칸 검사
+			alert('이메일을 입력하세요');
+			r.email.focus();
+			return;
+		}
+		if(r.phone.value.trim() == ""){ // 전화번호 빈칸 검사
+			alert('전화번호를 입력하세요');
+			r.phone.focus();
+			return;
+		}
+		if(r.residentNumber.value.trim() == ""){ // 주민번호빈칸 검사
+			alert('주민번호를 입력하세요');
+			r.residentNumber.focus();
+			return;
+		}
+		if(age < 19){
+			alert('성인만 가입이 가능합니다');
+			return;
+		}
+		if(r.accountNumber.value.trim() == ""){ // 계좌번호 빈칸 검사
+			alert('계좌번호를 입력하세요');
+			r.accountNumber.focus();
+			return;
+		}
+		r.submit();	
+	}
+	
+
+
 	
 </script>
 

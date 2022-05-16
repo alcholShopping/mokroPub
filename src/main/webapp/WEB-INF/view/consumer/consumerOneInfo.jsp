@@ -74,6 +74,7 @@
 							</div>
 						</div>		
 						<div><a href="#">수정하기</a></div>
+						<div><a href="#">탈퇴하기</a></div>
 					</div>
 				</div>
 			</div>
