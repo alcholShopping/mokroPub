@@ -36,11 +36,11 @@
 								<h1>${sessionMemberId}님</h1>
 									<table class = "table text-center">
 										<tr>
-											<th><a href="${pageContext.request.contextPath}/consumerOneInfo">회원정보 확인</a></th>
+											<th><a href="${pageContext.request.contextPath}/consumerOneInfoController">회원정보 확인</a></th>
 										</tr>
 								
 										<tr>
-											<th><a href="#">회원정보 수정</a></th>
+											<th><a href="${pageContext.request.contextPath}/checkConsumerPwController">회원정보 수정</a></th>
 										</tr>
 										
 										<tr>

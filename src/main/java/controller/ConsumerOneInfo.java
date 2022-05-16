@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import dao.ConsumerDao;
 import vo.Consumer;
 
-@WebServlet("/consumerOneInfo")
+@WebServlet("/consumerOneInfoController")
 public class ConsumerOneInfo extends HttpServlet {
 	private ConsumerDao consumerDao = new ConsumerDao();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
