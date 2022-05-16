@@ -105,7 +105,7 @@ public class ConsumerDao {
 			ResultSet rs = null;
 						
 			// consumer_id, password, name, phone, email, address, Detailed_Addreess, Account, UPDATE_DATE
-			String sql = "UPDATE consumer SET password = PASSWORD(?), name = ?, phone = ?, email = ?, adderss = ?, detailedAddress = ?, account = ?, updateDate = ? "
+			String sql = " UPDATE consumer SET password = PASSWORD(?), name = ?, phone = ?, email = ?, address = ?, detailed_Address = ?, account = ?, update_Date = NOW() "
 					+ " WHERE consumer_id = ? ";
 			// DB값 요청
 			// DB에 저장하고 나서 controller에서 받은 jsp값을 받은 값을 DB에 요청 그리고 저장
@@ -119,8 +119,7 @@ public class ConsumerDao {
 				stmt.setString(5, c.getAddress());
 				stmt.setString(6, c.getDetailedAddr());
 				stmt.setString(7, c.getAccount());
-				stmt.setString(8, c.getUpdateDate());
-				stmt.setString(9, c.getConsumerId());
+				stmt.setString(8, c.getConsumerId());
 				stmt.executeUpdate();
 			} catch (Exception e) {
 				e.printStackTrace();
