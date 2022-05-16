@@ -33,7 +33,8 @@ public class InsertProductInCartController extends HttpServlet {
 			response.sendRedirect("/indexController");
 		}
 		
-
+	
+		
 		int count = 1;
 		
 		if(request.getParameter("count")!= null) {
@@ -41,6 +42,8 @@ public class InsertProductInCartController extends HttpServlet {
 			System.out.println(count+"<=====================count");	
 		}
 		
+
+
 		// 아이디를 번호로 교체
 		int consumerId = cartDao.changeConsumerIdToNo(sessionMemberId);
 		// -----------------------------디버깅-----------------------------
@@ -52,6 +55,7 @@ public class InsertProductInCartController extends HttpServlet {
 		// -----------------------------디버깅-----------------------------
 		System.out.println(productCnt + " <-- productCnt doGet() insertProductInCartController");
 		
+		
 		if(productCnt == 0) {
 			// 같은 상품이 없으면 insert
 			cartDao.insertProductInCart(productNo, count, consumerId);
@@ -59,11 +63,26 @@ public class InsertProductInCartController extends HttpServlet {
 			System.out.println("상품을 추가했습니다." + " <-- productCnt doGet() insertProductInCartController");
 			
 		}else {
-			// 같은 상품이 존재한다면 update
-			cartDao.insertProductOneInCart(productNo, count, consumerId);
+			// 같은 상품이 존재한다면 수량체크
+			int cnt = cartDao.selectProductInCartCount(productNo);
 			// -----------------------------디버깅-----------------------------
-			System.out.println("상품의 수량을 추가했습니다." + " <-- productCnt doGet() insertProductInCartController");
+			System.out.println(cnt +"개 수량을 체크했습니다." + " <--cnt doGet() insertProductInCartController");
+			
+			if(cnt > 5) {
+				// 수량이 5개 이상이면 5개로 지정
+				cartDao.updateProductInCartFive(productNo, consumerId); //무조건 5로
+				// -----------------------------디버깅-----------------------------
+				System.out.println("수량 5개 지정하였습니다.");
+			}else {
+				cartDao.insertProductOneInCart(productNo, count, consumerId); // 업데이트 
+			}
+			// -----------------------------디버깅-----------------------------
+			System.out.println("상품의 수량을 변경했습니다." + " <-- productCnt doGet() insertProductInCartController");
 		}
+		
+		//현재 수량을 체크해 주는 메서드
+		
+
 		
 		response.sendRedirect("cartController");
 		

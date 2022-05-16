@@ -52,21 +52,21 @@
 					<c:if test="${startPrice == 0 && endPrice == 9999999}" >
 							<tr>
 								<td>
-									<a href="priceProductListController?startPrice=0&endPrice=9999999">낮은순</a>
+									<a href="priceProductListController?startPrice=0&endPrice=9999999&currentPage=${currentPage}">낮은순</a>
 								</td>
 								<td>
-									<a href="priceProductListController?startPrice=0&endPrice=9999999&cnt=1">높은순</a>
+									<a href="priceProductListController?startPrice=0&endPrice=9999999&cnt=1&currentPage=${currentPage}">높은순</a>
 								</td>
 							</tr>
 					</c:if>
-				
+					
 					<c:if test="${startPrice == 0 && endPrice == 5000}" >
 						<tr>
 							<td>
-								<a href="priceProductListController?startPrice=0&endPrice=5000">낮은순</a>
+								<a href="priceProductListController?startPrice=0&endPrice=5000&currentPage=${currentPage}">낮은순</a>
 							</td>
 							<td>
-								<a href="priceProductListController?startPrice=0&endPrice=5000&cnt=1">높은순</a>
+								<a href="priceProductListController?startPrice=0&endPrice=5000&cnt=1&currentPage=${currentPage}">높은순</a>
 							</td>
 						</tr>
 					</c:if>
@@ -74,30 +74,30 @@
 					<c:if test="${startPrice == 5000 && endPrice == 10000}" >
 						<tr>
 							<td>
-								<a href="priceProductListController?startPrice=5000&endPrice=10000">낮은순</a>
+								<a href="priceProductListController?startPrice=5000&endPrice=10000&currentPage=${currentPage}">낮은순</a>
 							</td>
 							<td>
-								<a href="priceProductListController?startPrice=5000&endPrice=10000&cnt=1">높은순</a>
+								<a href="priceProductListController?startPrice=5000&endPrice=10000&cnt=1&currentPage=${currentPage}">높은순</a>
 							</td>
 						</tr>
 					</c:if>
 					<c:if test="${startPrice == 10000 && endPrice == 15000}" >
 						<tr>
 							<td>
-								<a href="priceProductListController?startPrice=10000&endPrice=15000">낮은순</a>
+								<a href="priceProductListController?startPrice=10000&endPrice=15000&currentPage=${currentPage}">낮은순</a>
 							</td>
 							<td>
-								<a href="priceProductListController?startPrice=10000&endPrice=15000&cnt=1">높은순</a>
+								<a href="priceProductListController?startPrice=10000&endPrice=15000&cnt=1&currentPage=${currentPage}">높은순</a>
 							</td>
 						</tr>
 					</c:if>
 					<c:if test="${startPrice == 20000 && endPrice == 9999999}" >
 						<tr>
 							<td>
-								<a href="priceProductListController?startPrice=20000&endPrice=9999999">낮은순</a>
+								<a href="priceProductListController?startPrice=20000&endPrice=9999999&currentPage=${currentPage}">낮은순</a>
 							</td>
 							<td>
-								<a href="priceProductListController?startPrice=20000&endPrice=9999999&cnt=1">높은순</a>
+								<a href="priceProductListController?startPrice=20000&endPrice=9999999&cnt=1&currentPage=${currentPage}">높은순</a>
 							</td>
 						</tr>
 					</c:if>
@@ -141,6 +141,128 @@
 			</div>
 			</c:forEach>
 		</div>
+	</div>
+	<div class="pagebutton text-center">
+		<c:if test="${startPrice == 0 && endPrice == 9999999}" >	
+			<c:if test="${cnt!=1}">		
+				<!-- 이전 버튼 -->
+				<c:if test="${currentPage > 1}">
+					<a href="${pageContext.request.contextPath}/priceProductListController?currentPage=${currentPage-1}&startPrice=0&endPrice=9999999" class="btn btn-link">이전</a>
+				</c:if>
+				<!-- 다음 버튼 -->
+				<c:if test="${currentPage < lastPage}">
+					<a href="${pageContext.request.contextPath}/priceProductListController?currentPage=${currentPage+1}&startPrice=0&endPrice=9999999" class="btn btn-link">다음</a>
+				</c:if>
+			</c:if>
+			<c:if test="${cnt==1}">				
+				<!-- 이전 버튼 -->
+				<c:if test="${currentPage > 1}">
+					<a href="${pageContext.request.contextPath}/priceProductListController?currentPage=${currentPage-1}&startPrice=0&endPrice=9999999&cnt=1" class="btn btn-link">이전</a>
+				</c:if>
+				<!-- 다음 버튼 -->
+				<c:if test="${currentPage < lastPage}">
+					<a href="${pageContext.request.contextPath}/priceProductListController?currentPage=${currentPage+1}&startPrice=0&endPrice=9999999&cnt=1" class="btn btn-link">다음</a>
+				</c:if>
+			</c:if>
+		</c:if>
+	
+		<c:if test="${startPrice == 0 && endPrice == 5000}" >
+			<c:if test="${cnt!=1}">
+				<!-- 이전 버튼 -->
+				<c:if test="${currentPage > 1}">
+					<a href="${pageContext.request.contextPath}/priceProductListController?currentPage=${currentPage-1}&startPrice=0&endPrice=5000" class="btn btn-link">이전</a>
+				</c:if>
+		
+				<!-- 다음 버튼 -->
+				<c:if test="${currentPage < lastPage}">
+					<a href="${pageContext.request.contextPath}/priceProductListController?currentPage=${currentPage+1}&startPrice=0&endPrice=5000" class="btn btn-link">다음</a>
+				</c:if>
+			</c:if>
+			<c:if test="${cnt==1}">
+				<!-- 이전 버튼 -->
+				<c:if test="${currentPage > 1}">
+					<a href="${pageContext.request.contextPath}/priceProductListController?currentPage=${currentPage-1}&startPrice=0&endPrice=5000&cnt=1" class="btn btn-link">이전</a>
+				</c:if>
+		
+				<!-- 다음 버튼 -->
+				<c:if test="${currentPage < lastPage}">
+					<a href="${pageContext.request.contextPath}/priceProductListController?currentPage=${currentPage+1}&startPrice=0&endPrice=5000&cnt=1" class="btn btn-link">다음</a>
+				</c:if>
+			</c:if>
+		</c:if>
+				
+		<c:if test="${startPrice == 5000 && endPrice == 10000}" >
+			<c:if test="${cnt!=1}">
+				<!-- 이전 버튼 -->
+				<c:if test="${currentPage > 1}">
+					<a href="${pageContext.request.contextPath}/priceProductListController?currentPage=${currentPage-1}&startPrice=5000&endPrice=10000" class="btn btn-link">이전</a>
+				</c:if>
+	
+				<!-- 다음 버튼 -->
+				<c:if test="${currentPage < lastPage}">
+					<a href="${pageContext.request.contextPath}/priceProductListController?currentPage=${currentPage+1}&startPrice=5000&endPrice=10000" class="btn btn-link">다음</a>
+				</c:if>
+			</c:if>
+			<c:if test="${cnt==1}">
+				<!-- 이전 버튼 -->
+				<c:if test="${currentPage > 1}">
+					<a href="${pageContext.request.contextPath}/priceProductListController?currentPage=${currentPage-1}&startPrice=5000&endPrice=10000&cnt=1" class="btn btn-link">이전</a>
+				</c:if>
+	
+				<!-- 다음 버튼 -->
+				<c:if test="${currentPage < lastPage}">
+					<a href="${pageContext.request.contextPath}/priceProductListController?currentPage=${currentPage+1}&startPrice=5000&endPrice=10000&cnt=1" class="btn btn-link">다음</a>
+				</c:if>
+			</c:if>
+		</c:if>
+		<c:if test="${startPrice == 10000 && endPrice == 15000}" >
+			<c:if test="${cnt != 1}">
+				<!-- 이전 버튼 -->
+				<c:if test="${currentPage > 1}">
+					<a href="${pageContext.request.contextPath}/priceProductListController?currentPage=${currentPage-1}&startPrice=10000&endPrice=15000" class="btn btn-link">이전</a>
+				</c:if>
+	
+				<!-- 다음 버튼 -->
+				<c:if test="${currentPage < lastPage}">
+					<a href="${pageContext.request.contextPath}/priceProductListController?currentPage=${currentPage+1}&startPrice=10000&endPrice=15000" class="btn btn-link">다음</a>
+				</c:if>
+			</c:if>
+			<c:if test="${cnt == 1}">
+				<!-- 이전 버튼 -->
+				<c:if test="${currentPage > 1}">
+					<a href="${pageContext.request.contextPath}/priceProductListController?currentPage=${currentPage-1}&startPrice=10000&endPrice=15000&cnt=1" class="btn btn-link">이전</a>
+				</c:if>
+	
+				<!-- 다음 버튼 -->
+				<c:if test="${currentPage < lastPage}">
+					<a href="${pageContext.request.contextPath}/priceProductListController?currentPage=${currentPage+1}&startPrice=10000&endPrice=15000&cnt=1" class="btn btn-link">다음</a>
+				</c:if>
+			</c:if>
+		</c:if>
+		<c:if test="${startPrice == 20000 && endPrice == 9999999}" >
+			<c:if test="${cnt != 1}">
+				<!-- 이전 버튼 -->
+				<c:if test="${currentPage > 1}">
+					<a href="${pageContext.request.contextPath}/priceProductListController?currentPage=${currentPage-1}&startPrice=20000&endPrice=9999999" class="btn btn-link">이전</a>
+				</c:if>
+	
+				<!-- 다음 버튼 -->
+				<c:if test="${currentPage < lastPage}">
+					<a href="${pageContext.request.contextPath}/priceProductListController?currentPage=${currentPage+1}&startPrice=20000&endPrice=9999999" class="btn btn-link">다음</a>
+				</c:if>
+			</c:if>
+			<c:if test="${cnt == 1 }">
+				<!-- 이전 버튼 -->
+				<c:if test="${currentPage > 1}">
+					<a href="${pageContext.request.contextPath}/priceProductListController?currentPage=${currentPage-1}&startPrice=20000&endPrice=9999999&cnt=1" class="btn btn-link">이전</a>
+				</c:if>
+	
+				<!-- 다음 버튼 -->
+				<c:if test="${currentPage < lastPage}">
+					<a href="${pageContext.request.contextPath}/priceProductListController?currentPage=${currentPage+1}&startPrice=20000&endPrice=9999999&cnt=1" class="btn btn-link">다음</a>
+				</c:if>
+			</c:if>
+		</c:if>
 	</div>
 	<!-- Footer -->
 	<jsp:include page="../../../WEB-INF/inc/footer.jsp"></jsp:include>

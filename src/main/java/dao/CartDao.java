@@ -9,6 +9,37 @@ import java.util.*;
 import util.DBUtil;
 
 public class CartDao {
+	//현재 수량을 체크하는 메서드
+	public int selectProductInCartCount(int productNo) {
+		int checkCount = 0;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String sql="SELECT count FROM cart WHERE product_no=?";
+		try {
+			conn = DBUtil.getConnection();
+			
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, productNo);
+
+			rs=stmt.executeQuery();
+			if(rs.next()) {
+				checkCount = rs.getInt("count");
+				System.out.println(checkCount);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} 
+		return checkCount;
+	}
+	
 	
 	// 상품을 장바구니에 추가
 	public void insertProductInCart(int productNo, int count, int consumerId) {
@@ -16,7 +47,7 @@ public class CartDao {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		
+
 		// productNo, count, sessionMemberId에 따라서 cart 추가 
 		String sql=" INSERT INTO cart (product_no,consumer_no,`count`,create_date,update_date) "
 				+ " VALUE(?,?,?,NOW(),NOW()); ";
@@ -27,6 +58,7 @@ public class CartDao {
 			stmt.setInt(1, productNo);
 			stmt.setInt(2, consumerId);
 			stmt.setInt(3, count);
+
 			row = stmt.executeUpdate();
 			if(row == 1) {
 				System.out.println("입력성공");
@@ -44,14 +76,43 @@ public class CartDao {
 			}
 		} 
 	}
-	
+	// 장바구니에 담긴 상품의 갯수가 5개 초과시 5개로 변경해주는 데이터
+		public void updateProductInCartFive(int productNo, int consumerId) {
+			int row = 0;
+			Connection conn = null;
+			PreparedStatement stmt = null;
+			// CART에 있는 상품의 개수를 업데이트
+			String sql=" UPDATE cart "
+					+ " SET COUNT = 5 "
+					+ " WHERE consumer_no = ? AND product_no = ? ";
+			try {
+				conn = DBUtil.getConnection();
+				stmt = conn.prepareStatement(sql);
+				stmt.setInt(1, consumerId);
+				stmt.setInt(2, productNo);
+				
+				row = stmt.executeUpdate();
+				if(row == 1) {
+					System.out.println("입력성공");
+				} else {
+					System.out.println("입력실패");
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} 
+		}
 	// 상품이 이미 장바구니에 존재한다면 수량을 하나 추가
 	public void insertProductOneInCart(int productNo, int count, int consumerId) {
 		int row = 0;
 		Connection conn = null;
 		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		
 		// CART에 있는 상품의 개수를 업데이트
 		String sql = " UPDATE cart "
 				+ " SET COUNT = COUNT + ? "
@@ -63,6 +124,7 @@ public class CartDao {
 			stmt.setInt(1, count);
 			stmt.setInt(2, consumerId);
 			stmt.setInt(3, productNo);
+
 			row = stmt.executeUpdate();
 			if(row == 1) {
 				System.out.println("입력성공");
@@ -86,8 +148,6 @@ public class CartDao {
 		int row = 0;
 		Connection conn = null;
 		PreparedStatement stmt = null;
-		ResultSet rs = null;
-			
 		// CART에 있는 상품의 개수를 업데이트
 		String sql=" UPDATE cart "
 				+ " SET COUNT = ? "
@@ -98,6 +158,7 @@ public class CartDao {
 			stmt.setInt(1, count);
 			stmt.setInt(2, consumerId);
 			stmt.setInt(3, productNo);
+			
 			row = stmt.executeUpdate();
 			if(row == 1) {
 				System.out.println("입력성공");
@@ -166,7 +227,9 @@ public class CartDao {
 			stmt.setInt(2, productNo);
 			rs = stmt.executeQuery();
 			if(rs.next()) {
+
 				productCnt = rs.getInt("cnt");
+
 				System.out.println(productCnt + " <-- productCnt IsSameProductCart() CartDao");
 			}
 			

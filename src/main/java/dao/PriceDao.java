@@ -12,18 +12,20 @@ import util.DBUtil;
 import vo.Product;
 
 public class PriceDao {
-	public List<Product> seleselectPriceByPageAsc(int startPrice,int endPrice){
+	public List<Product> seleselectPriceByPageAsc(int startPrice,int endPrice,int beginRow,int rowPerPage){
 		List<Product> list = new ArrayList<>();
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		Product product = null;
-		String sql = "SELECT product_no productNo,name,price,volume,alcohol_level alcoholLevel,picture FROM product WHERE price between ? and ? ORDER BY price asc";
+		String sql = "SELECT product_no productNo,name,price,volume,alcohol_level alcoholLevel,picture FROM product WHERE price between ? and ? ORDER BY price asc LIMIT ?,?";
 		try {
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/mokroPub","root","java1234");
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, startPrice);
 			stmt.setInt(2, endPrice);
+			stmt.setInt(3, beginRow);
+			stmt.setInt(4, rowPerPage);
 			rs = stmt.executeQuery();
 			
 			while(rs.next()) {
@@ -36,7 +38,7 @@ public class PriceDao {
 				product.setPicture(rs.getString("picture"));
 				list.add(product);
 				
-				//----------------------------디버깅--------------------------
+				//----------------------------�뵒踰꾧퉭--------------------------
 				/*
 				System.out.println(product.getProductNo());
 				System.out.println(product.getName());
@@ -58,18 +60,20 @@ public class PriceDao {
 		System.out.println(list+"----------------------");
 		return list;
 	}
-	public List<Product> seleselectPriceByPageDesc(int startPrice,int endPrice){
+	public List<Product> seleselectPriceByPageDesc(int startPrice,int endPrice,int beginRow,int rowPerPage){
 		List<Product> list = new ArrayList<>();
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		Product product = null;
-		String sql = "SELECT product_no productNo,name,price,volume,alcohol_level alcoholLevel,picture FROM product WHERE price between ? and ? ORDER BY price desc";
+		String sql = "SELECT product_no productNo,name,price,volume,alcohol_level alcoholLevel,picture FROM product WHERE price between ? and ? ORDER BY price desc LIMIT ? ,?";
 		try {
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/mokroPub","root","java1234");
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, startPrice);
 			stmt.setInt(2, endPrice);
+			stmt.setInt(3, beginRow);
+			stmt.setInt(4, rowPerPage);
 			rs = stmt.executeQuery();
 			
 			while(rs.next()) {
@@ -82,7 +86,7 @@ public class PriceDao {
 				product.setPicture(rs.getString("picture"));
 				list.add(product);
 				
-				//----------------------------디버깅--------------------------
+				//----------------------------�뵒踰꾧퉭--------------------------
 				/*
 				System.out.println(product.getProductNo());
 				System.out.println(product.getName());
@@ -103,4 +107,34 @@ public class PriceDao {
 		}
 		return list;
 	}
+	public int selectPriceTotal(int startPrice,int endPrice){
+		int total = 0;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs =null;
+		// startPrice와 endPrice 사이의 가격대 상품의 총 갯수
+		String sql=" SELECT COUNT(*) cnt FROM product WHERE price between ? and ? ";
+	try {
+		conn = DBUtil.getConnection();
+		stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, startPrice);
+		stmt.setInt(2, endPrice);
+		rs = stmt.executeQuery();
+		while(rs.next()) {
+			total = rs.getInt("cnt");
+			//----------------------- �뵒踰꾧퉭--------------------------
+			System.out.println(total + " <-- total selectPriceTotal() priceDao");
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally {
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	} 
+		return total;
+	}
+	
 }

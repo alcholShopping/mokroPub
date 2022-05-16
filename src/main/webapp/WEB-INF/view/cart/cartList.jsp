@@ -20,6 +20,7 @@
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
 <link href="plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
 </head>
+
 <body>
 <div class="super_container">
 	<!-- Header -->		
@@ -40,14 +41,22 @@
 			</div>
       <div class="row">
          <div class="col">
-         <div class="float-right">
-         	<a href="${pageContext.request.contextPath}/deleteProductInCartController">
-				<div class="btn btn-outline-secondary btn-sm">모두삭제</div>
-			</a>
-		</div>
 					<table class ="table table-bordered">
 					<c:forEach items="${cartList}" var="item">
 						<form method="post" action="${pageContext.request.contextPath}/deleteProductInCartController">
+						<tr>
+		                     <td>상품사진</td>
+		                     <td>정보</td>
+		                     <td>가격</td>
+		                     <td>수량</td>
+		                     <td>
+		                        <div class="float-right">
+		                              <a href="${pageContext.request.contextPath}/deleteProductInCartController">
+		                              <div class= "btn btn-outline-secondary btn-sm">모두삭제</div>
+		                           </a>
+		                        </div>
+		                     </td>
+	                  	</tr>
 						<tr>
 
 							<td>
@@ -65,29 +74,24 @@
 							<td>
 								${item.price}원
 							</td>
+
 							<td>
+							<script>
+										if(${item.count > 5}){
+											alert("${item.name}의 수량은 5개까지만 등록 가능합니다.");
+										}
+							</script>
 								<div class="selectCount">
-									<ul class="countList">
-										<li class="currentCount">현재수량 : ${item.count}
-											<ul class="submitCount">
-												<li>
-												<a href="${pageContext.request.contextPath}/updateProductInCartController?count=1&productNo=${item.productNo}">1</a>
-												</li>
-												<li>
-												<a href="${pageContext.request.contextPath}/updateProductInCartController?count=2&productNo=${item.productNo}">2</a>
-												</li>
-												<li>
-												<a href="${pageContext.request.contextPath}/updateProductInCartController?count=3&productNo=${item.productNo}">3</a>
-												</li>
-												<li>
-												<a href="${pageContext.request.contextPath}/updateProductInCartController?count=4&productNo=${item.productNo}">4</a>
-												</li>
-												<li>
-												<a href="${pageContext.request.contextPath}/updateProductInCartController?count=5&productNo=${item.productNo}">5</a>
-												</li>
-											</ul>
-										</li>
-									</ul>
+										<c:if test="${item.count<= 5}">현재 수량 : ${item.count} 개</c:if> 
+										<c:if test="${item.count > 5}">${item.count = 5}</c:if>
+										<select onchange="window.open(value,'blank');">
+                                       <option value = "">:: 변경하기 ::</option>
+                                       <option value =${pageContext.request.contextPath}/updateProductInCartController?count=1&productNo=${item.productNo}>1개</option>
+                                       <option value =${pageContext.request.contextPath}/updateProductInCartController?count=2&productNo=${item.productNo}>2개</option>
+                                       <option value =${pageContext.request.contextPath}/updateProductInCartController?count=3&productNo=${item.productNo}>3개</option>
+                                       <option value =${pageContext.request.contextPath}/updateProductInCartController?count=4&productNo=${item.productNo}>4개</option>
+                                       <option value =${pageContext.request.contextPath}/updateProductInCartController?count=5&productNo=${item.productNo}>5개</option>
+                                       </select>
 								</div>
 							</td>
 							<td>
@@ -100,10 +104,14 @@
 				</table>  
 			</div>  
 	</div>
-	
+	<!--  주문하기 버튼 -->
+	<div class="text-center orderBar">
+      <a href="#" class="orderBtn">주문하기</a>
+   </div>
 </div>
 	<!-- Footer -->	
 	<jsp:include page="../../../WEB-INF/inc/footer.jsp"></jsp:include>
 </div>
 </body>
+
 </html>
