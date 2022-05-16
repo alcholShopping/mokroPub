@@ -98,55 +98,41 @@ public class ConsumerDao {
 	      return consumerPw;
 	   }
 
-	   // UpdateConsumerInfo -> 수정하는 메서드
-	   public List<Consumer>updateConsumerInfo(String sessionMemberId) {
-	      List<Consumer> list = new ArrayList<>();
-	      Consumer consumer = null;   
-	      Connection conn = null;
-	      PreparedStatement stmt = null;
-	      ResultSet rs = null;
-	      int row = -1;
-	      
-	      // consumer_id, password, name, phone, email, address, Detailed_Addreess, Account, UPDATE_DATE
-	      String sql = "UPDATE consumer SET password = PASSWORD(?), name = ?, phone = ?, email = ?, adderss = ?, detailedAddress = ?, account = ?, updateDate = ?,"
-	            + " where consumer_id = ?";
-	      /*
-	      String sql = "UPDATE consumer_id consumerId, password, name, phone, email,  zipcode, address, detailedAddress, account,  UPDATE_DATE updateDate"
-	            + "SET consumer_id = ?, password = ?, name = ?, phone = ?, email = ?, zipcode = ?, adderss = ?, detailedAddress = ?, account = ?, updateDate = ?,"
-	            + "where consumer_no = ?";
-	            
-	            */
-	      
-	      // DB값 요청
-	      try {
-	         conn = DBUtil.getConnection();
-	         stmt = conn.prepareStatement(sql);
-	         stmt.setString(1, consumer.getConsumerId());
-	         stmt.setString(2, consumer.getPassword());
-	         stmt.setString(3, consumer.getName());
-	         stmt.setString(4, consumer.getPhone());
-	         stmt.setString(5, consumer.getEmail());
-	         stmt.setString(6, consumer.getAddress());
-	         stmt.setString(7, consumer.getDetailedAddr());
-	         stmt.setString(8, consumer.getAccount());
-	         stmt.setString(9, consumer.getUpdateDate());
-	         stmt.setInt(10, consumer.getConsumerNo());
-	         row = stmt.executeUpdate();
-	         
-	      } catch (Exception e) {
-	         e.printStackTrace();
-	      } finally {
-	         try {
-	            rs.close();
-	            stmt.close();
-	            conn.close();
-	         } catch (Exception e) {
-	            e.printStackTrace();
-	         }
-	      }
-
-	      return list;
-	   }
+	// UpdateConsumerInfo -> 수정하는 메서드
+		public void updateConsumerInfo(Consumer c) {
+			Connection conn = null;
+			PreparedStatement stmt = null;
+			ResultSet rs = null;
+						
+			// consumer_id, password, name, phone, email, address, Detailed_Addreess, Account, UPDATE_DATE
+			String sql = "UPDATE consumer SET password = PASSWORD(?), name = ?, phone = ?, email = ?, adderss = ?, detailedAddress = ?, account = ?, updateDate = ? "
+					+ " WHERE consumer_id = ? ";
+			// DB값 요청
+			// DB에 저장하고 나서 controller에서 받은 jsp값을 받은 값을 DB에 요청 그리고 저장
+			try {
+				conn = DBUtil.getConnection();
+				stmt = conn.prepareStatement(sql);
+				stmt.setString(1, c.getPassword());
+				stmt.setString(2, c.getName());
+				stmt.setString(3, c.getPhone());
+				stmt.setString(4, c.getEmail());
+				stmt.setString(5, c.getAddress());
+				stmt.setString(6, c.getDetailedAddr());
+				stmt.setString(7, c.getAccount());
+				stmt.setString(8, c.getUpdateDate());
+				stmt.setString(9, c.getConsumerId());
+				stmt.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					stmt.close();
+					conn.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
 
 
 //	   // 회원탈되

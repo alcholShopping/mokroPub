@@ -350,18 +350,9 @@
 		var r = registerForm;
 		r.action ='registerController';
 
-		if(r.addressResult.value.trim() == ""){
-			alert('주소를 입력하세요');
-			return;
-		}
 		if(r.detailedAddress.value.trim() == ""){
 			alert('상세주소를 입력하세요');
 			r.detailedAddress.focus();
-			return;
-		}
-		if(r.address.value.trim() == ""){
-			alert('주소를 입력하세요');
-			r.address.focus();
 			return;
 		}
 		if(r.id.value.trim() == ""){ // 아이디 빈칸 검사
