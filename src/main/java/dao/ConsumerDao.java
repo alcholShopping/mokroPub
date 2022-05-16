@@ -5,7 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import util.DBUtil;
 import vo.Category;
@@ -21,7 +23,7 @@ public class ConsumerDao {
 		ResultSet rs = null;
 		
 		// consumerId, name, phone, email, address, detailedAddress, consumerLevel, adultCertification, account, createDate를 가져옴
-		String sql = " SELECT consumer_id consumerId, NAME, phone, email, address, detailed_Address detailedAddress, consumer_level consumerLevel, ACCOUNT, create_date createDate "
+		String sql = " SELECT consumer_id consumerId, NAME, phone, email, address, detailed_Address detailedAddress, consumer_level consumerLevel, ACCOUNT, create_date createDate, update_date updateDate "
 				+ " FROM consumer WHERE consumer_id = ?  ";
 		
 		try {
@@ -40,6 +42,7 @@ public class ConsumerDao {
 				consumer.setConsumerLevel(rs.getInt("consumerLevel"));
 				consumer.setAccount(rs.getString("account"));
 				consumer.setCreateDate(rs.getString("createDate"));
+				consumer.setUpdateDate(rs.getString("updateDate"));
 				
 				// 디버깅
 				System.out.println(consumer.getConsumerId() + " <-- consumerId selectConsumerOneInfo() ConsumerDao ");
@@ -51,6 +54,7 @@ public class ConsumerDao {
 				System.out.println(consumer.getConsumerLevel() + " <-- consumerLevel selectConsumerOneInfo() ConsumerDao ");
 				System.out.println(consumer.getAccount() + " <-- ACCOUNT selectConsumerOneInfo() ConsumerDao ");
 				System.out.println(consumer.getCreateDate() + " <-- createDate selectConsumerOneInfo() ConsumerDao ");
+				System.out.println(consumer.getUpdateDate() + " <-- getUpdateDate selectConsumerOneInfo() ConsumerDao ");
 				list.add(consumer);
 			}
 		} catch (SQLException e) {
