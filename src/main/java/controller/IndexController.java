@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.CartDao;
+import dao.ConsumerDao;
 import dao.IndexDao;
 import vo.Category;
 
@@ -19,6 +20,7 @@ import vo.Category;
 @WebServlet("/indexController")
 public class IndexController extends HttpServlet {
 	private CartDao cartDao = new CartDao();
+	private ConsumerDao consumerDao = new ConsumerDao();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
@@ -26,7 +28,7 @@ public class IndexController extends HttpServlet {
 		HttpSession session = request.getSession();
 		String sessionMemberId = (String)session.getAttribute("sessionMemberId");		
 		// 아이디를 번호로 교체
-		int consumerId = cartDao.changeConsumerIdToNo(sessionMemberId);
+		int consumerId = consumerDao.changeConsumerIdToNo(sessionMemberId);
 		// -----------------------------디버깅-----------------------------
 		System.out.println(consumerId + " <-- consumerId doGet() insertProductInCartController");
 		// 장바구니 담긴 갯수 

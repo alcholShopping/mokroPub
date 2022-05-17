@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.CartDao;
+import dao.ConsumerDao;
 
-/**
- * Servlet implementation class deleteProductInCartController
- */
 @WebServlet("/deleteProductInCartController")
 public class deleteProductInCartController extends HttpServlet {
+	private ConsumerDao consumerDao = new ConsumerDao();
 	private CartDao cartDao = new CartDao();
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//로그인 여부 확인 로직(세션이용)
 		   HttpSession session = request.getSession();
@@ -27,28 +27,23 @@ public class deleteProductInCartController extends HttpServlet {
 			}
 			
 		   // 아이디를 번호로 교체
-			int consumerId = cartDao.changeConsumerIdToNo(sessionMemberId);
+			int consumerId = consumerDao.changeConsumerIdToNo(sessionMemberId);
 			// -----------------------------디버깅-----------------------------
 			System.out.println(consumerId + " <-- consumerId doGet() insertProductInCartController");
 			
-			// 전체 삭제 버튼을 클릭 했는지 0이면 클릭 안함 1이면 클릭 함
-			
+			// 전체 삭제 버튼을 클릭 했는지 0이면 클릭 안함 1이면 클릭 함			
 
 	
 			// cartNo에 따른 장바구니 삭제 (전체삭제)
 			System.out.println("삭제 버튼 눌림");
 			cartDao.DeleteProductInCartAll(consumerId);
 			response.sendRedirect("cartController");
+			
 			return;
-		
-		
-		
-	
 	}
 
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 		
 		//로그인 여부 확인 로직(세션이용)
 		   HttpSession session = request.getSession();

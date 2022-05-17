@@ -13,16 +13,17 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.CartDao;
+import dao.ConsumerDao;
 import dao.ProductDao;
 
 
 
 @WebServlet("/productOneController")
 public class ProductOneController extends HttpServlet {
-	private ProductDao productDao;
-	private CartDao cartDao;
+	private ProductDao productDao =  new ProductDao();
+	private CartDao cartDao = new CartDao();;
+	private ConsumerDao consumerDao = new ConsumerDao();
 ;	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		cartDao = new CartDao();
 		//로그인 여부 확인 로직(세션이용)
 		HttpSession session = request.getSession();
 		String sessionMemberId = (String)session.getAttribute("sessionMemberId");
@@ -43,7 +44,7 @@ public class ProductOneController extends HttpServlet {
 			System.out.println(count+"<=====================count");	
 		}
 		// 아이디를 번호로 교체
-		int consumerId = cartDao.changeConsumerIdToNo(sessionMemberId);
+		int consumerId = consumerDao.changeConsumerIdToNo(sessionMemberId);
 		// -----------------------------디버깅-----------------------------
 		System.out.println(consumerId + " <-- consumerId doGet() insertProductInCartController");
 		
@@ -53,8 +54,6 @@ public class ProductOneController extends HttpServlet {
 			response.sendRedirect("cartController");
 			return;
 		}
-	
-		productDao = new ProductDao();
 		
 		List<Map<String,Object>> list = productDao.selectProductOne(productNo);
 						

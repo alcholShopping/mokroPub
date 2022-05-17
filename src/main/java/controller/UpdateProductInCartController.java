@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.CartDao;
+import dao.ConsumerDao;
 
 /**
  * Servlet implementation class updateCartController
@@ -16,6 +17,7 @@ import dao.CartDao;
 @WebServlet("/updateProductInCartController")
 public class UpdateProductInCartController extends HttpServlet {
 	private CartDao cartDao = new CartDao();
+	private ConsumerDao consumerDao = new ConsumerDao();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//받아야할거 : count개수랑 productNo > 판별용
 		
@@ -31,7 +33,7 @@ public class UpdateProductInCartController extends HttpServlet {
 			  return;
 		}
 
-		int consumerId = cartDao.changeConsumerIdToNo(sessionMemberId);
+		int consumerId = consumerDao.changeConsumerIdToNo(sessionMemberId);
 		// -----------------------------디버깅-----------------------------
 		System.out.println(consumerId + " <-- consumerId doGet() insertProductInCartController");
 		

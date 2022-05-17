@@ -13,8 +13,8 @@ import java.util.*;
 
 @WebServlet("/cartController")
 public class CartController extends HttpServlet {
-	CartDao cartDao = new CartDao();
-
+	private CartDao cartDao = new CartDao();
+	private ConsumerDao consumerDao = new ConsumerDao();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -28,7 +28,7 @@ public class CartController extends HttpServlet {
 		}
 		
 		// 아이디를 번호로 교체
-		int consumerId = cartDao.changeConsumerIdToNo(sessionMemberId);
+		int consumerId = consumerDao.changeConsumerIdToNo(sessionMemberId);
 		// -----------------------------디버깅-----------------------------
 		System.out.println(consumerId + " <-- consumerId doGet() insertProductInCartController");
 				
@@ -65,7 +65,7 @@ public class CartController extends HttpServlet {
 			response.sendRedirect(request.getContextPath()+"/LoginController");
 		}
 		// 아이디를 번호로 교체
-		int consumerId = cartDao.changeConsumerIdToNo(sessionMemberId);
+		int consumerId = consumerDao.changeConsumerIdToNo(sessionMemberId);
 		// -----------------------------디버깅-----------------------------
 		System.out.println(consumerId + " <-- consumerId doGet() CartController");
 		

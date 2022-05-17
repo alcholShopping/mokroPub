@@ -18,10 +18,13 @@
 						<li><a href="${pageContext.request.contextPath}/categoryProductListController?categoryNo=6">과실주</a></li>
 						<li><a href="${pageContext.request.contextPath}/categoryProductListController?categoryNo=7">기타주류</a></li>
 					</ul></li>
-				<li><a
-					href="${pageContext.request.contextPath}/priceProductListController">가격순</a></li>
+				<li><a href="${pageContext.request.contextPath}/priceProductListController">가격순</a></li>
 				<li><a href="${pageContext.request.contextPath}/bestProductListController">인기순</a></li>
-				<li><a href="#">커뮤니티</a></li>
+				<li class="actionHover"><a href="#">커뮤니티</a>
+					<ul class="submenu">
+						<li><a href="${pageContext.request.contextPath}/noticeListController">공지사항</a></li>
+						<li><a href="${pageContext.request.contextPath}/inquiryController">문의사항</a></li>
+					</ul></li>				
 				<li><a href="#">contact</a></li>
 			</ul>
 		</nav>

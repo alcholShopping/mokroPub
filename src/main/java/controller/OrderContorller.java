@@ -12,11 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.CartDao;
+import dao.ConsumerDao;
 
 
 @WebServlet("/orderContorller")
 public class OrderContorller extends HttpServlet {
 	CartDao cartDao = new CartDao();
+	private ConsumerDao consumerDao = new ConsumerDao();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//로그인 여부 확인 로직(세션이용)
 				HttpSession session = request.getSession();
@@ -29,7 +31,7 @@ public class OrderContorller extends HttpServlet {
 				}
 				
 				// 아이디를 번호로 교체
-				int consumerId = cartDao.changeConsumerIdToNo(sessionMemberId);
+				int consumerId = consumerDao.changeConsumerIdToNo(sessionMemberId);
 				// -----------------------------디버깅-----------------------------
 				System.out.println(consumerId + " <-- consumerId doGet() insertProductInCartController");
 						

@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.BestDao;
 
@@ -19,7 +20,10 @@ import dao.BestDao;
 public class BestProductListController extends HttpServlet {
 	private BestDao bestDao = new BestDao();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 로그인 확인
+		// sessionMemberId 가져오기
+		HttpSession session = request.getSession();
+		String sessionMemberId = (String)session.getAttribute("sessionMemberId");
+		System.out.println(sessionMemberId + " <-- sessionMemberId doGet() consumerOneController"); // 디버깅
 		
 		// 인기순(order주문 순으로 보여주기)
 		List<Map<String,Object>> list = bestDao.selectBestListByPage();

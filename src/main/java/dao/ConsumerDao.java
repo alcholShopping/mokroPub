@@ -132,6 +132,37 @@ public class ConsumerDao {
 				}
 			}
 		}
+		
+		// 사용자아이디를 숫자로 변경
+		public int changeConsumerIdToNo(String sessionMemberId) {
+			int consumerId = 0;
+			Connection conn = null;
+			PreparedStatement stmt = null;
+			ResultSet rs = null;
+			
+			// productNo, count, sessionMemberId에 따라서 cart 추가 
+			String sql= "SELECT consumer_no consumerNo FROM consumer WHERE consumer_id = ? ";
+			try {
+				conn = DBUtil.getConnection();
+				stmt = conn.prepareStatement(sql);
+				stmt.setString(1, sessionMemberId);
+				rs = stmt.executeQuery();
+				if(rs.next()) {
+					consumerId = rs.getInt("consumerNo");
+					System.out.println(consumerId + " <-- consumerId changeConsumerIdToNo() CartDao <-- 이동해야함");
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} 
+			return consumerId;
+		}
 
 
 //	   // 회원탈되
