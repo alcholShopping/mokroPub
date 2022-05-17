@@ -51,7 +51,15 @@
 					</tbody>
 					</c:forEach>					  	
 					</table>
+						<c:if test="${currentPage > 1}">
+							<a href="${pageContext.request.contextPath}/noticeListController?currentPage=${currentPage-1}" >이전</a>
+						</c:if>
+						<!-- 다음 버튼 -->
+						<c:if test="${currentPage < lastPage}">
+							<a href="${pageContext.request.contextPath}/noticeListController?currentPage=${currentPage+1}">다음</a>
+						</c:if>
 					<!-- 아이디가 admin인 경우만 보이게 해야함 -->
+					<div></div>
 					<a href="${pageContext.request.contextPath}/insertNoticeController" id="insertNoticeBtn">글쓰기</a>
 				</div>  
 			</div>	

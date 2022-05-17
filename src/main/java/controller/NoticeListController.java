@@ -24,8 +24,26 @@ public class NoticeListController extends HttpServlet {
 		String sessionMemberId = (String)session.getAttribute("sessionMemberId");
 		System.out.println(sessionMemberId + " <-- sessionMemberId doGet() consumerOneController"); // 디버깅
 		
+		// 페이징
+		int totalCnt = noticeDao.selectNoticeTotal();
+		int currentPage = 1;
+		if(request.getParameter("currentPage") != null) {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+		int rowPerPage = 5;
+		int beginRow = (currentPage-1) * rowPerPage; 
+		int lastPage = (int)(Math.ceil((double)totalCnt/(double)rowPerPage)); 
+		// 디버깅
+		System.out.println(currentPage + " <-- currentPage doGet() noticeListController");	
+		System.out.println(totalCnt + " <-- totalCnt doGet() noticeListController");
+		System.out.println(rowPerPage + " <-- rowPerPage doGet() noticeListController");
+		System.out.println(beginRow + " <-- beginRow doGet() noticeListController");
+		System.out.println(lastPage+"<-- lastPage doGet() noticeListController");
+	
+
 		// notice의 리스트들을 보여주는 메서드 실행
-		List<Map<String,Object>> noticeList = noticeDao.selectNoticeList();
+		List<Map<String,Object>> noticeList = noticeDao.selectNoticeList(beginRow,rowPerPage);
 		// 디버깅
 		for(Map m : noticeList) {
 			System.out.println(m.get("consumerId") + " <-- consumerId doGet() noticeListController ");
@@ -34,6 +52,8 @@ public class NoticeListController extends HttpServlet {
 			System.out.println(m.get("createDate") + " <-- createDate doGet() noticeListController ");
 		}
 		
+		request.setAttribute("currentPage", currentPage);
+		request.setAttribute("lastPage" , lastPage);
 		request.setAttribute("noticeList", noticeList);
 		
 		request.getRequestDispatcher("/WEB-INF/view/community/notice/noticeList.jsp").forward(request, response);

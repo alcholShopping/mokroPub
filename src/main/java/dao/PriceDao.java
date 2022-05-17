@@ -18,7 +18,7 @@ public class PriceDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		Product product = null;
-		String sql = "SELECT product_no productNo,name,price,volume,alcohol_level alcoholLevel,picture FROM product WHERE price between ? and ? ORDER BY price asc LIMIT ?,?";
+		String sql = "SELECT product_no productNo,name,price,volume,alcohol_level alcoholLevel,picture FROM product WHERE price between ? and ? ORDER BY price asc LIMIT ?,? ";
 		try {
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/mokroPub","root","java1234");
 			stmt = conn.prepareStatement(sql);
@@ -38,7 +38,7 @@ public class PriceDao {
 				product.setPicture(rs.getString("picture"));
 				list.add(product);
 				
-				//----------------------------�뵒踰꾧퉭--------------------------
+				//----------------------------디버깅--------------------------
 				/*
 				System.out.println(product.getProductNo());
 				System.out.println(product.getName());
@@ -86,7 +86,7 @@ public class PriceDao {
 				product.setPicture(rs.getString("picture"));
 				list.add(product);
 				
-				//----------------------------�뵒踰꾧퉭--------------------------
+				//----------------------------디버깅--------------------------
 				/*
 				System.out.println(product.getProductNo());
 				System.out.println(product.getName());
@@ -122,7 +122,7 @@ public class PriceDao {
 		rs = stmt.executeQuery();
 		while(rs.next()) {
 			total = rs.getInt("cnt");
-			//----------------------- �뵒踰꾧퉭--------------------------
+			//----------------------- 디버깅--------------------------
 			System.out.println(total + " <-- total selectPriceTotal() priceDao");
 		}
 	} catch (SQLException e) {

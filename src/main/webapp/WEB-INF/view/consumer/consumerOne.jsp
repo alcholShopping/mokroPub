@@ -48,7 +48,7 @@
 										</tr>
 										
 										<tr>
-											<th><a href="#">주문내역 확인</a></th>
+											<th><a href="${pageContext.request.contextPath}/orderedController">주문내역 확인</a></th>
 										</tr>
 										
 										<tr>

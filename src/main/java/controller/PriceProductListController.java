@@ -20,20 +20,17 @@ public class PriceProductListController extends HttpServlet {
 	private PriceDao priceDao = new PriceDao();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Product> list = new ArrayList<>();
-		int startPrice = 0;
+		
+		int startPrice = 0; 
 		int endPrice = 9999999;
-		int cnt=0;
+		int cnt = 0; // 정렬 확인용 변수
 
-
-
-	
-		if(request.getParameter("startPrice")!=null) {
+		if(request.getParameter("startPrice") != null) {
 			startPrice = Integer.parseInt(request.getParameter("startPrice"));
 		}
 		if(request.getParameter("endPrice") != null) {
 			endPrice = Integer.parseInt(request.getParameter("endPrice"));
 		}
-		
 		
 		//페이직 작업
 		int totalData = priceDao.selectPriceTotal(startPrice, endPrice);
@@ -46,7 +43,7 @@ public class PriceProductListController extends HttpServlet {
 		int rowPerPage = 6;
 		int beginRow = (currentPage-1) * rowPerPage; 
 		int lastPage = (int)(Math.ceil((double)totalData/(double)rowPerPage)); 
-		// -----------------------------�뵒踰꾧퉭-----------------------------
+		// -----------------------------디버깅-----------------------------
 		System.out.println(currentPage + " <-- currentPage doGet() PriceProductListController");	
 		System.out.println(totalData + " <-- currentPage doGet() PriceProductListController");
 		System.out.println(rowPerPage + " <-- rowPerPage doGet() PriceProductListController");
@@ -64,11 +61,6 @@ public class PriceProductListController extends HttpServlet {
 			list = priceDao.seleselectPriceByPageDesc(startPrice, endPrice,beginRow,rowPerPage);
 		}
 
-		
-
-		
-
-		
 		request.setAttribute("cnt",cnt);
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("lastPage" , lastPage);

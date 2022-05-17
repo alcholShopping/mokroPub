@@ -98,6 +98,31 @@
 									</tr>
 								</table>							
 							</form>
+
+								<button type="submut"><a href="${pageContext.request.contextPath}/consumerOneController">회원정보 수정</a></button>
+								<a href="${pageContext.request.contextPath}/indexController">취소</a>
+								<!-- response.sendRedirect(request.getContextPath()+"/loginController"); 수정컨트롤러 이동 -->
+								
+							</div>
+						</div>
+					</div>
+				</div>	
+			</div>
+		</div>
+		
+	</div>
+</body>
+	<script>
+		$(".actionHover").mouseover( function(){ 
+			$(".submenu").stop().slideDown(500); 
+			}) 
+			
+		$(".actionHover").mouseout(function(){
+			$(".submenu").stop().slideUp(1000); 
+		})
+	</script>
+</html>
+
 								<a href="${pageContext.request.contextPath}/indexController">취소</a>							
 							</div>
 						</div>
@@ -118,3 +143,4 @@
 		})
 	</script>
 </html>
+

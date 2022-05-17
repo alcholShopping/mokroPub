@@ -16,49 +16,68 @@ import dao.CartDao;
 import dao.ConsumerDao;
 import dao.ProductDao;
 
-
-
 @WebServlet("/productOneController")
 public class ProductOneController extends HttpServlet {
 	private ProductDao productDao =  new ProductDao();
 	private CartDao cartDao = new CartDao();;
 	private ConsumerDao consumerDao = new ConsumerDao();
-;	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//로그인 여부 확인 로직(세션이용)
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		cartDao = new CartDao();
+		// 로그인 여부 확인 로직(세션이용)
 		HttpSession session = request.getSession();
-		String sessionMemberId = (String)session.getAttribute("sessionMemberId");
+		String sessionMemberId = (String) session.getAttribute("sessionMemberId");
 
 		// productNo을 받아옴
 		int productNo = Integer.parseInt(request.getParameter("productNo"));
 		System.out.println(productNo + " <-- productNo categoryProductListController");
-		if(productNo == 0) { // 상품 번호가 없을 시
+		if (productNo == 0) { // 상품 번호가 없을 시
 			System.out.println(productNo + "productNo이 존재하지 않음 doGet() insertProductInCartController");
 			response.sendRedirect("/indexController");
 		}
-		
 
 		int count = 0;
 		
-		if(request.getParameter("count")!= null) {
+		if (request.getParameter("count") != null) {
 			count = Integer.parseInt(request.getParameter("count"));
-			System.out.println(count+"<=====================count");	
+			System.out.println(count + "<=====================count");
 		}
+		;
 		// 아이디를 번호로 교체
 		int consumerId = consumerDao.changeConsumerIdToNo(sessionMemberId);
 		// -----------------------------디버깅-----------------------------
 		System.out.println(consumerId + " <-- consumerId doGet() insertProductInCartController");
 		
-		if(count != 0) {
-			// 상품 상세보기에서 받아온 갯수만 큼 더 플러스
-			cartDao.insertProductOneInCart(productNo,count,consumerId);
+		if (count != 0) {
+			
+			// 같은 상품이 존재한다면 수량체크
+			int cnt = cartDao.selectProductInCartCount(productNo);
+			
+			// -----------------------------디버깅-----------------------------
+			System.out.println(cnt + "개 수량을 체크했습니다." + " <--cnt doGet() insertProductInCartController");
+			
+			if (cnt + count > 5) {
+				
+				// 수량이 5개 이상이면 5개로 지정
+				cartDao.updateProductInCartFive(productNo, consumerId); // 무조건 5로
+				// -----------------------------디버깅-----------------------------
+				System.out.println("수량 5개 지정하였습니다.");
+			} else {
+				cartDao.insertProductOneInCart(productNo, count, consumerId); // 업데이트
+			}
 			response.sendRedirect("cartController");
 			return;
 		}
 		
-		List<Map<String,Object>> list = productDao.selectProductOne(productNo);
-						
+		
+
+		productDao = new ProductDao();
+
+		List<Map<String, Object>> list = productDao.selectProductOne(productNo);
+
 		// -----------------------------디버깅-----------------------------
-		for(Map m : list) {
+		for (Map m : list) {
 			System.out.println(m.get("productNo") + " <-- productNo doGet() ProductOneController ");
 			System.out.println(m.get("name") + " <-- name doGet() ProductOneController ");
 			System.out.println(m.get("price") + " <-- price doGet() ProductOneController ");
@@ -81,7 +100,7 @@ public class ProductOneController extends HttpServlet {
 			System.out.println(m.get("refreshment") + " <-- refreshment doGet() ProductOneController ");
 			System.out.println(m.get("memo") + " <-- memo doGet() ProductOneController ");
 			System.out.println(m.get("categoryType") + " <-- categoryType doGet() ProductOneController ");
-			System.out.println(m.get("companyName") + " <--companyName doGet() ProductOneController ");		
+			System.out.println(m.get("companyName") + " <--companyName doGet() ProductOneController ");
 		}
 
 		request.setAttribute("productNo", productNo);
@@ -90,9 +109,9 @@ public class ProductOneController extends HttpServlet {
 		request.getRequestDispatcher("/WEB-INF/view/product/productOne.jsp").forward(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 	}
 
 }
-

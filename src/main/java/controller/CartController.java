@@ -18,6 +18,7 @@ public class CartController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
 		//로그인 여부 확인 로직(세션이용)
 		HttpSession session = request.getSession();
 		String sessionMemberId = (String)session.getAttribute("sessionMemberId");
@@ -51,7 +52,7 @@ public class CartController extends HttpServlet {
 		session.setAttribute("cartCount", cartCount);
 		
 	
-
+		
 		request.setAttribute("cartList", cartList);
 		request.getRequestDispatcher("/WEB-INF/view/cart/cartList.jsp").forward(request, response);
 	}

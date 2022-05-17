@@ -430,6 +430,47 @@ section
    color: #ffffff;
    font-weight: 600;
 }
+
+.submenuCommunity {
+   position: absolute;
+   top: 25px;
+   display: block;
+}
+
+.submenuCommunity li
+{
+   background-color: #ffffff;
+   padding-left: 10px;
+   padding-right:10px;
+
+}
+.submenuCommunity li:hover
+{
+   background-color:#937c6f;
+}
+.submenuCommunity >li >a
+{
+   display:block;
+   font-size: 12px;
+   color: #2f2f2f;
+   line-height:30px;
+   font-weight: 500;
+   letter-spacing: 0.2em;
+   -webkit-transition: all 200ms ease;
+   -moz-transition: all 200ms ease;
+   -ms-transition: all 200ms ease;
+   -o-transition: all 200ms ease;
+   transition: all 200ms ease;
+   text-align: center;
+   
+}
+.submenuCommunity li a:hover
+{
+   color: #ffffff;
+   font-weight: 600;
+}
+
+
 /*********************************
 3.3 Header - Search
 *********************************/
@@ -1599,4 +1640,41 @@ margin-bottom: 30px;
 }
 .orderBtn:hover{
    color:#ffffff;
+}
+
+.payBar{
+
+  background-color:black;
+  position:fixed;
+  width:100%;
+  bottom:0; 
+  height: 160px;
+  z-index: 500;
+  opacity: 0.8;
+
+}
+.payBar table{
+	  margin:0 auto;
+	  width:70%;
+	  text-align: center;
+}
+.table_td{
+	padding-top:10px;
+	color:#ffffff;
+	font-size: 15px;
+	line-height: 40px;
+}
+.table_td_price{
+	padding-top:10px;
+	color:#ffffff;
+	font-size: 35px;
+	font-family:600;
+	line-height: 40px;
+}
+.table_td_price_fix{
+	padding-top:10px;
+	color:#ff0000;
+	font-size: 35px;
+	font-family:600;
+	line-height: 40px;
 }

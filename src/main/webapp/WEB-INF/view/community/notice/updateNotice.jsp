@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>inserNotice</title>
+<title>updateNotice</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Wish shop project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -53,34 +53,41 @@
 					<div class="row">
 						<div class="col">
 							<div class="register_title text-center">
-								<form action="${pageContext.request.contextPath}/insertNoticeController" method="post" enctype="multipart/form-data">
+							<c:forEach var="m" items="${noticeOneList}">
+								<form action="${pageContext.request.contextPath}/updateNoticeController" method="post" enctype="multipart/form-data">
 									<h1>공지사항 등록</h1>
-									<table class="table">	
+									<table class="table">
 										<tr>
 											<th>
-												제목 : <input type="text" name="title" class="form-control">
+												noticeNo : <input type="text" name="noticeNo" class="form-control" value="${m.noticeNo}" readonly="readonly">
+											</th>
+										</tr>
+										<tr>
+											<th>
+												제목 : <input type="text" name="title" class="form-control" value="${m.title}">
 											</th>
 										</tr>
 										
 										<tr>
 											<th>
-												이미지 파일 : <input type="file" name="photo">
+												이미지 파일 : <input type="file" name="photo" value="${m.photo}">
 											</th>
 										</tr>
 										
 										<tr>
 											<th>
-												내용 : <textarea rows="5" cols="30" name="content"></textarea>
+												내용 : <textarea rows="5" cols="30" name="content" value="${m.content}"></textarea>
 											</th>
 										</tr>
 										<tr>
 											<th colspan="2">
-												<button type="submit" class="btn btn-primary">공지사항 등록</button>
+												<button type="submit" class="btn btn-primary">공지사항 수정</button>
 											</th>
 										</tr>
 									</table>
 								</form>
 							</div>
+							</c:forEach>
 						</div>
 					</div>
 				</div>

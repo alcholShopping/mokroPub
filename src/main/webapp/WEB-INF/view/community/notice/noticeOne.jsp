@@ -38,7 +38,7 @@
 				<!-- notice Image -->
 				<div class="col-lg-7">
 					<div class="product_image">
-						<div class="product_image_large"><img src="images/product_image_1.jpg" alt=""></div>
+						<div class="product_image_large"><img src="images/${m.photo}" alt=""></div>
 						<div class="product_image_thumbnails d-flex flex-row align-items-start justify-content-start">
 						</div>
 					</div>

@@ -14,16 +14,18 @@ import vo.Notice;
 
 public class NoticeDao {
 	// 공지사항 리스트들을 보여주는 메서드
-	public List<Map<String,Object>> selectNoticeList(){
+	public List<Map<String,Object>> selectNoticeList(int beginRow, int rowPerPage){
 		List<Map<String,Object>> list = new ArrayList<>( );
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT c.consumer_id consumerId, notice_no noticeNo, title, n.create_date createDate FROM notice n INNER JOIN consumer c ON n.consumer_no = c.consumer_no ";
+		String sql = "SELECT c.consumer_id consumerId, notice_no noticeNo, title, n.create_date createDate FROM notice n INNER JOIN consumer c ON n.consumer_no = c.consumer_no ORDER BY n.update_date DESC LIMIT ?,? ";
 		
 		try {
 			conn = DBUtil.getConnection();
 			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, beginRow);
+			stmt.setInt(2, rowPerPage);
 			rs = stmt.executeQuery();
 			while(rs.next()) {
 				Map<String, Object> m = new HashMap<String, Object>();
@@ -164,7 +166,7 @@ public class NoticeDao {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		String sql = " UPDATE notice SET (title, content, photo,update_date) VALUE(?,?,?,NOW()) WHERE notice_no = ? ";
+		String sql = " UPDATE notice SET title = ?, content = ?, photo = ?, update_date = NOW() WHERE notice_no = ? ";
 		
 		try {
 			conn = DBUtil.getConnection();
@@ -190,6 +192,33 @@ public class NoticeDao {
 				e.printStackTrace();
 			}
 		}	
+	}
+	
+	// notice totalCount구하기
+	public int selectNoticeTotal(){
+		int total = 0;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs =null;
+		String sql=" SELECT COUNT(*) cnt FROM notice ";
+	try {
+		conn = DBUtil.getConnection();
+		stmt = conn.prepareStatement(sql);
+		rs = stmt.executeQuery();
+		while(rs.next()) {
+			total = rs.getInt("cnt");
+			System.out.println(total + " <-- total selectNoticeTotal() noticeDao"); // 디버깅
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally {
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	} 
+		return total;
 	}
 	
 }

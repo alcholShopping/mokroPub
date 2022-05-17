@@ -31,6 +31,10 @@ public class UpdateConsumerInfoController extends HttpServlet {
 		}
 		// jsp파일을 보여주기전에 수정 전
 		// selectConsumerOneInfo Dao에 있던 데이터값 호출 후 표시
+
+		// 기존에 있더 회원정보 보여주기
+		ConsumerDao consumerDao = new ConsumerDao();
+
 		List<Consumer> consumerList = consumerDao.selectConsumerOneInfo(sessionMemberId);
 		
 		// 수정 전 보여줄 호출할 Dao값이 잘 있나 디버깅
@@ -64,7 +68,7 @@ public class UpdateConsumerInfoController extends HttpServlet {
 			response.sendRedirect(request.getContextPath()+"/loginController"); // 로그인컨트롤러로 이동 
 			return;
 		}
-		
+		// getParameter로 jsp파일 받아옴 -> 그 값을 변수에 저장
 		// jsp파일에서 받아온 값을(수정된 값)
 		// consumer에 정재	
 		// consumer_id, password, name, phone, email, address, Detailed_Addreess, Account, UPDATE_DATE
@@ -78,8 +82,7 @@ public class UpdateConsumerInfoController extends HttpServlet {
 		String consumerAccount = request.getParameter("consumerAccount");
 		String consumerUpdateDate = request.getParameter("consumerUpdateDate");
 		
-		// (Dao)DB에서 업데이트된 내용을 불러옴
-		
+		// jsp파일에서 불러와서 변수에 저장한 값을 consumer로 저장
 		// Update문 호출
 		Consumer consumer = new Consumer();
 		consumer.setConsumerId(consumerId);
@@ -101,9 +104,10 @@ public class UpdateConsumerInfoController extends HttpServlet {
 		System.out.println(consumerDetailedAddress + " <-- consumerDetailedAddress doPost() UpdateConsumerInfoController");
 		System.out.println(consumerAccount + " <-- consumerAccount doPost() UpdateConsumerInfoController");
 		System.out.println(consumerUpdateDate + " <-- consumerUpdateDate doPost() UpdateConsumerInfoController");
-		
+
 		consumerDao.updateConsumerInfo(consumer);
 		response.sendRedirect(request.getContextPath()+"/consumerOneInfoController");
+
 	}
 	
 }

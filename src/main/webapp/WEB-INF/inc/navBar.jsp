@@ -20,11 +20,12 @@
 					</ul></li>
 				<li><a href="${pageContext.request.contextPath}/priceProductListController">가격순</a></li>
 				<li><a href="${pageContext.request.contextPath}/bestProductListController">인기순</a></li>
-				<li class="actionHover"><a href="#">커뮤니티</a>
-					<ul class="submenu">
+				<li class="actionHoverCommunity"><a href="#">커뮤니티</a>
+					<ul class="submenuCommunity">
 						<li><a href="${pageContext.request.contextPath}/noticeListController">공지사항</a></li>
 						<li><a href="${pageContext.request.contextPath}/inquiryController">문의사항</a></li>
-					</ul></li>				
+					</ul>
+				</li>				
 				<li><a href="#">contact</a></li>
 			</ul>
 		</nav>
@@ -78,5 +79,12 @@
 		$(".actionHover").mouseout(function(){
 			$(".submenu").stop().slideUp(1000); 
 		})
+		<!--
+		$(".actionHoverCommunity").mouseover( function(){ 
+			$(".submenuCommunity").stop().slideDown(500); 
+			}) 
+		$(".actionHoverCommunity").mouseout(function(){
+			$(".submenuCommunity").stop().slideUp(1000); 
+		}) -->
 	</script>
 </header>
