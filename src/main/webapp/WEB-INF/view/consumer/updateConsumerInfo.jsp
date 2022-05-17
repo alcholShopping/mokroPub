@@ -91,9 +91,14 @@
 											<input type="text" class="form-control" value ="${consumerList[0].updateDate}" name="consumerUpdateDate" id="consumerUpdateDate">
 										</th>
 									</tr>
-									
-								</table>
+									<tr>
+										<th colspan="2">
+											<button type="submit" class="btn btn-primary" id="registerBtn" >회원 정보 변경</button>		
+										</th>							
+									</tr>
+								</table>							
 							</form>
+
 								<button type="submut"><a href="${pageContext.request.contextPath}/consumerOneController">회원정보 수정</a></button>
 								<a href="${pageContext.request.contextPath}/indexController">취소</a>
 								<!-- response.sendRedirect(request.getContextPath()+"/loginController"); 수정컨트롤러 이동 -->
@@ -117,3 +122,25 @@
 		})
 	</script>
 </html>
+
+								<a href="${pageContext.request.contextPath}/indexController">취소</a>							
+							</div>
+						</div>
+					</div>
+				</div>	
+			</div>
+		</div>
+		
+	</div>
+</body>
+	<script>
+		$(".actionHover").mouseover( function(){ 
+			$(".submenu").stop().slideDown(500); 
+			}) 
+			
+		$(".actionHover").mouseout(function(){
+			$(".submenu").stop().slideUp(1000); 
+		})
+	</script>
+</html>
+

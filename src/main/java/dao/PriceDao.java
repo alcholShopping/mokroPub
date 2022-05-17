@@ -38,7 +38,7 @@ public class PriceDao {
 				product.setPicture(rs.getString("picture"));
 				list.add(product);
 				
-				//----------------------------�뵒踰꾧퉭--------------------------
+				//----------------------------디버깅--------------------------
 				/*
 				System.out.println(product.getProductNo());
 				System.out.println(product.getName());
@@ -86,7 +86,7 @@ public class PriceDao {
 				product.setPicture(rs.getString("picture"));
 				list.add(product);
 				
-				//----------------------------�뵒踰꾧퉭--------------------------
+				//----------------------------디버깅--------------------------
 				/*
 				System.out.println(product.getProductNo());
 				System.out.println(product.getName());
@@ -122,7 +122,7 @@ public class PriceDao {
 		rs = stmt.executeQuery();
 		while(rs.next()) {
 			total = rs.getInt("cnt");
-			//----------------------- �뵒踰꾧퉭--------------------------
+			//----------------------- 디버깅--------------------------
 			System.out.println(total + " <-- total selectPriceTotal() priceDao");
 		}
 	} catch (SQLException e) {

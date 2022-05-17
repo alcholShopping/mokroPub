@@ -218,7 +218,6 @@
 										</tr>
 
 										<tr>
-
 											<th colspan="2">
 												<button type="button" class="btn btn-primary" id="registerBtn" onclick="memberJoinCheck()">회원가입</button>
 												<a href="${pageContext.request.contextPath}/indexController" type="submit" class="btn btn-primary">취소</button>
