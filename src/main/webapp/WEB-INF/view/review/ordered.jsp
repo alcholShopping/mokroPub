@@ -80,7 +80,7 @@
 							</td>
 							
 							<td>
-								<A href="#">리뷰</A>
+								<A href="reviewController?orderNo=${item.orderNo}">리뷰</A>
 							</td>
 
 						
@@ -89,10 +89,6 @@
 				</table>  
 			</div>  
 	</div>
-	<!--  주문하기 버튼 -->
-	<div class="text-center orderBar">
-      <a href="#" class="orderBtn">주문하기</a>
-   </div>
 </div>
 	<!-- Footer -->	
 	<jsp:include page="../../../WEB-INF/inc/footer.jsp"></jsp:include>
