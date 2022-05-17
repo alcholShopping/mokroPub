@@ -56,7 +56,7 @@
 										</tr>
 										
 										<tr>
-											<th><a href="#">리뷰</a></th>
+											<th><a href="${pageContext.request.contextPath}/myReviewListController">내가 작성한 리뷰</a></th>
 										</tr>									
 									</table>
 							</div>
