@@ -159,6 +159,7 @@
 		                     <td>사진</td>
 		                     <td>별점</td>
 		                     <td>내용</td>	                    
+		                     <td>작성일</td>
 		                     <td>작성일</td>                    
 	                  	</tr>
 	                  	
@@ -183,11 +184,15 @@
 							<td>
 								${item.createDate}
 							</td>
-
-						
+							
+							<td>
+							<a href="${pageContext.request.contextPath}/productReviewFullController?productNo=${productNo}">더보기</a>
+							</td>
+							
 						</tr>					
 					</c:forEach>
 				</table>  
+				
 			</div>  
 	</div>
 </div>
