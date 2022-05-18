@@ -21,9 +21,9 @@ import vo.Consumer;
 
 @WebServlet("/orderController")
 public class OrderController extends HttpServlet {
-	CartDao cartDao = new CartDao();
-	ConsumerDao consumerDao = new ConsumerDao();
-	CouponDao couponDao = new CouponDao();
+	private CartDao cartDao;
+	private ConsumerDao consumerDao;
+	private CouponDao couponDao;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//로그인 여부 확인 로직(세션이용)
@@ -35,11 +35,14 @@ public class OrderController extends HttpServlet {
 			return;
 		}
 		
+		consumerDao = new ConsumerDao();
 		// 아이디를 번호로 교체
 		int consumerId = consumerDao.changeConsumerIdToNo(sessionMemberId);
 		// -----------------------------디버깅-----------------------------
 		System.out.println(consumerId + " <-- consumerId doGet() insertProductInCartController");
-				
+		
+		cartDao = new CartDao();
+		
 		// 사용자 번호로 장바구니 리스트 호출 > hashmap
 		List<Map<String,Object>> cartList = cartDao.selectConsumerCartList(consumerId);
 				
@@ -87,6 +90,8 @@ public class OrderController extends HttpServlet {
 		}
 		System.out.println(consumerLevelText + " <-- consumerLevelText doGet() consumerOneInfo");
 		
+		couponDao = new CouponDao();
+		
 		// 쿠폰리스트 받는 list
 		List<HashMap<String, Object>> couponList = couponDao.selectConsumerCouponList(consumerId);
 		
@@ -95,9 +100,10 @@ public class OrderController extends HttpServlet {
 		request.setAttribute("cartList", cartList); // 장바구니 리스트
 		request.setAttribute("consumerList", consumerList); // 회원정보 
 		request.setAttribute("consumerLevelText", consumerLevelText); // 회원등급
-		request.setAttribute("couponList", couponList); // 총가격
+		request.setAttribute("couponList", couponList); // 쿠폰리스트
 		
 		request.getRequestDispatcher("/WEB-INF/view/order/order.jsp").forward(request, response);
+		
 	}
 
 

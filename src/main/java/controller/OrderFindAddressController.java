@@ -17,6 +17,7 @@ public class OrderFindAddressController extends HttpServlet {
 	CartDao cartDao = new CartDao();
 	ConsumerDao consumerDao = new ConsumerDao();
 	RegisterDao registerDao = new RegisterDao();
+	CouponDao couponDao = new CouponDao();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/WEB-INF/view/login/register.jsp").forward(request, response);
 	}
@@ -92,12 +93,16 @@ public class OrderFindAddressController extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		// 쿠폰리스트 받는 list
+		List<HashMap<String, Object>> couponList = couponDao.selectConsumerCouponList(consumerId);
 				
 		request.setAttribute("totalPrice", totalPrice); // 총가격
 		request.setAttribute("cartList", cartList); // 장바구니 리스트
 		request.setAttribute("consumerList", consumerList); // 회원정보 
 		request.setAttribute("consumerLevelText", consumerLevelText); // 회원등급
 		request.setAttribute("searchList", list);
+		request.setAttribute("couponList", couponList); // 쿠폰 리스트
 		request.getRequestDispatcher("/WEB-INF/view/order/order.jsp").forward(request, response);
 		
 	}
