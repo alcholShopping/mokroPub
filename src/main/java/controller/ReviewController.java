@@ -47,11 +47,21 @@ public class ReviewController extends HttpServlet {
 
 		//request 사용 불가 > multiReq가 다 옮겨받음
 		String pictureOriginalName = multiReq.getOriginalFileName("picture"); // 파일 업로드시 원본의 이름
-		String pictureName = multiReq.getFilesystemName("picture"); // new DefaultFileRenamePolicy()객체를 통해 변경된 이름
+		
 		int orderNo = Integer.parseInt(multiReq.getParameter("orderNo"));
 		int settedStar = Integer.parseInt(multiReq.getParameter("settedStar"));
 		String content = multiReq.getParameter("content");
-		String pictureType = multiReq.getContentType("picture");
+
+		// 사진이 없을때
+		String pictureType = "fileX";
+		if(multiReq.getContentType("picture") != null) {
+			pictureType = multiReq.getContentType("picture");
+		}
+		//request 사용 불가 > multiReq가 다 옮겨받음
+		String pictureName = "fileX"; 
+		if(multiReq.getContentType("picture") != null) { // new DefaultFileRenamePolicy()객체를 통해 변경된 이름
+			pictureName = multiReq.getFilesystemName("picture");
+		}
 		
 		//디버깅
 		System.out.println(pictureOriginalName + " <-- photoOriginalName");
@@ -59,13 +69,15 @@ public class ReviewController extends HttpServlet {
 		System.out.println(pictureType + " <-- photoType");
 		System.out.println(path + " <-- path");
 		
+		rev.setOrderNo(orderNo);
+		rev.setStar(settedStar);
+		rev.setContent(content);
+		
 		// 파일업로드의 경우 100mbyte 이하의 image/gif, image/png, image/jpeg 3가지 이미지만  허용
 		if(pictureType.equals("image/gif") || pictureType.equals("image/png") || pictureType.equals("image/jpeg")) {
 			System.out.println("db고고!");
 			
-			rev.setOrderNo(orderNo);
-			rev.setStar(settedStar);
-			rev.setContent(content);
+			
 			rev.setPicture(pictureName);
 			
 			System.out.println(orderNo + "==========orderNo===============");
@@ -77,15 +89,23 @@ public class ReviewController extends HttpServlet {
 			
 
 			response.sendRedirect(request.getContextPath()+"/myReviewListController");
-		} else {
+		}  
+		else if(pictureType.equals("fileX"))
+		{	
+			System.out.println("이미지 안들어왔을때");
+			rev.setPicture(pictureName);
+			rd.InsertReviewByOrderNo(rev);
+			
+			response.sendRedirect(request.getContextPath()+"/myReviewListController");
+
+		} 	else {
 			System.out.println("이미지파일만 업로드!");
 			// 잘못들어온 파일이므로 업로드된 파일 지우고 폼으로...이동
 			File file = new File(path+"\\"+pictureName); // 잘못된 파일을 불러온다. java.io.File  
 			file.delete(); // 잘못 업로드된 파일을 삭제
 			request.getRequestDispatcher("/WEB-INF/view/review/review.jsp").forward(request, response);
+		
 		}
-		
-		
 	}
 
 }

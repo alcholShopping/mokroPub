@@ -59,7 +59,7 @@ public class ReviewDao {
 				+ "	ON r.order_no = o.order_no "
 				+ "	INNER JOIN product p "
 				+ "	ON o.product_no = p.product_no "
-				+ " WHERE o.consumer_no = ? ";
+				+ " WHERE o.consumer_no = ? ORDER BY reviewNo DESC";
 		
 		try {
 			conn = DBUtil.getConnection();
@@ -127,5 +127,81 @@ public class ReviewDao {
 	} 
 		
 }
+	
+	public Review SelectReviewByOrderNo(int reviewNo){
+		Review rev = null;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		
+		String sql = " SELECT order_no, star, content, picture, create_date, update_date "
+				+ " FROM review where review_No = ? ORDER BY order_no desc";
+		
+		try {
+			conn = DBUtil.getConnection();
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, reviewNo);
+			
+			System.out.println(reviewNo+"reviewNo~!!!!!!!!!!");
+			rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				rev = new Review();
+				rev.setReviewNo(reviewNo);
+				rev.setStar(rs.getInt("star"));
+				rev.setContent(rs.getString("content"));
+				rev.setPicture(rs.getString("picture"));
+				rev.setCreateDate(rs.getString("create_date"));
+				rev.setUpdateDate(rs.getString("update_date"));
+				
+				System.out.println(rev+"rev~!!!!!!!!!!");
+			}
+			
+			
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		
+		return rev;
+	}
+	
+	
+	public void UpdateReviewByOrderNo(Review re){
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		
+		System.out.println(re + "rev sql문 출력!======================");
+		String sql = " UPDATE review "
+				+ " SET star = ?, content = ?, picture = ?, update_date = NOW() "
+				+ " WHERE review_no = ? ";
+		
+		try {
+			conn = DBUtil.getConnection();
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, re.getStar());
+			stmt.setString(2, re.getContent());
+			stmt.setString(3, re.getPicture());
+			stmt.setInt(4, re.getReviewNo());
+			stmt.executeUpdate();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}		
+	}
 	
 }
