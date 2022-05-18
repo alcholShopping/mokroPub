@@ -70,7 +70,7 @@
 							</td>
 							
 							<td>
-								${item.picture}
+								<img src="./images/${item.picture}" width="200" height="200">
 							</td>
 																			
 							<td>

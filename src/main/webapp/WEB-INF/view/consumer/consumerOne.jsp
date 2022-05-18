@@ -44,7 +44,7 @@
 										</tr>
 										
 										<tr>
-											<th><a href="#">장바구니</a></th>
+											<th><a href="${pageContext.request.contextPath}/cartController">장바구니</a></th>
 										</tr>
 										
 										<tr>
