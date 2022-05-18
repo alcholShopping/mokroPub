@@ -149,7 +149,7 @@ public class ConsumerDao {
 				rs = stmt.executeQuery();
 				if(rs.next()) {
 					consumerId = rs.getInt("consumerNo");
-					System.out.println(consumerId + " <-- consumerId changeConsumerIdToNo() CartDao <-- 이동해야함");
+					System.out.println(consumerId + " <-- consumerId changeConsumerIdToNo() ConsumerDao");
 				}
 				
 			} catch (SQLException e) {

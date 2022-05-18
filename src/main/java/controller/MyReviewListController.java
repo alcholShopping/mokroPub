@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.CartDao;
+import dao.ConsumerDao;
 import dao.ReviewDao;
 
 
@@ -19,7 +20,7 @@ import dao.ReviewDao;
 public class MyReviewListController extends HttpServlet {
 
 	ReviewDao reviewDao = new ReviewDao();		
-	CartDao cartDao = new CartDao();
+	private ConsumerDao consumerDao = new ConsumerDao();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 로그인 확인
@@ -34,7 +35,7 @@ public class MyReviewListController extends HttpServlet {
 		}
 		
 		// 아이디를 번호로 교체
-		int consumerNo = cartDao.changeConsumerIdToNo(sessionMemberId);
+		int consumerNo = consumerDao.changeConsumerIdToNo(sessionMemberId);
 		// 디버깅
 		System.out.println(consumerNo + " <-- consumerId doGet() myReviewListController");
 		

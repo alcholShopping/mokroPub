@@ -55,7 +55,7 @@
 							<div class="register_title text-center">
 							<c:forEach var="m" items="${noticeOneList}">
 								<form action="${pageContext.request.contextPath}/updateNoticeController" method="post" enctype="multipart/form-data">
-									<h1>공지사항 등록</h1>
+									<h1>공지사항 수정</h1>
 									<table class="table">
 										<tr>
 											<th>

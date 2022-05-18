@@ -30,9 +30,9 @@ public class UpdateNoticeController extends HttpServlet {
 		String accessId = "admin";
 		System.out.println(sessionMemberId + " <-- sessoinMemberId doGet() insertNoticeController");
 		if( (sessionMemberId == null) || (!sessionMemberId.equals(accessId)) ) {
-			// sessionMemberId가 admin이 아니면 noticeListController로 이동
+			// sessionMemberId가 admin이 아니면 loginController로 이동
 			System.out.println(sessionMemberId + " <-- sessoinMemberId doGet() insertNoticeController");
-			response.sendRedirect(request.getContextPath()+"/noticeListController");
+			response.sendRedirect(request.getContextPath()+"/loginController");
 			return;
 		}		
 		// noticeOne.jsp에서 값 받아오기
@@ -60,9 +60,9 @@ public class UpdateNoticeController extends HttpServlet {
 		String accessId = "admin";
 		System.out.println(sessionMemberId + " <-- sessoinMemberId doPost() insertNoticeController");
 		if( (sessionMemberId == null) || (!sessionMemberId.equals(accessId)) ) {
-			// sessionMemberId가 admin이 아니면 noticeListController로 이동
+			// sessionMemberId가 admin이 아니면 loginController로 이동
 			System.out.println(sessionMemberId + " <-- sessoinMemberId doPost() insertNoticeController");
-			response.sendRedirect(request.getContextPath()+"/noticeListController");
+			response.sendRedirect(request.getContextPath()+"/loginController");
 			return;
 		}		
 		request.setCharacterEncoding("utf-8"); // utf-8 인코딩
