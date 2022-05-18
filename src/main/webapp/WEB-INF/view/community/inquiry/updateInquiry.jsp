@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>updateNotice</title>
+<title>insertInquiry</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Wish shop project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -53,41 +53,53 @@
 					<div class="row">
 						<div class="col">
 							<div class="register_title text-center">
-							<c:forEach var="m" items="${noticeOneList}">
-								<form action="${pageContext.request.contextPath}/updateNoticeController" method="post" enctype="multipart/form-data">
-									<h1>공지사항 수정</h1>
-									<table class="table">
+							<c:forEach var="i" items="${inquiryOneList}">
+								<form action="${pageContext.request.contextPath}/updateInquiryController" method="post" enctype="multipart/form-data">
+									<h1>문의사항 수정</h1>
+									<table class="table">	
 										<tr>
 											<th>
-												noticeNo : <input type="text" name="noticeNo" class="form-control" value="${m.noticeNo}" readonly="readonly">
+												<input type="hidden" name="inquiryNo" value="${i.inquiryNo}">
 											</th>
 										</tr>
 										<tr>
 											<th>
-												제목 : <input type="text" name="title" class="form-control" value="${m.title}">
+												제목 : <input type="text" name="title" class="form-control" value="${i.title}">
+											</th>
+										</tr>
+										<tr>
+											<th>작성자 : <input type="text" value="${sessionScope.sessionMemberId}" name="consumerId" readonly="readonly"></th>
+										</tr>
+										<tr>
+											<th>카테고리 : 
+												<select name="category">
+													<option value="${i.category}">선택한 카테고리 : ${i.category}</option>
+													<option value="배송"> 배송 </option>
+													<option value="예시1"> 예시1 </option>
+													<option value="기타"> 기타 </option>
+												</select>
+											</th>
+										</tr>
+										<tr>
+											<th>
+												이미지 파일 : <input type="file" name="photo">
 											</th>
 										</tr>
 										
 										<tr>
 											<th>
-												이미지 파일 : <input type="file" name="photo" value="${m.photo}">
-											</th>
-										</tr>
-										
-										<tr>
-											<th>
-												내용 : <textarea rows="5" cols="30" name="content" value="${m.content}"></textarea>
+												내용 : <textarea rows="10" cols="70" name="content">${i.content}</textarea>
 											</th>
 										</tr>
 										<tr>
 											<th colspan="2">
-												<button type="submit" class="btn btn-primary">공지사항 수정</button>
+												<button type="submit" class="btn btn-primary">문의사항 수정</button>
 											</th>
 										</tr>
 									</table>
 								</form>
-							</div>
 							</c:forEach>
+							</div>
 						</div>
 					</div>
 				</div>

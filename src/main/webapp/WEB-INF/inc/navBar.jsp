@@ -23,7 +23,7 @@
 				<li class="actionHoverCommunity"><a href="#">커뮤니티</a>
 					<ul class="submenuCommunity">
 						<li><a href="${pageContext.request.contextPath}/noticeListController">공지사항</a></li>
-						<li><a href="${pageContext.request.contextPath}/inquiryController">문의사항</a></li>
+						<li><a href="${pageContext.request.contextPath}/inquiryListController">문의사항</a></li>
 					</ul>
 				</li>				
 				<li><a href="#">contact</a></li>

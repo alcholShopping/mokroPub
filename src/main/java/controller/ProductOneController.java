@@ -15,13 +15,14 @@ import javax.servlet.http.HttpSession;
 import dao.CartDao;
 import dao.ConsumerDao;
 import dao.ProductDao;
+import dao.ReviewDao;
 
 @WebServlet("/productOneController")
 public class ProductOneController extends HttpServlet {
 	private ProductDao productDao =  new ProductDao();
 	private CartDao cartDao = new CartDao();;
 	private ConsumerDao consumerDao = new ConsumerDao();
-	
+	private ReviewDao reviewDao = new ReviewDao();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		cartDao = new CartDao();
@@ -73,8 +74,13 @@ public class ProductOneController extends HttpServlet {
 		
 
 		productDao = new ProductDao();
-
+		reviewDao = new ReviewDao();
+		
+		
+		
 		List<Map<String, Object>> list = productDao.selectProductOne(productNo);
+		//세개만 나오는 리뷰
+		List<Map<String, Object>> reviewList = reviewDao.SelectReviewByProduct(productNo);
 
 		// -----------------------------디버깅-----------------------------
 		for (Map m : list) {
@@ -105,6 +111,7 @@ public class ProductOneController extends HttpServlet {
 
 		request.setAttribute("productNo", productNo);
 		request.setAttribute("list", list);
+		request.setAttribute("reviewList", reviewList);
 		
 		request.getRequestDispatcher("/WEB-INF/view/product/productOne.jsp").forward(request, response);
 	}

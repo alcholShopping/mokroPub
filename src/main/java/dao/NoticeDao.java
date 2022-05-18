@@ -116,9 +116,9 @@ public class NoticeDao {
 			// 디버깅
 			int row = stmt.executeUpdate();
 			if(row == 1) {
-				System.out.println("입력성공");
+				System.out.println("입력 성공");
 			} else {
-				System.out.println("입력실패");
+				System.out.println("입력 실패");
 			}		
 			
 		} catch (SQLException e) {
@@ -132,6 +132,7 @@ public class NoticeDao {
 		}	
 	}
 	
+	// notice 삭제
 	public void deleteNotice(int noticeNo) {
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -178,9 +179,9 @@ public class NoticeDao {
 			// 디버깅
 			int row = stmt.executeUpdate();
 			if(row == 1) {
-				System.out.println("입력성공");
+				System.out.println("수정 성공");
 			} else {
-				System.out.println("입력실패");
+				System.out.println("수정 실패");
 			}		
 			
 		} catch (SQLException e) {

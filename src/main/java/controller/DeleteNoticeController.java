@@ -19,11 +19,11 @@ public class DeleteNoticeController extends HttpServlet {
 		HttpSession session = request.getSession();
 		String sessionMemberId = (String)session.getAttribute("sessionMemberId");
 		String accessId = "admin";
-		System.out.println(sessionMemberId + " <-- sessoinMemberId doGet() insertNoticeController");
+		System.out.println(sessionMemberId + " <-- sessoinMemberId doGet() deleteNoticeController");
 		if( (sessionMemberId == null) || (!sessionMemberId.equals(accessId)) ) {
-			// sessionMemberId가 admin이 아니면 noticeListController로 이동
-			System.out.println(sessionMemberId + " <-- sessoinMemberId doGet() insertNoticeController");
-			response.sendRedirect(request.getContextPath()+"/noticeListController");
+			// sessionMemberId가 admin이 아니면 loginController로 이동
+			System.out.println(sessionMemberId + " <-- sessoinMemberId doGet() deleteNoticeController");
+			response.sendRedirect(request.getContextPath()+"/loginController");
 			return;
 		}
 		
