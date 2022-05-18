@@ -25,9 +25,9 @@ public class LoginController extends HttpServlet {
 		if(sessionMemberId != null) {
 			// 이미 로그인이 되어 있는 상태라면
 			response.sendRedirect(request.getContextPath()+"/indexController"); // 초기화면으로
+			return;
 		}	
-		request.getRequestDispatcher("/WEB-INF/view/login/login.jsp").forward(request, response);
-		
+		request.getRequestDispatcher("/WEB-INF/view/login/login.jsp").forward(request, response);		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

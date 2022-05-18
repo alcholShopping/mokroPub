@@ -53,7 +53,7 @@
 					<div class="row">
 						<div class="col">
 							<div class="register_title text-center">
-								<form action="${pageContext.request.contextPath}/insertNoticeController" method="post" enctype="multipart/form-data">
+								<form action="${pageContext.request.contextPath}/insertNoticeController" method="post" name="noticeForm" enctype="multipart/form-data">
 									<h1>공지사항 등록</h1>
 									<table class="table">	
 										<tr>
@@ -75,7 +75,7 @@
 										</tr>
 										<tr>
 											<th colspan="2">
-												<button type="submit" class="btn btn-primary">공지사항 등록</button>
+												<button type="button" onclick="insertNoticeCheck()" class="btn btn-primary">공지사항 등록</button>
 											</th>
 										</tr>
 									</table>
@@ -88,4 +88,22 @@
 			
 		</div>
 </body>
+<script>
+	function insertNoticeCheck(){
+		var n = noticeForm;
+		n.action ='insertNoticeController';
+	
+		if(n.title.value.trim() == ""){
+			alert('제목을 입력하세요');
+			n.title.focus();
+			return;
+		}
+		if(n.content.value.trim() == ""){
+			alert('내용을 입력하세요');
+			n.content.focus();
+			return;
+		}
+		n.submit();	
+	}
+</script>
 </html>

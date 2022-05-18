@@ -170,7 +170,7 @@
                <tr>
                   <td>쿠폰목록</td>
                   <td>
-                     <select name="selectCoupon" id=selectCoupon>
+                     <select name="selectCoupon" id="selectCoupon">
                         <option value="0" selected>:: :쿠폰 선택 :::</option>   
                         <c:forEach var="c" items="${couponList}">
                            <option value="${c.discount}" name="couponNo">

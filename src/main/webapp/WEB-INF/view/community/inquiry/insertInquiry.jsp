@@ -53,7 +53,7 @@
 					<div class="row">
 						<div class="col">
 							<div class="register_title text-center">
-								<form action="${pageContext.request.contextPath}/insertInquiryController" method="post" enctype="multipart/form-data">
+								<form action="${pageContext.request.contextPath}/insertInquiryController" method="post" name="inquiryForm" enctype="multipart/form-data">
 									<h1>공지사항 등록</h1>
 									<table class="table">	
 										<tr>
@@ -87,7 +87,7 @@
 										</tr>
 										<tr>
 											<th colspan="2">
-												<button type="submit" class="btn btn-primary">문의사항 등록</button>
+												<button type="button" class="btn btn-primary" onclick="insertInquiryCheck()">문의사항 등록</button>
 											</th>
 										</tr>
 									</table>
@@ -100,4 +100,27 @@
 			
 		</div>
 </body>
+<script>
+	function insertInquiryCheck(){
+		var i = inquiryForm;
+		i.action ='insertInquiryController';
+	
+		if(i.title.value.trim() == ""){
+			alert('제목을 입력하세요');
+			i.title.focus();
+			return;
+		}
+		if(i.category.value.trim() == ""){ 
+			alert('카테고리를 선택하세요');
+			i.category.focus();
+			return;
+		}
+		if(i.content.value.trim() == ""){
+			alert('내용을 입력하세요');
+			i.content.focus();
+			return;
+		}
+		i.submit();	
+	}
+</script>
 </html>

@@ -50,7 +50,7 @@ public class ReviewUpdateController extends HttpServlet {
 		// 100 mbyte = 1024*1024*100 byte = 104857600 byte 곱셈을 계산해서 코딩하면 가독성이 떨어진다.  ex) 24*60*60 하루에 대한 초
 
 		//request 사용 불가 > multiReq가 다 옮겨받음
-		String pictureName = "fileX"; 
+		String pictureName = "fileX.jpg"; 
 		if(multiReq.getContentType("picture") != null) { // new DefaultFileRenamePolicy()객체를 통해 변경된 이름
 			pictureName = multiReq.getFilesystemName("picture");
 		}
@@ -59,7 +59,7 @@ public class ReviewUpdateController extends HttpServlet {
 		String content = multiReq.getParameter("content");
 		
 		// 사진이 안들어갈수도 있잖아?
-		String pictureType = "fileX";
+		String pictureType = "fileX.jpg";
 		if(multiReq.getContentType("picture") != null) {
 			pictureType = multiReq.getContentType("picture");
 		}
@@ -91,7 +91,7 @@ public class ReviewUpdateController extends HttpServlet {
 			
 
 			
-		} else if(pictureType.equals("fileX")){	
+		} else if(pictureType.equals("fileX.jpg")){	
 			System.out.println("이미지 안들어왔을때");
 			rev.setPicture(pictureName);
 			

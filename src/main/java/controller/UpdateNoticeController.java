@@ -76,8 +76,15 @@ public class UpdateNoticeController extends HttpServlet {
 		String title = multiReq.getParameter("title");
 		String content = multiReq.getParameter("content");
 		String pictureOriginalName = multiReq.getOriginalFileName("photo"); // 파일 업로드시 원본의 이름
-		String pictureName = multiReq.getFilesystemName("photo"); // new DefaultFileRenamePolicy()객체를 통해 변경된 이름
-		String pictureType = multiReq.getContentType("photo");
+		// 사진이 없을 때
+		String pictureType = "fileX";
+		if(multiReq.getContentType("photo") != null) {
+			pictureType = multiReq.getContentType("photo");
+		}
+		String pictureName = "fileX"; 
+		if(multiReq.getContentType("photo") != null) { 
+			pictureName = multiReq.getFilesystemName("photo");
+		}
 		int consumerNo = consumerDao.changeConsumerIdToNo(sessionMemberId);
 		
 		//디버깅
@@ -90,23 +97,25 @@ public class UpdateNoticeController extends HttpServlet {
 		System.out.println(path + " <-- path doPost() insertNoticeController ");
 		
 		Notice notice = new Notice();
+		notice.setNoticeNo(noticeNo);
+		notice.setConsumerNo(consumerNo);
+		notice.setTitle(title);
+		notice.setContent(content);
 		
+		// 디버깅
+		System.out.println(notice.getNoticeNo() + " <-- notice.getNoticeNo() doPost() insertNoticeController");
+		System.out.println(notice.getConsumerNo() + " <-- notice.getConsumerNo() doPost() insertNoticeController");
+		System.out.println(notice.getTitle() + " <-- notice.getTitle() doPost() insertNoticeController ");
+		System.out.println(notice.getContent() + " <-- notice.getContent() doPost() insertNoticeController ");
 		// 파일업로드의 경우 100mbyte 이하의 image/gif, image/png, image/jpeg 3가지 이미지만  허용
 		if(pictureType.equals("image/gif") || pictureType.equals("image/png") || pictureType.equals("image/jpeg")) {
-			System.out.println("사진 입력 doPost() insertNoticeController");
-			
-			notice.setNoticeNo(noticeNo);
-			notice.setConsumerNo(consumerNo);
-			notice.setTitle(title);
-			notice.setContent(content);
 			notice.setPhoto(pictureName);
-			
-			System.out.println(notice.getNoticeNo() + " <-- notice.getNoticeNo() doPost() insertNoticeController");
-			System.out.println(notice.getConsumerNo() + " <-- notice.getConsumerNo() doPost() insertNoticeController");
-			System.out.println(notice.getTitle() + " <-- notice.getTitle() doPost() insertNoticeController ");
-			System.out.println(notice.getContent() + " <-- notice.getContent() doPost() insertNoticeController ");
+			System.out.println("사진 입력 doPost() insertNoticeController");
 			System.out.println(notice.getPhoto() + " <-- notice.getPhoto() doPost() insertNoticeController ");
-
+			noticeDao.updateNotice(notice);
+		} else if (pictureType.equals("fileX")) {
+			notice.setPhoto(pictureName);
+			System.out.println("이미지 안들어왔을 때");
 			noticeDao.updateNotice(notice);
 		} else {
 			System.out.println("이미지파일만 업로드!");

@@ -57,8 +57,11 @@
 								${item.name}
 							</td>
 								
-							<td>
-								${item.picture}
+							<td>									
+								<img src="./images/${item.picture}" width="200" height="200">														
+								<c:if test="${item.picture eq fileX}.equals fileX">										
+									<img src="" >														
+								</c:if>
 							</td>
 							
 							<td>

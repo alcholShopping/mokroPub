@@ -160,7 +160,7 @@
 		                     <td>별점</td>
 		                     <td>내용</td>	                    
 		                     <td>작성일</td>
-		                     <td>작성일</td>                    
+		                     <td></td>                    
 	                  	</tr>
 	                  	
 						<tr>
@@ -170,7 +170,7 @@
 							</td>
 								
 							<td>
-								${item.picture}
+								<img src="./images/${item.picture}" width="200" height="200">														
 							</td>
 							
 							<td>

@@ -54,7 +54,7 @@
 						<div class="col">
 							<div class="register_title text-center">
 							<c:forEach var="i" items="${inquiryOneList}">
-								<form action="${pageContext.request.contextPath}/updateInquiryController" method="post" enctype="multipart/form-data">
+								<form action="${pageContext.request.contextPath}/updateInquiryController" method="post" name="inquiryForm" enctype="multipart/form-data">
 									<h1>문의사항 수정</h1>
 									<table class="table">	
 										<tr>
@@ -93,7 +93,7 @@
 										</tr>
 										<tr>
 											<th colspan="2">
-												<button type="submit" class="btn btn-primary">문의사항 수정</button>
+												<button type="button" onclick="updateInquiryCheck()" class="btn btn-primary">문의사항 수정</button>
 											</th>
 										</tr>
 									</table>
@@ -107,4 +107,27 @@
 			
 		</div>
 </body>
+<script>
+	function updateInquiryCheck(){
+		var i = inquiryForm;
+		i.action ='updateInquiryController';
+	
+		if(i.title.value.trim() == ""){
+			alert('제목을 입력하세요');
+			i.title.focus();
+			return;
+		}
+		if(i.category.value.trim() == ""){ // 아이디 빈칸 검사
+			alert('카테고리를 선택하세요');
+			i.category.focus();
+			return;
+		}
+		if(i.content.value.trim() == ""){ // 비밀번호 빈칸 검사
+			alert('내용을 입력하세요');
+			i.content.focus();
+			return;
+		}
+		i.submit();	
+	}
+</script>
 </html>

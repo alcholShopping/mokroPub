@@ -54,7 +54,7 @@
 						<div class="col">
 							<div class="register_title text-center">
 							<c:forEach var="m" items="${noticeOneList}">
-								<form action="${pageContext.request.contextPath}/updateNoticeController" method="post" enctype="multipart/form-data">
+								<form action="${pageContext.request.contextPath}/updateNoticeController" method="post" name = "noticeForm"enctype="multipart/form-data">
 									<h1>공지사항 수정</h1>
 									<table class="table">
 										<tr>
@@ -81,7 +81,7 @@
 										</tr>
 										<tr>
 											<th colspan="2">
-												<button type="submit" class="btn btn-primary">공지사항 수정</button>
+												<button type="button" onclick="updateNoticeCheck()" class="btn btn-primary">공지사항 수정</button>
 											</th>
 										</tr>
 									</table>
@@ -95,4 +95,22 @@
 			
 		</div>
 </body>
+<script>
+	function updateNoticeCheck(){
+		var n = noticeForm;
+		n.action ='updateNoticeController';
+	
+		if(n.title.value.trim() == ""){
+			alert('제목을 입력하세요');
+			n.title.focus();
+			return;
+		}
+		if(n.content.value.trim() == ""){
+			alert('내용을 입력하세요');
+			n.content.focus();
+			return;
+		}
+		n.submit();	
+	}
+</script>
 </html>
