@@ -83,13 +83,19 @@ public class UpdateInquiryController extends HttpServlet {
 		
 		request.setCharacterEncoding("utf-8"); // utf-8 인코딩
 		
-
 		String title = multiReq.getParameter("title");
 		String category = multiReq.getParameter("category");
 		String content = multiReq.getParameter("content");
 		String pictureOriginalName = multiReq.getOriginalFileName("photo"); // 파일 업로드시 원본의 이름
-		String pictureName = multiReq.getFilesystemName("photo"); // new DefaultFileRenamePolicy()객체를 통해 변경된 이름
-		String pictureType = multiReq.getContentType("photo");
+		// 사진이 없을 때
+		String pictureType = "fileX";
+		if(multiReq.getContentType("photo") != null) {
+			pictureType = multiReq.getContentType("photo");
+		}
+		String pictureName = "fileX"; 
+		if(multiReq.getContentType("photo") != null) { 
+			pictureName = multiReq.getFilesystemName("photo");
+		}
 		int consumerNo = consumerDao.changeConsumerIdToNo(sessionMemberId);
 		
 		//디버깅
@@ -102,26 +108,27 @@ public class UpdateInquiryController extends HttpServlet {
 		System.out.println(path + " <-- path doPost() updateInquiryController ");
 		
 		Inquiry inquiry = new Inquiry();
+		inquiry.setInquiryNo(inquiryNo);
+		inquiry.setConsumerNo(consumerNo);
+		inquiry.setTitle(title);
+		inquiry.setCategory(category);
+		inquiry.setContent(content);
 		
+		// 디버깅
+		System.out.println(inquiry.getConsumerNo() + " <-- inquiry.getConsumerNo() doPost() updateInquiryController");
+		System.out.println(inquiry.getTitle() + " <-- inquiry.getTitle() doPost() updateInquiryController ");
+		System.out.println(inquiry.getCategory() + " <-- inquiry.getCategory() doPost() updateInquiryController");
+		System.out.println(inquiry.getContent() + " <-- inquiry.getContent() doPost() updateInquiryController ");
 		// 파일업로드의 경우 100mbyte 이하의 image/gif, image/png, image/jpeg 3가지 이미지만  허용
 		if(pictureType.equals("image/gif") || pictureType.equals("image/png") || pictureType.equals("image/jpeg")) {
-			System.out.println("사진 입력 doPost() insertInquiryController");
-			
-			inquiry.setInquiryNo(inquiryNo);
-			inquiry.setConsumerNo(consumerNo);
-			inquiry.setTitle(title);
-			inquiry.setCategory(category);
-			inquiry.setContent(content);
 			inquiry.setPhoto(pictureName);
-			
-			System.out.println(inquiry.getConsumerNo() + " <-- inquiry.getConsumerNo() doPost() updateInquiryController");
-			System.out.println(inquiry.getTitle() + " <-- inquiry.getTitle() doPost() updateInquiryController ");
-			System.out.println(inquiry.getCategory() + " <-- inquiry.getCategory() doPost() updateInquiryController");
-			System.out.println(inquiry.getContent() + " <-- inquiry.getContent() doPost() updateInquiryController ");
+			System.out.println("사진 입력 doPost() insertInquiryController");
 			System.out.println(inquiry.getPhoto() + " <-- inquiry.getPhoto() doPost() updateInquiryController ");
-
 			inquiryDao.updateInquiry(inquiry);
-		
+		} else if (pictureType.equals("fileX")) {
+			System.out.println("이미지 안들어왔을때");
+			inquiry.setPhoto(pictureName);
+			inquiryDao.updateInquiry(inquiry);
 		} else {
 			System.out.println("이미지파일만 업로드!");
 			File file = new File(path+"\\"+pictureName); // 잘못된 파일을 불러온다. java.io.File  

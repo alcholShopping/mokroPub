@@ -52,9 +52,16 @@ public class InsertInquiryController extends HttpServlet {
 		String title = multiReq.getParameter("title");
 		String category = multiReq.getParameter("category");
 		String content = multiReq.getParameter("content");
-		String pictureOriginalName = multiReq.getOriginalFileName("photo"); // 파일 업로드시 원본의 이름
-		String pictureName = multiReq.getFilesystemName("photo"); // new DefaultFileRenamePolicy()객체를 통해 변경된 이름
-		String pictureType = multiReq.getContentType("photo");
+		String pictureOriginalName = multiReq.getOriginalFileName("photo"); // 파일 업로드시 원본의 이름		
+		// 사진이 없을 때
+		String pictureType = "fileX";
+		if(multiReq.getContentType("photo") != null) {
+			pictureType = multiReq.getContentType("photo");
+		}
+		String pictureName = "fileX"; 
+		if(multiReq.getContentType("photo") != null) { 
+			pictureName = multiReq.getFilesystemName("photo");
+		}
 		String status = "미답변";
 		int consumerNo = consumerDao.changeConsumerIdToNo(sessionMemberId);
 		
@@ -69,26 +76,28 @@ public class InsertInquiryController extends HttpServlet {
 		System.out.println(status + " <-- status doPost() insertInquiryController ");
 		
 		Inquiry inquiry = new Inquiry();
+		inquiry.setConsumerNo(consumerNo);
+		inquiry.setTitle(title);
+		inquiry.setCategory(category);
+		inquiry.setContent(content);
+		inquiry.setStatus(status);
+		
+		System.out.println(inquiry.getConsumerNo() + " <-- inquiry.getConsumerNo() doPost() insertInquiryController");
+		System.out.println(inquiry.getTitle() + " <-- inquiry.getTitle() doPost() insertInquiryController ");
+		System.out.println(inquiry.getCategory() + " <-- inquiry.getCategory() doPost() insertInquiryController");
+		System.out.println(inquiry.getContent() + " <-- inquiry.getContent() doPost() insertInquiryController ");
+		System.out.println(inquiry.getStatus() + " <-- inquiry.getStatus() doPost() insertInquiryController ");
+		System.out.println(inquiry.getPhoto() + " <-- inquiry.getPhoto() doPost() insertInquiryController ");
 		
 		// 파일업로드의 경우 100mbyte 이하의 image/gif, image/png, image/jpeg 3가지 이미지만  허용
 		if(pictureType.equals("image/gif") || pictureType.equals("image/png") || pictureType.equals("image/jpeg") ) {
 			System.out.println("사진 입력 doPost() insertInquiryController");
-			
-			inquiry.setConsumerNo(consumerNo);
-			inquiry.setTitle(title);
-			inquiry.setCategory(category);
-			inquiry.setContent(content);
-			inquiry.setStatus(status);
 			inquiry.setPhoto(pictureName);
-			
-			System.out.println(inquiry.getConsumerNo() + " <-- inquiry.getConsumerNo() doPost() insertInquiryController");
-			System.out.println(inquiry.getTitle() + " <-- inquiry.getTitle() doPost() insertInquiryController ");
-			System.out.println(inquiry.getCategory() + " <-- inquiry.getCategory() doPost() insertInquiryController");
-			System.out.println(inquiry.getContent() + " <-- inquiry.getContent() doPost() insertInquiryController ");
-			System.out.println(inquiry.getStatus() + " <-- inquiry.getStatus() doPost() insertInquiryController ");
-			System.out.println(inquiry.getPhoto() + " <-- inquiry.getPhoto() doPost() insertInquiryController ");
-
-			 inquiryDao.insertInquiry(inquiry);
+			inquiryDao.insertInquiry(inquiry);
+		} else if (pictureType.equals("fileX")) {
+			System.out.println("이미지 안들어왔을때");
+			inquiry.setPhoto(pictureName);
+			inquiryDao.insertInquiry(inquiry);
 		} else {
 			System.out.println("이미지파일만 업로드!");
 			File file = new File(path+"\\"+pictureName); // 잘못된 파일을 불러온다. java.io.File  

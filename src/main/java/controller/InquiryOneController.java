@@ -24,7 +24,6 @@ public class InquiryOneController extends HttpServlet {
 		
 		// inquiryList.jsp에서 inquiryNo가져오기
 		int inquiryNo = Integer.parseInt(request.getParameter("inquiryNo"));
-		
 		// noticeOne의 값을 가져오는 메서드 실행
 		List<Map<String,Object>> inquiryOneList = inquiryDao.selectInquiryOne(inquiryNo);
 		

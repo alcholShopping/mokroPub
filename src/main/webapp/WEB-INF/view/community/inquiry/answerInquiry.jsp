@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>inquiryOne</title>
+<title>answerInquiry</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Wish shop project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -46,8 +46,8 @@
 
 				<!-- Product Content -->
 				<div class="col-lg-5">
-					<div class="product_content">
-						<div>${m.inquiryNo}번</div>
+					<div class="product_content">					
+						<div>번호 : ${m.inquiryNo}</div>
 						<div>제목 : ${m.category}</div>
 						<div>작성자 : ${m.consumerId}</div>
 						<div>제목 : ${m.title}</div>
@@ -60,10 +60,13 @@
 				<div>
 					<p>${m.content}</p>
 				</div>
-				<div>답변 : ${m.answer}</div>
-				<div><a href="${pageContext.request.contextPath}/updateInquiryController?inquiryNo=${m.inquiryNo}&consumerId=${m.consumerId}">수정하기</a></div>
-				<div><a href="${pageContext.request.contextPath}/deleteInquiryController?inquiryNo=${m.inquiryNo}&consumerId=${m.consumerId}">삭제</a></div>
-				<div><a href="${pageContext.request.contextPath}/answerInquiryController?inquiryNo=${m.inquiryNo}">답변하기</a></div>
+				<form action ="${pageContext.request.contextPath}/answerInquiryController" method="post">
+					<div>
+						답변 : <textarea rows="10" cols="70" name="answer"></textarea>
+						<button type="submit" class="btn btn-primary" >답변 등록</button>
+					</div>
+					<input type="hidden" value="${m.inquiryNo}" name="inquiryNo">
+				</form>
 				</c:forEach>
 			</div>		
 		</div>
