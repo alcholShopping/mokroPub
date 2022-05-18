@@ -18,9 +18,9 @@ import dao.ReviewDao;
 
 @WebServlet("/myReviewListController")
 public class MyReviewListController extends HttpServlet {
-
 	ReviewDao reviewDao = new ReviewDao();		
 	private ConsumerDao consumerDao = new ConsumerDao();
+	CartDao cartDao = new CartDao();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 로그인 확인

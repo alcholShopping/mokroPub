@@ -147,6 +147,54 @@
 		</div>
 	</div>
 	<!-- 끝 -->
+	
+	<!-- 리뷰 시작 -->
+	
+	<div class="row">
+         <div class="col">
+					<table class ="table table-bordered">
+					<c:forEach items="${reviewList}" var="item">					
+						<tr>
+		                     <td>작성자</td>
+		                     <td>사진</td>
+		                     <td>별점</td>
+		                     <td>내용</td>	                    
+		                     <td>작성일</td>
+		                     <td>작성일</td>                    
+	                  	</tr>
+	                  	
+						<tr>
+
+							<td>
+								${item.name}
+							</td>
+								
+							<td>
+								${item.picture}
+							</td>
+							
+							<td>
+								${item.star}/5
+							</td>
+							
+							<td>
+								${item.content}
+							</td>
+							
+							<td>
+								${item.createDate}
+							</td>
+							
+							<td>
+							<a href="${pageContext.request.contextPath}/productReviewFullController?productNo=${productNo}">더보기</a>
+							</td>
+							
+						</tr>					
+					</c:forEach>
+				</table>  
+				
+			</div>  
+	</div>
 </div>
 </body>
 </html>

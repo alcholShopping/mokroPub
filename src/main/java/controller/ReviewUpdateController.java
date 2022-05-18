@@ -1,32 +1,35 @@
 package controller;
 
+import java.io.File;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.oreilly.servlet.multipart.*;
+
 import com.oreilly.servlet.MultipartRequest;
-import java.io.*;
-import vo.*;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
 import dao.*;
+import vo.*;
 
-@WebServlet("/reviewController")
-public class ReviewController extends HttpServlet {
-	/* 
-	 1. orderedNo를 GET으로 받아옴
-	 2. 별점, 제목, 사진을 입력받아서 
 
-	*/
-	
+@WebServlet("/reviewUpdateController")
+public class ReviewUpdateController extends HttpServlet {
+
 	Review rev = null;
 	ReviewDao rd = null;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int orderNo = Integer.parseInt(request.getParameter("orderNo"));
+		int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
+	
+		rd = new ReviewDao();
+		 
+		Review rev = rd.SelectReviewByOrderNo(reviewNo);
 		
-		request.setAttribute("orderNo", orderNo);
-		request.getRequestDispatcher("/WEB-INF/view/review/review.jsp").forward(request, response);
+		request.setAttribute("rev", rev);
+		request.getRequestDispatcher("/WEB-INF/view/review/myReviewUpdateForm.jsp").forward(request, response);
+		
 	}
 
 
@@ -35,6 +38,7 @@ public class ReviewController extends HttpServlet {
 		rev = new Review();
 		rd = new ReviewDao();
 		request.setCharacterEncoding("utf-8");
+
 		
 		// DefaultFileRenamePolicy rp = new DefaultFileRenamePolicy();
 		String path = request.getServletContext().getRealPath("images/");
@@ -46,66 +50,62 @@ public class ReviewController extends HttpServlet {
 		// 100 mbyte = 1024*1024*100 byte = 104857600 byte 곱셈을 계산해서 코딩하면 가독성이 떨어진다.  ex) 24*60*60 하루에 대한 초
 
 		//request 사용 불가 > multiReq가 다 옮겨받음
-		String pictureOriginalName = multiReq.getOriginalFileName("picture"); // 파일 업로드시 원본의 이름
-		
-		int orderNo = Integer.parseInt(multiReq.getParameter("orderNo"));
-		int settedStar = Integer.parseInt(multiReq.getParameter("settedStar"));
-		String content = multiReq.getParameter("content");
-
-		// 사진이 없을때
-		String pictureType = "fileX";
-		if(multiReq.getContentType("picture") != null) {
-			pictureType = multiReq.getContentType("picture");
-		}
-		//request 사용 불가 > multiReq가 다 옮겨받음
 		String pictureName = "fileX"; 
 		if(multiReq.getContentType("picture") != null) { // new DefaultFileRenamePolicy()객체를 통해 변경된 이름
 			pictureName = multiReq.getFilesystemName("picture");
 		}
+		 
+		int settedStar = Integer.parseInt(multiReq.getParameter("settedStar"));
+		String content = multiReq.getParameter("content");
 		
-		//디버깅
-		System.out.println(pictureOriginalName + " <-- photoOriginalName");
+		// 사진이 안들어갈수도 있잖아?
+		String pictureType = "fileX";
+		if(multiReq.getContentType("picture") != null) {
+			pictureType = multiReq.getContentType("picture");
+		}
+		
+		int reviewNo = Integer.parseInt(multiReq.getParameter("reviewNo"));
+//		
+//		//디버깅
 		System.out.println(pictureName + " <-- photoName");
-		System.out.println(pictureType + " <-- photoType");
+		System.out.println(settedStar + " <-- settedStar");
+		System.out.println(pictureType + " <-- picturetype");
+		System.out.println(content + " <-- content");
+		System.out.println(reviewNo + " <-- reviewNo");
 		System.out.println(path + " <-- path");
-		
-		rev.setOrderNo(orderNo);
+
+		rev.setReviewNo(reviewNo);
 		rev.setStar(settedStar);
 		rev.setContent(content);
-		
-		// 파일업로드의 경우 100mbyte 이하의 image/gif, image/png, image/jpeg 3가지 이미지만  허용
+//		// 파일업로드의 경우 100mbyte 이하의 image/gif, image/png, image/jpeg 3가지 이미지만  허용
 		if(pictureType.equals("image/gif") || pictureType.equals("image/png") || pictureType.equals("image/jpeg")) {
 			System.out.println("db고고!");
 			
 			
 			rev.setPicture(pictureName);
 			
-			System.out.println(orderNo + "==========orderNo===============");
 			System.out.println(settedStar + "==========settedStar===============");
 			System.out.println(content + "==========content===============");
 			System.out.println(pictureName + "==========pictureName===============");
 			
-			rd.InsertReviewByOrderNo(rev);
 			
 
-			response.sendRedirect(request.getContextPath()+"/myReviewListController");
-		}  
-		else if(pictureType.equals("fileX"))
-		{	
+			
+		} else if(pictureType.equals("fileX")){	
 			System.out.println("이미지 안들어왔을때");
 			rev.setPicture(pictureName);
-			rd.InsertReviewByOrderNo(rev);
 			
-			response.sendRedirect(request.getContextPath()+"/myReviewListController");
-
-		} 	else {
+		} else {
 			System.out.println("이미지파일만 업로드!");
 			// 잘못들어온 파일이므로 업로드된 파일 지우고 폼으로...이동
+			rev.setPicture(pictureName);
 			File file = new File(path+"\\"+pictureName); // 잘못된 파일을 불러온다. java.io.File  
 			file.delete(); // 잘못 업로드된 파일을 삭제
-			request.getRequestDispatcher("/WEB-INF/view/review/review.jsp").forward(request, response);
-		
 		}
+		
+		rd.UpdateReviewByOrderNo(rev);
+		
+		response.sendRedirect(request.getContextPath() + "/myReviewListController");
 	}
 
 }

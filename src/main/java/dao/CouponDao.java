@@ -9,6 +9,8 @@ import java.util.*;
 import util.DBUtil;
 
 public class CouponDao {
+	
+	// consumerId에 따른 쿠폰 사용 가능 리스트
 	public List<HashMap<String, Object>> selectConsumerCouponList(int consumerId) {
 		List<HashMap<String, Object>> couponList = new ArrayList<HashMap<String, Object>>();
 		HashMap<String, Object> hash = null;
@@ -65,4 +67,5 @@ public class CouponDao {
 		
 		return couponList;
 	}
+	
 }

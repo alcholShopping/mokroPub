@@ -23,6 +23,7 @@
 <link href="plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+<form method="post" action="${pageContext.request.contextPath}/orderCompleteController">
 <div class="super_container">
 	<!-- Header -->
 	<jsp:include page="../../../WEB-INF/inc/navBar.jsp"></jsp:include>
@@ -30,6 +31,31 @@
 	<div class="nullbox">
 	</div>
 	
+<div class="payBar">
+	<table>
+		<tr>
+			<td class="table_td">총 상품 금액</td>
+			<td rowspan="2" class="table_td">-</td>
+			<td class="table_td">할인 금액</td>
+			<td rowspan="2" class="table_td">=</td>
+			<td class="table_td">실제 구매 금액</td>
+			<td rowspan="2">
+				<button type="submit" class="btn btn-primary">주문하기</button>
+			</td>
+			</tr>
+			<tr>
+			<td class="table_td_price"><span id="totalPriceWon"></span></td>
+			<td class="table_td_price"><span id="discountWon"></span></td>
+			<td class="table_td_price_fix"><span id="paymentWon"></span></td>
+		</tr>
+	</table>
+	<input type="hidden" value="${item.cartNo}" name="cartNo" >
+	<input type="hidden" value="${item.productNo}" name="productNo">
+	<input type="hidden" id="realpayment" name="realpayment">
+	<input type="hidden" id="count" name="count">
+	<!--  정보 다 나오고 주문 버튼 -->
+	
+</div>
 	<!--  장바구니 내역 -->
 	<div class="container">
       <div class="row">
@@ -47,8 +73,7 @@
 					</tr>
 					<c:forEach items="${cartList}" var="item">
 						<tr>
-							<input type="hidden" value="${item.cartNo}" name="cartNo" >
-							<input type="hidden" value="${item.productNo}" name="cartNo">
+						
 							<td>
 								<img src="images/product_1.jpg" width="150px">
 								<br>${item.picture}
@@ -75,11 +100,11 @@
 			<tr>
 				<th>주소 검색 <br><br><br> 주소 등록 <br><br><br>상세주소</th> <!-- 주소 검색 -->
 				<th>
-					<form method="post" action="orderFindAddressController">
+
 						<div class="input-group mb-3">
 							<input type="text" class="form-control"
 								placeholder="주소 변경을 원하시면 검색해주세요" name="address" id="address">
-							<button type="submit" onclick="javascript: form.action='orderFindAddressController';">검색하기</button>
+							<button onclick="javascript: form.action='orderFindAddressController';">검색하기</button>
 						</div>										
 						<div>
 							<select name="addressResult" class="form-control">
@@ -89,7 +114,7 @@
 								</c:forEach>
 							</select>
 						</div>				
-					</form>								
+										
 					<br>
 					<div>
 					<input type="text" class="form-control"
@@ -102,17 +127,17 @@
 				<tr>
 					<td>수취인</td>
 					<td>
-					<input type="text" value="${consumerList[0].name}"></td>
+					<input type="text" name = "name"value="${consumerList[0].name}"></td>
 				</tr>
 				<tr>
 					<td>연락처</td>
 					<td>
-					<input type="text" value="${consumerList[0].phone}"></td>
+					<input type="text" name="phone" value="${consumerList[0].phone}"></td>
 				</tr>
 				<tr>
 					<td>이메일</td>
 					<td>
-					<input type="text" value="${consumerList[0].email}"></td>
+					<input type="text" name="email" value="${consumerList[0].email}"></td>
 				</tr>
 
 
@@ -121,7 +146,7 @@
 				<table class ="table table-bordered">
 					<tr>
 						<td>결제방법</td>
-						<td><input type="radio" value="" name="how_to_order"> 무통장입금</td>
+						<td><input type="radio" value="" name="method">무통장입금</td>
 					</tr>
 				</table>
 			
@@ -132,57 +157,47 @@
 							<select name="selectCoupon">
 								<option value="" selected="selected" >:: :쿠폰 선택 :::</option>	
 								<c:forEach var="c" items="${couponList}">
-									<option value="${c.discount}">${c.discount}원 ${c.count}개 유효기간:${c.validity}까지</option>
+									<option value="${c.discount}" name="couponNo">
+									${c.discount}원 ${c.count}개 유효기간:${c.validity}까지</option>
 								</c:forEach>
 							</select>
 						</td>
 					</tr>
 				</table>
-
 			</div>
 		</div>  
 	</div>
 	<!-- Footer -->	
 	<jsp:include page="../../../WEB-INF/inc/footer.jsp"></jsp:include>
 </div>
-<div class="payBar">
-	<table>
-		<tr>
-			<td class="table_td">총 상품 금액</td>
-			<td rowspan="2" class="table_td">-</td>
-			<td class="table_td">할인 금액</td>
-			<td rowspan="2" class="table_td">=</td>
-			<td class="table_td">실제 구매 금액</td>
-			<td rowspan="2">
-				<form method="post" action="${pageContext.request.contextPath}/deleteProductInCartController">
-				<button type="submit" class="btn btn-primary">주문하기</button>
-				</form>
-			</td>
-			</tr>
-			<tr>
-			<td class="table_td_price"><span id="totalPriceWon"></span></td>
-			<td class="table_td_price"><span id="discountWon"></span></td>
-			<td class="table_td_price_fix"><span id="paymentWon"></span></td>
-		</tr>
-	</table>
-	<!--  정보 다 나오고 주문 버튼 -->
-	
-</div>
+</form>
 </body>
 <script>
+	// 최종 결제 금액 창 화면에 필요한 코드
+	
+	// 쿠폰 선택 되기 전에는 쿠폰 값 0
 	let totalPrice = ${totalPrice}; // 총상품 금액
 	let discount = 0; // 쿠폰 할인 금액
-	let payment = 0; // 실제 구매 금액 
+	let payment = totalPrice - discount; // 실제 구매 금액 
+
 	console.log(totalPrice + "totalPrice");
+	$('#totalPriceWon').text(totalPrice+'원');
+	$('#discountWon').text(discount+'원');
+	$('#paymentWon').text(payment+'원');
+	$('#realpayment').val(payment);
 	
+	// 쿠폰이 선택 되면 쿠폰 값 적용
 	$("select[name=selectCoupon]").change(function(){
 	let discount =  $(this).val() // 선택된 값 바로 가져오기
 	console.log(discount + "discount"); //value값 가져오기
 	payment = totalPrice - discount; // 총 상품 금액 - 쿠폰 할인 금액
+
 	console.log(payment + "실제 결제 금액");
 	$('#totalPriceWon').text(totalPrice+'원');
 	$('#discountWon').text(discount+'원');
 	$('#paymentWon').text(payment+'원');
+	$('#realpayment').val(payment);
 	});
+
 </script>
 </html>
