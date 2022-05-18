@@ -26,7 +26,7 @@
 						<li><a href="${pageContext.request.contextPath}/inquiryController">문의사항</a></li>
 					</ul>
 				</li>				
-				<li><a href="#">contact</a></li>
+				<li><a href="${pageContext.request.contextPath}/contactController">contact</a></li>
 			</ul>
 		</nav>
 

@@ -127,12 +127,12 @@
 							<span>수량</span>
 							<div class="product_quantity clearfix">
 								<input type="number" name = "count" value="1" max="5">
-								<input type="number" name = "productNo" value="${productNo}">
+								<input type="hidden" name = "productNo" value="${productNo}">
 							</div>
 						</div>
 						<!-- Product Size -->
 						<div class="product_size_container">
-							<button type="submit">add to cart</button>
+							<button type="submit">장바구니 담기</button>
 						</div>
 						</form>
 						

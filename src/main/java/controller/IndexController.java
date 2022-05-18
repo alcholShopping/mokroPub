@@ -19,18 +19,22 @@ import vo.Category;
 	
 @WebServlet("/indexController")
 public class IndexController extends HttpServlet {
-	private CartDao cartDao = new CartDao();
-	private ConsumerDao consumerDao = new ConsumerDao();
+	private CartDao cartDao;
+	private ConsumerDao consumerDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
 		//로그인 여부 확인 로직(세션이용)
 		HttpSession session = request.getSession();
 		String sessionMemberId = (String)session.getAttribute("sessionMemberId");		
+		
+		consumerDao = new ConsumerDao();
 		// 아이디를 번호로 교체
 		int consumerId = consumerDao.changeConsumerIdToNo(sessionMemberId);
 		// -----------------------------디버깅-----------------------------
 		System.out.println(consumerId + " <-- consumerId doGet() insertProductInCartController");
+		
+		cartDao = new CartDao();
 		// 장바구니 담긴 갯수 
 		int cartCount = cartDao.CartCountNum(consumerId);
 		System.out.println(cartCount + "cartCount=================================");

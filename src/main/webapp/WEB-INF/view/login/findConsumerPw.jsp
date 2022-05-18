@@ -1,12 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.*"%>
-<%@ page import="dao.*"%>
-<%@ page import="vo.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>findConsumerPw</title>
+<title>findPassword</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Wish shop project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,67 +16,71 @@
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
 <link href="plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
+<script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
 </head>
 <body>
-	<div class="super_container">
-		<!-- Header -->
-		<jsp:include page="../../../WEB-INF/inc/navBar.jsp"></jsp:include>
-	
-		<!-- content -->
-		<div class="register">
-			<div class="gallery">
-				<div class="container">
-					<div class="row">
-						<div class="col">
-							<div class="register_title ">				
-							<h1>비밀번호 찾기</h1>
-								<form action="${pageContext.request.contextPath}/findConsumerPwController" method="post">
-									<table class = "table text-center">
-										<tr>
-											<th>회원 아이디</th>
-											<th>
-												<input type="text" class="form-control" name="consumerId" id="consumerId">
-											</th>
-										</tr>
-										<tr>
-											<th>회원 이름</th>
-											<th>
-												<input type="text" class="form-control" name="consumerName" id="consumerName">
-											</th>
-										</tr>
-										<tr>
-											<th>회원 전화번호</th>
-											<th>
-												<input type="text" class="form-control" name="phone" id="phone" placeholder="010-1111-1111">
-											</th>
-										</tr>	
-										<tr>
-											<td colspan="2">
-											<button type="subimt" class="btn btn-primary" id="registerBtn">비밀번호 찾기</button>
-											</td>
-										</tr>								
-									</table>
-								</form>
-							</div>
-						</div>
+<div class="super_container">
+	<!-- Header -->	
+	<jsp:include page="/WEB-INF/inc/navBar.jsp"></jsp:include>
+	<!-- contents -->
+	<div class="nullbox">
+	</div>
+	<!-- contents -->
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<div class="section_title_container text-center">
+					<div class="section_subtitle">
+					목로주점
 					</div>
-				</div>	
+					<div class="section_title">
+					Find Password
+					</div>
+					<br>
+					<div class="row">
+					<div class="col-sm-3">
+					</div>
+					<div class="col-sm-6">
+					<form action="${pageContext.request.contextPath}/findConsumerPwController" method="post">
+						<table class = "table text-center ">
+							<tr>
+								<th>아이디</th>
+								<th>
+									<input type="text" class="form-control" name="consumerId" id="consumerId">
+								</th>
+							</tr>
+							<tr>
+								<th>이름</th>
+								<th>
+									<input type="text" class="form-control" name="consumerName" id="consumerName">
+								</th>
+							</tr>
+							<tr>
+								<th>연락처</th>
+								<th>
+									<input type="text" class="form-control" name="phone" id="phone" placeholder="010-0000-0000">
+								</th>
+							</tr>	
+							<tr>
+								<td colspan="2">
+								<button type="submit" class="btn btn-info text-White btn-block" id="registerBtn">
+								비밀번호 찾기</button>
+								</td>
+							</tr>								
+						</table>
+					</form>
+					</div>
+					<div class="col-sm-3">
+					</div>
+				</div>
 			</div>
 		</div>
-		<!-- Footer -->	
-		<jsp:include page="/WEB-INF/inc/footer.jsp"></jsp:include>
-		
 	</div>
+</div>
+</div>
+<!-- Footer -->
+<div class ="fixFooter">
+	<jsp:include page="../../../WEB-INF/inc/footer.jsp" ></jsp:include>
+</div>
 </body>
-	<script>
-		$(".actionHover").mouseover( function(){ 
-			$(".submenu").stop().slideDown(500); 
-			}) 
-			
-		$(".actionHover").mouseout(function(){
-			$(".submenu").stop().slideUp(1000); 
-		})
-	</script>
 </html>

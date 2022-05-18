@@ -1078,6 +1078,25 @@ margin-bottom: 30px;
    width: 37px;
    height: 37px;
    cursor: pointer;
+  
+}
+
+.product_option_box
+{
+   width: 50px;
+   height: 50px;
+   position: absolute;
+   background: #937c6f;;
+   border-radius: 0 0 30% 0 ; 
+   top:0;
+   left:0;
+   	text-align: center;
+}
+.product_option_rank{
+	font-size: 35px;
+	line-height: 50px;
+	font-family: 600px;
+	color:#ffffff;
 }
 .product_buy
 {
@@ -1574,6 +1593,12 @@ margin-bottom: 30px;
    padding-top: 20px;
    background-color: #232323;
    width:100%;
+   
+}
+.fixFooter{
+	width:100%;
+	position:fixed;
+	bottom:0;
 }
 .footer_logo a
 {
@@ -1663,4 +1688,18 @@ margin-bottom: 30px;
 	font-size: 35px;
 	font-family:600;
 	line-height: 40px;
+}
+.root_daum_roughmap { 
+	margin: auto !important; 
+}
+.login_login{
+	width:600px;
+}
+.btn-info{
+	 background-color:#937c6f;
+	 border: #937c6f;
+}
+.btn-info:hover{
+	 background-color:#333333;
+	 border: #333333;
 }

@@ -1,242 +1,149 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.*"%>
-<%@ page import="dao.*"%>
-<%@ page import="vo.*"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>index</title>
+<title>register</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Wish shop project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/styles/bootstrap4/bootstrap.min.css">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/styles/main_styles.css">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/styles/responsive.css">
-<link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css"
-	rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css"
-	href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
-<link rel="stylesheet" type="text/css"
-	href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
-<link rel="stylesheet" type="text/css"
-	href="plugins/OwlCarousel2-2.2.1/animate.css">
-<link href="plugins/colorbox/colorbox.css" rel="stylesheet"
-	type="text/css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script type="text/javascript">
-</script>
-
-<style>
-	.helper {
-    	color: #FF0000;
-    }
-</style>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/bootstrap4/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main_styles.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/responsive.css">
+<link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
+<link href="plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
+<script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
 </head>
 <body>
-	<div class="super_container">
-	<header class="header">
-		<div class="header_inner d-flex flex-row align-items-center justify-content-start">
-			<div class="logo">
-				<a href="${pageContext.request.contextPath}/indexController">목로주점木壚酒店</a>
-			</div>
-			<nav class="main_nav">
-				<ul>
-					<li class="actionHover"><a href="#">주종</a>
-						<ul class="submenu">
-							<li><a href="${pageContext.request.contextPath}/categoryProductListController?categoryNo=1">증류수</a></li>
-							<li><a href="${pageContext.request.contextPath}/categoryProductListController?categoryNo=2">리큐르</a></li>
-							<li><a href="${pageContext.request.contextPath}/categoryProductListController?categoryNo=3">막걸리</a></li>
-							<li><a href="${pageContext.request.contextPath}/categoryProductListController?categoryNo=4">약주</a></li>
-							<li><a href="${pageContext.request.contextPath}/categoryProductListController?categoryNo=5">청주</a></li>
-							<li><a href="${pageContext.request.contextPath}/categoryProductListController?categoryNo=6">과실주</a></li>
-							<li><a href="${pageContext.request.contextPath}/categoryProductListController?categoryNo=7">기타주류</a></li>
-						</ul></li>
-					<li><a
-						href="${pageContext.request.contextPath}/priceProductListController">가격순</a></li>
-					<li><a href="${pageContext.request.contextPath}/bestProductListController">인기순</a></li>
-					<li><a href="#">커뮤니티</a></li>
-					<li><a href="#">contact</a></li>
-				</ul>
-			</nav>
-	
-			<div class="header_content">
-				<!-- search -->
-				<div class="search header_search">
-					<form action="#">
-						<input type="search" class="search_input" value=">>상세검색 >>" readonly="readonly">
-						<button type="submit" id="search_button" class="search_button">
-							<img
-								src="${pageContext.request.contextPath}/images/magnifying-glass.svg"alt="">
-						</button>
-					</form>
-				</div>
-				<!-- Cart -->
-				<div class="shopping">
-					<a href="#">
-						<div class="cart">
-							<img
-								src="${pageContext.request.contextPath}/images/shopping-bag.svg"alt="">
-							<div class="cart_num_container">
-								<div class="cart_num_inner">
-									<div class="cart_num">0</div>
-								</div>
-							</div>
-						</div>
-					</a>
-	
-					<!-- Avatar -->
-					<a href="#">
-						<div class="avatar">
-							<img src="${pageContext.request.contextPath}/images/avatar.svg"alt="">
-						</div>
-					</a>
-				</div>
-			</div>
-		</div>
-	</header>
-
-		<!-- -------------------------------------- nav 끝-------------------------------------- -->
-		<div class="register">
-
-			<div class="gallery">
-				<!--  <div class="gallery_image" style="background-image:url(images/temp_main1.jpg)"></div>  -->
-				<div class="container">
+<div class="super_container">
+	<!-- Header -->	
+	<jsp:include page="/WEB-INF/inc/navBar.jsp"></jsp:include>
+	<!-- contents -->
+	<div class="nullbox">
+	</div>
+	<!-- contents -->
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<div class="section_title_container text-center">
+					<div class="section_subtitle">
+					목로주점
+					</div>
+					<div class="section_title">
+					Sing Up
+					</div>
+					<br>
 					<div class="row">
-						<div class="col">
-							<div class="register_title text-center">
-								<form action="registerController" method="post" name="registerForm">
-									<h2>회원가입</h2>
-									<table class="table">
-										<tr>
-											<th>주소 검색 <br><br><br> 주소 등록 <br><br><br>상세주소</th> <!-- 주소 검색 -->
-											<th>
-												<div class="input-group mb-3">
-													<input type="text" class="form-control"
-														placeholder="소하동 32번지" name="address" id="address">
-													<button type="submit" onclick="javascript: form.action='findAddressController';">검색하기</button>
-												</div>										
-												<div>
-													<select name="addressResult" class="form-control">
-														<option value="" >::: 주소 선택 :::</option>
-														<c:forEach var="m" items="${searchList}">
-															<option value="${m.searchAddr} ${m.zipcode}">${m.searchAddr} ${m.zipcode}</option>
-														</c:forEach>
-													</select>
-												</div>												
-												<br>
-												<div>
-												<input type="text" class="form-control"
-												placeholder="302호" name="detailedAddress" id="detailedAddress">
-												<span id="detailedAddressHelper" class="helper"></span>
-												</div>
-											</th>
-										</tr>
-										
-										<tr>
-											<th>아이디</th>
-
-											<th>
+					<div class="col-sm-1">
+					</div>
+					<div class="col-sm-10">
+						<form action="registerController" method="post" name="registerForm">
+							<table class="table">
+								<tr>
+									<th>주소 검색 <br><br><br> 주소 등록 <br><br><br>상세주소</th> <!-- 주소 검색 -->
+									<th>
+										<div class="input-group mb-3">
 											<input type="text" class="form-control"
-												placeholder="Enter ID" name="consumerId" id="id">
-												<span id="idHelper" class="helper"></span>
-											</th>
-										</tr>
-
-										<tr>
-											<th>비밀번호</th>
-
-											<th>
-											<input type="password" class="form-control"
-												placeholder="Enter password" name="consumerPw" id="pw">
-											<span id="pwHelper" class="helper"></span>
-											</th>
-										</tr>
-
-										<tr>
-											<th>비밀번호 재입력</th>
-
-											<th><input type="password" class="form-control"
-												placeholder="Re password" name="consumerPwRe" id="pwConfirm">
-												<span id="pwConfirmHelper" class="helper"></span></th>
-										</tr>
-
-										<tr>
-											<th>이름</th>
-
-											<th><input type="text" class="form-control"
-												placeholder="Won Seoung Hyun" name="consumerName" id="name">
-												<span id="nameHelper" class="helper"></span></th>
-										</tr>
-
-
-										<tr>
-											<th>이메일</th>
-
-											<th><input type="text" class="form-control"
-												placeholder="abc_fox@naver.com" name="email" id="email">
-												<span id="emailHelper" class="helper"></span></th>
-										</tr>
-
-										<tr>
-											<th>전화번호(-를 포함하여 입력)</th>
-
-											<th><input type="text" class="form-control"
-												placeholder="010-4123-5342" name="phone" id="phone">
-												<span id="phoneHelper" class="helper"></span></th>
-										</tr>
-
-										<tr>
-											<th>주민등록번호</th>
-
-											<th><input type="text" class="form-control"
-												placeholder="980492-312423" name="residentNumber" id="residentNumber">
-												<span id="residentNumberHelper" class="helper"></span></th>
-										</tr>
-
-										<tr>
-											<th>태어난 연도</th>
-
-											<th><input type="number" class="form-control"
-												placeholder="1998" name="birthYear" id="birthYear" value="" >
-												<span id="birthYearHelper" class="helper"></span></th>
-										</tr>
-
-										<tr>
-											<th>계좌번호</th>
-
-											<th><input type="text" class="form-control"
-												placeholder="NH농협 302-1302-1392-443" name="account" id="accountNumber">
-												<span id="accountNumberHelper" class="helper"></span>
-											</th>
-										</tr>
-
-										<tr>
-											<th colspan="2">
-												<button type="button" class="btn btn-primary" id="registerBtn" onclick="memberJoinCheck()">회원가입</button>
-												<a href="${pageContext.request.contextPath}/indexController" type="submit" class="btn btn-primary">취소</button>
-											</th>
-										</tr>
-
-									</table>
-								</form>
-
-
-							</div>
-
-
+												placeholder="소하동 32번지" name="address" id="address">
+											<button type="submit" onclick="javascript: form.action='findAddressController';">검색하기</button>
+										</div>										
+										<div>
+											<select name="addressResult" class="form-control">
+												<option value="" >::: 주소 선택 :::</option>
+												<c:forEach var="m" items="${searchList}">
+													<option value="${m.searchAddr} ${m.zipcode}">${m.searchAddr} ${m.zipcode}</option>
+												</c:forEach>
+											</select>
+										</div>												
+										<br>
+										<div>
+											<input type="text" class="form-control" placeholder="302호" name="detailedAddress" id="detailedAddress">
+											<span id="detailedAddressHelper" class ="helper"></span>
+										</div>
+									</th>
+								</tr>					
+								<tr>
+									<th>아이디</th>
+									<th>
+									<input type="text" class="form-control"
+										placeholder="Enter ID" name="consumerId" id="id">
+										<span id="idHelper" class="helper"></span>
+									</th>
+								</tr>
+	
+								<tr>
+									<th>비밀번호</th>
+									<th>
+									<input type="password" class="form-control"
+										placeholder="Enter password" name="consumerPw" id="pw">
+									<span id="pwHelper" class="helper"></span>
+									</th>
+								</tr>
+								<tr>
+									<th>비밀번호 재입력</th>
+									<th><input type="password" class="form-control"
+										placeholder="Re password" name="consumerPwRe" id="pwConfirm">
+										<span id="pwConfirmHelper" class="helper"></span></th>
+								</tr>
+								<tr>
+									<th>이름</th>
+									<th><input type="text" class="form-control"
+										placeholder="Won Seoung Hyun" name="consumerName" id="name">
+										<span id="nameHelper" class="helper"></span></th>
+								</tr>
+								<tr>
+									<th>이메일</th>
+									<th><input type="text" class="form-control"
+										placeholder="abc_fox@naver.com" name="email" id="email">
+										<span id="emailHelper" class="helper"></span></th>
+								</tr>
+								<tr>
+									<th>전화번호(-를 포함하여 입력)</th>
+									<th><input type="text" class="form-control"
+										placeholder="010-4123-5342" name="phone" id="phone">
+										<span id="phoneHelper" class="helper"></span></th>
+								</tr>
+								<tr>
+									<th>주민등록번호</th>
+									<th><input type="text" class="form-control"
+										placeholder="980492-312423" name="residentNumber" id="residentNumber">
+										<span id="residentNumberHelper" class="helper"></span></th>
+								</tr>
+								<tr>
+									<th>태어난 연도</th>
+									<th><input type="number" class="form-control"
+										placeholder="1998" name="birthYear" id="birthYear" value="" >
+										<span id="birthYearHelper" class="helper"></span></th>
+								</tr>
+								<tr>
+									<th>계좌번호</th>
+									<th><input type="text" class="form-control"
+										placeholder="NH농협 302-1302-1392-443" name="account" id="accountNumber">
+										<span id="accountNumberHelper" class="helper"></span>
+									</th>
+								</tr>
+								<tr>
+									<th colspan="2">
+										<button type="button" class="btn btn-primary" id="registerBtn" onclick="memberJoinCheck()">회원가입</button>
+									</th>
+								</tr>
+							</table>
+						</form>
+						</div>
+						<div class="col-sm-1">
 						</div>
 					</div>
 				</div>
-
 			</div>
 		</div>
+	</div>
+	<!-- Footer -->
+	<jsp:include page="../../../WEB-INF/inc/footer.jsp" ></jsp:include>
+</div>
 </body>
 <script>
 
