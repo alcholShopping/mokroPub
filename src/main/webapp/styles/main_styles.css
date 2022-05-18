@@ -70,9 +70,7 @@ div
 {
    display: block;
    position: relative;
-   -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+   box-sizing: border-box;
 }
 ul
 {
@@ -240,10 +238,6 @@ section
 {
    padding: 0px !important;
 }
-.section_title_container
-{
-
-}
 .section_subtitle
 {
    font-size: 14px;
@@ -316,10 +310,6 @@ section
    -o-transition: all 200ms ease;
    transition: all 200ms ease;
 }
-.header.scrolled
-{
-   height: 80px;
-}
 .header_inner
 {
    width: 100%;
@@ -362,25 +352,21 @@ section
    -ms-transform: translateY(4px);
    -o-transform: translateY(4px);
    transform: translateY(4px);
-   padding-right: 50px;
 }
 .main_nav >ul >li
 {
-   display: inline;
-   margin-left: 25px;
-   margin-right: 25px;
-   width:120px;
-}
-.main_nav >ul >li:last-child
-{
-   margin-right: 0;
+   display: inline-block;
+   width:100px;
+   text-align:center;
 }
 .main_nav >ul >li >a
 {
    font-size: 12px;
+   text-align:center;
    text-transform: uppercase;
    color: #2f2f2f;
    font-weight: 600;
+   margin-left:-20px;
    letter-spacing: 0.2em;
    -webkit-transition: all 200ms ease;
    -moz-transition: all 200ms ease;
@@ -430,13 +416,11 @@ section
    color: #ffffff;
    font-weight: 600;
 }
-.actionHoverCommunity{
-	position: relative;;
-}
+
 .submenuCommunity {
    position: absolute;
    top: 25px;
-   display: block;
+   display: none;
 }
 
 .submenuCommunity li
