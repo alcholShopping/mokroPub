@@ -96,6 +96,58 @@ public class ReviewDao {
 		return reviewList;
 	}
 	
+	public List<Map<String, Object>> SelectReviewByProduct(int productNo){
+		List<Map<String, Object>> reviewProductList = new ArrayList<Map<String, Object>>();
+		Map<String, Object> re = null;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		// 상품 리뷰 3개만 받아오기
+		String sql =
+				" SELECT c.name, r.picture, r.star, r.content, r.create_date "
+				+ " FROM review r "
+				+ "	INNER JOIN `ORDER` o  "
+				+ "	ON r.order_no = o.order_no "
+				+ "	INNER JOIN product p  "
+				+ "	ON o.product_no = p.product_no  "
+				+ "	INNER JOIN consumer c "
+				+ "	ON o.consumer_no = c.consumer_no  "
+				+ " WHERE o.product_no = ? "
+				+ " order BY create_date DESC "
+				+ " LIMIT 0, 3 ";
+		
+		try {
+			conn = DBUtil.getConnection();
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, productNo);
+			
+			rs = stmt.executeQuery();
+			while(rs.next()) {
+				re = new HashMap<String, Object>();
+				re.put("name", rs.getString("c.name"));
+				re.put("picture", rs.getString("r.picture"));
+				re.put("star", rs.getInt("r.star"));
+				re.put("content", rs.getString("r.content"));
+				re.put("createDate", rs.getString("r.create_date"));
+
+				
+				reviewProductList.add(re);
+			}
+			
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}		
+		return reviewProductList;
+	}
+	
+	
 	public void DeleteMyReviewByNo(int reviewNo) {
 		int row = 0;
 		Connection conn = null;
