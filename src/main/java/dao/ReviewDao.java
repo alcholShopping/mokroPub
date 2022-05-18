@@ -94,6 +94,38 @@ public class ReviewDao {
 				}
 			}		
 		return reviewList;
-
 	}
+	
+	public void DeleteMyReviewByNo(int reviewNo) {
+		int row = 0;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		// 삭제쿼리
+		String sql = " DELETE FROM review WHERE review_no = ? ";
+		
+		try {
+			conn = DBUtil.getConnection();
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, reviewNo);
+
+			row = stmt.executeUpdate();
+			if(row == 1) {
+				System.out.println("리뷰삭제성공!!!");
+			} else {
+				System.out.println("리뷰삭제실패!!!");
+			}
+			
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally {
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	} 
+		
+}
+	
 }

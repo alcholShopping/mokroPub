@@ -76,7 +76,7 @@ public class ReviewController extends HttpServlet {
 			rd.InsertReviewByOrderNo(rev);
 			
 
-			response.sendRedirect("/myReviewListController");
+			response.sendRedirect(request.getContextPath()+"/myReviewListController");
 		} else {
 			System.out.println("이미지파일만 업로드!");
 			// 잘못들어온 파일이므로 업로드된 파일 지우고 폼으로...이동
