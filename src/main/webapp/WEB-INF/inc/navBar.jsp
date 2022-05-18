@@ -33,7 +33,7 @@
 		<div class="header_content">
 			<!-- search -->
 			<div class="search header_search">
-				<form action="#">
+				<form method="get" action="${pageContext.request.contextPath}/searchController">
 					<input type="search" class="search_input" value=">>상세검색 >>" readonly="readonly">
 					<button type="submit" id="search_button" class="search_button">
 						<img src="${pageContext.request.contextPath}/images/magnifying-glass.svg"alt="">
