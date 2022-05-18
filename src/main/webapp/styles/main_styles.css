@@ -430,7 +430,9 @@ section
    color: #ffffff;
    font-weight: 600;
 }
-
+.actionHoverCommunity{
+	position: relative;;
+}
 .submenuCommunity {
    position: absolute;
    top: 25px;

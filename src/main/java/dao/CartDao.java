@@ -294,7 +294,7 @@ public class CartDao {
 		} 
 	}
 	
-	//장바구니에 상품 단일 삭제
+	//장바구니에 상품 모두 삭제
 	public void DeleteProductInCartAll(int consumerId) {
 		int row = 0;
 		Connection conn = null;

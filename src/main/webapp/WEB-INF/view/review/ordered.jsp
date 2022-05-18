@@ -35,55 +35,34 @@
 				<div class="col">
 					<div class="section_title_container text-center">
 						<div class="section_subtitle">목로주점</div>
-						<div class="section_title">결제내역(ORDER)</div>
+						<div class="section_title">결제내역</div>
 					</div>
 				</div>
 			</div>
       <div class="row">
          <div class="col">
-					<table class ="table table-bordered">
-					<c:forEach items="${orList}" var="item">					
+					<table class ="table table-bordered">		
 						<tr>
-		                     <td>주문번호</td>
 		                     <td>상품정보</td>
 		                     <td>결제 금액</td>
 		                     <td>쿠폰 사용내역</td>
 		                     <td>결제방법</td>
-		                     <td>결제일</td>
-		                     <td>리뷰하기</td>		                    
+		                     <td>결제일</td>	                    
 	                  	</tr>
-	                  	
+	                  	<c:forEach items="${orList}" var="item">			
 						<tr>
-
+							<td>${item.productNo}</td>
+							<td>${item.payment}원</td>
 							<td>
-								${item.orderNo}
+							<c:if test="${item.consumerCouponListNo == 0}">없음</c:if> 
+							<c:if test="${item.consumerCouponListNo != 0}">${item.consumerCouponListNo}</c:if> 
 							</td>
-								
-							<td>
-								${item.productNo}
-							</td>
-							
-							<td>
-								${item.payment}원
-							</td>
-							
-							<td>
-								${item.consumerCouponListNo}
-							</td>
-							
-							<td>
-								${item.method}
-							</td>
-							
+							<td>${item.method}</td>
 							<td>
 								${item.createDate}
+								<a href="reviewController?orderNo=${item.orderNo}" class="float-right btn btn-outline-secondary btn-sm">
+								리뷰하기</a>
 							</td>
-							
-							<td>
-								<A href="reviewController?orderNo=${item.orderNo}">리뷰</A>
-							</td>
-
-						
 						</tr>					
 					</c:forEach>
 				</table>  

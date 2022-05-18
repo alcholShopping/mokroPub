@@ -155,7 +155,7 @@
 						<td>쿠폰목록</td>
 						<td>
 							<select name="selectCoupon">
-								<option value="" selected="selected" >:: :쿠폰 선택 :::</option>	
+								<option value="0" selected >:: :쿠폰 선택 :::</option>	
 								<c:forEach var="c" items="${couponList}">
 									<option value="${c.discount}" name="couponNo">
 									${c.discount}원 ${c.count}개 유효기간:${c.validity}까지</option>

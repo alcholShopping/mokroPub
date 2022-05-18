@@ -11,8 +11,6 @@ import java.util.Map;
 import util.DBUtil;
 import vo.*;
 public class OrderCompleteDao {
-
-	
 	
 	//주문 완료 시 주문 테이블에 입력하는 메서드
 	public void insertInOrder(int consumerNo,int productNo,String zipcode,String addr,String detailedAddress,int payment,int count ,int couponNo) {

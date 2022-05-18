@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.CartDao;
 import dao.ConsumerDao;
+import dao.CouponDao;
 import dao.IndexDao;
 import dao.OrderCompleteDao;
 import vo.Cart;
@@ -28,6 +29,7 @@ public class OrderCompleteController extends HttpServlet {
 	private OrderCompleteDao orderCompleteDao;
 	private CartDao cartDao;
 	private ConsumerDao consumerDao;
+	private CouponDao couponDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	}
@@ -72,10 +74,12 @@ public class OrderCompleteController extends HttpServlet {
 		
 		int couponNo = orderCompleteDao.selectCouponNo(consumerId, discount);
 		
+		// 쿠폰의 갯수
+		int UseCouponCount = 0;
 		// 디버깅
 		for(Map m : list) {
-			System.out.println(m.get("productNo") + " <-- productNo doGet() OrderCompleteController");
-			System.out.println(m.get("count") + " <-- count doGet() OrderCompleteController");
+			System.out.println(m.get("productNo") + " <-- productNo doPost() OrderCompleteController");
+			System.out.println(m.get("count") + " <-- count doPost() OrderCompleteController");
 			
 			//-------------------------------------디버깅
 			int productNo = (Integer)m.get("productNo");
@@ -84,6 +88,26 @@ public class OrderCompleteController extends HttpServlet {
 			System.out.println(productNo +"  " +count);
 			// 주문테이블에 넣는 메소드 호출
 			orderCompleteDao.insertInOrder(consumerId, productNo, zipcode, addr, detailedAddress, realpayment, count, couponNo);
+			
+			couponDao = new CouponDao();
+			// 쿠폰 사용 쿠폰-1
+			couponDao.updateCouponCount(couponNo);
+			// 사용할 쿠폰의 갯수를 조회
+			UseCouponCount = couponDao.selectUseCouponCount(couponNo);
+			if( UseCouponCount == 0 ) {
+				//쿠폰 갯수가 1개일때고
+				couponDao.updateCouponValidity(couponNo);
+			}
+			System.out.println(UseCouponCount + " <-- UseCouponCount doPost() OrderCompleteController");
+			
+			//구매 완료 후 상품을 모두 삭제하는 쿼리
+			cartDao = new CartDao();
+			cartDao.DeleteProductInCartAll(consumerId);
+			
+			// 장바구니 담긴 갯수 
+			int cartCount = cartDao.CartCountNum(consumerId);
+			System.out.println(cartCount + "cartCount=================================");
+			session.setAttribute("cartCount", cartCount);
 			request.getRequestDispatcher("/WEB-INF/view/order/orderFinish.jsp").forward(request, response);	
 			return;
 		}

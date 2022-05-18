@@ -15,9 +15,21 @@ public class OrderedDao {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		String sql = " SELECT order_no orderNo, consumer_no consumerNo, product_no productNo, zipcode, address, detailed_address detailedAddress, payment, method, count, consumer_coupon_list_no couponListNo, create_date createDate, update_date updateDate"
+		String sql = " SELECT order_no orderNo "
+				+ ", consumer_no consumerNo "
+				+ ", product_no productNo "
+				+ ", zipcode "
+				+ ", address "
+				+ ", detailed_address detailedAddress "
+				+ ", payment "
+				+ ", method "
+				+ ", count "
+				+ ", consumer_coupon_list_no couponListNo "
+				+ ", create_date createDate "
+				+ ", update_date updateDate "
 				+ " FROM `order` "
-				+ " WHERE consumer_no = ? ";
+				+ " WHERE consumer_no = ? "
+				+ " ORDER BY create_date DESC ";
 		
 		try {
 			conn = DBUtil.getConnection();
