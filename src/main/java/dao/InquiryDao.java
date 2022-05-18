@@ -105,7 +105,6 @@ public class InquiryDao {
 	public void insertInquiry(Inquiry inquiry) {
 		Connection conn = null;
 		PreparedStatement stmt = null;
-		ResultSet rs = null;
 		String sql = " INSERT INTO inquiry (consumer_no, title, category, content, photo, status, create_date, update_date) VALUE(?,?,?,?,?,?,NOW(),NOW()) ";
 		
 		try {
@@ -136,7 +135,7 @@ public class InquiryDao {
 		}	
 	}
 	
-	// notice를 업데이트
+	// inquiry를 업데이트
 	public void updateInquiry(Inquiry inquiry) {
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -197,6 +196,36 @@ public class InquiryDao {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	// 답변 입력 및 수정하는 메서드 답변하면 status update가 됨
+	public void answerInquiry(int inquiryNo ,String answer, String status) {
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		String sql = " UPDATE inquiry SET answer = ?, status = ? WHERE inquiry_no = ? ";
+		
+		try {
+			conn = DBUtil.getConnection();
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, answer);
+			stmt.setString(2, status);
+			stmt.setInt(3, inquiryNo);
+			// 디버깅
+			int row = stmt.executeUpdate();
+			if(row == 1) {
+				System.out.println("답변 성공");
+			} else {
+				System.out.println("답변 실패");
+			}		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}	
 	}
 	
 	// inquiry totalCount구하기
