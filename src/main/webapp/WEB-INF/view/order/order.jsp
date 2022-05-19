@@ -36,7 +36,7 @@
       <tr>
          <td class="table_td">총 상품 금액</td>
          <td rowspan="2" class="table_td">-</td>
-         <td class="table_td">할인 금액</td>
+         <td class="table_td">할인률</td>
          <td rowspan="2" class="table_td">=</td>
          <td class="table_td">실제 구매 금액</td>
          <td rowspan="2">
@@ -174,7 +174,7 @@
                         <option value="0" selected>:: :쿠폰 선택 :::</option>   
                         <c:forEach var="c" items="${couponList}">
                            <option value="${c.discount}" name="couponNo">
-                           ${c.discount}원 ${c.count}개 유효기간:${c.validity}까지</option>
+                           ${c.discount}% 할인쿠폰 ${c.count}개 유효기간:${c.validity}까지</option>
                         </c:forEach>
                      </select>
                   </td>
@@ -194,25 +194,24 @@
    // 쿠폰 선택 되기 전에는 쿠폰 값 0
    let totalPrice = ${totalPrice}; // 총상품 금액
    let discount = 0; // 쿠폰 할인 금액
-   let payment = totalPrice - discount; // 실제 구매 금액 
+   let payment = totalPrice; // 실제 구매 금액 
 
    console.log(totalPrice + "totalPrice");
    $('#totalPriceWon').text(totalPrice+'원');
-   $('#discountWon').text(discount+'원');
+   $('#discountWon').text(discount+'%');
    $('#paymentWon').text(payment+'원');
-   $('#realpayment').val(payment);
+   $('#realpayment').val(discount);
    
    // 쿠폰이 선택 되면 쿠폰 값 적용
    $("select[name=selectCoupon]").change(function(){
-	   let discount =  $(this).val() // 선택된 값 바로 가져오기
+	   discount =  $(this).val() // 선택된 값 바로 가져오기
 	   console.log(discount + "discount"); //value값 가져오기
-	   payment = totalPrice - discount; // 총 상품 금액 - 쿠폰 할인 금액
-	
+	   payment =  totalPrice-(totalPrice * (discount/100)); // 총 상품 금액 - 쿠폰 할인 금액
 	   console.log(payment + "실제 결제 금액");
 	   $('#totalPriceWon').text(totalPrice+'원');
-	   $('#discountWon').text(discount+'원');
+	   $('#discountWon').text(discount+'%');
 	   $('#paymentWon').text(payment+'원');
-	   $('#realpayment').val(payment);
+	   $('#realpayment').val(discount);
 	   
 	   //실제 지불금액이 마이너스면 쿠폰 선택 취소
 	   if(payment < 10000){
@@ -220,11 +219,11 @@
 		   $("#selectCoupon option:eq(0)").prop("selected", true);
 		   totalPrice = ${totalPrice}; // 총상품 금액
 		   discount = 0; // 쿠폰 할인 금액
-		   payment = totalPrice - discount; // 실제 구매 금액 
+		   payment = totalPrice; // 실제 구매 금액 
 		   $('#totalPriceWon').text(totalPrice+'원');
-		   $('#discountWon').text(discount+'원');
+		   $('#discountWon').text(discount+'%');
 		   $('#paymentWon').text(payment+'원');
-		   $('#realpayment').val(payment);
+		   $('#realpayment').val(discount);
 	   }
    });
    
