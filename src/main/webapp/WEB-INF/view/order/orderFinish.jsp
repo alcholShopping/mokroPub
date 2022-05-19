@@ -23,7 +23,6 @@
 <link href="plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<form method="post" action="${pageContext.request.contextPath}/orderCompleteController">
 <div class="super_container">
 	<!-- Header -->
 	<jsp:include page="../../../WEB-INF/inc/navBar.jsp"></jsp:include>
@@ -37,13 +36,15 @@
 						<div class="section_subtitle">목로주점</div>
 						<div class="section_title">주문완료</div>
 					</div>
+					<b>주문이 완료 되었습니다.</b><br>
+					<a href="${pageContext.request.contextPath}/orderAfterController">주문 내역 보기</a>
 				</div>
 			</div>
 	</div>
-	<!-- Footer -->	
+</div>
+<div class ="fixFooter">
+<!-- Footer -->	
 	<jsp:include page="../../../WEB-INF/inc/footer.jsp"></jsp:include>
 </div>
-</form>
 </body>
-
 </html>

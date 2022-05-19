@@ -57,6 +57,9 @@
 								<a
 									href="${pageContext.request.contextPath}/productOneController?productNo=${item.productNo}">
 									<img src="images/product_1.jpg" alt="">
+									<div class="product_option_box">
+										<span class="product_option_rank">${item.ranking}</span>
+									</div>
 								</a>
 							</div>
 							<div class="product_content clearfix">
@@ -74,7 +77,7 @@
 								</div>
 								<div class="product_options">
 									<a
-										href="${pageContext.request.contextPath}/insertProductInCartController?productNo=${p.getProductNo()}">
+										href="${pageContext.request.contextPath}/insertProductInCartController?productNo=${item.productNo}">
 										<div class="product_buy product_option">
 											<img src="images/shopping-bag-white.svg" alt="">
 										</div>

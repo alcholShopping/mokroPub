@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>findPassword</title>
+<title>contact</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Wish shop project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,57 +30,28 @@
 		<div class="row">
 			<div class="col">
 				<div class="section_title_container text-center">
-					<div class="section_subtitle">
-					목로주점
-					</div>
-					<div class="section_title">
-					Find Password
-					</div>
-					<br>
-					<div class="row">
-					<div class="col-sm-3">
-					</div>
-					<div class="col-sm-6">
-					<form action="${pageContext.request.contextPath}/findConsumerPwController" method="post">
-						<table class = "table text-center ">
-							<tr>
-								<th>아이디</th>
-								<th>
-									<input type="text" class="form-control" name="consumerId" id="consumerId">
-								</th>
-							</tr>
-							<tr>
-								<th>이름</th>
-								<th>
-									<input type="text" class="form-control" name="consumerName" id="consumerName">
-								</th>
-							</tr>
-							<tr>
-								<th>연락처</th>
-								<th>
-									<input type="text" class="form-control" name="phone" id="phone" placeholder="010-0000-0000">
-								</th>
-							</tr>	
-							<tr>
-								<td colspan="2">
-								<button type="submit" class="btn btn-info text-White btn-block" id="registerBtn">
-								비밀번호 찾기</button>
-								</td>
-							</tr>								
-						</table>
-					</form>
-					</div>
-					<div class="col-sm-3">
-					</div>
+					<div class="section_subtitle">목로주점</div>
+						<div class="section_title">CONTECT</div>
+						<br>
+				<!-- * 카카오맵 - 지도퍼가기 -->
+				<!-- 1. 지도 노드 -->	
 				</div>
 			</div>
 		</div>
+		<div id="daumRoughmapContainer1652852286928" class="root_daum_roughmap root_daum_roughmap_landing float_center" ></div>
 	</div>
-</div>
 </div>
 <!-- Footer -->
 <div class ="fixFooter">
 	<jsp:include page="../../../WEB-INF/inc/footer.jsp" ></jsp:include>
 </div>
 </body>
+<script charset="UTF-8">
+	new daum.roughmap.Lander({
+		"timestamp" : "1652852286928",
+		"key" : "2aaey",
+		"mapWidth" : "800",
+		"mapHeight" : "500"
+	}).render();
+</script>
 </html>

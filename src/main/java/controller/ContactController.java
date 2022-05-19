@@ -1,9 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,16 +10,13 @@ import javax.servlet.http.HttpSession;
 
 import dao.CartDao;
 import dao.ConsumerDao;
-import dao.IndexDao;
-import vo.Category;
 
-	
-@WebServlet("/indexController")
-public class IndexController extends HttpServlet {
+
+@WebServlet("/contactController")
+public class ContactController extends HttpServlet {
 	private CartDao cartDao;
 	private ConsumerDao consumerDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		//로그인 여부 확인 로직(세션이용)
 		HttpSession session = request.getSession();
 		String sessionMemberId = (String)session.getAttribute("sessionMemberId");		
@@ -39,12 +33,10 @@ public class IndexController extends HttpServlet {
 		System.out.println(cartCount + "cartCount=================================");
 		session.setAttribute("cartCount", cartCount);
 		
-		request.getRequestDispatcher("/WEB-INF/view/index.jsp").forward(request, response);
-		
+		request.getRequestDispatcher("/WEB-INF/view/contact/contact.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		
 	}
 

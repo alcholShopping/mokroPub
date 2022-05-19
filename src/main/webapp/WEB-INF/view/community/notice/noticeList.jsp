@@ -57,10 +57,10 @@
 						<!-- 다음 버튼 -->
 						<c:if test="${currentPage < lastPage}">
 							<a href="${pageContext.request.contextPath}/noticeListController?currentPage=${currentPage+1}">다음</a>
+					<div></div>					
 						</c:if>
-					<!-- 아이디가 admin인 경우만 보이게 해야함 -->
-					<div></div>
-					<a href="${pageContext.request.contextPath}/insertNoticeController" id="insertNoticeBtn">글쓰기</a>
+					<!-- 아이디가 admin인 경우만 보임 -->
+					<div id="adminBtn" style="display:none"><a href="${pageContext.request.contextPath}/insertNoticeController" id="insertNoticeBtn">글쓰기</a></div>
 				</div>  
 			</div>	
 		</div>
@@ -68,4 +68,10 @@
 		<jsp:include page="../../../../WEB-INF/inc/footer.jsp"></jsp:include>
 	</div>
 </body>
+<script>
+	if('${sessionScope.sessionMemberId}' == 'admin'){
+		console.log('admin입니다');
+		$("#adminBtn").show();	
+	} 
+</script>
 </html>

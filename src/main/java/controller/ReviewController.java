@@ -53,12 +53,12 @@ public class ReviewController extends HttpServlet {
 		String content = multiReq.getParameter("content");
 
 		// 사진이 없을때
-		String pictureType = "fileX";
+		String pictureType = "fileX.jpg";
 		if(multiReq.getContentType("picture") != null) {
 			pictureType = multiReq.getContentType("picture");
 		}
 		//request 사용 불가 > multiReq가 다 옮겨받음
-		String pictureName = "fileX"; 
+		String pictureName = "fileX.jpg"; 
 		if(multiReq.getContentType("picture") != null) { // new DefaultFileRenamePolicy()객체를 통해 변경된 이름
 			pictureName = multiReq.getFilesystemName("picture");
 		}
@@ -90,7 +90,7 @@ public class ReviewController extends HttpServlet {
 
 			response.sendRedirect(request.getContextPath()+"/myReviewListController");
 		}  
-		else if(pictureType.equals("fileX"))
+		else if(pictureType.equals("fileX.jpg"))
 		{	
 			System.out.println("이미지 안들어왔을때");
 			rev.setPicture(pictureName);

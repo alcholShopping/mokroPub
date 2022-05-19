@@ -76,7 +76,7 @@ public class FindConsumerPwController extends HttpServlet {
 			return;
 		}
 		// consumerId, name, phone이 일치하면 비밀번호 재설정창으로 감
-		response.sendRedirect(request.getContextPath() + "/UpdateConsumerPwController");
+		response.sendRedirect(request.getContextPath() + "/updateConsumerPwController");
 	
 	}
 

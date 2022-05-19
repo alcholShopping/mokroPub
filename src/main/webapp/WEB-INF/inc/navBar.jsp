@@ -23,17 +23,17 @@
 				<li class="actionHoverCommunity"><a href="#">커뮤니티</a>
 					<ul class="submenuCommunity">
 						<li><a href="${pageContext.request.contextPath}/noticeListController">공지사항</a></li>
-						<li><a href="${pageContext.request.contextPath}/inquiryController">문의사항</a></li>
+						<li><a href="${pageContext.request.contextPath}/inquiryListController">문의사항</a></li>
 					</ul>
 				</li>				
-				<li><a href="#">contact</a></li>
+				<li><a href="${pageContext.request.contextPath}/contactController">contact</a></li>
 			</ul>
 		</nav>
 
 		<div class="header_content">
 			<!-- search -->
 			<div class="search header_search">
-				<form action="#">
+				<form method="get" action="${pageContext.request.contextPath}/searchController">
 					<input type="search" class="search_input" value=">>상세검색 >>" readonly="readonly">
 					<button type="submit" id="search_button" class="search_button">
 						<img src="${pageContext.request.contextPath}/images/magnifying-glass.svg"alt="">

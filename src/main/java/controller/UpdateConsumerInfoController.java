@@ -16,7 +16,7 @@ import vo.Consumer;
 
 @WebServlet("/updateConsumerInfoController")
 public class UpdateConsumerInfoController extends HttpServlet {
-	private ConsumerDao consumerDao = new ConsumerDao();
+	private ConsumerDao consumerDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 로직을 통해 로그인여부 확인
 		HttpSession session = request.getSession();
@@ -33,7 +33,7 @@ public class UpdateConsumerInfoController extends HttpServlet {
 		// selectConsumerOneInfo Dao에 있던 데이터값 호출 후 표시
 
 		// 기존에 있더 회원정보 보여주기
-		ConsumerDao consumerDao = new ConsumerDao();
+		consumerDao = new ConsumerDao();
 
 		List<Consumer> consumerList = consumerDao.selectConsumerOneInfo(sessionMemberId);
 		
@@ -41,7 +41,6 @@ public class UpdateConsumerInfoController extends HttpServlet {
 		// consumer_id, password, name, phone, email, address, Detailed_Addreess, Account, UPDATE_DATE
 		for(Consumer consumer : consumerList) {						
 			System.out.println(consumer.getConsumerId() + " <-- consumerId doGet() UpdateConsumerInfoController ");
-			System.out.println(consumer.getPassword() + " <-- password doGet() UpdateConsumerInfoController ");
 			System.out.println(consumer.getName() + " <-- name doGet() UpdateConsumerInfoController ");
 			System.out.println(consumer.getPhone() + " <-- phone doGet() UpdateConsumerInfoController ");
 			System.out.println(consumer.getEmail() + " <-- email doGet() UpdateConsumerInfoController ");
@@ -73,7 +72,6 @@ public class UpdateConsumerInfoController extends HttpServlet {
 		// consumer에 정재	
 		// consumer_id, password, name, phone, email, address, Detailed_Addreess, Account, UPDATE_DATE
 		String consumerId = request.getParameter("consumerId");
-		String password = request.getParameter("password");
 		String consumerName = request.getParameter("consumerName");
 		String consumerPhone = request.getParameter("consumerPhone");
 		String consumerEmail = request.getParameter("consumerEmail");
@@ -86,7 +84,6 @@ public class UpdateConsumerInfoController extends HttpServlet {
 		// Update문 호출
 		Consumer consumer = new Consumer();
 		consumer.setConsumerId(consumerId);
-		consumer.setPassword(password);
 		consumer.setName(consumerName);
 		consumer.setPhone(consumerPhone);
 		consumer.setEmail(consumerEmail);
@@ -96,7 +93,6 @@ public class UpdateConsumerInfoController extends HttpServlet {
 		consumer.setUpdateDate(consumerUpdateDate);
 		
 		System.out.println(consumerId + " <-- consumerId doPost() UpdateConsumerInfoController");
-		System.out.println(password + " <-- password doPost() UpdateConsumerInfoController");
 		System.out.println(consumerName + " <-- consumerName doPost() UpdateConsumerInfoController");
 		System.out.println(consumerPhone + " <-- consumerPhone doPost() UpdateConsumerInfoController");
 		System.out.println(consumerEmail + " <-- consumerEmail doPost() UpdateConsumerInfoController");
@@ -106,6 +102,7 @@ public class UpdateConsumerInfoController extends HttpServlet {
 		System.out.println(consumerUpdateDate + " <-- consumerUpdateDate doPost() UpdateConsumerInfoController");
 
 		consumerDao.updateConsumerInfo(consumer);
+		 
 		response.sendRedirect(request.getContextPath()+"/consumerOneInfoController");
 
 	}

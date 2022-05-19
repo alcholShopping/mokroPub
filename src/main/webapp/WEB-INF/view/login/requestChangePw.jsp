@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>findPassword</title>
+<title>requestChangePw</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Wish shop project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -34,41 +34,47 @@
 					목로주점
 					</div>
 					<div class="section_title">
-					Find Password
+					고객님의 소중한 개인정보 보호를 위해 목로주점 고객님의 비밀번호를 변경해주세요!
 					</div>
 					<br>
 					<div class="row">
 					<div class="col-sm-3">
 					</div>
 					<div class="col-sm-6">
-					<form action="${pageContext.request.contextPath}/findConsumerPwController" method="post">
+					<form action="${pageContext.request.contextPath}/logoutController?check=1" method="post" id="pwForm">
 						<table class = "table text-center ">
 							<tr>
-								<th>아이디</th>
+								<th>현재 비밀번호</th>
 								<th>
-									<input type="text" class="form-control" name="consumerId" id="consumerId">
+									<input type="password" class="form-control" name="currentPw" id="currentPw">
 								</th>
 							</tr>
 							<tr>
-								<th>이름</th>
+								<th>변경할 비밀번호</th>
 								<th>
-									<input type="text" class="form-control" name="consumerName" id="consumerName">
+									<input type="password" class="form-control" name="changePw" id="changePw">
 								</th>
 							</tr>
 							<tr>
-								<th>연락처</th>
+								<th>변경할 비밀번호 확인</th>
 								<th>
-									<input type="text" class="form-control" name="phone" id="phone" placeholder="010-0000-0000">
+									<input type="password" class="form-control" name="checkChangePw" id="checkChangePw">
+									<span id="checkChangePwHelper" class="helper"></span>
 								</th>
 							</tr>	
 							<tr>
 								<td colspan="2">
-								<button type="submit" class="btn btn-info text-White btn-block" id="registerBtn">
-								비밀번호 찾기</button>
+								<button type="button" class="btn btn-info text-White btn-block" id="notChangeBtn" onclick="notChangePw()">
+								다음에 변경</button>
+								</td>
+								<td colspan="2">
+								<button type="button" class="btn btn-info text-White btn-block" id="changePw" onclick="changePw()">
+								비밀번호 변경</button>
 								</td>
 							</tr>								
 						</table>
 					</form>
+					
 					</div>
 					<div class="col-sm-3">
 					</div>
@@ -83,4 +89,45 @@
 	<jsp:include page="../../../WEB-INF/inc/footer.jsp" ></jsp:include>
 </div>
 </body>
+<script>
+
+	$('#checkChangePw').blur(function(){
+		if( $('#changePw').val() != $('#checkChangePw').val() ) {
+			$('#checkChangePwHelper').text('변경할 비밀번호와 다릅니다.');
+			$('#checkChangePw').focus();
+		}else{
+			$('#checkChangePwHelper').text('');
+			
+		}
+	});
+/*
+	// 빈칸 확인	
+	function changePw(){
+		var p = changePw;
+		p.action ='logoutController';
+
+		if(p.currentPw.value.trim() == ""){
+			alert('현재비밀번호를 입력하세요');
+			p.currentPw.focus();
+			return;
+		}
+		if(p.changePw.value.trim() == ""){ // 아이디 빈칸 검사
+			alert('변경할 비밀번호를 입력하세요');
+			p.changePw.focus();
+			return;
+		}
+		if(p.checkChangePw.value.trim() != ""){ // 비밀번호 빈칸 검사
+			alert('비밀번호 재확인을 입력하세요');
+			p.checkChangePw.focus();
+			return;
+		}
+		p.submit();	
+	} */
+	
+	function notChangePw(){
+		var p = pwForm;
+		p.action = 'indexController';
+		p.submit();		
+	}
+</script>
 </html>

@@ -44,40 +44,44 @@ public class ProductOneController extends HttpServlet {
 			count = Integer.parseInt(request.getParameter("count"));
 			System.out.println(count + "<=====================count");
 		}
-		;
 		// 아이디를 번호로 교체
 		int consumerId = consumerDao.changeConsumerIdToNo(sessionMemberId);
 		// -----------------------------디버깅-----------------------------
 		System.out.println(consumerId + " <-- consumerId doGet() insertProductInCartController");
 		
 		if (count != 0) {
-			
-			// 같은 상품이 존재한다면 수량체크
-			int cnt = cartDao.selectProductInCartCount(productNo);
-			
+			int same = cartDao.IsSameProductCart(productNo, consumerId);
 			// -----------------------------디버깅-----------------------------
-			System.out.println(cnt + "개 수량을 체크했습니다." + " <--cnt doGet() insertProductInCartController");
+			System.out.println(same + "같은 상품 담음" + " <--same doGet() IsSameProductCart");
 			
-			if (cnt + count > 5) {
-				
-				// 수량이 5개 이상이면 5개로 지정
-				cartDao.updateProductInCartFive(productNo, consumerId); // 무조건 5로
+			// 같은 상품이 존재하지 않는다면
+			if(same == 0) {
+				cartDao.insertProductInCart(productNo, count, consumerId);
+				response.sendRedirect("cartController");
+				return;
+			}else {
+				// 같은 상품이 존재한다면 수량체크
+				int cnt = cartDao.selectProductInCartCount(productNo);
 				// -----------------------------디버깅-----------------------------
-				System.out.println("수량 5개 지정하였습니다.");
-			} else {
-				cartDao.insertProductOneInCart(productNo, count, consumerId); // 업데이트
+				System.out.println(cnt + "개 수량을 체크했습니다." + " <--cnt doGet() insertProductInCartController");
+				
+				if (cnt + count > 5) {
+					// 수량이 5개 이상이면 5개로 지정
+					cartDao.updateProductInCartFive(productNo, consumerId); // 무조건 5로
+					// -----------------------------디버깅-----------------------------
+					System.out.println("수량 5개 지정하였습니다.");
+				}
+				else {
+					cartDao.insertProductOneInCart(productNo, count, consumerId); // 업데이트
+				}
+				
+				response.sendRedirect("cartController");
+				return;
 			}
-			response.sendRedirect("cartController");
-			return;
 		}
-		
-		
-
 		productDao = new ProductDao();
 		reviewDao = new ReviewDao();
-		
-		
-		
+
 		List<Map<String, Object>> list = productDao.selectProductOne(productNo);
 		//세개만 나오는 리뷰
 		List<Map<String, Object>> reviewList = reviewDao.SelectReviewByProduct(productNo);

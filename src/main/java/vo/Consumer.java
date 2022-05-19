@@ -16,6 +16,7 @@ public class Consumer {
 	private String account;
 	private String createDate;
 	private String updateDate;
+	private String pwUpdateDate;
 	public int getConsumerNo() {
 		return consumerNo;
 	}
@@ -106,15 +107,20 @@ public class Consumer {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
-	
+	public String getPwUpdateDate() {
+		return pwUpdateDate;
+	}
+	public void setPwUpdateDate(String pwUpdateDate) {
+		this.pwUpdateDate = pwUpdateDate;
+	}
 	@Override
 	public String toString() {
 		return "Consumer [consumerNo=" + consumerNo + ", consumerId=" + consumerId + ", password=" + password
 				+ ", name=" + name + ", phone=" + phone + ", email=" + email + ", zipcode=" + zipcode + ", address="
 				+ address + ", detailedAddr=" + detailedAddr + ", consumerLevel=" + consumerLevel
 				+ ", adultCertification=" + adultCertification + ", residentNumber=" + residentNumber + ", account="
-				+ account + ", createDate=" + createDate + ", updateDate=" + updateDate + "]";
+				+ account + ", createDate=" + createDate + ", updateDate=" + updateDate + ", pwUpdateDate="
+				+ pwUpdateDate + "]";
 	}
-	
-	
+
 }

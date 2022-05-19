@@ -34,7 +34,7 @@
 						<div class="col">
 							<div class="register_title ">				
 							<h1>${sessionMemberId}님의 회원정보</h1>
-							<form action="updateConsumerInfoController" method="post" name="registerForm">
+							<form action="updateConsumerInfoController" method="post" name="updateForm">
 								<table class = "table text-center">
 								<!-- consumer_id, password, name, phone, email, address, Detailed_Addreess, Account, UPDATE_DATE -->
 									<tr>
@@ -44,27 +44,24 @@
 										</th>
 									</tr>
 									<tr>
-										<th>비밀번호</th>
-										<th>
-											<input type="password" class="form-control" value ="${consumerList[0].password}" name="password" id="password">
-										</th>
-									</tr>
-									<tr>
 										<th>회원 이름</th>
 										<th>
 											<input type="text" class="form-control" value ="${consumerList[0].name}" name="consumerName" id="consumerName">
+											<span id="nameHelper" class="helper"></span>
 										</th>
 									</tr>
 									<tr>
 										<th>회원 전화번호</th>
 										<th>
 											<input type="text" class="form-control" value ="${consumerList[0].phone}" name="consumerPhone" id="consumerPhone">
+											<span id="phoneHelper" class="helper"></span>
 										</th>
 									</tr>
 									<tr>
 										<th>회원 이메일</th>
 										<th>
 											<input type="text" class="form-control" value ="${consumerList[0].email}" name="consumerEmail" id="consumerEmail">
+											<span id="emailHelper" class="helper"></span>
 										</th>
 									</tr>
 									<tr>
@@ -83,26 +80,24 @@
 										<th>회원 계좌</th>
 										<th>
 											<input type="text" class="form-control" value ="${consumerList[0].account}" name="consumerAccount" id="consumerAccount">
+											<span id="accountNumberHelper" class="helper"></span>
 										</th>
 									</tr>
 									<tr>
 										<th>회원 수정 날짜</th>
 										<th>
 											<input type="text" class="form-control" value ="${consumerList[0].updateDate}" name="consumerUpdateDate" id="consumerUpdateDate">
+											<span id="accountNumberHelper" class="helper"></span>
 										</th>
 									</tr>
 									<tr>
 										<th colspan="2">
-											<button type="submit" class="btn btn-primary" id="registerBtn" >회원 정보 변경</button>		
-										</th>							
+											<button type="button" id="registerBtn" onclick="updateMemberCheck()">회원정보 수정</a></button>
+										</th>
 									</tr>
 								</table>							
 							</form>
-
-								<button type="submut"><a href="${pageContext.request.contextPath}/consumerOneController">회원정보 수정</a></button>
-								<a href="${pageContext.request.contextPath}/indexController">취소</a>
-								<!-- response.sendRedirect(request.getContextPath()+"/loginController"); 수정컨트롤러 이동 -->
-								
+							<a href="${pageContext.request.contextPath}/indexController">취소</a>								
 							</div>
 						</div>
 					</div>
@@ -120,6 +115,76 @@
 		$(".actionHover").mouseout(function(){
 			$(".submenu").stop().slideUp(1000); 
 		})
+
+		$('#consumerName').blur(function() {
+			if($('#consumerName').val() == '') {
+				$('#nameHelper').text('이름을 입력해주세요');
+				$('#consumerName').focus();
+			}  else {
+				$('#nameHelper').text('');
+			}
+		});
+		
+		$('#consumerPhone').blur(function() {
+			if($('#consumerPhone').val().length != 13) {
+				$('#phoneHelper').text('휴대전화를 입력해주세요');
+				$('#consumerPhone').focus();
+			} else {
+				$('#phoneHelper').text('');
+
+			}
+		});
+		
+		$('#consumerEmail').blur(function() {
+			if($('#consumerEmail').val().includes('@') == false) {
+				$('#emailHelper').text('이메일을 입력해주세요');
+				$('#consumerEmail').focus();
+			} else {
+				$('#emailHelper').text('');
+			}
+		});
+		
+		$('#consumerAccount').blur(function() {
+			if($('#consumerAccount').val() == '') {
+				$('#accountNumberHelper').text('계좌를 입력해주세요');
+				$('#consumerAccount').focus();
+			} else {
+				$('#accountNumberHelper').text('');
+			}
+		});
+		
+		// 빈칸 확인	
+		function updateMemberCheck(){
+			var u = updateForm;
+			u.action ='updateConsumerInfoController';
+
+			if(u.consumerDetailedAddress.value.trim() == ""){
+				alert('상세주소를 입력하세요');
+				r.consumerDetailedAddress.focus();
+				return;
+			}
+			if(u.consumerName.value.trim() == ""){ // 이름 빈칸 검사
+				alert('이름을 입력하세요');
+				u.consumerName.focus();
+				return;
+			}
+			if(u.consumerEmail.value.trim() == ""){ // 이메일 빈칸 검사
+				alert('이메일을 입력하세요');
+				u.consumerEmail.focus();
+				return;
+			}
+			if(u.consumerPhone.value.trim() == ""){ // 전화번호 빈칸 검사
+				alert('전화번호를 입력하세요');
+				u.consumerPhone.focus();
+				return;
+			}
+			if(u.consumerAccount.value.trim() == ""){ // 계좌번호 빈칸 검사
+				alert('계좌번호를 입력하세요');
+				u.consumerAccount.focus();
+				return;
+			}
+			u.submit();	
+		}
+		
 	</script>
 </html>
-

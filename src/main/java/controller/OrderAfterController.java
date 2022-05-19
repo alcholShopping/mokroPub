@@ -14,8 +14,8 @@ import dao.*;
 import vo.*;
 
 
-@WebServlet("/orderedController")
-public class OrderedController extends HttpServlet {
+@WebServlet("/orderAfterController")
+public class OrderAfterController extends HttpServlet {
 	OrderedDao orDao = new OrderedDao();
 	private ConsumerDao consumerDao = new ConsumerDao();
 	CartDao cartDao = new CartDao();
@@ -38,7 +38,7 @@ public class OrderedController extends HttpServlet {
 		List<Order> orList = orDao.selectOrderedById(consumerNo);
 		
 		request.setAttribute("orList", orList); // jsp에 보여줄 값을 반환
-		request.getRequestDispatcher("/WEB-INF/view/review/ordered.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/review/orderAfter.jsp").forward(request, response);
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
