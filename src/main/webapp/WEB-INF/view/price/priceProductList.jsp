@@ -113,7 +113,7 @@
 				<div class="product">
 					<div class="product_image">
 						<a href="${pageContext.request.contextPath}/productOneController?productNo=${p.getProductNo()}">
-								<img src="images/product_1.jpg" alt="">
+								<img src="images/${p.picture}" alt="">
 						</a>
 					</div>
 					<div class="product_content clearfix">
