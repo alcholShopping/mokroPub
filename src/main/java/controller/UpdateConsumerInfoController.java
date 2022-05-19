@@ -106,7 +106,8 @@ public class UpdateConsumerInfoController extends HttpServlet {
 		System.out.println(consumerUpdateDate + " <-- consumerUpdateDate doPost() UpdateConsumerInfoController");
 
 		consumerDao.updateConsumerInfo(consumer);
-		response.sendRedirect(request.getContextPath()+"/consumerOneInfoController");
+		request.setAttribute("consumerId", consumerId);
+		request.getRequestDispatcher("/WEB-INF/login/updateConsumerPw/.jsp").forward(request, response);
 
 	}
 	
