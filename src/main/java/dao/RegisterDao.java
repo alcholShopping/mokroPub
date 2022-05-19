@@ -83,4 +83,40 @@ public class RegisterDao {
 		return list;
 	}
 	
+	public int confirmId(String confirmId){
+		ArrayList<String> nameList = new ArrayList<String>(); 
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;	
+		
+		conn = DBUtil.getConnection();		
+		
+		String sql = " SELECT consumer_id FROM consumer ";
+		try {
+			stmt = conn.prepareStatement(sql);
+			rs = stmt.executeQuery();
+			while(rs.next()) {
+				nameList.add(rs.getString("consumer_id"));
+
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}				
+		}
+		
+		for(String s : nameList) {
+			if(confirmId.equals(s)) {
+				return 1; // 중복이면 1
+			}
+			
+		}
+		
+		return 0; // 중복아니면 0
+	}
 }

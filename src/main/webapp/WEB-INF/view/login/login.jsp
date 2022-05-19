@@ -48,7 +48,7 @@
 							<br>
 							<button type="submit" class="btn btn-info text-White btn-block">Log In</button>
 							<hr>
-							<a href="${pageContext.request.contextPath}/registerController" type="submit" class="btn btn btn-outline-secondary btn-block">Sing Up</a>
+							<a href="${pageContext.request.contextPath}/registerController" type="submit" class="btn btn btn-outline-secondary btn-block">Sign Up</a>
 							<a href="${pageContext.request.contextPath}/findConsumerPwController" type="submit" class="btn btn btn-outline-secondary btn-block">Find Password</a>
 						</form>
 					</div>

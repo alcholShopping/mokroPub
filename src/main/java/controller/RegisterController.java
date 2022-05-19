@@ -20,8 +20,7 @@ import vo.*;
 @WebServlet("/registerController")
 public class RegisterController extends HttpServlet {
 	private RegisterDao registerDao = new RegisterDao();
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 		// 로그인 상태 확인
 		HttpSession session = request.getSession();
 		String sessionMemberId = (String)session.getAttribute("sessionMemberId");
@@ -107,7 +106,7 @@ public class RegisterController extends HttpServlet {
 		if(row == 1) {
 			response.sendRedirect("loginController");
 		} else {
-			response.sendRedirect("registerController");
+			response.sendRedirect("registerController?errorNo=111");
 		}
 	}
 
