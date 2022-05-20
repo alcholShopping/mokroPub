@@ -49,7 +49,7 @@
 										</tr>
 										
 										<tr>
-											<th><a href="${pageContext.request.contextPath}/inquriyListController">문의사항</a></th>
+											<th><a href="${pageContext.request.contextPath}/inquiryListController">문의사항</a></th>
 										</tr>									
 										<tr>
 											<th><a href="${pageContext.request.contextPath}/myReviewListController">내가 작성한 리뷰</a></th>

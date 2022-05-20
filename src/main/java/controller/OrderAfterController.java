@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,7 +37,22 @@ public class OrderAfterController extends HttpServlet {
 		int consumerNo = consumerDao.changeConsumerIdToNo(sessionMemberId);
 		
 		// 사용자아이디로 번호를 찾기 orList로 반환
-		List<Order> orList = orDao.selectOrderedById(consumerNo);
+		List<Map<String,Object>> orList = orDao.selectOrderedById(consumerNo);
+		
+		for(Map m : orList) {
+			System.out.println(m.get("orderNo") + "<----orderNo  doGet()  OrderAfterController");
+			System.out.println(m.get("consumerNo") + "<----consumerNo  doGet()  OrderAfterController");
+			System.out.println(m.get("productName") + "<----productName  doGet()  OrderAfterController");
+			System.out.println(m.get("zipcode") + "<----zipcode  doGet()  OrderAfterController");
+			System.out.println(m.get("address") + "<----address  doGet()  OrderAfterController");
+			System.out.println(m.get("payment") + "<----payment  doGet()  OrderAfterController");
+			System.out.println(m.get("method") + "<----method  doGet()  OrderAfterController");
+			System.out.println(m.get("count") + "<----count  doGet()  OrderAfterController");
+			System.out.println(m.get("couponListNo") + "<----couponListNo  doGet()  OrderAfterController");
+			System.out.println(m.get("createDate") + "<----createDate  doGet()  OrderAfterController");
+			System.out.println(m.get("updateDate") + "<----updateDate  doGet()  OrderAfterController");
+			System.out.println(m.get("status") + "<----status  doGet()  OrderAfterController");
+		}
 		
 		request.setAttribute("orList", orList); // jsp에 보여줄 값을 반환
 		request.getRequestDispatcher("/WEB-INF/view/review/orderAfter.jsp").forward(request, response);

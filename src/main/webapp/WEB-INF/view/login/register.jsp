@@ -80,7 +80,7 @@
 									<th>
 										<div class="input-group mb-3">
 											<input type="text" class="form-control"
-											placeholder="Enter ID" name="consumerId" id="id">
+											placeholder="Enter ID" name="consumerId" id="id" value="${consumerId}">
 											<button type="submit" onclick="javascript: form.action='confirmIdController';">ID중복확인</button>								
 										</div>
 										<span id="idHelper" class="helper" value="${cofirmResult}">${cofirmResult}</span>

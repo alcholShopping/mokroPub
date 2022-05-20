@@ -39,8 +39,26 @@ public class MyReviewListController extends HttpServlet {
 		// 디버깅
 		System.out.println(consumerNo + " <-- consumerId doGet() myReviewListController");
 		
-		List<Map<String,Object>> myReviewList = reviewDao.SelectMyReviewById(consumerNo);
+		// 페이징
+		int currentPage = 1;
+		int total = reviewDao.selectReviewTotal();
+		if(request.getParameter("currentPage") != null) {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+		int rowPerPage = 6;
+		int beginRow = (currentPage-1)*rowPerPage; 
+		int lastPage = (int)(Math.ceil((double)total/(double)rowPerPage)); 
+		// -----------------------------디버깅-----------------------------
+		System.out.println(currentPage + " <-- currentPage doGet() MyReviewListController");		
+		System.out.println(rowPerPage + " <-- rowPerPage doGet() MyReviewListController");
+		System.out.println(beginRow + " <-- beginRow doGet() MyReviewListController");
+		System.out.println(currentPage + " <-- currentPage doGet() MyReviewListController");
 		
+		
+		List<Map<String,Object>> myReviewList = reviewDao.SelectMyReviewById(consumerNo,beginRow,rowPerPage);
+		
+		request.setAttribute("currentPage", currentPage);
+		request.setAttribute("lastPage", lastPage);
 		request.setAttribute("myReviewList", myReviewList); // jsp에 보여줄 값을 반환	
 		request.getRequestDispatcher("/WEB-INF/view/review/myReviewList.jsp").forward(request, response);
 	}

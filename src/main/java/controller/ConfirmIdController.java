@@ -42,8 +42,10 @@ public class ConfirmIdController extends HttpServlet {
 		
 		if(confirmNo == 1) {		
 			request.setAttribute("cofirmResult", "중복입니다" );
+			
 		} else {
 			request.setAttribute("cofirmResult", "중복되지 않습니다" );
+			request.setAttribute("consumerId", consumerId);
 		} 
 		request.setAttribute("addressResult", addressResult );
 		request.getRequestDispatcher("/WEB-INF/view/login/register.jsp").forward(request, response);

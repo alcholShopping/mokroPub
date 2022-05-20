@@ -4,67 +4,76 @@ import java.sql.*;
 import java.util.*;
 
 import util.DBUtil;
+import java.util.HashMap;
 import vo.Order;
 
 
 public class OrderedDao {
 	// 사용자아이디로 번호를 찾기
-	public List<Order> selectOrderedById(int consumerNo){
-		List<Order> OrderedList = new ArrayList<>();
-		Order or = null;
+	public List<Map<String,Object>> selectOrderedById(int consumerNo){
+		List<Map<String,Object>> OrderedList = new ArrayList<Map<String,Object>>();
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		String sql = " SELECT order_no orderNo "
-				+ ", consumer_no consumerNo "
-				+ ", product_no productNo "
-				+ ", zipcode "
-				+ ", address "
-				+ ", detailed_address detailedAddress "
-				+ ", payment "
-				+ ", method "
-				+ ", count "
-				+ ", consumer_coupon_list_no couponListNo "
-				+ ", create_date createDate "
-				+ ", update_date updateDate "
-				+ " FROM `order` "
-				+ " WHERE consumer_no = ? "
-				+ " ORDER BY create_date DESC ";
-		
+		String sql ="  SELECT o.order_no orderNo  "
+				+ "								, o.consumer_no consumerNo  "
+				+ "							, o.product_no productNo  "
+				+ "								, o.zipcode  "
+				+ "								, o.address  "
+				+ "								, o.detailed_address detailedAddress  "
+				+ "								, o.payment "
+				+ "								, o.method  "
+				+ "								, o.count  "
+				+ "								, o.consumer_coupon_list_no couponListNo  "
+				+ "								, o.create_date createDate  "
+				+ "								, o.update_date updateDate  "
+				+ "								, d.`status` "
+				+ "								, p.name"
+				+ "								FROM `order` o INNER JOIN delivery d "
+				+ "								ON o.order_no = d.order_no  "
+				+ "								INNER JOIN product p "
+				+ "								ON o.product_no = p.product_no"
+				+ "								WHERE consumer_no = ? "
+				+ "								ORDER BY o.create_date DESC   ";
 		try {
 			conn = DBUtil.getConnection();
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, consumerNo);
 			rs = stmt.executeQuery();
 			while(rs.next()) {
-				or = new Order();
-				or.setOrderNo(rs.getInt("orderNo"));
-				or.setConsumerNo(rs.getInt("consumerNo"));
-				or.setProductNo(rs.getInt("productNo"));
-				or.setZipcode(rs.getString("zipcode"));
-				or.setAddress(rs.getString("address"));
-				or.setDetailedAddress(rs.getString("detailedAddress"));
-				or.setPayment(rs.getString("payment"));
-				or.setMethod(rs.getString("method"));
-				or.setCount(rs.getInt("count"));
-				or.setConsumerCouponListNo(rs.getString("couponListNo"));
-				or.setCreateDate(rs.getString("createDate"));
-				or.setUpdateDate(rs.getString("updateDate"));		
-				OrderedList.add(or);
-				
+				Map<String,Object> m = new HashMap<String,Object>();
+				m.put("orderNo", rs.getInt("orderNo"));
+				m.put("consumerNo", rs.getInt("consumerNo"));
+				m.put("productNo", rs.getInt("productNo"));
+				m.put("zipcode", rs.getString("o.zipcode"));
+				m.put("address", rs.getString("o.address"));
+				m.put("payment", rs.getInt("o.payment"));
+				m.put("method", rs.getString("o.method"));
+				m.put("count", rs.getInt("o.count"));
+				m.put("status", rs.getString("d.status"));
+				m.put("productName", rs.getString("p.name"));
+				m.put("couponListNo", rs.getInt("couponListNo"));
+				m.put("createDate", rs.getString("createDate"));
+				m.put("updateDate", rs.getString("updateDate"));
+	
+				OrderedList.add(m);
 				// 디버깅
-				System.out.println(or.getOrderNo() + " <-- orderNo selectOrderedById() OrderedDao ");
-				System.out.println(or.getConsumerNo() + " <-- consumerNo selectOrderedById() OrderedDao ");
-				System.out.println(or.getProductNo() + " <-- productNo selectOrderedById() OrderedDao ");
-				System.out.println(or.getZipcode() + " <-- zipcode selectOrderedById() OrderedDao ");
-				System.out.println(or.getAddress() + " <-- address selectOrderedById() OrderedDao ");
-				System.out.println(or.getDetailedAddress() + " <-- detailedAddress selectOrderedById() OrderedDao ");
-				System.out.println(or.getPayment() + " <-- payment selectOrderedById() OrderedDao ");
-				System.out.println(or.getMethod() + " <-- method selectOrderedById() OrderedDao ");
-				System.out.println(or.getCount() + " <-- count selectOrderedById() OrderedDao ");
-				System.out.println(or.getConsumerCouponListNo() + " <-- couponListNo selectOrderedById() OrderedDao ");
-				System.out.println(or.getCreateDate() + " <-- createDate selectOrderedById() OrderedDao ");
-				System.out.println(or.getUpdateDate() + " <-- updateDate selectOrderedById() OrderedDao ");
+				System.out.println(m.get("orderNo") + "<----orderNo  selectOrderedById()  OrderedDao");
+				System.out.println(m.get("consumerNo") + "<----consumerNo  selectOrderedById()  OrderedDao");
+				System.out.println(m.get("productNo") + "<----productNo  selectOrderedById()  OrderedDao");
+				System.out.println(m.get("zipcode") + "<----zipcode  selectOrderedById()  OrderedDao");
+				System.out.println(m.get("address") + "<----address  selectOrderedById()  OrderedDao");
+				System.out.println(m.get("payment") + "<----payment  selectOrderedById()  OrderedDao");
+				System.out.println(m.get("method") + "<----method  selectOrderedById()  OrderedDao");
+				System.out.println(m.get("count") + "<----count  selectOrderedById()  OrderedDao");
+				System.out.println(m.get("status") + "<----status  selectOrderedById()  OrderedDao");
+				System.out.println(m.get("productName") + "<----productName  selectOrderedById()  OrderedDao");
+				System.out.println(m.get("couponListNo") + "<----couponListNo  selectOrderedById()  OrderedDao");
+				System.out.println(m.get("productName") + "<----productName  selectOrderedById()  OrderedDao");
+				System.out.println(m.get("createDate") + "<----createDate  selectOrderedById()  OrderedDao");
+				System.out.println(m.get("updateDate") + "<----updateDate  selectOrderedById()  OrderedDao");
+				
+				
 				} 
 			
 			} catch (SQLException e) {

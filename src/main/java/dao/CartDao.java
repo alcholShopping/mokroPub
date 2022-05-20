@@ -324,7 +324,8 @@ public class CartDao {
 			}
 		} 
 	}
-		
+
+	
 	//상단바 장바구니 담긴 개수
 	public int CartCountNum(int cunsumerId) {
 		int cnt = 0;

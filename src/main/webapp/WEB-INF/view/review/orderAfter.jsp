@@ -46,23 +46,31 @@
 		                     <td>결제 금액</td>
 		                     <td>쿠폰 사용내역</td>
 		                     <td>결제방법</td>
+		                     <td>배송 방법</td>
 		                     <td>결제일</td>	                    
 	                  	</tr>
 	                  	<c:forEach items="${orList}" var="item">			
 						<tr>
-							<td>${item.productNo}</td>
+							<td>${item.productName}</td>
 							<td>${item.payment}원</td>
 							<td>${item.count}</td>
 							<td>${item.count*item.payment}</td>
 							<td>
-							<c:if test="${item.consumerCouponListNo == 0}">없음</c:if> 
-							<c:if test="${item.consumerCouponListNo != 0}">${item.consumerCouponListNo}</c:if> 
+							<c:if test="${item.couponListNo == 0}">없음</c:if> 
+							<c:if test="${item.couponListNo != 0}">${item.couponListNo}번 쿠폰</c:if> 
 							</td>
 							<td>${item.method}</td>
+							<td>
+								${item.status}
+								<input type="hidden" value="${item.status}" id="status">
+							</td>
 							<td>
 								${item.createDate}
 								<a href="reviewController?orderNo=${item.orderNo}" class="float-right btn btn-outline-secondary btn-sm">
 								리뷰하기</a>
+								<a href="refundController?orderNo=${item.orderNo}&status=${item.status}" class="float-right btn btn-outline-secondary btn-sm" onclick="refund()">
+								환불하기
+								</a>
 							</td>
 						</tr>					
 					</c:forEach>
@@ -74,5 +82,12 @@
 	<jsp:include page="../../../WEB-INF/inc/footer.jsp"></jsp:include>
 </div>
 </body>
-
+<script>
+	function refund(){
+		if($('#status').val() == "환불"){
+			alert("환불 진행 중입니다.")
+		}
+	}
+	
+</script>
 </html>

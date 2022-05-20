@@ -148,6 +148,78 @@ public class OrderCompleteDao {
 			}		
 			return CouponNo;
 		}
+		//주문 번호 찾는 쿼리 
+		public int selectOrderNo(int consumerId ,int productNo) {
+			int orderNo = 0;
+			Connection conn = null;
+			PreparedStatement stmt = null;
+			ResultSet rs = null;
+			// 카드에 따른 상품번호와 갯수
+			String sql = "SELECT order_no orderNo FROM `order`  WHERE product_no = ? AND consumer_no = ? AND create_date = NOW() ";
+			
+			try {
+				conn = DBUtil.getConnection();
+				stmt = conn.prepareStatement(sql);
+				stmt.setInt(1, productNo);
+				stmt.setInt(2, consumerId);				
+				rs = stmt.executeQuery();
+				if(rs.next()) {
+					orderNo = rs.getInt("orderNo");
+					
+					System.out.println(orderNo + "<--- orderNo selectOrderNo() OrderCompleteDao");
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}		
+			
+			return orderNo;
+		}
+		//주문 완료 시 배달 테이블 입력
+		public void insertInDelivery(int orderNo) {
+			/*
+			 * delivery테이블에 데이터를 집어 넣는 쿼리
+			 * INSERT INTO
+			 */
+			int row = 0;
+			Connection conn = null;
+			PreparedStatement stmt = null;
+			ResultSet rs = null;
+						
+			// consumer_id, password, name, phone, email, address, Detailed_Addreess, Account, UPDATE_DATE
+			String sql = "INSERT INTO delivery(order_no,`status`,method,create_date,update_date) VALUES(?,?,?,NOW(),NOW())";
+			// DB값 요청
+			// DB에 저장하고 나서 controller에서 받은 jsp값을 받은 값을 DB에 요청 그리고 저장
+			try {
+
+				conn = DBUtil.getConnection();
+				stmt = conn.prepareStatement(sql);
+				stmt.setInt(1,orderNo);
+				stmt.setString(2,"배송 준비중");
+				stmt.setString(3, "직접 배송");
+				row = stmt.executeUpdate();
+				if(row == 1) {
+					System.out.println("입력 성공");
+				}else {
+					System.out.println("입려 실패");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					stmt.close();
+					conn.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
 
 }
 	

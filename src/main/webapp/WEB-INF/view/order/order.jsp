@@ -20,7 +20,7 @@
 <link href="plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<form method="post" action="${pageContext.request.contextPath}/orderCompleteController">
+<form method="post"  name="orderForm" action="${pageContext.request.contextPath}/orderCompleteController">
 <div class="super_container">
    <!-- Header -->
    <jsp:include page="../../../WEB-INF/inc/navBar.jsp"></jsp:include>
@@ -37,7 +37,7 @@
          <td rowspan="2" class="table_td">=</td>
          <td class="table_td">실제 구매 금액</td>
          <td rowspan="2">
-            <button type="submit" id="orderBtn" class="btn btn-primary">주문하기</button>
+            <button type="button" onclick="orderBtn()" class="btn btn-primary">주문하기</button>
          </td>
          </tr>
          <tr>
@@ -87,7 +87,7 @@
                </c:forEach>
             <tr>
                <td colspan="4" class="text-right">주문 수량 - ${cartCount}개  총 금액  ₩ ${totalPrice} 원</td>
-               </tr>
+            </tr>
             </table>   
       <!-- 회원정보 내역 -->
          <table class ="table table-bordered">
@@ -273,6 +273,44 @@
          $('#methodHelper').text('');
          
       }
-   });   
+   });
+	function orderBtn(){
+		var r = orderForm;
+		r.action ='orderCompleteController'
+		   if($('#detailedAddress').val().length == 0) {
+	         $('#detailedAddressHelper').text('상세주소를  입력해주세요');
+	         $('#detailedAddress').focus();
+	         
+	      } else {
+	         $('#detailedAddressHelper').text('');
+
+	      }
+	      if($('#name').val().length == 0) {
+	          $('#nameHelper').text('이름을 입력해주세요');
+	          $('#name').focus();
+	          return;
+	       } else {
+	          $('#nameHelper').text('');
+	       }
+	      if($('#phone').val().length != 13) {
+	          $('#phoneHelper').text('휴대전화를 입력해주세요');
+	          $('#phone').focus();
+	          return;
+	       } else {
+	          $('#phoneHelper').text('');
+
+	       }
+	      if($('.method:checked').length == 0){
+	          $('#methodHelper').text('결제 방법을 선택해주세요');
+	          alert("결제 방법을 선택해주세요");
+	          $('.method').focus();
+	          return;
+	       } else {
+	          $('#methodHelper').text('');
+	          
+	          
+	       }
+	      r.submit();
+	   };
 </script>
 </html>

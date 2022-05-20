@@ -78,6 +78,7 @@ public class OrderCompleteController extends HttpServlet {
 		// 카트에 있는 상품번호와 갯수를 가져오는 리스트
 		List<Map<String,Object>> list = orderCompleteDao.selectCartProduct(consumerId);
 				
+		cartDao = new CartDao();
 		// 디버깅
 		for(Map m : list) {
 			System.out.println(m.get("productNo") + " <-- productNo doPost() OrderCompleteController");
@@ -96,7 +97,12 @@ public class OrderCompleteController extends HttpServlet {
 			
 			// 주문테이블에 넣는 메소드 호출
 			orderCompleteDao.insertInOrder(consumerId, productNo, zipcode, addr, detailedAddress, priceProductNoCount, count, couponNo);
-			
+		
+			//주문 번호를 찾아주는 쿼리
+			int orderNo = orderCompleteDao.selectOrderNo(consumerId, productNo);
+			System.out.println(orderNo + "<-----orderNo doPost OrderCompleteController");
+			//찾아온 주문번호를 이용해 배달 테이블에 입력
+			orderCompleteDao.insertInDelivery(orderNo);
 		}
 			couponDao = new CouponDao();
 			// 쿠폰 사용 쿠폰-1
@@ -110,13 +116,15 @@ public class OrderCompleteController extends HttpServlet {
 			System.out.println(UseCouponCount + " <-- UseCouponCount doPost() OrderCompleteController");
 			
 			//구매 완료 후 상품을 모두 삭제하는 쿼리
-			cartDao = new CartDao();
 			cartDao.DeleteProductInCartAll(consumerId);
+			
 			
 			// 장바구니 담긴 갯수 
 			int cartCount = cartDao.CartCountNum(consumerId);
 			System.out.println(cartCount + "cartCount=================================");
 			session.setAttribute("cartCount", cartCount);
+			
+			
 			request.getRequestDispatcher("/WEB-INF/view/order/orderFinish.jsp").forward(request, response);	
 			return;
 		

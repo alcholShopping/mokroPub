@@ -79,7 +79,19 @@
 						
 						</tr>					
 					</c:forEach>
+
 				</table>  
+				<div class="pagebutton text-center">
+						<!-- 이전 버튼 -->
+						<c:if test="${currentPage > 1}">
+							<a href="${pageContext.request.contextPath}/myReviewListController?currentPage=${currentPage-1}" class="btn btn-link">이전</a>
+						</c:if>
+					
+						<!-- 다음 버튼 -->
+						<c:if test="${currentPage < lastPage}">
+							<a href="${pageContext.request.contextPath}/myReviewListController?currentPage=${currentPage+1}" class="btn btn-link">다음</a>
+						</c:if>
+				</div>
 			</div>  
 	</div>
 </div>

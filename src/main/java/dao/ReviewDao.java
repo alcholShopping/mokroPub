@@ -130,7 +130,7 @@ public class ReviewDao {
 	
 	
 	
-	public List<Map<String, Object>> SelectMyReviewById(int consumerNo){
+	public List<Map<String, Object>> SelectMyReviewById(int consumerNo,int beginRow,int rowPerPage){
 		List<Map<String, Object>> reviewList = new ArrayList<Map<String, Object>>();
 		Map<String, Object> re = null;
 		Connection conn = null;
@@ -144,12 +144,14 @@ public class ReviewDao {
 				+ "	ON r.order_no = o.order_no "
 				+ "	INNER JOIN product p "
 				+ "	ON o.product_no = p.product_no "
-				+ " WHERE o.consumer_no = ? ORDER BY reviewNo DESC";
+				+ " WHERE o.consumer_no = ? ORDER BY reviewNo DESC LIMIT ?,?";
 		
 		try {
 			conn = DBUtil.getConnection();
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, consumerNo);
+			stmt.setInt(2, beginRow);
+			stmt.setInt(3, rowPerPage);
 			
 			rs = stmt.executeQuery();
 			while(rs.next()) {
@@ -159,7 +161,7 @@ public class ReviewDao {
 				re.put("name", rs.getString("name"));
 				re.put("content", rs.getString("content"));
 				re.put("star", rs.getInt("star"));
-	
+			
 				System.out.println(re.get("reviewNo") + " <-- reviewNo SelectMyReviewById() ReviewDao ");
 				System.out.println(re.get("picture") + " <-- picture SelectMyReviewById() ReviewDao ");
 				System.out.println(re.get("name") + " <-- name SelectMyReviewById() ReviewDao ");
@@ -390,6 +392,34 @@ public class ReviewDao {
 					e.printStackTrace();
 				}
 			}		
+	}
+	// 카테코리에 따른 상품 갯수 출력
+	public int selectReviewTotal(){
+		int total = 0;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs =null;
+		//product에서 category_no에 따른 상품 갯수를 가져옴
+		String sql=" SELECT COUNT(*) cnt FROM review ";
+	try {
+		conn = DBUtil.getConnection();
+		stmt = conn.prepareStatement(sql);
+		rs = stmt.executeQuery();
+		while(rs.next()) {
+			total = rs.getInt("cnt");
+			//----------------------- 디버깅--------------------------
+			System.out.println(total + " <-- total selectReviewTotal() ReviewDao");
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally {
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	} 
+		return total;
 	}
 	
 }
