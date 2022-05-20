@@ -41,7 +41,7 @@
 			<div class="col">
 				<div class="section_title_container text-center">
 					<div class="section_subtitle">목로주점</div>
-						<div class="section_title">${type} (${total})</div>
+						<div class="section_title"> ${type} (${total})</div>
 				</div>
 			</div>
 		</div>

@@ -44,7 +44,7 @@ public class LoginDao {
 	
 	// 일반 비밀번호를 복호화된 비밀번호로 가져오는 메서드
 	public String changePwToEncryptionPw(String sessionMemberId, String pw) {
-		String password = "";
+		String password = null;
 		Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;       
@@ -71,7 +71,7 @@ public class LoginDao {
         System.out.println(password + " <-- password changePwToencryptionPw() LoginDao");
 		return password;
 	}
-	
+
 	// 비밀번호 변경과 비밀번호 마지막 변경 날짜 업데이트
 	public void UpdateConsumerPwAndDate(int consumerId,String updatePw ) {
 		int row = 0;
@@ -138,5 +138,5 @@ public class LoginDao {
 			}
 		} 
 	}
-		
+	
 }

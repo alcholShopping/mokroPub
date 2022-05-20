@@ -33,67 +33,70 @@
 </style>
 </head>
 <body>
-<div class="super_container">
-	<!-- Header -->	
-	<jsp:include page="/WEB-INF/inc/navBar.jsp"></jsp:include>
-	<!-- contents -->
-	<div class="register">
-			<div class="gallery">
-				<div class="container">
-					<div class="row">
-						<div class="col">
-							<div class="register_title text-center">
-							
-								<form action="${pageContext.request.contextPath}/reviewUpdateController" method="post" enctype="multipart/form-data">
-									<table class = "table">
+
+	<div class="super_container">
+		<!-- Header -->	
+		<jsp:include page="/WEB-INF/inc/navBar.jsp"></jsp:include>
+		<!-- contents -->
+		<div class="nullbox">
+		</div>
+		<!-- contents -->
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="section_title_container text-center">
+						<div class="section_subtitle">
+						목로주점
+						</div>
+						<div class="section_title">
+						review
+						</div>
+						<br>
+						<div class="row">
+						<div class="col-sm-1">
+						</div>
+						<div class="col-sm-10">
+							<form action="${pageContext.request.contextPath}/reviewController" method="post" enctype="multipart/form-data">
 									
-										<tr>
-											<td>리뷰 번호 : </td>
-											<td> <input type="text" readonly="readonly" name="reviewNo" value="${rev.reviewNo}"></td>
-										</tr>
-										
-										<tr>
-											<th>별점</th>
-											<th>
-											<div class="starRev" name="starRev">
-											  <span class="starR on" onClick="setStar(1)">별1</span>
-											  <span class="starR on" onClick="setStar(2)">별2</span>
-											  <span class="starR on" onClick="setStar(3)">별3</span>
-											  <span class="starR" onClick="setStar(4)">별4</span>
-											  <span class="starR" onClick="setStar(5)">별5</span>
-											  <input type="hidden" id="settedStar" name="settedStar" value="3">
-											</div>
-											
-											
-											</th>
-										</tr>
-										
-										<tr>
-											<td>내용</td>
-											<td><textarea cols="50" rows="10" name="content" >${rev.content}</textarea> </td>
-										</tr>
-										
-										<tr>
-											<td>사진</td>
-											<td><input type="file" name="picture"></td>
-										</tr>
-										
-										<tr>
-											<td></td>
-											<td><button type="submit">취소</button><button type="submit">제출</button></td>
-										</tr>
-										
-										
-										
-									</table>
+									
+								<table class = "table">
+									<tr>
+										<td>상품이름 <input type="hidden" readonly="readonly" name="orderNo" value="${orderNo}"></td>
+										<td class="text-left">${pName}</td>
+										<td>별점</td>
+										<td>
+										<div class="starRev" name="starRev">
+										  <span class="starR on" onClick="setStar(1)">별1</span>
+										  <span class="starR on" onClick="setStar(2)">별2</span>
+										  <span class="starR on" onClick="setStar(3)">별3</span>
+										  <span class="starR" onClick="setStar(4)">별4</span>
+										  <span class="starR" onClick="setStar(5)">별5</span>
+										  <input type="hidden" id="settedStar" name="settedStar" value="3">
+										</div>
+										</td>
+									</tr>
+									<tr>
+										<td>사진</td>
+										<td class="text-left" colspan="3" ><input type="file" name="picture"></td>
+									</tr>
+									<tr>
+										<td>내용</td>
+										<td colspan="3" class="text-left"><textarea cols="100" rows="12" name="content">${rev.content}</textarea> </td>
+									</tr>	
+									<tr>
+										</table>
+										<button type="submit" class="btn btn-outline-secondary ">제출</button>
 								</form>
+							</div>
+							<div class="col-sm-1">
 							</div>
 						</div>
 					</div>
-				</div>	
-			</div>
+				</div>
+			</div>	
 		</div>
 	</div>
+	
 	<!-- Footer -->	
 	<jsp:include page="/WEB-INF/inc/footer.jsp"></jsp:include>
 	<script>

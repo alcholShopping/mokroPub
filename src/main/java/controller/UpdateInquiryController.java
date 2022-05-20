@@ -29,18 +29,19 @@ public class UpdateInquiryController extends HttpServlet {
 		HttpSession session = request.getSession();
 		String sessionMemberId = (String)session.getAttribute("sessionMemberId");
 		// inquiryOne.jsp에서 값 받아오기
-		int inquiryNo = Integer.parseInt(request.getParameter("inquiryNo"));
 		String accessId = request.getParameter("consumerId");		
 		// 디버깅
 		System.out.println(accessId + " <-- sessoinMemberId doGet() updateInquiryController");
 		System.out.println(sessionMemberId + " <-- sessoinMemberId doGet() updateInquiryController");
-		System.out.println(inquiryNo + " <-- inquiryNo doGet() updateInquiryController");
 		
 		if( (sessionMemberId == null) || (!sessionMemberId.equals(accessId)) ) {
 			// sessionMemberId가 글쓴이가 아니고 비로그인상태면 loginController로 이동
 			response.sendRedirect(request.getContextPath()+"/loginController");
 			return;
-		}		
+		}	
+		
+		int inquiryNo = Integer.parseInt(request.getParameter("inquiryNo"));
+		System.out.println(inquiryNo + " <-- inquiryNo doGet() updateInquiryController");
 
 		List<Map<String,Object>> inquiryOneList = inquiryDao.selectInquiryOne(inquiryNo);
 		for(Map m : inquiryOneList) {

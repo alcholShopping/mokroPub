@@ -14,8 +14,8 @@ public class RegisterDao {
 		int row = 99;
 		Connection conn = null;
 		PreparedStatement stmt = null;
-		String sql = "INSERT INTO consumer(consumer_id, PASSWORD, NAME, phone, email, zipcode, address, detailed_Address, consumer_level, adult_certification, resident_number, ACCOUNT, create_date, update_date)"
-				+ " VALUE(?, PASSWORD(?), ?, ?, ?, ?, ? ,?, 0, ?, ?, ?, NOW(), NOW());";
+		String sql = "INSERT INTO consumer(consumer_id, PASSWORD, NAME, phone, email, zipcode, address, detailed_Address, consumer_level, adult_certification, resident_number, ACCOUNT, create_date, update_date, pw_update_date)"
+				+ " VALUE(?, PASSWORD(?), ?, ?, ?, ?, ? ,?, 0, ?, ?, ?, NOW(), NOW(), NOW());";
 		
 		conn = DBUtil.getConnection();		
 		try {
@@ -41,7 +41,6 @@ public class RegisterDao {
 				e.printStackTrace();
 			}			
 		}
-		
 		return row;		
 	}
 	

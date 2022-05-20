@@ -159,7 +159,6 @@
 </div>
 </body>
 <script>
-
 	$('#id').blur(function(){
 		if( ($('#id').val().length < 4) || ($('#id').val().length > 20) ) {
 			console.log('아이디 갯수' + $('#id').val().length);

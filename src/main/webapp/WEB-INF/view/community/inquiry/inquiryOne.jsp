@@ -22,53 +22,66 @@
 </head>
 <body>
 	<div class="super_container">
-	<!-- Header -->
-	<jsp:include page="../../../../WEB-INF/inc/navBar.jsp"></jsp:include>
+		<!-- Header -->
+		<jsp:include page="../../../../WEB-INF/inc/navBar.jsp"></jsp:include>
+		
+		<!-- contents -->
+		<div class="nullbox">
+		</div>
+		<!-- Product -->
+		<div class="product">
+			<div class="container">
+				<div class="row product_row">
 	
-	<!-- contents -->
-	<div class="nullbox">
-	</div>
-	<!-- Product -->
-	<div class="product">
-		<div class="container">
-			<div class="row product_row">
-
-            	<c:forEach var="m" items="${inquiryOneList}">
-            	
-				<!-- notice Image -->
-				<div class="col-lg-7">
-					<div class="product_image">
-						<div class="product_image_large"><img src="images/${m.photo}" alt=""></div>
-						<div class="product_image_thumbnails d-flex flex-row align-items-start justify-content-start">
+	            	<c:forEach var="m" items="${inquiryOneList}">
+	            	
+					<!-- notice Image -->
+					<div class="col-lg-7">
+						<div class="product_image">
+							<div class="product_image_large"><img src="images/${m.photo}" alt=""></div>
+							<div class="product_image_thumbnails d-flex flex-row align-items-start justify-content-start">
+							</div>
 						</div>
 					</div>
-				</div>
-
-				<!-- Product Content -->
-				<div class="col-lg-5">
-					<div class="product_content">
-						<div>${m.inquiryNo}번</div>
-						<div>제목 : ${m.category}</div>
-						<div>작성자 : ${m.consumerId}</div>
-						<div>제목 : ${m.title}</div>
-						<div>답변 상태 : ${m.status}</div>
-						<div>작성날짜 : ${m.createDate}</div>
-						<br>
+	
+					<!-- Product Content -->
+					<div class="col-lg-5">
+						<div class="product_content">
+							<div>${m.inquiryNo}번</div>
+							<div>제목 : ${m.category}</div>
+							<div>작성자 : ${m.consumerId}</div>
+							<div>제목 : ${m.title}</div>
+							<div>답변 상태 : ${m.status}</div>
+							<div>작성날짜 : ${m.createDate}</div>
+							<br>
+						</div>
+					</div>				
+					<!-- content -->
+					<div>
+						<p>${m.content}</p>
 					</div>
-				</div>				
-				<!-- content -->
-				<div>
-					<p>${m.content}</p>
-				</div>
-				<div>답변 : ${m.answer}</div>
-				<div><a href="${pageContext.request.contextPath}/updateInquiryController?inquiryNo=${m.inquiryNo}&consumerId=${m.consumerId}">수정하기</a></div>
-				<div><a href="${pageContext.request.contextPath}/deleteInquiryController?inquiryNo=${m.inquiryNo}&consumerId=${m.consumerId}">삭제</a></div>
-				<div><a href="${pageContext.request.contextPath}/answerInquiryController?inquiryNo=${m.inquiryNo}">답변하기</a></div>
-				</c:forEach>
-			</div>		
+					<div>답변 : ${m.answer}</div>
+					<div style="display:none" class="conusmerBtn"><a href="${pageContext.request.contextPath}/updateInquiryController?inquiryNo=${m.inquiryNo}&consumerId=${m.consumerId}">수정하기</a></div>
+					<div style="display:none" class="conusmerBtn"><a href="${pageContext.request.contextPath}/deleteInquiryController?inquiryNo=${m.inquiryNo}&consumerId=${m.consumerId}">삭제</a></div>
+					<div id="adminBtn" style="display:none"><a href="${pageContext.request.contextPath}/answerInquiryController?inquiryNo=${m.inquiryNo}">답변하기</a></div>
+					</c:forEach>
+				</div>		
+			</div>
 		</div>
 	</div>
-	<!-- 끝 -->
-</div>
 </body>
+<script>
+	
+	if('${sessionScope.sessionMemberId}' == 'admin'){
+		console.log('admin입니다');
+		$("#adminBtn").show();	
+	}
+	
+	<c:forEach var="m" items="${inquiryOneList}">
+		if('${sessionScope.sessionMemberId}' == '${m.consumerId}' ){
+			console.log('작성자 입니다');
+			$(".conusmerBtn").show();	
+		} 
+	</c:forEach>
+</script>
 </html>

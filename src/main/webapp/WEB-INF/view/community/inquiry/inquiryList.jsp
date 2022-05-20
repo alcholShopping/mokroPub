@@ -32,7 +32,7 @@
 	         <div class="col">
 	         <div class="float-right">         
 			</div>			
-			<h2>공지사항</h2>
+			<h2>문의사항</h2>
 				<table class ="table table-bordered">
 					<thaed>
 						<th>번호</th>

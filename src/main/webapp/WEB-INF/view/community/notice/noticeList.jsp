@@ -33,7 +33,7 @@
 			</div>
 			<br>
 			<!-- 아이디가 admin인 경우만 보이게 해야함 -->
-			<a href="${pageContext.request.contextPath}/insertNoticeController" id="insertNoticeBtn" class="float-right">글쓰기</a>
+			<a href="${pageContext.request.contextPath}/insertNoticeController" id="adminBtn" class="float-right">글쓰기</a>
 			<table class ="table table-hover">
 				<thead>
 				<tr>
@@ -72,4 +72,10 @@
 	<jsp:include page="../../../../WEB-INF/inc/footer.jsp"></jsp:include>
 </div>
 </body>
+<script>
+	if('${sessionScope.sessionMemberId}' != 'admin'){
+		console.log('권한이 없습니다');
+		$("#adminBtn").css('display', 'none');	
+	} 
+</script>
 </html>
