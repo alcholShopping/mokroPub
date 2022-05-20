@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>findPassword</title>
+<title>updateConsumerPw</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Wish shop project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -34,53 +34,34 @@
 					목로주점
 					</div>
 					<div class="section_title">
-					Find Password
+					비밀번호 변경 
 					</div>
 					<br>
 					<div class="row">
 					<div class="col-sm-3">
 					</div>
 					<div class="col-sm-6">
-					<form action="${pageContext.request.contextPath}/findConsumerPwController" method="post">
-						<table class = "table text-center ">
-							<tr>
-								<th>아이디</th>
-								<th>
-									<input type="text" class="form-control" name="consumerId" id="consumerId">
-								</th>
-							</tr>
-							<tr>
-								<th>이름</th>
-								<th>
-									<input type="text" class="form-control" name="consumerName" id="consumerName">
-								</th>
-							</tr>
-							<tr>
-								<th>연락처</th>
-								<th>
-									<input type="text" class="form-control" name="phone" id="phone" placeholder="010-0000-0000">
-								</th>
-							</tr>	
-							<tr>
-								<td colspan="2">
-								<button type="submit" class="btn btn-info text-White btn-block" id="registerBtn">
-								비밀번호 변경</button>
-								</td>
-							</tr>								
-						</table>
-					</form>
+					<div class="errorText">${errorText}</div> 
+					<br>
+						<form action="${pageContext.request.contextPath}/updateConsumerPwController" method="post">
+							<input type="hidden" value="${consumerId}" name="updateId">
+							<input type="password" placeholder="변경할 PASSWORD를 입력하세요" class="form-control text-center" name="updatePw">
+							<br>				
+							<button type="submit" class="btn btn-info text-White btn-block">password 변경</button>
+						</form>
 					</div>
 					<div class="col-sm-3">
+					
+					</div>
+					</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</div>
-</div>
+	</div>	
+
 <!-- Footer -->
 <div class ="fixFooter">
 	<jsp:include page="../../../WEB-INF/inc/footer.jsp" ></jsp:include>
 </div>
-</body>
 </html>

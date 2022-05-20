@@ -34,7 +34,7 @@
 					목로주점
 					</div>
 					<div class="section_title">
-					Sing Up
+					Sign Up
 					</div>
 					<br>
 					<div class="row">
@@ -53,7 +53,16 @@
 										</div>										
 										<div>
 											<select name="addressResult" class="form-control">
-												<option value="" >::: 주소 선택 :::</option>
+												<option value="${addressResult}">
+												
+													<c:if test="${addressResult != '' || addressResult ne null}">
+														${addressResult}
+													</c:if>
+													
+													<c:if test="${addressResult} eq NULL">
+														::: 주소검색 :::
+													</c:if>
+												</option>
 												<c:forEach var="m" items="${searchList}">
 													<option value="${m.searchAddr} ${m.zipcode}">${m.searchAddr} ${m.zipcode}</option>
 												</c:forEach>
@@ -69,9 +78,13 @@
 								<tr>
 									<th>아이디</th>
 									<th>
-									<input type="text" class="form-control"
-										placeholder="Enter ID" name="consumerId" id="id">
-										<span id="idHelper" class="helper"></span>
+										<div class="input-group mb-3">
+											<input type="text" class="form-control"
+											placeholder="Enter ID" name="consumerId" id="id">
+											<button type="submit" onclick="javascript: form.action='confirmIdController';">ID중복확인</button>								
+										</div>
+										<span id="idHelper" class="helper" value="${cofirmResult}">${cofirmResult}</span>
+										
 									</th>
 								</tr>
 	
@@ -304,7 +317,7 @@
 			r.accountNumber.focus();
 			return;
 		}
-		r.submit();	
+		r.submit();
 	}
 	
 

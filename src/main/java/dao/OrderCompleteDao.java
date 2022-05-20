@@ -69,15 +69,20 @@ public class OrderCompleteDao {
 			}
 		}
 	}
-
-	// 카드에 따른 상품번호와 갯수
+	
+	
+	
+	// 카드에 따른 상품번호와 가격 갯수
 	public List<Map<String,Object>> selectCartProduct(int consumerNo){
 		List<Map<String, Object>> list = new ArrayList<>();
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		// 카드에 따른 상품번호와 갯수
-		String sql = " SELECT product_no productNo,count FROM cart WHERE consumer_no = ? ";
+		String sql = " SELECT c.product_no productNo, c.count count, p.price price"
+				+ " FROM cart c INNER JOIN product p"
+				+ " ON c.product_no = p.product_no "
+				+ " WHERE c.consumer_no = ? ";
 		
 		try {
 			conn = DBUtil.getConnection();
@@ -88,9 +93,12 @@ public class OrderCompleteDao {
 				Map<String, Object> m = new HashMap<String, Object>();
 				m.put("productNo", rs.getInt("productNo"));
 				m.put("count", rs.getInt("count"));
+				m.put("price", rs.getInt("price"));
 				//-----------------------디버깅
 				System.out.println(m.get("productNo") + " <-- productNo selectCartProduct() OrderCompleteDao  ");
 				System.out.println(m.get("count") + " <-- count selectCartProduct() OrderCompleteDao  ");
+				System.out.println(m.get("price") + " <-- count selectCartProduct() OrderCompleteDao  ");
+				
 				list.add(m);
 			}
 			
@@ -140,6 +148,7 @@ public class OrderCompleteDao {
 			}		
 			return CouponNo;
 		}
+
 }
 	
 

@@ -16,14 +16,26 @@ import dao.LoginDao;
 public class LogoutController extends HttpServlet {
 	private LoginDao loginDao;
 	private ConsumerDao consumerDao;
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		 HttpSession session = request.getSession();
 	     String sessionMemberId = (String)session.getAttribute("sessionMemberId");
 	     System.out.println(sessionMemberId + " <-- sessionMemberId doGet() consumerOneController");
+		
+		request.getSession().invalidate(); // session 갱신 메서드 : 기존 session을 지우고 새로운 새션을 부여함
+		response.sendRedirect(request.getContextPath()+"/loginController");
+	}
+	
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		 HttpSession session = request.getSession();
+	     String sessionMemberId = (String)session.getAttribute("sessionMemberId");
+	     System.out.println(sessionMemberId + " <-- sessionMemberId doPost() consumerOneController");
 	     
-		if(request.getParameter("check") != null){
-			System.out.println(request.getParameter("check") + "<-- check doGet() logoutController ");		
+		if(request.getParameter("check") == "1"){
+			System.out.println(request.getParameter("check") + "<-- check doPost() logoutController ");		
 			
 			String currentPw = request.getParameter("currentPw");
 			String changePw = request.getParameter("changePw");
@@ -48,5 +60,4 @@ public class LogoutController extends HttpServlet {
 		request.getSession().invalidate(); // session 갱신 메서드 : 기존 session을 지우고 새로운 새션을 부여함
 		response.sendRedirect(request.getContextPath()+"/loginController");
 	}
-	
 }

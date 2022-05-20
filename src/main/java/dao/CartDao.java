@@ -77,37 +77,37 @@ public class CartDao {
 		} 
 	}
 	// 장바구니에 담긴 상품의 갯수가 5개 초과시 5개로 변경해주는 데이터
-		public void updateProductInCartFive(int productNo, int consumerId) {
-			int row = 0;
-			Connection conn = null;
-			PreparedStatement stmt = null;
-			// CART에 있는 상품의 개수를 업데이트
-			String sql=" UPDATE cart "
-					+ " SET COUNT = 5 "
-					+ " WHERE consumer_no = ? AND product_no = ? ";
-			try {
-				conn = DBUtil.getConnection();
-				stmt = conn.prepareStatement(sql);
-				stmt.setInt(1, consumerId);
-				stmt.setInt(2, productNo);
-				
-				row = stmt.executeUpdate();
-				if(row == 1) {
-					System.out.println("입력성공");
-				} else {
-					System.out.println("입력실패");
-				}
+	public void updateProductInCartFive(int productNo, int consumerId) {
+		int row = 0;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		// CART에 있는 상품의 개수를 업데이트
+		String sql=" UPDATE cart "
+				+ " SET COUNT = 5 "
+				+ " WHERE consumer_no = ? AND product_no = ? ";
+		try {
+			conn = DBUtil.getConnection();
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, consumerId);
+			stmt.setInt(2, productNo);
+			
+			row = stmt.executeUpdate();
+			if(row == 1) {
+				System.out.println("입력성공");
+			} else {
+				System.out.println("입력실패");
+			}
 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
-			} finally {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			} 
-		}
+			}
+		} 
+	}
 	// 상품이 이미 장바구니에 존재한다면 수량을 하나 추가
 	public void insertProductOneInCart(int productNo, int count, int consumerId) {
 		int row = 0;

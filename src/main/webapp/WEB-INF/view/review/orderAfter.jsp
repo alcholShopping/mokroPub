@@ -44,6 +44,8 @@
 					<table class ="table table-bordered">		
 						<tr>
 		                     <td>상품정보</td>
+		                     <td>상품 금액</td>
+		                     <td>구매 수량</td>
 		                     <td>결제 금액</td>
 		                     <td>쿠폰 사용내역</td>
 		                     <td>결제방법</td>
@@ -53,6 +55,8 @@
 						<tr>
 							<td>${item.productNo}</td>
 							<td>${item.payment}원</td>
+							<td>${item.count}</td>
+							<td>${item.count*item.payment}</td>
 							<td>
 							<c:if test="${item.consumerCouponListNo == 0}">없음</c:if> 
 							<c:if test="${item.consumerCouponListNo != 0}">${item.consumerCouponListNo}</c:if> 

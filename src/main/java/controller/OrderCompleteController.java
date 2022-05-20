@@ -69,26 +69,35 @@ public class OrderCompleteController extends HttpServlet {
 
 		orderCompleteDao = new OrderCompleteDao();
 		
-		// 카트에 있는 상품번호와 갯수를 가져오는 리스트
-		List<Map<String,Object>> list = orderCompleteDao.selectCartProduct(consumerId);
-		
 		int couponNo = orderCompleteDao.selectCouponNo(consumerId, discount);
 		
 		// 쿠폰의 갯수
 		int UseCouponCount = 0;
+		
+		
+		// 카트에 있는 상품번호와 갯수를 가져오는 리스트
+		List<Map<String,Object>> list = orderCompleteDao.selectCartProduct(consumerId);
+				
 		// 디버깅
 		for(Map m : list) {
 			System.out.println(m.get("productNo") + " <-- productNo doPost() OrderCompleteController");
 			System.out.println(m.get("count") + " <-- count doPost() OrderCompleteController");
+			System.out.println(m.get("price") + " <-- count doPost() OrderCompleteController");
 			
 			//-------------------------------------디버깅
 			int productNo = (Integer)m.get("productNo");
 			int count = (Integer)m.get("count");
+			int price = (Integer)m.get("price");
+			System.out.println(productNo +"  " +count+ " "+ price);
+			// 할인된 상품의 가격 
+			int priceProductNoCount = (price - (price * realpayment/100));
 			
-			System.out.println(productNo +"  " +count);
+			System.out.println(priceProductNoCount + "실제 결제 금액 -============================");
+			
 			// 주문테이블에 넣는 메소드 호출
-			orderCompleteDao.insertInOrder(consumerId, productNo, zipcode, addr, detailedAddress, realpayment, count, couponNo);
+			orderCompleteDao.insertInOrder(consumerId, productNo, zipcode, addr, detailedAddress, priceProductNoCount, count, couponNo);
 			
+		}
 			couponDao = new CouponDao();
 			// 쿠폰 사용 쿠폰-1
 			couponDao.updateCouponCount(couponNo);
@@ -110,9 +119,7 @@ public class OrderCompleteController extends HttpServlet {
 			session.setAttribute("cartCount", cartCount);
 			request.getRequestDispatcher("/WEB-INF/view/order/orderFinish.jsp").forward(request, response);	
 			return;
-		}
-		
 		
 	}
-
+	
 }
