@@ -51,7 +51,7 @@ public class CartController extends HttpServlet {
 		System.out.println(cartCount + "cartCount doGet() CartController");
 		session.setAttribute("cartCount", cartCount);
 		
-	
+		
 		
 		request.setAttribute("cartList", cartList);
 		request.getRequestDispatcher("/WEB-INF/view/cart/cartList.jsp").forward(request, response);

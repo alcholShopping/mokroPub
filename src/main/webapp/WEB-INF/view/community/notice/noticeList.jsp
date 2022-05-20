@@ -1,7 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.*"%>
-<%@ page import="dao.*"%>
-<%@ page import="vo.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -21,51 +18,58 @@
 <link href="plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-	<div class="super_container">
-		<!-- Header -->		
-		<jsp:include page="../../../../WEB-INF/inc/navBar.jsp"></jsp:include>
-		<div class="nullbox">
+<div class="super_container">
+	<!-- Header -->		
+	<jsp:include page="../../../../WEB-INF/inc/navBar.jsp"></jsp:include>
+	<!-- contents -->
+	<div class="nullbox">
+	</div>	
+	<div class="container">		
+      <div class="row">
+         <div class="col">
+			<div class="section_title_container text-center">
+				<div class="section_subtitle">목로주점</div>
+				<div class="section_title">공지사항</div>
+			</div>
+			<br>
+			<!-- 아이디가 admin인 경우만 보이게 해야함 -->
+			<a href="${pageContext.request.contextPath}/insertNoticeController" id="insertNoticeBtn" class="float-right">글쓰기</a>
+			<table class ="table table-hover">
+				<thead>
+				<tr>
+					<th class="text-center" width="80px">NO</th>
+					<th class="text-center">제목</th>
+					<th class="text-center" width="100px">글쓴이</th>
+					<th class="text-center" width="200px">작성시간</th>
+				</tr>
+				</thead>
+				<c:forEach items="${noticeList}" var="item">
+				<tbody>
+				<tr>
+					<td class="text-center"><a href="${pageContext.request.contextPath}/noticeOneController?noticeNo=${item.noticeNo}">${item.noticeNo}</a></td>
+					<td class="text-left"><a href="${pageContext.request.contextPath}/noticeOneController?noticeNo=${item.noticeNo}">${item.title}</a></td>
+					<td class="text-center"><a href="${pageContext.request.contextPath}/noticeOneController?noticeNo=${item.noticeNo}">${item.consumerId}</a></td>
+					<td class="text-center"><a href="${pageContext.request.contextPath}/noticeOneController?noticeNo=${item.noticeNo}">${item.createDate}</a></td>
+				</tr>
+				</tbody>
+				</c:forEach>					  	
+				</table>
+				<div class="text-center">
+					<c:if test="${currentPage > 1}">
+						<a href="${pageContext.request.contextPath}/noticeListController?currentPage=${currentPage-1}">이전</a>
+					</c:if>
+					<!-- 다음 버튼 -->
+					<c:if test="${currentPage < lastPage}">
+						<a href="${pageContext.request.contextPath}/noticeListController?currentPage=${currentPage+1}">다음</a>
+					</c:if>
+				</div>
+			</div>  
 		</div>	
-		<!-- contents -->
-		<div class="container">		
-	      <div class="row">
-	         <div class="col">
-	         <div class="float-right">         
-			</div>			
-			<h2>공지사항</h2>
-				<table class ="table table-bordered">
-					<thaed>
-						<th>번호</th>
-						<th>글쓴이</th>
-						<th>제목</th>
-						<th>날짜</th>
-					</thaed>
-					<c:forEach items="${noticeList}" var="item">
-					<tbody>
-						<tr>
-							<td><a href="${pageContext.request.contextPath}/noticeOneController?noticeNo=${item.noticeNo}">${item.noticeNo}</a></td>
-							<td><a href="${pageContext.request.contextPath}/noticeOneController?noticeNo=${item.noticeNo}">${item.consumerId}</a></td>
-							<td><a href="${pageContext.request.contextPath}/noticeOneController?noticeNo=${item.noticeNo}">${item.title}</a></td>
-							<td><a href="${pageContext.request.contextPath}/noticeOneController?noticeNo=${item.noticeNo}">${item.createDate}</a></td>
-						</tr>
-					</tbody>
-					</c:forEach>					  	
-					</table>
-						<c:if test="${currentPage > 1}">
-							<a href="${pageContext.request.contextPath}/noticeListController?currentPage=${currentPage-1}" >이전</a>
-						</c:if>
-						<!-- 다음 버튼 -->
-						<c:if test="${currentPage < lastPage}">
-							<a href="${pageContext.request.contextPath}/noticeListController?currentPage=${currentPage+1}">다음</a>
-						</c:if>
-					<!-- 아이디가 admin인 경우만 보이게 해야함 -->
-					<div></div>
-					<a href="${pageContext.request.contextPath}/insertNoticeController" id="insertNoticeBtn">글쓰기</a>
-				</div>  
-			</div>	
-		</div>
-		<!-- Footer -->	
-		<jsp:include page="../../../../WEB-INF/inc/footer.jsp"></jsp:include>
 	</div>
+</div>
+<div class ="fixFooter">
+	<!-- Footer -->	
+	<jsp:include page="../../../../WEB-INF/inc/footer.jsp"></jsp:include>
+</div>
 </body>
 </html>

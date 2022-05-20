@@ -31,7 +31,7 @@ public class NoticeListController extends HttpServlet {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 		
-		int rowPerPage = 5;
+		int rowPerPage = 8;
 		int beginRow = (currentPage-1) * rowPerPage; 
 		int lastPage = (int)(Math.ceil((double)totalCnt/(double)rowPerPage)); 
 		// 디버깅

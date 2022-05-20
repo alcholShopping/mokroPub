@@ -50,8 +50,8 @@
 	new daum.roughmap.Lander({
 		"timestamp" : "1652852286928",
 		"key" : "2aaey",
-		"mapWidth" : "800",
-		"mapHeight" : "500"
+		"mapWidth" : "700",
+		"mapHeight" : "450"
 	}).render();
 </script>
 </html>

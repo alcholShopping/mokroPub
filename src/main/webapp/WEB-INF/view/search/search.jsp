@@ -86,36 +86,49 @@
 											<th>상세 검색표(0 ~ 선택까지)</th>
 
 											<th>
-												<div>
-												  <input type="range" id="alcoholLevel" name="alcoholLevel" min="0" max="30" value="30">
-												  <label for="volume">도수</label>
-												</div>
-												
-												<div>
-												  <input type="range" id="sweet" name="sweet" min="0" max="10" value="10">
-												  <label for="volume">당도</label>
-												</div>
-												
-												<div>
-												  <input type="range" id="maturity" name="maturity" min="0" max="10" value="10">
-												  <label for="volume">숙성도</label>
-												</div>
-												
-												<div>
-												  <input type="range" id="acidity" name="acidity" min="0" max="10" value="10">
-												  <label for="volume">산미</label>
-												</div>
-												
-												<div>
-												  <input type="range" id="thin" name="thin" min="0" max="10" value="10">
-												  <label for="volume">바디감</label>
-												</div>
-												
-												<div>
-												  <input type="range" id="refreshment" name="refreshment" min="0" max="10" value="10">
-												  <label for="volume">청량감</label>
-												</div>
-												
+													<ul class="list-group">
+													<li class="list-group-item">
+														<div>
+														  <input type="range" list="tickmarks" id="alcoholLevel" name="alcoholLevel" min="0" max="30" value="30">
+														  <label for="volume">도수</label>
+														</div>
+													</li>
+													
+													<li class="list-group-item">
+														<div>
+														  <input type="range" id="sweet" name="sweet" min="0" max="10" value="10">
+														  <label for="volume">당도</label>
+														</div>
+													</li>
+													
+													<li class="list-group-item">
+														<div>
+														  <input type="range" id="maturity" name="maturity" min="0" max="10" value="10">
+														  <label for="volume">숙성도</label>
+														</div>
+													</li>
+													
+													<li class="	list-group-item">
+														<div>
+														  <input type="range" id="acidity" name="acidity" min="0" max="10" value="10">
+														  <label for="volume">산미</label>
+														</div>
+													</li>
+													
+													<li class="list-group-item">
+														<div>
+														  <input type="range" id="thin" name="thin" min="0" max="10" value="10">
+														  <label for="volume">바디감</label>
+														</div>
+													</li>
+													
+													<li class="list-group-item">
+														<div>	
+														  <input type="range" id="refreshment" name="refreshment" min="0" max="10" value="10">
+														  <label for="volume">청량감</label>
+														</div>
+													</li>
+												</ul>
 											</th>
 										</tr>
 
