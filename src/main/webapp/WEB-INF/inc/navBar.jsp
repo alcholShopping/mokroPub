@@ -53,9 +53,13 @@
 								0
 								</c:if>
 								
-								<c:if test="${cartCount ne null }">
-								${cartCount}
-								</c:if>
+								<c:if test="${cartCount == null }">
+		                        0
+		                        </c:if>
+		                        
+		                        <c:if test="${cartCount ne null }">
+		                        ${cartCount}
+		                        </c:if>
 								</div>
 							</div>
 						</div>

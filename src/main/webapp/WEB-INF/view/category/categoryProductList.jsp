@@ -18,17 +18,6 @@
 <link href="plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<%
-	int categoryNo = (Integer)request.getAttribute("categoryNo");
-	int currentPage = (Integer)request.getAttribute("currentPage");
-	int total = (Integer)request.getAttribute("total");
-	int lastPage = (Integer)request.getAttribute("lastPage");
-	
-	// 카테고리 타입을 출력
-	String type = (String)request.getAttribute("type");
-
-%>
-
 <div class="super_container">
 	<!-- Header -->
 	<jsp:include page="../../../WEB-INF/inc/navBar.jsp"></jsp:include>
@@ -86,12 +75,12 @@
 		<div class="pagebutton text-center">
 			<!-- 이전 버튼 -->
 			<c:if test="${currentPage > 1}">
-				<a href="${pageContext.request.contextPath}/categoryProductListController?currentPage=<%=currentPage-1%>&categoryNo=<%=categoryNo%>" class="btn btn-link">이전</a>
+				<a href="${pageContext.request.contextPath}/categoryProductListController?currentPage=${currentPage-1}&categoryNo=${categoryNo}" class="btn btn-link">이전</a>
 			</c:if>
 
 			<!-- 다음 버튼 -->
 			<c:if test="${currentPage < lastPage}">
-				<a href="${pageContext.request.contextPath}/categoryProductListController?currentPage=<%=currentPage+1%>&categoryNo=<%=categoryNo%>" class="btn btn-link">다음</a>
+				<a href="${pageContext.request.contextPath}/categoryProductListController?currentPage=${currentPage+1}&categoryNo=${categoryNo}" class="btn btn-link">다음</a>
 			</c:if>
 		</div>
 	</div>
