@@ -34,6 +34,7 @@ public class OrderAfterController extends HttpServlet {
 		
 		// 아이디를 번호로 교체
 		int consumerNo = consumerDao.changeConsumerIdToNo(sessionMemberId);
+		
 		// 사용자아이디로 번호를 찾기 orList로 반환
 		List<Order> orList = orDao.selectOrderedById(consumerNo);
 		

@@ -32,6 +32,7 @@ public class BestProductListController extends HttpServlet {
 		for(Map m : list) {
 			System.out.println(m.get("productNo") + " <-- productNo doGet() bestProductListController");
 			System.out.println(m.get("name") + " <-- name doGet() bestProductListController");
+			System.out.println(m.get("picture") + " <-- picture doGet() bestProductListController");
 			System.out.println(m.get("price") + " <-- price doGet() bestProductListController");
 			System.out.println(m.get("volume") + " <-- volume doGet() bestProductListController");
 			System.out.println(m.get("alcoholLevel") + " <-- alcoholLevel doGet() bestProductListController");

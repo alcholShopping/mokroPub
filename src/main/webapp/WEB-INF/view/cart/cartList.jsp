@@ -61,9 +61,7 @@
 							<td>
 								<input type="hidden" value="${item.cartNo}" name="cartNo" >
 								<input type="hidden" value="${item.productNo}" name="cartNo">
-								<img src="images/product_1.jpg" width="150px">
-							<br>
-								${item.picture}
+								<img src="images/${item.picture}" width="150px">
 							</td>
 							
 							<td>

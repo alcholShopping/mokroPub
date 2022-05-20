@@ -73,10 +73,8 @@
                </tr>
                <c:forEach items="${cartList}" var="item">
                   <tr>
-                  
                      <td>
-                        <img src="images/product_1.jpg" width="150px">
-                        <br>${item.picture}
+                        <img src="images/${item.picture}" width="150px">
                      </td>
                      <td>${item.name}</td>
                      <td>${item.price}원</td>

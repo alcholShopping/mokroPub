@@ -20,7 +20,7 @@ public class BestDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		// order 상품 판매 주문순으로 15개 나열
-		String sql = " SELECT p.product_no, p.name, p.price, p.volume,p.alcohol_level, o.product_no, RANK() over(order BY o.cnt DESC) ranking FROM (SELECT product_no,COUNT(*) cnt FROM `order` GROUP BY product_no) o INNER JOIN product p ON p.product_no = o.product_no LIMIT 0, 14 ";
+		String sql = " SELECT p.product_no, p.name, p.price,p.picture ,p.volume,p.alcohol_level, o.product_no, RANK() over(order BY o.cnt DESC) ranking FROM (SELECT product_no,COUNT(*) cnt FROM `order` GROUP BY product_no) o INNER JOIN product p ON p.product_no = o.product_no LIMIT 0, 14 ";
 		
 		try {
 			conn = DBUtil.getConnection();
@@ -30,6 +30,7 @@ public class BestDao {
 				Map<String, Object> m = new HashMap<String, Object>();
 				m.put("productNo", rs.getInt("p.product_no"));
 				m.put("name", rs.getString("p.name"));
+				m.put("picture", rs.getString("p.picture"));
 				m.put("price", rs.getString("p.price"));
 				m.put("volume", rs.getString("p.volume"));
 				m.put("alcoholLevel", rs.getString("p.alcohol_level"));
@@ -37,6 +38,7 @@ public class BestDao {
 				// 디버깅
 				System.out.println(m.get("productNo") + " <-- productNo selectBestListByPage() BestDao ");
 				System.out.println(m.get("name") + " <-- name selectBestListByPage() BestDao ");
+				System.out.println(m.get("picture") + " <-- picture selectBestListByPage() BestDao ");
 				System.out.println(m.get("price") + " <-- price selectBestListByPage() BestDao ");
 				System.out.println(m.get("volume") + " <-- volume selectBestListByPage() BestDao ");
 				System.out.println(m.get("alcoholLevel") + " <-- alcoholLevel selectBestListByPage() BestDao ");
