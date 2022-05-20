@@ -41,6 +41,7 @@
 					<div class="col-sm-3">
 					</div>
 					<div class="col-sm-6">
+					<div class="errorText">${errorText}</div> 
 					<form action="logoutController" method="post" name="pwForm">
 						<table class = "table text-center ">
 							<tr>
@@ -53,6 +54,7 @@
 								<th>변경할 비밀번호</th>
 								<th>
 									<input type="password" class="form-control" name="changePw" id="changePw">
+									<span id="ChangePwHelper" class="helper"></span>
 								</th>
 							</tr>
 							<tr>
@@ -92,7 +94,16 @@
 </div>
 </body>
 <script>
-// 빈칸 확인	
+
+	$('#changePw').blur(function(){
+		if($('#changePw').val().length < 4) {
+			$('#ChangePwHelper').text('pw는 4자이상');
+			$('#changePw').focus();
+		} else {
+			$('#ChangePwHelper').text('');
+		}
+	});
+
 	$('#checkChangePw').blur(function(){
 		if( $('#changePw').val() != $('#checkChangePw').val() ) {
 			$('#checkChangePwHelper').text('변경할 비밀번호와 다릅니다.');

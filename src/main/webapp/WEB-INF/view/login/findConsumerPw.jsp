@@ -41,6 +41,7 @@
 					<div class="col-sm-3">
 					</div>
 					<div class="col-sm-6">
+					<div class="errorText">${errorText}</div> 
 					<form action="${pageContext.request.contextPath}/findConsumerPwController" method="post">
 						<table class = "table text-center ">
 							<tr>
@@ -84,3 +85,6 @@
 </div>
 </body>
 </html>
+<script>
+	if()
+</script>

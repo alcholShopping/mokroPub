@@ -5,13 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import util.DBUtil;
-import vo.Category;
 import vo.Consumer;
+import vo.Password;
 
 public class ConsumerDao {
 	// consumerOne의 회원정보를 보여주는 메서드
@@ -194,6 +192,36 @@ public class ConsumerDao {
 			}
 		} 
 		return period;
+	}
+	
+	// 비밀번호 중복 확인 메서드
+	public String checkPwOverlap(int consumerNo, String changePw){
+		String checkOverlap = null;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String sql = " SELECT password FROM password WHERE consumer_no = ? AND password = PASSWORD(?) ";
+		
+		try {
+			conn = DBUtil.getConnection();
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, consumerNo);
+			stmt.setString(2, changePw);
+			rs = stmt.executeQuery();
+			while(rs.next()) {
+				checkOverlap = rs.getString("password");		
+				System.out.println(checkOverlap + "<-- checkOverlap checkPwOverlap() consumerDao"); // 디버깅
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return checkOverlap;
 	}
 
 

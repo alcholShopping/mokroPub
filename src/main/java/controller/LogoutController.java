@@ -49,20 +49,32 @@ public class LogoutController extends HttpServlet {
 			
 			loginDao = new LoginDao();
 			consumerDao = new ConsumerDao();
-			currentPw = loginDao.changePwToEncryptionPw(sessionMemberId, currentPw);
-			System.out.println(currentPw + " <-- currentPw doPost() logoutController"); // 디버깅
 			
-			String checkConsumerPw  = consumerDao.checkConsumerPw(sessionMemberId);
-			System.out.println(checkConsumerPw + " <-- checkConsumerPw doPost() logoutController"); // 디버깅
-			
-			if(!currentPw.equals(checkConsumerPw)) {
-				request.getRequestDispatcher("/WEB-INF/view/login/requestChangePw.jsp").forward(request, response);    
+			String checkCurrentPw = loginDao.changePwToEncryptionPw(sessionMemberId, currentPw);
+			if(checkCurrentPw == null) {
+				String errorText = "현재 비밀번호가 일치하지 않습니다.";
+				System.out.println("현재 비밀번호가 일치하지 않습니다.");
+				
+				request.setAttribute("errorText",errorText);
+				request.getRequestDispatcher("/WEB-INF/view/login/requestChangePw.jsp").forward(request, response);
+				return;
 			}
+
 			
-			consumerDao = new ConsumerDao();
 			int consumerId = consumerDao.changeConsumerIdToNo(sessionMemberId);
-			loginDao.UpdateConsumerPwAndDate(consumerId, changePw);
-			loginDao.insertPasswordAndDate(consumerId, changePw);					
+			String checkOverlap = consumerDao.checkPwOverlap(consumerId, checkChangePw);
+			System.out.println(checkOverlap + " <-- checkOverlap doPost() logoutController ");
+			
+			if( checkOverlap != null ) { // 중복되면
+				String errorText = "password가 중복됩니다.";
+				System.out.println("password가 중복됩니다.");
+				
+				request.setAttribute("errorText",errorText);
+				request.getRequestDispatcher("/WEB-INF/view/login/requestChangePw.jsp").forward(request, response);
+				return;
+			}
+			loginDao.UpdateConsumerPwAndDate(consumerId, checkChangePw);
+			loginDao.insertPasswordAndDate(consumerId, checkChangePw);
 		}
 		
 		request.getSession().invalidate(); // session 갱신 메서드 : 기존 session을 지우고 새로운 새션을 부여함

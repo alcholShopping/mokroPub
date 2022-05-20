@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -44,6 +45,15 @@ public class FindConsumerPwController extends HttpServlet {
 		
 		// 입력한 consumerId에 대한 정보 가져오기
 		List<Consumer> consumerList = consumerDao.selectConsumerOneInfo(consumerId);
+		
+		if(consumerList.isEmpty()) {
+			String errorText ="정확히 입력해주세요";
+			System.out.println("아이디가 다릅니다.");
+			request.setAttribute("errorText", errorText);
+			request.getRequestDispatcher("/WEB-INF/view/login/findConsumerPw.jsp").forward(request, response);
+			return;
+		}
+		
 		for(Consumer consumer : consumerList) {
 			System.out.println(consumer.getConsumerId() + " <-- consumerId doGet() findConsumerPwController ");
 			System.out.println(consumer.getName() + " <-- name doGet() findConsumerPwController ");
@@ -55,21 +65,17 @@ public class FindConsumerPwController extends HttpServlet {
 			System.out.println(consumer.getAccount() + " <-- ACCOUNT doGet() findConsumerPwController ");
 			System.out.println(consumer.getCreateDate() + " <-- createDate doGet() findConsumerPwController ");
 		}
-		
-		System.out.println("---------------------------------");
-		
-		System.out.println(consumerList.get(0).getName() + " <-- consumerList.get(0).getName()");
-		System.out.println(consumerList.get(0).getPhone() + " <-- consumerList.get(0).getPhone()");
-		
 		if( (!consumerList.get(0).getName().equals(consumerName)) || (!consumerList.get(0).getPhone().equals(phone)) ){
-			response.sendRedirect(request.getContextPath() + "/loginController");
+			String errorText ="정확히 입력해주세요";
 			System.out.println("정확히 입력하세요");
+			request.setAttribute("errorText", errorText);
+			request.getRequestDispatcher("/WEB-INF/view/login/findConsumerPw.jsp").forward(request, response);
+			
 			return;
 		}
-		// consumerId, name, phone이 일치하면 비밀번호 재설정창으로 감
-		request.setAttribute("consumerId", consumerId);
-		request.getRequestDispatcher("/WEB-INF/view/login/updateConsumerPw.jsp").forward(request, response);
-	
+		 HttpSession session = request.getSession();
+		 session.setAttribute("consumerId", consumerId);
+		request.getRequestDispatcher("/WEB-INF/view/login/updateConsumerPw.jsp").forward(request, response);	
    }
 
 }

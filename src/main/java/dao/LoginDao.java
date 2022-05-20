@@ -44,7 +44,7 @@ public class LoginDao {
 	
 	// 일반 비밀번호를 복호화된 비밀번호로 가져오는 메서드
 	public String changePwToEncryptionPw(String sessionMemberId, String pw) {
-		String password = "";
+		String password = null;
 		Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;       
