@@ -32,25 +32,33 @@ public class LogoutController extends HttpServlet {
 		
 		 HttpSession session = request.getSession();
 	     String sessionMemberId = (String)session.getAttribute("sessionMemberId");
-	     System.out.println(sessionMemberId + " <-- sessionMemberId doPost() consumerOneController");
+	     String check = "1";
+	     System.out.println(sessionMemberId + " <-- sessionMemberId doPost() logoutController");
+	     System.out.println(request.getParameter("check") + " <-- check doPost() logoutController");	     
 	     
-		if(request.getParameter("check") == "1"){
+		if(request.getParameter("check").equals(check)){
 			System.out.println(request.getParameter("check") + "<-- check doPost() logoutController ");		
 			
 			String currentPw = request.getParameter("currentPw");
 			String changePw = request.getParameter("changePw");
 			String checkChangePw = request.getParameter("checkChangePw");
 			
-			System.out.println(currentPw + " <-- currentPw doGet() logoutController");
-			System.out.println(changePw + " <-- changePw doGet() logoutController");
-			System.out.println(checkChangePw + " <-- checkChangePw doGet() logoutController");
+			System.out.println(currentPw + " <-- currentPw doPost() logoutController");
+			System.out.println(changePw + " <-- changePw doPost() logoutController");
+			System.out.println(checkChangePw + " <-- checkChangePw doPost() logoutController");
 			
 			loginDao = new LoginDao();
+			consumerDao = new ConsumerDao();
 			currentPw = loginDao.changePwToEncryptionPw(sessionMemberId, currentPw);
+			System.out.println(currentPw + " <-- currentPw doPost() logoutController"); // 디버깅
+			
 			String checkConsumerPw  = consumerDao.checkConsumerPw(sessionMemberId);
+			System.out.println(checkConsumerPw + " <-- checkConsumerPw doPost() logoutController"); // 디버깅
+			
 			if(!currentPw.equals(checkConsumerPw)) {
 				request.getRequestDispatcher("/WEB-INF/view/login/requestChangePw.jsp").forward(request, response);    
 			}
+			
 			consumerDao = new ConsumerDao();
 			int consumerId = consumerDao.changeConsumerIdToNo(sessionMemberId);
 			loginDao.UpdateConsumerPwAndDate(consumerId, changePw);
