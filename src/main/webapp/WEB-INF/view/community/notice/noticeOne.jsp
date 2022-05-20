@@ -59,8 +59,8 @@
 						<p>${m.content}</p>
 					</div>
 					<!-- 아이디가 admin인 경우만 보이게 해야함 -->
-					<div id="adminBtn"><a href="${pageContext.request.contextPath}/updateNoticeController?noticeNo=${m.noticeNo}">수정하기</a></div>
-					<div id="adminBtn"><a href="${pageContext.request.contextPath}/deleteNoticeController?noticeNo=${m.noticeNo}">삭제</a></div>
+					<div id="adminBtn" style="display:none"><a href="${pageContext.request.contextPath}/updateNoticeController?noticeNo=${m.noticeNo}">수정하기</a></div>
+					<div id="adminBtn" style="display:none"><a href="${pageContext.request.contextPath}/deleteNoticeController?noticeNo=${m.noticeNo}">삭제</a></div>
 					</c:forEach>
 				</div>		
 			</div>

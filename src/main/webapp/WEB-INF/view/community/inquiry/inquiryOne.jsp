@@ -61,8 +61,8 @@
 						<p>${m.content}</p>
 					</div>
 					<div>답변 : ${m.answer}</div>
-					<div><a href="${pageContext.request.contextPath}/updateInquiryController?inquiryNo=${m.inquiryNo}&consumerId=${m.consumerId}">수정하기</a></div>
-					<div><a href="${pageContext.request.contextPath}/deleteInquiryController?inquiryNo=${m.inquiryNo}&consumerId=${m.consumerId}">삭제</a></div>
+					<div style="display:none" class="conusmerBtn"><a href="${pageContext.request.contextPath}/updateInquiryController?inquiryNo=${m.inquiryNo}&consumerId=${m.consumerId}">수정하기</a></div>
+					<div style="display:none" class="conusmerBtn"><a href="${pageContext.request.contextPath}/deleteInquiryController?inquiryNo=${m.inquiryNo}&consumerId=${m.consumerId}">삭제</a></div>
 					<div id="adminBtn" style="display:none"><a href="${pageContext.request.contextPath}/answerInquiryController?inquiryNo=${m.inquiryNo}">답변하기</a></div>
 					</c:forEach>
 				</div>		
@@ -71,9 +71,17 @@
 	</div>
 </body>
 <script>
+	
 	if('${sessionScope.sessionMemberId}' == 'admin'){
 		console.log('admin입니다');
 		$("#adminBtn").show();	
-	} 
+	}
+	
+	<c:forEach var="m" items="${inquiryOneList}">
+		if('${sessionScope.sessionMemberId}' == '${m.consumerId}' ){
+			console.log('작성자 입니다');
+			$(".conusmerBtn").show();	
+		} 
+	</c:forEach>
 </script>
 </html>
