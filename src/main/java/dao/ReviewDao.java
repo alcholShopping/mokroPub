@@ -44,6 +44,91 @@ public class ReviewDao {
 			}		
 	}
 	
+	public String SelectProdctNameByOrderNo(int orderNo){
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		String pName = "";
+		//사진은 잠깐 NULL설정
+		String sql = " SELECT p.name "
+				+ " FROM `order` o "
+				+ "     INNER JOIN product p "
+				+ " 	ON o.product_no = p.product_no "
+				+ " WHERE o.order_no = ? ";
+		
+		try {
+			conn = DBUtil.getConnection();
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, orderNo);
+
+			rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				pName = rs.getString("p.name");
+				
+				System.out.println(pName + " ==================== pNamepNamepNamepNamepNamepNamepNamepNamepNamepNamepNamepNamepNamepNamepNamepNamepNamepNamepNamepNamepNamepName");
+			}
+
+			
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		
+		return pName;
+	}
+	
+	public String SelectProdctNameByReviewNo(int ReviewNo){
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		String pName = "";
+		//사진은 잠깐 NULL설정
+		String sql = " SELECT p.name "
+				+ " FROM review r "
+				+ "	INNER JOIN `order` o "
+				+ "	ON r.order_no = o.order_no "
+				+ "	INNER JOIN product p "
+				+ "	ON p.product_no = o.product_no "
+				+ " WHERE review_no = ? ";
+		
+		try {
+			conn = DBUtil.getConnection();
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, ReviewNo);
+
+			rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				pName = rs.getString("p.name");
+				
+				System.out.println(pName + " ==================== pNamepNamepNamepNamepNamepNamepNamepNamepNamepNamepNamepNamepNamepNamepNamepNamepNamepNamepNamepNamepNamepName");
+			}
+
+			
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		
+		return pName;
+	}
+	
+	
 	
 	public List<Map<String, Object>> SelectMyReviewById(int consumerNo){
 		List<Map<String, Object>> reviewList = new ArrayList<Map<String, Object>>();

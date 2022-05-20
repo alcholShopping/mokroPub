@@ -26,7 +26,9 @@ public class ReviewUpdateController extends HttpServlet {
 		rd = new ReviewDao();
 		 
 		Review rev = rd.SelectReviewByOrderNo(reviewNo);
+		String pName = rd.SelectProdctNameByReviewNo(reviewNo);
 		
+		request.setAttribute("pName", pName);
 		request.setAttribute("rev", rev);
 		request.getRequestDispatcher("/WEB-INF/view/review/myReviewUpdateForm.jsp").forward(request, response);
 		

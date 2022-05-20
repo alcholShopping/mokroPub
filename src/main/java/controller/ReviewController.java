@@ -25,6 +25,11 @@ public class ReviewController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int orderNo = Integer.parseInt(request.getParameter("orderNo"));
 		
+		ReviewDao rd = new ReviewDao();
+		String pName = rd.SelectProdctNameByOrderNo(orderNo);
+		
+		
+		request.setAttribute("pName", pName);
 		request.setAttribute("orderNo", orderNo);
 		request.getRequestDispatcher("/WEB-INF/view/review/review.jsp").forward(request, response);
 	}
