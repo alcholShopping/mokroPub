@@ -32,14 +32,16 @@
 
 		<div class="header_content">
 			<!-- search -->
+			<a href="${pageContext.request.contextPath}/searchController">
 			<div class="search header_search">
 				<form method="get" action="${pageContext.request.contextPath}/searchController">
-					<input type="search" class="search_input" value=">>상세검색 >>" readonly="readonly">
+					<input type="search" class="search_input" placeholder="상세검색" readonly="readonly">
 					<button type="submit" id="search_button" class="search_button">
 						<img src="${pageContext.request.contextPath}/images/magnifying-glass.svg"alt="">
 					</button>
 				</form>
 			</div>
+			</a>
 			<!-- Cart -->
 			<div class="shopping">
 				<a href="${pageContext.request.contextPath}/cartController">

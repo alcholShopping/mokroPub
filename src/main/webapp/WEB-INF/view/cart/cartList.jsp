@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +17,7 @@
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
 <link href="plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
+
 </head>
 
 <body>
@@ -39,7 +41,6 @@
       <div class="row">
          <div class="col">
 					<table class ="table table-bordered">
-						<form method="post" action="${pageContext.request.contextPath}/deleteProductInCartController">
 						<tr>
 		                     <td>상품사진</td>
 		                     <td>정보</td>
@@ -47,14 +48,14 @@
 		                     <td>수량</td>
 		                     <td>
 		                        <div class="float-right">
-		                              <a href="${pageContext.request.contextPath}/deleteProductInCartController">
-		                              <div class= "btn btn-outline-secondary btn-sm">모두삭제</div>
-		                           </a>
+		                              <a href="${pageContext.request.contextPath}/deleteProductInCartController" class= "btn btn-outline-secondary btn-sm">
+		                              모두삭제</a>
 		                        </div>
 		                     </td>
-	                  	</tr>
+	                  	</tr> 	
 	                  	<c:forEach items="${cartList}" var="item">
 						<tr>
+						<form method="post" action="${pageContext.request.contextPath}/deleteProductInCartController">
 							<td>
 								<input type="hidden" value="${item.cartNo}" name="cartNo" >
 								<input type="hidden" value="${item.productNo}" name="cartNo">
@@ -89,10 +90,10 @@
 								</div>
 							</td>
 							<td>
-								<button type="submit">x</button>
+								<button type="submit"><img src="./images/trash.png"></button>
 							</td>
-						</tr>
-						</form>
+							</form>
+						</tr>		
 					</c:forEach>
 				</table>  
 			</div>  
@@ -102,9 +103,19 @@
       <a href="${pageContext.request.contextPath}/orderController" class="orderBtn">주문하기</a>
    </div>
 </div>
-	<!-- Footer -->	
-	<jsp:include page="../../../WEB-INF/inc/footer.jsp"></jsp:include>
-</div>
-</body>
+<c:if test="${fn:length(cartList) > 2}">
+	</div>
+		<!-- Footer -->	
+		<jsp:include page="../../../WEB-INF/inc/footer.jsp"></jsp:include>
+	</div>
+</c:if>
 
+<c:if test="${fn:length(cartList) < 3}">
+	</div>
+	<!-- Footer -->
+	<div class ="fixFooter">
+		<jsp:include page="../../../WEB-INF/inc/footer.jsp" ></jsp:include>
+	</div>
+</c:if>
+</body>
 </html>

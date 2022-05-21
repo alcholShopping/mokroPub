@@ -48,7 +48,6 @@
 		                     <td>리뷰내용</td>	                    
 		                     <td>사진</td>                    
 	                  	</tr>
-	                  	
 						<tr>
 
 							<td>
@@ -56,7 +55,9 @@
 							</td>
 								
 							<td>
-								${item.star}/5
+							<c:forEach var="star" begin="1" end="${item.star}">
+							<img src="./images/star.svg" width="10">
+							</c:forEach>
 							</td>
 							
 							<td>

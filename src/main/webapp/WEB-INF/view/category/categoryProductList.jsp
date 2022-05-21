@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <title>categoryProductList</title>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Wish shop project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/bootstrap4/bootstrap.min.css">
@@ -83,11 +82,19 @@
 				<a href="${pageContext.request.contextPath}/categoryProductListController?currentPage=${currentPage+1}&categoryNo=${categoryNo}" class="btn btn-link">다음</a>
 			</c:if>
 		</div>
+	<c:if test="${fn:length(list) > 3}">
 	</div>
-
-	<!-- Footer -->
-	<jsp:include page="../../../WEB-INF/inc/footer.jsp"></jsp:include>
-</div>
+			<!-- Footer -->	
+			<jsp:include page="../../../WEB-INF/inc/footer.jsp"></jsp:include>
+	</c:if>
+	
+	<c:if test="${fn:length(list) < 4}">
+		</div>
+		<!-- Footer -->
+		<div class ="fixFooter">
+			<jsp:include page="../../../WEB-INF/inc/footer.jsp" ></jsp:include>
+		</div>
+	</c:if>
 </body>
 <script>
 

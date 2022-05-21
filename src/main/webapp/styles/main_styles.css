@@ -269,6 +269,8 @@ section
    -ms-transition: all 200ms ease;
    -o-transition: all 200ms ease;
    transition: all 200ms ease;
+   border: 0;
+   outline: 0;
 }
 .button a
 {

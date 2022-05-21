@@ -17,7 +17,7 @@ import vo.*;
 
 @WebServlet("/orderAfterController")
 public class OrderAfterController extends HttpServlet {
-	OrderedDao orDao = new OrderedDao();
+	OrdereAfterDao ordereAfterDao = new OrdereAfterDao();
 	private ConsumerDao consumerDao = new ConsumerDao();
 	CartDao cartDao = new CartDao();
 	
@@ -37,7 +37,7 @@ public class OrderAfterController extends HttpServlet {
 		int consumerNo = consumerDao.changeConsumerIdToNo(sessionMemberId);
 		
 		// 사용자아이디로 번호를 찾기 orList로 반환
-		List<Map<String,Object>> orList = orDao.selectOrderedById(consumerNo);
+		List<Map<String,Object>> orList = ordereAfterDao.selectOrderedById(consumerNo);
 		
 		for(Map m : orList) {
 			System.out.println(m.get("orderNo") + "<----orderNo  doGet()  OrderAfterController");
@@ -53,7 +53,7 @@ public class OrderAfterController extends HttpServlet {
 			System.out.println(m.get("updateDate") + "<----updateDate  doGet()  OrderAfterController");
 			System.out.println(m.get("status") + "<----status  doGet()  OrderAfterController");
 		}
-		
+
 		request.setAttribute("orList", orList); // jsp에 보여줄 값을 반환
 		request.getRequestDispatcher("/WEB-INF/view/review/orderAfter.jsp").forward(request, response);
 	}
