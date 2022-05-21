@@ -73,8 +73,8 @@
 							</td>
 																			
 							<td>
-								<A href="reviewDeleteController?reviewNo=${item.reviewNo}">삭제</A>
-								<A href="reviewUpdateController?reviewNo=${item.reviewNo}">수정</A>
+								<A href="reviewDeleteController?reviewNo=${item.reviewNo}&orderNo=${item.orderNo}">삭제</A>
+								<A href="reviewUpdateController?reviewNo=${item.reviewNo}&orderNo=${item.orderNo}">수정</A>
 							</td>
 
 						

@@ -69,7 +69,7 @@
 									</table>
 									<button type="submit" class="btn btn-outline-secondary ">제출</button>
 							</form>
-							
+	
 						</div>
 						<div class="col-sm-1">
 						</div>

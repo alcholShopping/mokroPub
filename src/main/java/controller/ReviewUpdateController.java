@@ -22,14 +22,16 @@ public class ReviewUpdateController extends HttpServlet {
 	ReviewDao rd = null;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
-	
+		int orderNo = Integer.parseInt(request.getParameter("orderNo"));
+		System.out.println(orderNo + "<---orderNo doGet ReviewUpdateController");
 		rd = new ReviewDao();
-		 
+		
 		Review rev = rd.SelectReviewByOrderNo(reviewNo);
 		String pName = rd.SelectProdctNameByReviewNo(reviewNo);
 		
 		request.setAttribute("pName", pName);
 		request.setAttribute("rev", rev);
+		request.setAttribute("orderNo", orderNo);
 		request.getRequestDispatcher("/WEB-INF/view/review/myReviewUpdateForm.jsp").forward(request, response);
 		
 	}

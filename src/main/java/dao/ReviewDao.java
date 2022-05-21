@@ -138,7 +138,7 @@ public class ReviewDao {
 		ResultSet rs = null;
 		
 		//사진은 잠깐 NULL설정
-		String sql = " SELECT r.review_no reviewNo,r.picture picture,p.name name, r.content content, r.star star"
+		String sql = " SELECT r.review_no reviewNo,r.picture picture,p.name name, r.content content, r.star star, o.order_no orderNo "
 				+ " FROM review r "
 				+ "	INNER JOIN `ORDER` o "
 				+ "	ON r.order_no = o.order_no "
@@ -161,12 +161,14 @@ public class ReviewDao {
 				re.put("name", rs.getString("name"));
 				re.put("content", rs.getString("content"));
 				re.put("star", rs.getInt("star"));
+				re.put("orderNo",  rs.getInt("orderNo"));
 			
 				System.out.println(re.get("reviewNo") + " <-- reviewNo SelectMyReviewById() ReviewDao ");
 				System.out.println(re.get("picture") + " <-- picture SelectMyReviewById() ReviewDao ");
 				System.out.println(re.get("name") + " <-- name SelectMyReviewById() ReviewDao ");
 				System.out.println(re.get("content") + " <-- content SelectMyReviewById() ReviewDao ");
 				System.out.println(re.get("star") + " <-- star SelectMyReviewById() ReviewDao ");	
+				System.out.println(re.get("orderNo") + " <---- star SelectMyReviewById() ReviewDao ");
 				
 				reviewList.add(re);
 			}
