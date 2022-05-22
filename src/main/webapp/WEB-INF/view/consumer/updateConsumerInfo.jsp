@@ -31,7 +31,7 @@
 						<div class="col">
 							<div class="register_title ">				
 							<h1>${sessionMemberId}님의 회원정보</h1>
-							<form action="updateConsumerInfoController" method="post" name="updateForm">
+							<form action="${pageContext.request.contextPath}/updateConsumerInfoController" method="post" name="updateForm">
 								<table class = "table text-center">
 								<!-- consumer_id, password, name, phone, email, address, Detailed_Addreess, Account, UPDATE_DATE -->
 									<tr>

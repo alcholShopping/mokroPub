@@ -106,7 +106,7 @@ public class UpdateConsumerInfoController extends HttpServlet {
 		response.sendRedirect(request.getContextPath()+"/consumerOneInfoController");
 
 		request.setAttribute("consumerId", consumerId);
-		request.getRequestDispatcher("/WEB-INF/login/updateConsumerPw/.jsp").forward(request, response);
+	 // request.getRequestDispatcher("/WEB-INF/login/updateConsumerPw/.jsp").forward(request, response);
 
 	}
 	
