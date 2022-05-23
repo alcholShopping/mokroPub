@@ -44,6 +44,7 @@
 						<tr>
 		                     <td>리뷰번호</td>
 		                     <td>별점</td>
+		                     <td>사진</td>
 		                     <td>상품정보</td>
 		                     <td>리뷰내용</td>	                    
 		                     <td>사진</td>                    
@@ -61,7 +62,17 @@
 							</td>
 							
 							<td>
-								${item.name}
+			                     <a href="${pageContext.request.contextPath}/productOneController?productNo=${item.productNo}">
+			                     <img src="images/${item.picture2}" width="80px">               
+		                     </a>
+							<td>
+								<a href="productOneController?productNo=${item.productNo}"> 
+									${item.name} 
+									${item.volume}ml 
+									${item.alcholLevel}도
+									<br>
+									판매가 ${item.price}원
+								</a>
 							</td>
 							
 							<td>
@@ -69,7 +80,7 @@
 							</td>
 							
 							<td>
-								<img src="./images/${item.picture}" width="200" height="200">
+								<img src="./images/${item.picture}" width="80">
 							</td>
 																			
 							<td>

@@ -41,7 +41,7 @@
          <div class="col">
                <table class ="table table-bordered">      
                   <tr>
-                           <td colspan="2">상품정보22</td>
+                           <td colspan="2">상품정보</td>
                            <td>결제금액</td>
                            <td>쿠폰 사용내역</td>
                            <td>결제방법</td>
@@ -52,7 +52,7 @@
                   <tr>
                      <td>
                      <a href="${pageContext.request.contextPath}/productOneController?productNo=${item.productNo}">
-                     <img src="images/${item.picture}" width="80px">               
+                     	<img src="images/${item.picture2}" width="80px">               
                      </a>
                      </td>
                      <td>

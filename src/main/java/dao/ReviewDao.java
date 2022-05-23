@@ -44,6 +44,9 @@ public class ReviewDao {
 			}		
 	}
 	
+	
+	
+	
 	public String SelectProdctNameByOrderNo(int orderNo){
 
 		Connection conn = null;
@@ -177,7 +180,8 @@ public class ReviewDao {
 		ResultSet rs = null;
 		
 		//사진은 잠깐 NULL설정
-		String sql = " SELECT r.review_no reviewNo,r.picture picture,p.name name, r.content content, r.star star, o.order_no orderNo "
+		String sql = " SELECT r.review_no reviewNo,r.picture picture,p.name name, r.content content, r.star star, o.order_no orderNo , "
+				+ "p.product_no productNo, p.volume volume, p.alcohol_level alcholLevel, p.price price, p.picture picture2"
 				+ " FROM review r "
 				+ "	INNER JOIN `ORDER` o "
 				+ "	ON r.order_no = o.order_no "
@@ -201,6 +205,11 @@ public class ReviewDao {
 				re.put("content", rs.getString("content"));
 				re.put("star", rs.getInt("star"));
 				re.put("orderNo",  rs.getInt("orderNo"));
+				re.put("productNo",  rs.getInt("productNo"));
+				re.put("volume",  rs.getInt("volume"));
+				re.put("alcholLevel",  rs.getInt("alcholLevel"));
+				re.put("price",  rs.getInt("price"));
+				re.put("picture2", rs.getString("picture2"));
 			
 				System.out.println(re.get("reviewNo") + " <-- reviewNo SelectMyReviewById() ReviewDao ");
 				System.out.println(re.get("picture") + " <-- picture SelectMyReviewById() ReviewDao ");
@@ -208,6 +217,7 @@ public class ReviewDao {
 				System.out.println(re.get("content") + " <-- content SelectMyReviewById() ReviewDao ");
 				System.out.println(re.get("star") + " <-- star SelectMyReviewById() ReviewDao ");	
 				System.out.println(re.get("orderNo") + " <---- star SelectMyReviewById() ReviewDao ");
+				System.out.println(re.get("productNo") + " <---- productNo productNo() productNo ");
 				
 				reviewList.add(re);
 			}
