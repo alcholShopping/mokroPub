@@ -75,8 +75,8 @@ public class UpdateConsumerInfoController extends HttpServlet {
 		String consumerName = request.getParameter("consumerName");
 		String consumerPhone = request.getParameter("consumerPhone");
 		String consumerEmail = request.getParameter("consumerEmail");
-		String consumerAddress = request.getParameter("consumerAddress");
-		String consumerDetailedAddress = request.getParameter("consumerDetailedAddress");
+		String consumerAddress = request.getParameter("addressResult");
+		String consumerDetailedAddress = request.getParameter("detailedAddress");
 		String consumerAccount = request.getParameter("consumerAccount");
 		String consumerUpdateDate = request.getParameter("consumerUpdateDate");
 		

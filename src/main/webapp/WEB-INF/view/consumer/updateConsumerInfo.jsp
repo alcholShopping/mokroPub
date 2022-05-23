@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,6 +36,30 @@
 								<table class = "table text-center">
 								<!-- consumer_id, password, name, phone, email, address, Detailed_Addreess, Account, UPDATE_DATE -->
 									<tr>
+										<th>주소 검색 <br><br><br> 주소 등록 <br><br><br>상세주소</th> <!-- 주소 검색 -->
+										<th>
+											<div class="input-group mb-3">
+												<input type="text" class="form-control"
+													placeholder="소하동 32번지" name="address" id="address">
+												<button type="submit" onclick="javascript: form.action='updateConsumerFindAddressController';">검색하기</button>
+											</div>										
+											<div>
+												<select name="addressResult" class="form-control">
+													<option value="" >::: 주소 선택 :::</option>
+													<c:forEach var="m" items="${searchList}">
+														<option value="${m.searchAddr} ${m.zipcode}">${m.searchAddr} ${m.zipcode}</option>
+													</c:forEach>
+												</select>
+											</div>												
+											<br>
+											<div>
+											<input type="text" class="form-control"
+											placeholder="302호" name="detailedAddress" id="detailedAddress">
+											<span id="detailedAddressHelper" class="helper"></span>
+											</div>
+										</th>
+									</tr>
+									<tr>
 										<th>회원 아이디</th>
 										<th>
 											<input type="text" class="form-control" value ="${consumerList[0].consumerId}" name="consumerId" id="consumerId" readonly="readonly">
@@ -60,19 +85,7 @@
 											<input type="text" class="form-control" value ="${consumerList[0].email}" name="consumerEmail" id="consumerEmail">
 											<span id="emailHelper" class="helper"></span>
 										</th>
-									</tr>
-									<tr>
-										<th>회원 주소</th>
-										<th>
-											<input type="text" class="form-control" value ="${consumerList[0].address}" name="consumerAddress" id="consumerAddress">
-										</th>
-									</tr>
-									<tr>
-										<th>회원 상세주소</th>
-										<th>
-											<input type="text" class="form-control" value ="${consumerList[0].detailedAddr}" name="consumerDetailedAddress" id="consumerDetailedAddress">
-										</th>
-									</tr>									
+									</tr>					
 									<tr>
 										<th>회원 계좌</th>
 										<th>
@@ -89,7 +102,7 @@
 									</tr>
 									<tr>
 										<th colspan="2">
-											<button type="button" id="registerBtn" onclick="updateMemberCheck()">회원정보 수정</a></button>
+											<button type="button" class="btn btn-primary"  id="registerBtn" onclick="updateMemberCheck()">회원정보 수정</button>
 										</th>
 									</tr>
 								</table>							
@@ -150,38 +163,37 @@
 			}
 		});
 		
-		// 빈칸 확인	
-		function updateMemberCheck(){
-			var u = updateForm;
-			u.action ='updateConsumerInfoController';
+		$('#registerBtn').on("click", function(){      
+	         var u = updateForm;
+	         u.action ='updateConsumerInfoController';
 
-			if(u.consumerDetailedAddress.value.trim() == ""){
-				alert('상세주소를 입력하세요');
-				r.consumerDetailedAddress.focus();
-				return;
-			}
-			if(u.consumerName.value.trim() == ""){ // 이름 빈칸 검사
-				alert('이름을 입력하세요');
-				u.consumerName.focus();
-				return;
-			}
-			if(u.consumerEmail.value.trim() == ""){ // 이메일 빈칸 검사
-				alert('이메일을 입력하세요');
-				u.consumerEmail.focus();
-				return;
-			}
-			if(u.consumerPhone.value.trim() == ""){ // 전화번호 빈칸 검사
-				alert('전화번호를 입력하세요');
-				u.consumerPhone.focus();
-				return;
-			}
-			if(u.consumerAccount.value.trim() == ""){ // 계좌번호 빈칸 검사
-				alert('계좌번호를 입력하세요');
-				u.consumerAccount.focus();
-				return;
-			}
-			u.submit();	
-		}
+	         if(u.detailedAddress.value.trim() == ""){
+	            alert('상세주소를 입력하세요');
+	            u.detailedAddress.focus();
+	            return;
+	         }
+	         if(u.consumerName.value.trim() == ""){ // 이름 빈칸 검사
+	            alert('이름을 입력하세요');
+	            u.consumerName.focus();
+	            return;
+	         }
+	         if(u.consumerEmail.value.trim() == ""){ // 이메일 빈칸 검사
+	            alert('이메일을 입력하세요');
+	            u.consumerEmail.focus();
+	            return;
+	         }
+	         if(u.consumerPhone.value.trim() == ""){ // 전화번호 빈칸 검사
+	            alert('전화번호를 입력하세요');
+	            u.consumerPhone.focus();
+	            return;
+	         }
+	         if(u.consumerAccount.value.trim() == ""){ // 계좌번호 빈칸 검사
+	            alert('계좌번호를 입력하세요');
+	            u.consumerAccount.focus();
+	            return;
+	         }
+	         u.submit();   
+	      });
 		
 	</script>
 </html>

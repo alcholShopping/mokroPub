@@ -30,6 +30,7 @@ public class ReviewUpdateController extends HttpServlet {
 		String pName = rd.SelectProdctNameByReviewNo(reviewNo);
 		
 		request.setAttribute("pName", pName);
+		request.setAttribute("reviewNo", reviewNo);
 		request.setAttribute("rev", rev);
 		request.setAttribute("orderNo", orderNo);
 		request.getRequestDispatcher("/WEB-INF/view/review/myReviewUpdateForm.jsp").forward(request, response);
@@ -71,6 +72,7 @@ public class ReviewUpdateController extends HttpServlet {
 		int reviewNo = Integer.parseInt(multiReq.getParameter("reviewNo"));
 //		
 //		//디버깅
+		System.out.println(reviewNo + " <-- reviewNo doPost() ReviewUpdateController");
 		System.out.println(pictureName + " <-- photoName");
 		System.out.println(settedStar + " <-- settedStar");
 		System.out.println(pictureType + " <-- picturetype");

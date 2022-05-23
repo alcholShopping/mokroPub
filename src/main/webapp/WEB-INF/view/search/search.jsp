@@ -73,6 +73,8 @@
                                  <label><input type="radio" name="color" value="파랑">파랑</label>
                                  <label><input type="radio" name="color" value="남색">남색</label>
                                  <label><input type="radio" name="color" value="보라">보라</label>
+                                 <label><input type="radio" name="color" value="갈색">갈색</label>
+                                 <label><input type="radio" name="color" value="검정">검정</label>
                            </td>
                         </tr>
                         <tr>
