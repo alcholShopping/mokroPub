@@ -108,6 +108,7 @@ public class ProductOneController extends HttpServlet {
 			System.out.println(m.get("acidity") + " <-- acidity doGet() ProductOneController ");
 			System.out.println(m.get("thin") + " <-- thin doGet() ProductOneController ");
 			System.out.println(m.get("refreshment") + " <-- refreshment doGet() ProductOneController ");
+			System.out.println(m.get("reportNumber") + " <-- reportNumber doGet() ProductOneController ");
 			System.out.println(m.get("memo") + " <-- memo doGet() ProductOneController ");
 			System.out.println(m.get("categoryType") + " <-- categoryType doGet() ProductOneController ");
 			System.out.println(m.get("companyName") + " <--companyName doGet() ProductOneController ");

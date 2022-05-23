@@ -143,7 +143,7 @@
 											</tr>
 											<tr>
 												<td>품목보고번호</td>
-												<td>${m.report_number}</td>
+												<td>${m.reportNumber}</td>
 											</tr>
 											<tr>
 												<td>제조회사</td>

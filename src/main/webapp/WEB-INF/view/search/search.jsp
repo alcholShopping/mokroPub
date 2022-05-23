@@ -92,14 +92,18 @@
 
                            <td class="text-left" colspan="4">
                               <label><input type="radio" name="color" value="" checked="checked">전체</label>
-                              <label><input type="radio" name="color" value="하양">투명 혹은 흰색</label> &nbsp; &nbsp;
+                              <label><input type="radio" name="color" value="투명">투명</label> &nbsp; &nbsp;
+                              <label><input type="radio" name="color" value="흰색">흰색</label> &nbsp; &nbsp;
                                  <label><input type="radio" name="color" value="빨강">빨강</label>&nbsp; &nbsp;
                                  <label><input type="radio" name="color" value="주황">주황</label>&nbsp; &nbsp;
                                  <label><input type="radio" name="color" value="노랑">노랑</label>&nbsp; &nbsp;
                                  <label><input type="radio" name="color" value="초록">초록</label>&nbsp; &nbsp;
                                  <label><input type="radio" name="color" value="파랑">파랑</label>&nbsp; &nbsp;
                                  <label><input type="radio" name="color" value="남색">남색</label>&nbsp; &nbsp;
-                                 <label><input type="radio" name="color" value="보라">보라</label>
+                                 <label><input type="radio" name="color" value="보라">보라</label>&nbsp; &nbsp;
+                                 <label><input type="radio" name="color" value="검정">검정</label>&nbsp; &nbsp;
+                                 <label><input type="radio" name="color" value="갈색">갈색</label>
+                                 
                            </td>
                         </tr>
                      </table>

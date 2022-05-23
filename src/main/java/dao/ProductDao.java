@@ -87,6 +87,7 @@ public class ProductDao {
 				m.put("acidity", rs.getInt("acidity"));
 				m.put("thin", rs.getInt("thin"));
 				m.put("refreshment", rs.getInt("refreshment"));
+				m.put("reportNumber", rs.getString("reportNumber"));
 				m.put("memo", rs.getString("memo"));
 				m.put("categoryType", rs.getString("categoryType"));
 				m.put("companyName", rs.getString("companyName"));
