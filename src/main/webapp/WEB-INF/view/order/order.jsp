@@ -61,109 +61,112 @@
                <div class="section_subtitle">목로주점</div>
                   <div class="section_title">주문창</div>
             </div>
-            <table class ="table table-bordered">
-               <tr>
-                     <td>상품사진</td>
-                     <td>정보</td>
-                     <td>가격</td>
-                     <td>수량</td>
-               </tr>
+            <h3>상품정보</h3>
+            <table class ="table">
                <c:forEach items="${cartList}" var="item">
                   <tr>
                      <td>
-                        <img src="images/${item.picture}" width="150px">
+                        <img src="images/${item.picture}" width="100px">
                      </td>
-                     <td>${item.name}</td>
-                     <td>${item.price}원</td>
                      <td>
-                        <div class="selectCount">
-                           <ul class="countList">
-                              <li class="currentCount">현재수량 : ${item.count}
-                              </li>
-                           </ul>
-                        </div>
+                        <div class="product_name"><b>${item.name}</b></div>
+                     </td>
+                     <td>
+						총 ${item.count} 개
+                        </td>
+                     <td class="text-right">
+                        <div class="product_name"><b>${item.price}</b>원</div>
                      </td>
                   </tr>
                </c:forEach>
             <tr>
-               <td colspan="4" class="text-right">주문 수량 - ${cartCount}개  총 금액  ₩ ${totalPrice} 원</td>
+               <td colspan="2">
+               <span class="text-left"><h4>주문 수량 - ${cartCount}개 </h4></span>
+               </td>
+               <td colspan="2"> 
+               <span class="text-right"><h4>총 금액  ₩ ${totalPrice} 원 </h4></span>
+               </td>
             </tr>
             </table>   
+            <br>
       <!-- 회원정보 내역 -->
-         <table class ="table table-bordered">
-         
+      <h3>주문자정보</h3>
+         <table class ="table">
+         <!-- 주소 검색 -->
          <tr>
-            <th>주소 검색 <br><br><br> 주소 등록 <br><br><br>상세주소</th> <!-- 주소 검색 -->
-            <th>
-
+            <th width="200px" class="text-center">주소 검색</th> 
+            <td>
                   <div class="input-group mb-3">
                      <input type="text" class="form-control"
                         placeholder="주소 변경을 원하시면 검색해주세요" name="address" id="address">
                      <button onclick="javascript: form.action='orderFindAddressController';">검색하기</button>
-                  </div>                              
-                  <div>
-                     <select name="addressResult" class="form-control">
-                        <option value="${consumerList[0].address}" >${consumerList[0].address}</option>
-                        <c:forEach var="m" items="${searchList}">
-                           <option value="${m.searchAddr} ${m.zipcode}">${m.searchAddr} ${m.zipcode}</option>
-                        </c:forEach>
-                     </select>
-                  </div>            
-                              
-               <br>
-               <div>
+                  </div>  
+            </td> 
+           </tr>
+           <tr> 
+           <th width="200px" class="text-center">주소 등록</th>  
+           <td>                    
+               <select name="addressResult" class="form-control">
+                  <option value="${consumerList[0].address}" >${consumerList[0].address}</option>
+                  <c:forEach var="m" items="${searchList}">
+                     <option value="${m.searchAddr} ${m.zipcode}">${m.searchAddr} ${m.zipcode}</option>
+                  </c:forEach>
+               </select>       
+           </td>
+           </tr>
+           <tr>
+           <th width="200px" class="text-center">상세주소</th>
+           <td>
                <input type="text" class="form-control"
                value="${consumerList[0].detailedAddr}" name="detailedAddress" id="detailedAddress">
                <span id="detailedAddressHelper" class="helper"></span>
-               </div>
-         </th>
-            
+         </td>
          </tr>
             <tr>
-               <td>수취인</td>
+              <th width="200px" class="text-center">수취인</th>
                <td>
-               <input type="text" id="name" name ="name" value="${consumerList[0].name}">
+               <input type="text" id="name" name ="name" value="${consumerList[0].name}" class="form-control">
                <span id="nameHelper" class="helper"></span>
                </td>
-               
             </tr>
             <tr>
-               <td>연락처</td>
+               <th width="200px" class="text-center">연락처</th>
                <td>
-               <input type="text" id="phone" name="phone" value="${consumerList[0].phone}">
+               <input type="text" id="phone" name="phone" value="${consumerList[0].phone}" class="form-control">
                <span id="phoneHelper" class="helper"></span>
                </td>
-               
             </tr>
             <tr>
-               <td>이메일</td>
+               <th width="200px" class="text-center">이메일</th>
                <td>
-               <input type="text" id="email" name="email" value="${consumerList[0].email}">
-               <span id="emailHelper" class="helper"></span>
+               <input type="text" id="email" name="email" value="${consumerList[0].email}" class="form-control">
+               <span id="emailHelper" class="helper">&nbsp; </span>
                </td>
-               
             </tr>
-     			 <!-- 결제방법 -->
+        </table>
+        <br><br>
         
+     	<!-- 결제방법 -->
+        <h3>결제방법</h3>
+     	  <table class ="table">
             <tr>
-               <td>결제방법</td>
+               <th width="200px" class="text-center">결제방법</th>
                <td>
-                  <input type="radio" value="" id="method" class="method" name="method">무통장입금
+                  <input type="radio" value="" id="method" class="method" name="method" class="form-control">무통장입금
+               </td>
+                 <td>
                    <span id="methodHelper" class="helper"></span>
                </td>
-     
-               
             </tr>
-
-            </table>
-      
-       
-         
-            <table class ="table table-bordered">
+        </table>
+        <br><br>
+        
+        <h3>쿠폰선택</h3>
+            <table class ="table">
                <tr>
-                  <td>쿠폰목록</td>
+                  <th width="200px" class="text-center">쿠폰목록</th>
                   <td>
-                     <select name="selectCoupon" id="selectCoupon">
+                     <select name="selectCoupon" id="selectCoupon" class="form-control">
                         <option value="0" selected>:: :쿠폰 선택 :::</option>   
                         <c:forEach var="c" items="${couponList}">
                            <option value="${c.discount}" name="couponNo">
@@ -173,6 +176,7 @@
                   </td>
                </tr>
             </table>
+            <br><br>
          </div>
       </div>  
    </div>

@@ -29,23 +29,26 @@
 	</div>
 	<!--  구현영역  -->
 	<div class="container">
-	<div class="row">
-		<div class="col">
-			<div class="section_title_container text-center">
-				<div class="section_subtitle">목로주점</div>
-				<div class="section_title">장바구니</div>
+		<div class="row">
+			<div class="col">
+				<div class="section_title_container text-center">
+					<div class="section_subtitle">목로주점</div>
+					<div class="section_title">장바구니</div>
+				</div>
+				<c:if test="${fn:length(cartList) == 0}">
+				<div class="page_msg">상품 정보가 없습니다.</div>
+	  			<a href="${pageContext.request.contextPath}/indexController" class="btn" >상품 보러 가기</a>
+				</c:if>
 			</div>
-			<c:if test="${fn:length(cartList) == 0}">
-			<div class="page_msg">상품 정보가 없습니다.</div>
-  			<a href="${pageContext.request.contextPath}/indexController" class="btn" >상품 보러 가기</a>
-			</c:if>
+		</div>
+	</div>
+	<div class="container">
+	<div class="row">
 			<c:if test="${fn:length(cartList) != 0}">
-							<table class ="table table-bordered">
+			<div class="col-lg-7">
+							<table class ="table">
 								<tr>
-				                     <td>상품사진</td>
-				                     <td>정보</td>
-				                     <td>가격</td>
-				                     <td>수량</td>
+				                     <td colspan="3"></td>
 				                     <td>
 				                        <div class="float-right">
 				                              <a href="${pageContext.request.contextPath}/deleteProductInCartController" class= "btn btn-outline-secondary btn-sm">
@@ -55,20 +58,18 @@
 			                  	</tr> 	
 			                  	<c:forEach items="${cartList}" var="item">
 			                  	<c:if test="${fn:length(cartList) > 0}">
-								<tr>
 								<form method="post" action="${pageContext.request.contextPath}/deleteProductInCartController">
+								<tr>
 									<td>
 										<input type="hidden" value="${item.cartNo}" name="cartNo" >
 										<input type="hidden" value="${item.productNo}" name="cartNo">
-										<img src="images/${item.picture}" width="150px">
+										<img src="images/${item.picture}" width="100px">
 									</td>
-									
 									<td>
-										${item.name}
-									</td>
-									
-									<td>
-										${item.price}원
+									<div class="product_info">
+										<div class="product_name"><b>${item.name}</b></div>
+										<div class="product_price">${item.price}원</div>
+										</div>
 									</td>
 		
 									<td>
@@ -78,10 +79,10 @@
 												}
 									</script>
 										<div class="selectCount">
-												<c:if test="${item.count<= 5}">현재 수량 : ${item.count} 개</c:if> 
-												<c:if test="${item.count > 5}">${item.count = 5}</c:if>
+												<c:if test="${item.count<= 5}">현재 수량 : ${item.count} 개 <br></c:if> 
+												<c:if test="${item.count > 5}">${item.count = 5}<br></c:if>
 												<select onchange="window.open(value,'blank');">
-		                                       <option value = "">:: 변경하기 ::</option>
+		                                       <option value = "">수량변경</option>
 		                                       <option value =${pageContext.request.contextPath}/updateProductInCartController?count=1&productNo=${item.productNo}>1개</option>
 		                                       <option value =${pageContext.request.contextPath}/updateProductInCartController?count=2&productNo=${item.productNo}>2개</option>
 		                                       <option value =${pageContext.request.contextPath}/updateProductInCartController?count=3&productNo=${item.productNo}>3개</option>
@@ -91,35 +92,44 @@
 										</div>
 									</td>
 									<td>
-										<button type="submit"><img src="./images/trash.png"></button>
+										<button type="submit" class="deleteBtn">Ⅹ</button>
 									</td>
-									</form>
-									
 								</tr>	
+								</form>
 								</c:if>	
 							</c:forEach>
 						</table>  
+						</div>
 					</c:if>
-				</div>  
-			</div>
-			
-		
-	<c:if test="${fn:length(cartList) > 0}">
-	<!--  주문하기 버튼 -->
-	<div class="text-center orderBar">
-      <a href="${pageContext.request.contextPath}/orderController" class="orderBtn">주문하기</a>
-      
-   </div>
-   </c:if>
-</div>
-<c:if test="${fn:length(cartList) > 2}">
+				<div class="col-lg-5">
+				<div class="fix_cart">
+				<h4><b>결제 예정 금액</b></h4><hr>
+				<c:set var = "total" value = "0" />
+				<c:forEach items="${cartList}" var="item">
+				<div class="cart_one_product">${item.name} <span class="float-right">+ ${item.price * item.count}원</span><br></div>
+				<c:set var= "total" value="${total + (item.price * item.count)}"/>
+				</c:forEach>
+				<hr>
+				<h3>합계 <span class="float-right"><b>${total}</b>원</span></h3>
+				<!--  주문하기 버튼 -->
+				<a href="${pageContext.request.contextPath}/orderController">
+					<div class="orderBtn">
+					주문하기
+				  	</div>
+			   </a>
+   			</div>
+   			</div>
+   		</div> 
+   	</div> 
+
+<c:if test="${fn:length(cartList) > 4}">
 	</div>
 		<!-- Footer -->	
 		<jsp:include page="../../../WEB-INF/inc/footer.jsp"></jsp:include>
 	</div>
 </c:if>
 
-<c:if test="${fn:length(cartList) < 3}">
+<c:if test="${fn:length(cartList) < 5}">
 	</div>
 	<!-- Footer -->
 	<div class ="fixFooter">
