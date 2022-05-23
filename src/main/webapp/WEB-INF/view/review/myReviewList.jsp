@@ -42,29 +42,19 @@
 					<table class ="table table-bordered">
 					<c:forEach items="${myReviewList}" var="item">					
 						<tr>
-		                     <td>리뷰번호</td>
-		                     <td>별점</td>
-		                     <td>사진</td>
-		                     <td>상품정보</td>
-		                     <td>리뷰내용</td>	                    
-		                     <td>사진</td>                    
+		                     <td colspan="2">상품정보</td>
+		                     <td colspan="2">리뷰내용</td>	 
+		                     <td>별점</td>                            
 	                  	</tr>
 						<tr>
 
-							<td>
-								${item.reviewNo}
-							</td>
-								
-							<td>
-							<c:forEach var="star" begin="1" end="${item.star}">
-							<img src="./images/star.svg" width="10">
-							</c:forEach>
-							</td>
+							
 							
 							<td>
 			                     <a href="${pageContext.request.contextPath}/productOneController?productNo=${item.productNo}">
 			                     <img src="images/${item.picture2}" width="80px">               
 		                     </a>
+		                     
 							<td>
 								<a href="productOneController?productNo=${item.productNo}"> 
 									${item.name} 
@@ -75,12 +65,20 @@
 								</a>
 							</td>
 							
+							
+							
 							<td>
+								<img src="./images/${item.picture}" width="80">
+							</td>
+							
+							<td width="300px">
 								${item.content}
 							</td>
 							
 							<td>
-								<img src="./images/${item.picture}" width="80">
+							<c:forEach var="star" begin="1" end="${item.star}">
+							<img src="./images/star.svg" width="10">
+							</c:forEach>
 							</td>
 																			
 							<td>
