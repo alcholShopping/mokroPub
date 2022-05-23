@@ -11,7 +11,7 @@ public class RefundDao {
 	public void refundProduct(int orderNo) {
 		Connection conn = null;
 		PreparedStatement stmt = null;
-		String sql = " UPDATE delivery SET status='환불' WHERE order_no=? ORDER BY create_date desc";
+		String sql = " UPDATE delivery SET status='환불 진행 중' WHERE order_no=? ORDER BY create_date desc";
 
 		try {
 			conn = DBUtil.getConnection();

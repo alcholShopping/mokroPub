@@ -51,6 +51,7 @@ public class LogoutController extends HttpServlet {
 			consumerDao = new ConsumerDao();
 			
 			String checkCurrentPw = loginDao.changePwToEncryptionPw(sessionMemberId, currentPw);
+			System.out.println(checkCurrentPw + "checkCurrentPw doPost() logoutController");
 			if(checkCurrentPw == null) {
 				String errorText = "현재 비밀번호가 일치하지 않습니다.";
 				System.out.println("현재 비밀번호가 일치하지 않습니다.");

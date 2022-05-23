@@ -75,13 +75,16 @@
 							<td>
 								${item.createDate}
 								<br>
+								<c:if test="${item.status != '환불 진행 중'}">
 								<a href="reviewController?orderNo=${item.orderNo}" class="btn btn-outline-secondary btn-sm">
 								리뷰하기
 								</a>
+								</c:if>
 								<br>
 								<a href="refundController?orderNo=${item.orderNo}&status=${item.status}" class=" btn btn-outline-secondary btn-sm" onclick="refund()">
 								환불하기
 								</a>
+								
 							</td>
 						</tr>					
 					</c:forEach>
@@ -103,9 +106,9 @@
 	</c:if>
 </body>
 <script>
-	function refund(){
-		if($('#status').val() == "환불"){
-			alert("환불 진행 중입니다.")
+	function refund(){	
+		if($('#status').val() == "환불 진행 중"){
+				alert("환불 진행 중입니다.");
 		}
 	}
 	
