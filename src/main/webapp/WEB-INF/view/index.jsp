@@ -50,6 +50,23 @@
 <div class="indexBox">
 <br>
 	<div class="couponBox">
+		<div style="text-align: center;">
+			<a href="indexController?couponNum=1" class="button" style="margin-top: 30px">
+			5% 매일 쿠폰 받기
+			</a>
+			
+			<a href="indexController?couponNum=2" class="button" style="margin-top: 30px">
+			10% 매일 쿠폰 받기
+			</a>
+			
+			<a href="indexController?couponNum=3" class="button" style="margin-top: 30px">
+			15% 매일 쿠폰 받기
+			</a>
+			
+			<a href="indexController?couponNum=4" class="button" style="margin-top: 30px">
+			20% 매일 쿠폰 받기
+			</a>
+		</div>
 	</div>
 	
 	<div class="container">

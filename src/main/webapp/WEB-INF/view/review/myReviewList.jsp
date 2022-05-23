@@ -40,12 +40,14 @@
       <div class="row">
          <div class="col">
 					<table class ="table table-bordered">
-					<c:forEach items="${myReviewList}" var="item">					
 						<tr>
 		                     <td colspan="2">상품정보</td>
 		                     <td colspan="2">리뷰내용</td>	 
 		                     <td>별점</td>                            
 	                  	</tr>
+	                  	
+					<c:forEach items="${myReviewList}" var="item">					
+						
 						<tr>
 
 							
@@ -67,11 +69,10 @@
 							
 							
 							
-							<td>
+							<td colspan="2">
+								<c:if test="${item.picture != 'fileX.jpg'}">
 								<img src="./images/${item.picture}" width="80">
-							</td>
-							
-							<td width="300px">
+								</c:if>
 								${item.content}
 							</td>
 							
@@ -82,8 +83,8 @@
 							</td>
 																			
 							<td>
-								<A href="reviewDeleteController?reviewNo=${item.reviewNo}&orderNo=${item.orderNo}">삭제</A>
-								<A href="reviewUpdateController?reviewNo=${item.reviewNo}&orderNo=${item.orderNo}">수정</A>
+								<A href="reviewDeleteController?reviewNo=${item.reviewNo}&orderNo=${item.orderNo}" class="btn btn-outline-secondary btn-sm">삭제하기</A><br>
+								<A href="reviewUpdateController?reviewNo=${item.reviewNo}&orderNo=${item.orderNo}" class="btn btn-outline-secondary btn-sm">수정하기</A>
 							</td>
 
 						
@@ -91,17 +92,6 @@
 					</c:forEach>
 
 				</table>  
-				<div class="pagebutton text-center">
-						<!-- 이전 버튼 -->
-						<c:if test="${currentPage > 1}">
-							<a href="${pageContext.request.contextPath}/myReviewListController?currentPage=${currentPage-1}" class="btn btn-link">이전</a>
-						</c:if>
-					
-						<!-- 다음 버튼 -->
-						<c:if test="${currentPage < lastPage}">
-							<a href="${pageContext.request.contextPath}/myReviewListController?currentPage=${currentPage+1}" class="btn btn-link">다음</a>
-						</c:if>
-				</div>
 			</div>  
 	</div>
 </div>

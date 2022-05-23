@@ -53,12 +53,13 @@
 						<div class="col-sm-1">
 						</div>
 						<div class="col-sm-10">
-							<form action="${pageContext.request.contextPath}/reviewController" method="post" enctype="multipart/form-data">
+							<form action="${pageContext.request.contextPath}/reviewUpdateController" method="post" enctype="multipart/form-data">
 									
 									
 								<table class = "table">
 									<tr>
 										<td>상품이름 <input type="hidden" readonly="readonly" name="orderNo" value="${orderNo}"></td>
+										<td>리뷰번호 <input type="hidden" readonly="readonly" name="reviewNo" value="${reviewNo}"></td>
 										<td class="text-left">${pName}</td>
 										<td>별점</td>
 										<td>
