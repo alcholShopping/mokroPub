@@ -53,7 +53,9 @@
 		                        </div>
 		                     </td>
 	                  	</tr> 	
+	                  
 	                  	<c:forEach items="${cartList}" var="item">
+	                  	<c:if test="${fn:length(cartList) > 0}">
 						<tr>
 						<form method="post" action="${pageContext.request.contextPath}/deleteProductInCartController">
 							<td>
@@ -93,15 +95,28 @@
 								<button type="submit"><img src="./images/trash.png"></button>
 							</td>
 							</form>
-						</tr>		
+							
+						</tr>	
+						</c:if>	
 					</c:forEach>
+					<c:if test="${fn:length(cartList) == 0}">
+						<tr>
+							<td>상품 정보가 없습니다.</td>
+						</tr>
+					</c:if>
 				</table>  
 			</div>  
 	</div>
+	<c:if test="${fn:length(cartList) > 0}">
 	<!--  주문하기 버튼 -->
 	<div class="text-center orderBar">
       <a href="${pageContext.request.contextPath}/orderController" class="orderBtn">주문하기</a>
+      
    </div>
+   </c:if>
+   <c:if test="${fn:length(cartList) == 0}">
+   <a href="${pageContext.request.contextPath}/indexController" class="btn btn-primary" >상품 보러 가기</a>
+   </c:if>
 </div>
 <c:if test="${fn:length(cartList) > 2}">
 	</div>

@@ -52,7 +52,7 @@
                   <tr>
                      <td>
                      <a href="${pageContext.request.contextPath}/productOneController?productNo=${item.productNo}">
-                     	<img src="images/${item.picture2}" width="80px">               
+                     	<img src="images/${item.picture}" width="80px">               
                      </a>
                      </td>
                      <td>
