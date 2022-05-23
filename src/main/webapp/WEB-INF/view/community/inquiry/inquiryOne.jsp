@@ -31,13 +31,13 @@
 				<div class="section_subtitle">목로주점</div>
 				<div class="section_title">문의사항</div>
 			</div>
+			<c:forEach var="m" items="${inquiryOneList}">
 				<div style="display:none" class="conusmerBtn text-right">
 					<a href="${pageContext.request.contextPath}/updateInquiryController?inquiryNo=${m.inquiryNo}&consumerId=${m.consumerId}" class="btn btn-outline-secondary btn-sm">수정하기</a>
 				</div>
 				<div style="display:none" class="conusmerBtn text-right">
 					<a href="${pageContext.request.contextPath}/deleteInquiryController?inquiryNo=${m.inquiryNo}&consumerId=${m.consumerId}" class="btn btn-outline-secondary btn-sm">삭제하기</a>
 				</div>
-            	<c:forEach var="m" items="${inquiryOneList}">
 	            	<table class ="table table-boedered">
 		            	<tr>
 			            	<td class="text-left">No.${m.inquiryNo} </td>
