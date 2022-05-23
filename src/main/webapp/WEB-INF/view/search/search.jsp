@@ -104,6 +104,7 @@
                                  <label><input type="radio" name="color" value="보라">보라</label>&nbsp; &nbsp;
                                  <label><input type="radio" name="color" value="검정">검정</label>&nbsp; &nbsp;
                                  <label><input type="radio" name="color" value="갈색">갈색</label>
+                           </td>
                         </tr>
                      </table>
                      <button type="submit" class="btn btn-primary">검색</button>
@@ -157,13 +158,13 @@
    </div>
             </div>
          </div>
-	<c:if test="${fn:length(searchResultList) > 3}">
+	<c:if test="${fn:length(searchResultList) != 0}">
 	</div>
 			<!-- Footer -->	
 			<jsp:include page="../../../WEB-INF/inc/footer.jsp"></jsp:include>
 	</c:if>
 	
-	<c:if test="${fn:length(searchResultList) < 4}">
+	<c:if test="${fn:length(searchResultList) == 0}">
 		</div>
 		<!-- Footer -->
 		<div class ="fixFooter">

@@ -112,6 +112,7 @@
 		    $('#settedStar').val(point);
 		    console.log(point+ "스타 갯수");
 		}
+		
 	</script>
 </div>
 </body>

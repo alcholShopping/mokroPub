@@ -127,4 +127,10 @@
 <script src="styles/bootstrap4/bootstrap.min.js"></script>
 <script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
 <script src="js/custom.js"></script>
+
+<script type="text/javascript">
+		if(${isCouponGet == "true"}) {
+			alert("하루에 쿠폰은 하나만 수령 가능합니다!!");
+		}
+</script>
 </html>

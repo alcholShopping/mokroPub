@@ -143,23 +143,21 @@
                </td>
                
             </tr>
-
-
-            </table>
-            <!-- 결제방법 -->
-            <table class ="table table-bordered"+>
-               <tr>
-                  <td>결제방법</td>
+     			 <!-- 결제방법 -->
+        
+            <tr>
+               <td>결제방법</td>
+               <td>
+                  <input type="radio" value="" id="method" class="method" name="method">무통장입금
+                   <span id="methodHelper" class="helper"></span>
+               </td>
+     
                
-                  <td>
-                     <input type="radio" value="" id="method" class="method" name="method">무통장입금
-                  </td>
-                  <td>
-                     <span id="methodHelper" class="helper"></span>
-                  </td>
-                  
-               </tr>
+            </tr>
+
             </table>
+      
+       
          
             <table class ="table table-bordered">
                <tr>
