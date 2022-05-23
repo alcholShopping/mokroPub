@@ -1699,3 +1699,6 @@ margin-bottom: 30px;
 	  cursor: pointer;
 }
 .starR.on{background-position:0 0;}
+.helper {
+   	color: #FF0000;
+   }

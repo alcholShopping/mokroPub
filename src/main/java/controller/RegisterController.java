@@ -71,8 +71,7 @@ public class RegisterController extends HttpServlet {
 		int yearNow = Calendar.getInstance().get(Calendar.YEAR);
 		consumer.setConsumerId(request.getParameter("consumerId"));
 		consumer.setPassword(request.getParameter("consumerPw"));
-		consumer.setName(request.
-				getParameter("consumerName"));
+		consumer.setName(request.getParameter("consumerName"));
 		consumer.setEmail(request.getParameter("email"));
 		consumer.setPhone(request.getParameter("phone"));
 		consumer.setResidentNumber(request.getParameter("residentNumber"));

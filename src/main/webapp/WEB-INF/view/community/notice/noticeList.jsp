@@ -33,7 +33,7 @@
 			</div>
 			<br>
 			<!-- 아이디가 admin인 경우만 보이게 해야함 -->
-			<a href="${pageContext.request.contextPath}/insertNoticeController" id="adminBtn" class="float-right">글쓰기</a>
+			<a href="${pageContext.request.contextPath}/insertNoticeController" id="adminBtn" class="float-right btn btn-outline-secondary btn-sm"">글쓰기</a>
 			<table class ="table table-hover">
 				<thead>
 				<tr>
@@ -56,11 +56,12 @@
 				</table>
 				<div class="text-center">
 					<c:if test="${currentPage > 1}">
-						<a href="${pageContext.request.contextPath}/noticeListController?currentPage=${currentPage-1}">이전</a>
+						<a href="${pageContext.request.contextPath}/noticeListController?currentPage=${currentPage-1}" class="btn btn-outline-secondary">이전</a>
 					</c:if>
+					&nbsp;
 					<!-- 다음 버튼 -->
 					<c:if test="${currentPage < lastPage}">
-						<a href="${pageContext.request.contextPath}/noticeListController?currentPage=${currentPage+1}">다음</a>
+						<a href="${pageContext.request.contextPath}/noticeListController?currentPage=${currentPage+1}" class="btn btn-outline-secondary">다음</a>
 					</c:if>
 				</div>
 			</div>  

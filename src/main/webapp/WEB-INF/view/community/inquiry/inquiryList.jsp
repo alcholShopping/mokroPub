@@ -18,50 +18,58 @@
 <link href="plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-	<div class="super_container">
-		<!-- Header -->		
-		<jsp:include page="../../../../WEB-INF/inc/navBar.jsp"></jsp:include>
-		<div class="nullbox">
-		</div>	
-		<!-- contents -->
-		<div class="container">		
-	      <div class="row">
-	         <div class="col">
-	         <div class="float-right">         
-			</div>			
-			<h2>문의사항</h2>
-				<table class ="table table-bordered">
-					<thaed>
-						<th>번호</th>
-						<th>글쓴이</th>
-						<th>제목</th>
-						<th>날짜</th>
-					</thaed>
-					<c:forEach items="${inquiryList}" var="item">
-					<tbody>
+<div class="super_container">
+	<!-- Header -->		
+	<jsp:include page="../../../../WEB-INF/inc/navBar.jsp"></jsp:include>
+	<div class="nullbox">
+	</div>	
+	
+	<!-- contents -->
+	<div class="container">		
+     <div class="row">
+        <div class="col">
+		<div class="section_title_container text-center">
+			<div class="section_subtitle">목로주점</div>
+			<div class="section_title">문의사항</div>
+			<div class="text-right">
+				<a href="${pageContext.request.contextPath}/insertInquiryController" id="insertInquiryBtn" class="btn btn-outline-secondary btn-sm">글쓰기</a>
+			</div>
+				<table class ="table table-hover">
+					<thead>
 						<tr>
-							<td><a href="${pageContext.request.contextPath}/inquiryOneController?inquiryNo=${item.inquiryNo}">${item.inquiryNo}</a></td>
-							<td><a href="${pageContext.request.contextPath}/inquiryOneController?inquiryNo=${item.inquiryNo}">${item.consumerId}</a></td>
-							<td><a href="${pageContext.request.contextPath}/inquiryOneController?inquiryNo=${item.inquiryNo}">${item.title}</a></td>
-							<td><a href="${pageContext.request.contextPath}/inquiryOneController?inquiryNo=${item.inquiryNo}">${item.createDate}</a></td>
+							<th class="text-center" width="80px">NO</th>
+							<th class="text-center">제목</th>
+							<th class="text-center" width="100px">글쓴이</th>
+							<th class="text-center" width="200px">작성시간</th>
+						</tr>
+					</thead>
+					<c:forEach items="${inquiryList}" var="item">
+					</tbody>
+						<tr>
+							<td class="text-center"><a href="${pageContext.request.contextPath}/inquiryOneController?inquiryNo=${item.inquiryNo}">${item.inquiryNo}</a></td>
+							<td class="text-left"><a href="${pageContext.request.contextPath}/inquiryOneController?inquiryNo=${item.inquiryNo}">${item.title}</a></td>
+							<td class="text-center"><a href="${pageContext.request.contextPath}/inquiryOneController?inquiryNo=${item.inquiryNo}">${item.consumerId}</a></td>	
+							<td class="text-center"><a href="${pageContext.request.contextPath}/inquiryOneController?inquiryNo=${item.inquiryNo}">${item.createDate}</a></td>
 						</tr>
 					</tbody>
-					</c:forEach>					  	
-					</table>
-						<c:if test="${currentPage > 1}">
-							<a href="${pageContext.request.contextPath}/inquiryListController?currentPage=${currentPage-1}" >이전</a>
-						</c:if>
-						<!-- 다음 버튼 -->
-						<c:if test="${currentPage < lastPage}">
-							<a href="${pageContext.request.contextPath}/inquiryListController?currentPage=${currentPage+1}">다음</a>
-						</c:if>
-					<div></div>
-					<a href="${pageContext.request.contextPath}/insertInquiryController" id="insertInquiryBtn">문의사항 쓰기</a>
-				</div>  
-			</div>	
-		</div>
-		<!-- Footer -->	
-		<jsp:include page="../../../../WEB-INF/inc/footer.jsp"></jsp:include>
+					</c:forEach>				
+					</tbody>  	
+				</table>
+				<c:if test="${currentPage > 1}">
+					<a href="${pageContext.request.contextPath}/inquiryListController?currentPage=${currentPage-1}" >이전</a>
+				</c:if>
+				<!-- 다음 버튼 -->
+				<c:if test="${currentPage < lastPage}">
+					<a href="${pageContext.request.contextPath}/inquiryListController?currentPage=${currentPage+1}">다음</a>
+				</c:if>
+			</div>
+		</div>	
 	</div>
+</div>
+<div class ="fixFooter">
+	<!-- Footer -->	
+	<jsp:include page="../../../../WEB-INF/inc/footer.jsp"></jsp:include>
+</div>
+</div>
 </body>
 </html>

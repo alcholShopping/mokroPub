@@ -46,22 +46,13 @@
 			<div class="shopping">
 				<a href="${pageContext.request.contextPath}/cartController">
 					<div class="cart">
-						<img
-							src="${pageContext.request.contextPath}/images/shopping-bag.svg"alt="">
+						<img src="${pageContext.request.contextPath}/images/shopping-bag.svg"alt="">
 						<div class="cart_num_container">
 							<div class="cart_num_inner">
 								<div class="cart_num">
-								<c:if test="${cartCount == null }">
-								0
-								</c:if>
-								
-								<c:if test="${cartCount == null }">
-		                        0
-		                        </c:if>
-		                        
-		                        <c:if test="${cartCount ne null }">
-		                        ${cartCount}
-		                        </c:if>
+								<c:if test="${cartCount == null }">0</c:if>
+
+		                        <c:if test="${cartCount ne null }"> ${cartCount} </c:if>
 								</div>
 							</div>
 						</div>

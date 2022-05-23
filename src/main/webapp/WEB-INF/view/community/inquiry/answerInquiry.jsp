@@ -18,57 +18,57 @@
 <link href="plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-	<div class="super_container">
+<div class="super_container">
 	<!-- Header -->
 	<jsp:include page="../../../../WEB-INF/inc/navBar.jsp"></jsp:include>
-	
-	<!-- contents -->
 	<div class="nullbox">
-	</div>
-	<!-- Product -->
-	<div class="product">
-		<div class="container">
-			<div class="row product_row">
-
+	</div>	
+	<div class="container">		
+      <div class="row">
+         <div class="col">
+			<div class="section_title_container text-center">
+				<div class="section_subtitle">목로주점</div>
+				<div class="section_title">문의사항</div>
+			</div>
+				<div style="display:none" class="conusmerBtn text-right">
+					<a href="${pageContext.request.contextPath}/updateInquiryController?inquiryNo=${m.inquiryNo}&consumerId=${m.consumerId}" class="btn btn-outline-secondary btn-sm">수정하기</a>
+				</div>
+				<div style="display:none" class="conusmerBtn text-right">
+					<a href="${pageContext.request.contextPath}/deleteInquiryController?inquiryNo=${m.inquiryNo}&consumerId=${m.consumerId}" class="btn btn-outline-secondary btn-sm">삭제하기</a>
+				</div>
             	<c:forEach var="m" items="${inquiryOneList}">
-            	
-				<!-- notice Image -->
-				<div class="col-lg-7">
-					<div class="product_image">
-						<div class="product_image_large"><img src="images/${m.photo}" alt=""></div>
-						<div class="product_image_thumbnails d-flex flex-row align-items-start justify-content-start">
-						</div>
-					</div>
-				</div>
-
-				<!-- Product Content -->
-				<div class="col-lg-5">
-					<div class="product_content">					
-						<div>번호 : ${m.inquiryNo}</div>
-						<div>제목 : ${m.category}</div>
-						<div>작성자 : ${m.consumerId}</div>
-						<div>제목 : ${m.title}</div>
-						<div>답변 상태 : ${m.status}</div>
-						<div>작성날짜 : ${m.createDate}</div>
-						<br>
-					</div>
-				</div>				
-				<!-- content -->
-				<div>
-					<p>${m.content}</p>
-				</div>
-				<form action ="${pageContext.request.contextPath}/answerInquiryController" method="post">
-					<div>
-						답변 : <textarea rows="10" cols="70" name="answer"></textarea>
-						<button type="submit" class="btn btn-primary" >답변 등록</button>
-					</div>
-					<input type="hidden" value="${m.inquiryNo}" name="inquiryNo">
-				</form>
+	            	<table class ="table table-boedered">
+		            	<tr>
+			            	<td class="text-left">No.${m.inquiryNo} </td>
+			            	<td class="text-left">${m.title}</td>
+			            	<td class="text-right">${m.category}</td>
+		            	</tr>
+		            	<tr>
+			            	<td>작성자</td>
+			            	<td>${m.consumerId}</td>
+			            	<td class="text-right">${m.createDate}</td>
+		            	</tr>
+		            	<tr>
+			            	<td colspan="3">
+			            		${m.content}
+			            	</td>
+		            	</tr>
+	            	</table>
+	            	
+					<form action ="${pageContext.request.contextPath}/answerInquiryController" method="post">
+						<input type="hidden" value="${m.inquiryNo}" name="inquiryNo">
+						<textarea rows="10" cols="70" name="answer"  class="form-control"></textarea>
+						<button type="submit" class="btn btn-primary">등록하기</button>
+					</form>
 				</c:forEach>
 			</div>		
 		</div>
 	</div>
 	<!-- 끝 -->
+</div>
+<div class ="fixFooter">
+	<!-- Footer -->	
+	<jsp:include page="../../../../WEB-INF/inc/footer.jsp"></jsp:include>
 </div>
 </body>
 </html>

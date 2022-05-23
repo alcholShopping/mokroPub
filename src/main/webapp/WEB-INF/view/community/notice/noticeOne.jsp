@@ -22,47 +22,46 @@
 		<!-- Header -->
 		<jsp:include page="../../../../WEB-INF/inc/navBar.jsp"></jsp:include>
 		
-		<!-- contents -->
-		<div class="nullbox">
-		</div>
-		<!-- Product -->
-		<div class="product">
-			<div class="container">
-				<div class="row product_row">
-	
+	<!-- contents -->
+	<div class="nullbox">
+	</div>
+	<div class="container">		
+      <div class="row">
+         <div class="col">
+			<div class="section_title_container text-center">
+				<div class="section_subtitle">목로주점</div>
+				<div class="section_title">공지사항</div>
+			</div>
 	            	<c:forEach var="m" items="${noticeOneList}">
-	            	
-					<!-- notice Image -->
-					<div class="col-lg-7">
-						<div class="product_image">
-							<div class="product_image_large"><img src="images/${m.photo}" alt=""></div>
-							<div class="product_image_thumbnails d-flex flex-row align-items-start justify-content-start">
-							</div>
-						</div>
-					</div>
-	
-					<!-- Product Content -->
-					<div class="col-lg-5">
-						<div class="product_content">
-							<div>${m.noticeNo}번</div>
-							<div>작성자 : ${m.consumerId}</div>
-							<div>제목 : ${m.title}</div>
-							<div>작성날짜 : ${m.createDate}</div>
-							<br>
-						</div>
-					</div>				
-					<!-- content -->
-					<div>
-						<p>${m.content}</p>
-					</div>
+		            	<table class ="table table-boedered">
+			            	<tr>
+				            	<td class="text-left">No.${m.noticeNo} </td>
+				            	<td class="text-left">${m.title}</td>
+				            	<td class="text-right">${m.createDate}</td>
+			            	</tr>
+			            	<tr>
+				            	<td>작성자</td>
+				            	<td>${m.consumerId}</td>
+				            	<td><div class="adminBtn text-right" style="display:none"><a href="${pageContext.request.contextPath}/updateNoticeController?noticeNo=${m.noticeNo}" class="btn btn-outline-secondary btn-sm">수정하기</a></div>
+				            	</td>
+			            	</tr>
+			            	<tr>
+				            	<td colspan="3">
+				            		${m.content}
+				            	</td>
+			            	</tr>
+		            	</table>			
 					<!-- 아이디가 admin인 경우만 보이게 해야함 -->
-					<div class="adminBtn" style="display:none"><a href="${pageContext.request.contextPath}/updateNoticeController?noticeNo=${m.noticeNo}">수정하기</a></div>
-					<div class="adminBtn" style="display:none"><a href="${pageContext.request.contextPath}/deleteNoticeController?noticeNo=${m.noticeNo}">삭제</a></div>
+					<div class="adminBtn" style="display:none"><a href="${pageContext.request.contextPath}/deleteNoticeController?noticeNo=${m.noticeNo}" class="btn btn-outline-secondary btn-sm">삭제</a></div>
 					</c:forEach>
 				</div>		
 			</div>
 		</div>
 	</div>
+	<div class ="fixFooter">
+	<!-- Footer -->	
+	<jsp:include page="../../../../WEB-INF/inc/footer.jsp"></jsp:include>
+</div>
 </body>
 <script>
 	if('${sessionScope.sessionMemberId}' == 'admin'){
