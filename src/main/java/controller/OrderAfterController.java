@@ -19,6 +19,7 @@ import vo.*;
 public class OrderAfterController extends HttpServlet {
 	OrdereAfterDao ordereAfterDao = new OrdereAfterDao();
 	private ConsumerDao consumerDao = new ConsumerDao();
+	ReviewDao rd = new ReviewDao();
 	CartDao cartDao = new CartDao();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -40,6 +41,14 @@ public class OrderAfterController extends HttpServlet {
 		List<Map<String,Object>> orList = ordereAfterDao.selectOrderedById(consumerNo);
 		
 		for(Map m : orList) {
+			int isReviewExist;
+			
+			isReviewExist = rd.isExistReviewByOrderNo((int)m.get("orderNo"));
+			
+			
+			m.put("isReviewExist", isReviewExist);
+			
+		
 			System.out.println(m.get("orderNo") + "<----orderNo  doGet()  OrderAfterController");
 			System.out.println(m.get("consumerNo") + "<----consumerNo  doGet()  OrderAfterController");
 			System.out.println(m.get("productName") + "<----productName  doGet()  OrderAfterController");
@@ -53,7 +62,13 @@ public class OrderAfterController extends HttpServlet {
 			System.out.println(m.get("updateDate") + "<----updateDate  doGet()  OrderAfterController");
 			System.out.println(m.get("status") + "<----status  doGet()  OrderAfterController");
 		}
-
+		
+		for(Map m : orList) {
+			System.out.println(m.get("isReviewExist") + "////////isReviewExistisReviewExistisReviewExistisReviewExistisReviewExistisReviewExistisReviewExistisReviewExistisReviewExistisReviewExistisReviewExistisReviewExistisReviewExistisReviewExistisReviewExist");
+		}
+		// ISSUE : 리뷰가 존재하면 리뷰 작성이 불가능해야 함
+		// 근데 개별적으로 확인해야하니까 orList안에 작성하는게..
+		
 		request.setAttribute("orList", orList); // jsp에 보여줄 값을 반환
 		request.getRequestDispatcher("/WEB-INF/view/review/orderAfter.jsp").forward(request, response);
 	}

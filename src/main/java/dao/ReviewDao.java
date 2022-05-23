@@ -85,6 +85,45 @@ public class ReviewDao {
 		return pName;
 	}
 	
+	public int isExistReviewByOrderNo(int orderNo){
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		int review_no = 0;
+		//사진은 잠깐 NULL설정
+		String sql = "SELECT review_no "
+				+ "FROM review "
+				+ "WHERE order_no = ?";
+		
+		try {
+			conn = DBUtil.getConnection();
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, orderNo);
+
+			rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				review_no = rs.getInt("review_no");
+				
+				System.out.println(review_no + " ==================== review_noreview_noreview_noreview_noreview_noreview_noreview_noreview_noreview_noreview_no");
+			}
+
+			
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		
+		return review_no;
+	}
+	
 	public String SelectProdctNameByReviewNo(int ReviewNo){
 
 		Connection conn = null;
