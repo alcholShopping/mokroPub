@@ -50,7 +50,7 @@
 							<div class="product_content">
 							<div class="product_one_title">#${m.categoryType} </div>
 								<div class="product_one_name">${m.name} ${m.volume}ml ${m.alcoholLevel}도</div>
-								<div class="product_price">${m.price}원</div>
+								<div class="product_price_one">${m.price}원</div>
 								<div class="product_one_content">
 								<hr>
 								배송비 &nbsp; &nbsp;무료배송 
@@ -168,6 +168,7 @@
 								<hr>
 								<c:if test="${fn:length(reviewList) < 1}">
 								<p> 아직 작성된 리뷰가 없습니다.
+								<br><br><br><br><br><br>
 								</c:if>
 								<c:if test="${fn:length(reviewList) > 0}">
 								<!-- Review -->
@@ -197,6 +198,7 @@
 									<tr>
 								</table>
 							</c:forEach>
+							<br><br><br>
 						</c:if>
 					</div>
 				</div>

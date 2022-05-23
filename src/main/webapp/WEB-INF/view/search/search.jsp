@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -91,16 +92,18 @@
                            <td>색상</td>
 
                            <td class="text-left" colspan="4">
-                              <label><input type="radio" name="color" value="" checked="checked">전체</label>
-                              <label><input type="radio" name="color" value="하양">투명 혹은 흰색</label> &nbsp; &nbsp;
+                              <label><input type="radio" name="color" value="" checked="checked">전체</label> &nbsp; &nbsp;
+                              <label><input type="radio" name="color" value="투명">투명</label> &nbsp; &nbsp;
+                              <label><input type="radio" name="color" value="흰색">흰색</label> &nbsp; &nbsp;
                                  <label><input type="radio" name="color" value="빨강">빨강</label>&nbsp; &nbsp;
                                  <label><input type="radio" name="color" value="주황">주황</label>&nbsp; &nbsp;
                                  <label><input type="radio" name="color" value="노랑">노랑</label>&nbsp; &nbsp;
                                  <label><input type="radio" name="color" value="초록">초록</label>&nbsp; &nbsp;
                                  <label><input type="radio" name="color" value="파랑">파랑</label>&nbsp; &nbsp;
                                  <label><input type="radio" name="color" value="남색">남색</label>&nbsp; &nbsp;
-                                 <label><input type="radio" name="color" value="보라">보라</label>
-                           </td>
+                                 <label><input type="radio" name="color" value="보라">보라</label>&nbsp; &nbsp;
+                                 <label><input type="radio" name="color" value="검정">검정</label>&nbsp; &nbsp;
+                                 <label><input type="radio" name="color" value="갈색">갈색</label>
                         </tr>
                      </table>
                      <button type="submit" class="btn btn-primary">검색</button>
@@ -108,6 +111,13 @@
                </div>
       <div class="row products_container">
       <!--  검색결과 -->
+      <c:if test="${fn:length(searchResultList) < 1}">
+      <div class="page_msg text-center">
+      검색 결과가 없습니다.<br>
+      다른 옵션으로 검색해주세요.
+      </div>
+      </c:if>
+      <c:if test="${fn:length(searchResultList) != null}">
       <c:forEach items="${searchResultList}" var="p">
       <div class="col-lg-4 product_col">
 
@@ -143,12 +153,22 @@
          </div>
       </div>
       </c:forEach>
+       </c:if>
    </div>
             </div>
          </div>
-      </div>
-   <!-- Footer -->   
-   <jsp:include page="/WEB-INF/inc/footer.jsp"></jsp:include>
-</div>
+	<c:if test="${fn:length(searchResultList) > 3}">
+	</div>
+			<!-- Footer -->	
+			<jsp:include page="../../../WEB-INF/inc/footer.jsp"></jsp:include>
+	</c:if>
+	
+	<c:if test="${fn:length(searchResultList) < 4}">
+		</div>
+		<!-- Footer -->
+		<div class ="fixFooter">
+			<jsp:include page="../../../WEB-INF/inc/footer.jsp" ></jsp:include>
+		</div>
+	</c:if>
 </body>
 </html>

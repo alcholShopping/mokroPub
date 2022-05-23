@@ -93,13 +93,13 @@
             </table>  
          </div>  
    </div>
-   <c:if test="${fn:length(orList) > 5}">
+   <c:if test="${fn:length(orList) > 4}">
    </div>
          <!-- Footer -->   
          <jsp:include page="../../../WEB-INF/inc/footer.jsp"></jsp:include>
    </c:if>
    
-   <c:if test="${fn:length(orList) < 6}">
+   <c:if test="${fn:length(orList) < 5}">
       </div>
       <!-- Footer -->
       <div class ="fixFooter">

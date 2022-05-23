@@ -27,95 +27,89 @@
 	<!-- contents -->
 	<div class="nullbox">
 	</div>
-	
 	<!--  구현영역  -->
 	<div class="container">
 	<div class="row">
-				<div class="col">
-					<div class="section_title_container text-center">
-						<div class="section_subtitle">목로주점</div>
-						<div class="section_title">장바구니</div>
-					</div>
-				</div>
+		<div class="col">
+			<div class="section_title_container text-center">
+				<div class="section_subtitle">목로주점</div>
+				<div class="section_title">장바구니</div>
 			</div>
-      <div class="row">
-         <div class="col">
-					<table class ="table table-bordered">
-						<tr>
-		                     <td>상품사진</td>
-		                     <td>정보</td>
-		                     <td>가격</td>
-		                     <td>수량</td>
-		                     <td>
-		                        <div class="float-right">
-		                              <a href="${pageContext.request.contextPath}/deleteProductInCartController" class= "btn btn-outline-secondary btn-sm">
-		                              모두삭제</a>
-		                        </div>
-		                     </td>
-	                  	</tr> 	
-	                  
-	                  	<c:forEach items="${cartList}" var="item">
-	                  	<c:if test="${fn:length(cartList) > 0}">
-						<tr>
-						<form method="post" action="${pageContext.request.contextPath}/deleteProductInCartController">
-							<td>
-								<input type="hidden" value="${item.cartNo}" name="cartNo" >
-								<input type="hidden" value="${item.productNo}" name="cartNo">
-								<img src="images/${item.picture}" width="150px">
-							</td>
-							
-							<td>
-								${item.name}
-							</td>
-							
-							<td>
-								${item.price}원
-							</td>
-
-							<td>
-							<script>
-									if(${item.count > 5}){
-										alert("${item.name}의 수량은 5개까지만 등록 가능합니다.");
-										}
-							</script>
-								<div class="selectCount">
-										<c:if test="${item.count<= 5}">현재 수량 : ${item.count} 개</c:if> 
-										<c:if test="${item.count > 5}">${item.count = 5}</c:if>
-										<select onchange="window.open(value,'blank');">
-                                       <option value = "">:: 변경하기 ::</option>
-                                       <option value =${pageContext.request.contextPath}/updateProductInCartController?count=1&productNo=${item.productNo}>1개</option>
-                                       <option value =${pageContext.request.contextPath}/updateProductInCartController?count=2&productNo=${item.productNo}>2개</option>
-                                       <option value =${pageContext.request.contextPath}/updateProductInCartController?count=3&productNo=${item.productNo}>3개</option>
-                                       <option value =${pageContext.request.contextPath}/updateProductInCartController?count=4&productNo=${item.productNo}>4개</option>
-                                       <option value =${pageContext.request.contextPath}/updateProductInCartController?count=5&productNo=${item.productNo}>5개</option>
-                                       </select>
-								</div>
-							</td>
-							<td>
-								<button type="submit"><img src="./images/trash.png"></button>
-							</td>
-							</form>
-							
-						</tr>	
-						</c:if>	
-					</c:forEach>
-					<c:if test="${fn:length(cartList) == 0}">
-						<tr>
-							<td>상품 정보가 없습니다.</td>
-						</tr>
+			<c:if test="${fn:length(cartList) == 0}">
+			<div class="page_msg">상품 정보가 없습니다.</div>
+  			<a href="${pageContext.request.contextPath}/indexController" class="btn" >상품 보러 가기</a>
+			</c:if>
+			<c:if test="${fn:length(cartList) != 0}">
+							<table class ="table table-bordered">
+								<tr>
+				                     <td>상품사진</td>
+				                     <td>정보</td>
+				                     <td>가격</td>
+				                     <td>수량</td>
+				                     <td>
+				                        <div class="float-right">
+				                              <a href="${pageContext.request.contextPath}/deleteProductInCartController" class= "btn btn-outline-secondary btn-sm">
+				                              모두삭제</a>
+				                        </div>
+				                     </td>
+			                  	</tr> 	
+			                  	<c:forEach items="${cartList}" var="item">
+			                  	<c:if test="${fn:length(cartList) > 0}">
+								<tr>
+								<form method="post" action="${pageContext.request.contextPath}/deleteProductInCartController">
+									<td>
+										<input type="hidden" value="${item.cartNo}" name="cartNo" >
+										<input type="hidden" value="${item.productNo}" name="cartNo">
+										<img src="images/${item.picture}" width="150px">
+									</td>
+									
+									<td>
+										${item.name}
+									</td>
+									
+									<td>
+										${item.price}원
+									</td>
+		
+									<td>
+									<script>
+											if(${item.count > 5}){
+												alert("${item.name}의 수량은 5개까지만 등록 가능합니다.");
+												}
+									</script>
+										<div class="selectCount">
+												<c:if test="${item.count<= 5}">현재 수량 : ${item.count} 개</c:if> 
+												<c:if test="${item.count > 5}">${item.count = 5}</c:if>
+												<select onchange="window.open(value,'blank');">
+		                                       <option value = "">:: 변경하기 ::</option>
+		                                       <option value =${pageContext.request.contextPath}/updateProductInCartController?count=1&productNo=${item.productNo}>1개</option>
+		                                       <option value =${pageContext.request.contextPath}/updateProductInCartController?count=2&productNo=${item.productNo}>2개</option>
+		                                       <option value =${pageContext.request.contextPath}/updateProductInCartController?count=3&productNo=${item.productNo}>3개</option>
+		                                       <option value =${pageContext.request.contextPath}/updateProductInCartController?count=4&productNo=${item.productNo}>4개</option>
+		                                       <option value =${pageContext.request.contextPath}/updateProductInCartController?count=5&productNo=${item.productNo}>5개</option>
+		                                       </select>
+										</div>
+									</td>
+									<td>
+										<button type="submit"><img src="./images/trash.png"></button>
+									</td>
+									</form>
+									
+								</tr>	
+								</c:if>	
+							</c:forEach>
+						</table>  
 					</c:if>
-				</table>  
-			</div>  
-	</div>
+				</div>  
+			</div>
+			
+		
 	<c:if test="${fn:length(cartList) > 0}">
 	<!--  주문하기 버튼 -->
 	<div class="text-center orderBar">
       <a href="${pageContext.request.contextPath}/orderController" class="orderBtn">주문하기</a>
       
    </div>
-   </c:if>
-   <c:if test="${fn:length(cartList) == 0}">
-   <a href="${pageContext.request.contextPath}/indexController" class="btn btn-primary" >상품 보러 가기</a>
    </c:if>
 </div>
 <c:if test="${fn:length(cartList) > 2}">

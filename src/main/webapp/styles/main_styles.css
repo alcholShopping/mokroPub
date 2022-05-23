@@ -100,6 +100,7 @@ p a
    -o-transition: all 200ms ease;
    transition: all 200ms ease;
 }
+
 a, a:visited, a:active, a:link
 {
    text-decoration: none;
@@ -1038,11 +1039,17 @@ margin-bottom: 30px;
 }
 .product_price
 {
-   font-size: 40px;
+   font-size: 30px;
    font-weight: 600;
    color: #8a8a8a;
    margin-top: 0px;
 
+}
+.product_price_one{
+font-size: 40px;
+   font-weight: 600;
+   color: #8a8a8a;
+   margin-top: 0px;
 }
 .product_options
 {
@@ -1839,4 +1846,9 @@ margin-bottom: 30px;
 	font-size: 25px;
 	font-weight: 600;
 	color: #937c6f;
+}.page_msg{
+	width:100%;
+	text-align: center;
+	font-size: 18px;
+	font-weight: 600;
 }
