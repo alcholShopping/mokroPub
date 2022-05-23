@@ -23,6 +23,7 @@ public class OrderAfterController extends HttpServlet {
 	CartDao cartDao = new CartDao();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		// 로그인 확인
 		HttpSession session = request.getSession();
 		String sessionMemberId = (String)session.getAttribute("sessionMemberId");
@@ -48,7 +49,7 @@ public class OrderAfterController extends HttpServlet {
 			
 			m.put("isReviewExist", isReviewExist);
 			
-		
+			//-------------------------디버깅--------------------------------------
 			System.out.println(m.get("orderNo") + "<----orderNo  doGet()  OrderAfterController");
 			System.out.println(m.get("consumerNo") + "<----consumerNo  doGet()  OrderAfterController");
 			System.out.println(m.get("productName") + "<----productName  doGet()  OrderAfterController");

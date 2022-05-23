@@ -16,29 +16,34 @@ public class OrdereAfterDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		String sql ="  SELECT o.order_no orderNo  "
-				+ "								, o.consumer_no consumerNo  "
-				+ "								, o.zipcode  "
-				+ "								, o.address  "
-				+ "								, o.detailed_address detailedAddress  "
-				+ "								, o.payment "
-				+ "								, o.method  "
-				+ "								, o.count  "
-				+ "								, o.consumer_coupon_list_no couponListNo  "
-				+ "								, o.create_date createDate  "
-				+ "								, o.update_date updateDate  "
-				+ "								, d.`status` "
-				+ "								, p.name "
-				+ "								, p.price "
-				+ "								, p.volume "
-				+ "								, p.alcohol_level "
-				+ "								, p.picture "
-				+ "								, p.product_no"
-				+ "								FROM `order` o INNER JOIN delivery d "
-				+ "								ON o.order_no = d.order_no  "
-				+ "								INNER JOIN product p "
-				+ "								ON o.product_no = p.product_no"
-				+ "								WHERE consumer_no = ? "
-				+ "								ORDER BY o.create_date DESC   ";
+				+ "	, o.consumer_no consumerNo  "
+				+ "	, o.zipcode  "
+				+ "	, o.address  "
+				+ "	, o.detailed_address detailedAddress  "
+				+ "	, o.payment "
+				+ "	, o.method  "
+				+ "	, o.count  "
+				+ "	, o.consumer_coupon_list_no couponListNo  "
+				+ "	, o.create_date createDate  "
+				+ "	, o.update_date updateDate  "
+				+ " , d.`status` "
+				+ " , p.name "
+				+ "	, p.price "
+				+ "	, p.volume "
+				+ "	, p.alcohol_level "
+				+ "	, p.picture "
+				+ "	, p.product_no"
+				+ " , c.discount "
+				+ "	FROM `order` o INNER JOIN delivery d "
+				+ "	ON o.order_no = d.order_no  "
+				+ "	INNER JOIN product p "
+				+ "	ON o.product_no = p.product_no "
+				+ " INNER JOIN  consumer_coupon_list cc"
+				+ " ON cc.consumer_coupon_list_no = o.consumer_coupon_list_no "
+				+ " INNER JOIN coupon c "
+				+ " ON cc.coupon_no = c.coupon_no "
+				+ "	WHERE o.consumer_no = ? "
+				+ "	ORDER BY o.create_date DESC ";
 		try {
 			conn = DBUtil.getConnection();
 			stmt = conn.prepareStatement(sql);
@@ -63,7 +68,8 @@ public class OrdereAfterDao {
 				m.put("couponListNo", rs.getInt("couponListNo"));
 				m.put("createDate", rs.getString("createDate"));
 				m.put("updateDate", rs.getString("updateDate"));
-	
+				m.put("discount", rs.getString("c.discount"));
+				
 				OrderedList.add(m);
 				// 디버깅
 				System.out.println(m.get("orderNo") + "<----orderNo  selectOrderedById()  OrdereAfterDao");

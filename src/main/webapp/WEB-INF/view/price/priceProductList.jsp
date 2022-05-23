@@ -100,7 +100,12 @@
 							</td>
 						</tr>
 					</c:if>
-
+								
+					<tr>
+						<td>
+							<a href="priceProductListController?startPrice=0&endPrice=9999999&currentPage=${currentPage = 1}">초기화</a>
+						</td>
+					</tr>
 					</table>
 				</div>
 			</div>
