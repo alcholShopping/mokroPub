@@ -94,13 +94,6 @@
 										</th>
 									</tr>
 									<tr>
-										<th>회원 수정 날짜</th>
-										<th>
-											<input type="text" class="form-control" value ="${consumerList[0].updateDate}" name="consumerUpdateDate" id="consumerUpdateDate">
-											<span id="accountNumberHelper" class="helper"></span>
-										</th>
-									</tr>
-									<tr>
 										<th colspan="2">
 											<button type="button" class="btn btn-primary"  id="registerBtn" onclick="updateMemberCheck()">회원정보 수정</button>
 										</th>
@@ -166,7 +159,12 @@
 		$('#registerBtn').on("click", function(){      
 	         var u = updateForm;
 	         u.action ='updateConsumerInfoController';
-
+	         
+	         if(u.addressResult.value.trim() == ""){
+		            alert('주소를 입력하세요');
+		            u.addressResult.focus();
+		            return;
+	         }
 	         if(u.detailedAddress.value.trim() == ""){
 	            alert('상세주소를 입력하세요');
 	            u.detailedAddress.focus();
