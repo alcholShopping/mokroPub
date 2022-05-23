@@ -126,12 +126,12 @@
 										placeholder="980492-312423" name="residentNumber" id="residentNumber">
 										<span id="residentNumberHelper" class="helper"></span></th>
 								</tr>
-								<tr>
-									<th>태어난 연도</th>
-									<th><input type="number" class="form-control"
-										placeholder="1998" name="birthYear" id="birthYear" value="" >
-										<span id="birthYearHelper" class="helper"></span></th>
-								</tr>
+								
+									<!-- <th>태어난 연도</th>  -->
+									<input type="hidden" class="form-control" 
+										placeholder="1998" name="birthYear" id="birthYear" value="" readonly="readonly">
+										<span id="birthYearHelper" class="helper"></span>
+								
 								<tr>
 									<th>계좌번호</th>
 									<th><input type="text" class="form-control"

@@ -22,7 +22,8 @@ import vo.Notice;
 @WebServlet("/updateNoticeController")
 public class UpdateNoticeController extends HttpServlet {
 	private ConsumerDao consumerDao = new ConsumerDao();
-	private NoticeDao noticeDao = new NoticeDao();
+	private NoticeDao noticeDao = new 
+			NoticeDao();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// admin 확인
 		HttpSession session = request.getSession();
