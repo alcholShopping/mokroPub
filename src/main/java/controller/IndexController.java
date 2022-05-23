@@ -69,7 +69,8 @@ public class IndexController extends HttpServlet {
 						couponDao.UpdateCouponListByName(consumerId, couponNum);
 					}
 				} else {
-					System.out.println("이미 허용치 이상의 쿠폰을 수령하셨습니다!! 수령!!수령!!수령!!수령!!수령!!수령!!수령!!수령!!수령!!수령!!수령!!수령!!수령!!수령!!수령!!수령!!수령!!수령!!수령!!수령!!수령!!");
+					request.setAttribute("isCouponGet", "true");
+					System.out.println("이미 허용치 이상의 쿠폰을 수령하셨습니다!!");
 				}
 				
 			}
