@@ -39,7 +39,7 @@
                      <table class="table">
                         <tr>
                            <td>텍스트 검색</td>
-                           <td class="text-left">
+                           <td class="text-left" colspan="3">
                            <input type="text" class="form-control" placeholder="원하는 상품을 검색해보세요" name="name" value="">
                            </td>
                         </tr>
@@ -47,69 +47,59 @@
                         <tr>
                            <td>가격</td>
                            <td class="text-left">
-                           <input type="number" placeholder="0원" value="0" name="priceBefore">원 ~ 
-                           <input type="number" placeholder="999999원" value="999999" name="priceAfter">원
+                           <input type="number" placeholder="0원" value="0" name="priceBefore" min="0" max="999999">원 ~ 
+                           <input type="number" placeholder="999999원" value="999999" name="priceAfter" min="0" max="999999">원
                            </td>
-                        </tr>
-
-                        <tr>
                            <td>용량</td>
                            <td class="text-left">
-                           <input type="number" placeholder="0ml" value="0" name="volumeBefore">ml ~ 
-                           <input type="number" placeholder="99999ml" value="99999" name="volumeAfter">ml
+                           <input type="number" placeholder="0ml" value="0" name="volumeBefore" min="0" max="99999">ml ~ 
+                           <input type="number" placeholder="99999ml" value="99999" name="volumeAfter" min="0" max="99999">ml
 
-                           </td>
-                        </tr>
-                        <tr>
-                           <td>색상</td>
-
-                           <td class="text-left">
-                              <label><input type="radio" name="color" value="" checked="checked">전체</label>
-                              <label><input type="radio" name="color" value="하양">투명 혹은 흰색</label>
-                                 <label><input type="radio" name="color" value="빨강">빨강</label>
-                                 <label><input type="radio" name="color" value="주황">주황</label>
-                                 <label><input type="radio" name="color" value="노랑">노랑</label>
-                                 <label><input type="radio" name="color" value="초록">초록</label>
-                                 <label><input type="radio" name="color" value="파랑">파랑</label>
-                                 <label><input type="radio" name="color" value="남색">남색</label>
-                                 <label><input type="radio" name="color" value="보라">보라</label>
                            </td>
                         </tr>
                         <tr>
                            <td>도수</td>
                            <td class="text-left">
-                           <input type="number" value="0" name="alcoholLevelBefore">도 ~ <input type="number"  value="100" name="alcoholLevelAfter">도
-                           </td>
-                        </tr>
-                        
-                        <tr>                              
+                           <input type="number" value="0" name="alcoholLevelBefore" min="0" max="100">도 ~ <input type="number"  value="100" name="alcoholLevelAfter" min="0" max="100">도
+                           </td>                            
                            <td>당도</td>
                            <td class="text-left">
-                           <input type="number" value="0" name="sweetBefore">단계 ~ <input type="number" value="10" name="sweetAfter">단계
+                           <input type="number" value="0" name="sweetBefore" min="0" max="10">단계 ~ <input type="number" value="10" name="sweetAfter" min="0" max="10">단계
                            </td>
                         </tr>
                         <tr>
                            <td>숙성도</td>
                            <td class="text-left">
-                           <input type="number" value="0" name="maturityBefore">단계 ~ <input type="number" value="10" name="maturityAfter">단계
+                           <input type="number" value="0" name="maturityBefore" min="0" max="10">단계 ~ <input type="number" value="10" name="maturityAfter" min="0" max="10">단계
                            </td>
-                        </tr>
-                        <tr>
                            <td>산미</td>
                            <td class="text-left">
-                           <input type="number" value="0" name="acidityBefore">단계 ~ <input type="number" value="10" name="acidityAfter">단계
+                           <input type="number" value="0" name="acidityBefore" min="0" max="10">단계 ~ <input type="number" value="10" name="acidityAfter" min="0" max="10">단계
                            </td>
                         </tr>
                         <tr>
                            <td>바디감</td>
                            <td class="text-left">
-                           <input type="number" value="0" name="thinBefore">단계 ~ <input type="number" value="10" name="thinAfter">단계
+                           <input type="number" value="0" name="thinBefore" min="0" max="10">단계 ~ <input type="number" value="10" name="thinAfter" min="0" max="10">단계
+                           </td>
+                           <td>청량감</td>
+                           <td class="text-left">
+                           <input type="number" value="0" name="refreshmentBefore" min="0" max="10">단계 ~ <input type="number" value="10" name="refreshmentAfter" min="0" max="10">단계
                            </td>
                         </tr>
                         <tr>
-                           <td>청량감</td>
-                           <td class="text-left">
-                           <input type="number" value="0" name="refreshmentBefore">단계 ~ <input type="number" value="10" name="refreshmentAfter">단계
+                           <td>색상</td>
+
+                           <td class="text-left" colspan="4">
+                              <label><input type="radio" name="color" value="" checked="checked">전체</label>
+                              <label><input type="radio" name="color" value="하양">투명 혹은 흰색</label> &nbsp; &nbsp;
+                                 <label><input type="radio" name="color" value="빨강">빨강</label>&nbsp; &nbsp;
+                                 <label><input type="radio" name="color" value="주황">주황</label>&nbsp; &nbsp;
+                                 <label><input type="radio" name="color" value="노랑">노랑</label>&nbsp; &nbsp;
+                                 <label><input type="radio" name="color" value="초록">초록</label>&nbsp; &nbsp;
+                                 <label><input type="radio" name="color" value="파랑">파랑</label>&nbsp; &nbsp;
+                                 <label><input type="radio" name="color" value="남색">남색</label>&nbsp; &nbsp;
+                                 <label><input type="radio" name="color" value="보라">보라</label>
                            </td>
                         </tr>
                      </table>
