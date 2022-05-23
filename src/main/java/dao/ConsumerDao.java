@@ -112,13 +112,13 @@ public class ConsumerDao {
 		try {
 			conn = DBUtil.getConnection();
 			stmt = conn.prepareStatement(sql);
-			stmt.setString(2, c.getName());
-			stmt.setString(3, c.getPhone());
-			stmt.setString(4, c.getEmail());
-			stmt.setString(5, c.getAddress());
-			stmt.setString(6, c.getDetailedAddr());
-			stmt.setString(7, c.getAccount());
-			stmt.setString(8, c.getConsumerId());
+			stmt.setString(1, c.getName());
+			stmt.setString(2, c.getPhone());
+			stmt.setString(3, c.getEmail());
+			stmt.setString(4, c.getAddress());
+			stmt.setString(5, c.getDetailedAddr());
+			stmt.setString(6, c.getAccount());
+			stmt.setString(7, c.getConsumerId());
 			stmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
