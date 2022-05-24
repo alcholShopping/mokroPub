@@ -26,12 +26,20 @@ public class ConfirmIdController extends HttpServlet {
 			// 이미 로그인이 되어 있는 상태라면
 			response.sendRedirect(request.getContextPath()+"/indexController"); // 초기화면으로
 		}
-		String addressResult = "";
-		String consumerId = "";
 		
+		// 아이디 검색할때 기존에 검색한 데이터들을 가져옴
+		
+		String addressResult = "";  // 주소데이터
 		if(request.getParameter("addressResult") != null) {
 			addressResult = request.getParameter("addressResult");	
 		}
+		
+		String detailedAddress = ""; // 상세주소 
+		if(request.getParameter("detailedAddress") != null) {
+			detailedAddress = request.getParameter("detailedAddress");	
+		}
+		
+		String consumerId = ""; // 비교할 아이디
 		if(request.getParameter("consumerId") != null) {
 			consumerId = request.getParameter("consumerId");
 		}
@@ -48,6 +56,7 @@ public class ConfirmIdController extends HttpServlet {
 			request.setAttribute("consumerId", consumerId);
 		} 
 		request.setAttribute("addressResult", addressResult );
+		request.setAttribute("detailedAddress", detailedAddress );
 		request.getRequestDispatcher("/WEB-INF/view/login/register.jsp").forward(request, response);
 	} 
 

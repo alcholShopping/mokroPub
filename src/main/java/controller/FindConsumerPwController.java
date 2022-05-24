@@ -74,7 +74,7 @@ public class FindConsumerPwController extends HttpServlet {
 			return;
 		}
 		 HttpSession session = request.getSession();
-		 session.setAttribute("consumerId", consumerId);
+		 session.setAttribute("sessionMemberId", consumerId);
 		request.getRequestDispatcher("/WEB-INF/view/login/updateConsumerPw.jsp").forward(request, response);	
    }
 

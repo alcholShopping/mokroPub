@@ -34,7 +34,11 @@ public class ConsumerOneInfo extends HttpServlet {
 		// 회원등급을 숫자가 아닌 글자로 --> 얼마나 등급이 있을지 몰라서 우선 1일떄 VIP라고 정함
 		String consumerLevelText = "";
 		if( consumerList.get(0).getConsumerLevel() == 1) {
-			consumerLevelText = "VIP";
+			consumerLevelText = "BRONZE";
+		} else if( consumerList.get(0).getConsumerLevel() == 2) {
+			consumerLevelText = "SILVER";
+		} else if( consumerList.get(0).getConsumerLevel() == 3) {
+			consumerLevelText = "GOLD";
 		}
 		
 		// 디버깅

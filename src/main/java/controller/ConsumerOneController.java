@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.ConsumerDao;
 import dao.OrdereAfterDao;
+import vo.Consumer;
 
 @WebServlet("/consumerOneController")
 public class ConsumerOneController extends HttpServlet {
@@ -27,7 +28,7 @@ public class ConsumerOneController extends HttpServlet {
 		// 아이디를 번호로 교체
 		consumerDao = new ConsumerDao();
 		int consumerId = consumerDao.changeConsumerIdToNo(sessionMemberId);
-		
+
 		orderafterDao = new OrdereAfterDao();
 		List<Map<String,Object>> orList = orderafterDao.selectOrderedById(consumerId);
 		if(sessionMemberId == null) {
@@ -36,7 +37,6 @@ public class ConsumerOneController extends HttpServlet {
 			response.sendRedirect(request.getContextPath()+"/loginController");
 			return;
 		}
-		
 		request.setAttribute("orList",orList);
 		request.getRequestDispatcher("/WEB-INF/view/consumer/consumerOne.jsp").forward(request, response);			
 	}

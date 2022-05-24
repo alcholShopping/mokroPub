@@ -1703,8 +1703,29 @@ font-size: 40px;
 }
 .couponBox{
 	width: 100%;
-	height: 350px;
+	height: 380px;
 	background-color:#937c6f;
+	text-align: center;
+	padding-top: 25px;
+	color:#ffffff;
+}
+.couponBox > span{
+	font-weight:500;
+	color:#ffffff;
+	font-size: 15px;
+}
+.section_title_index{
+   font-family: 'Lucida', serif;
+   font-size: 60px;
+   text-transform: uppercase;
+   margin-top: -4px;
+   color:#ffffff;
+}
+.couponBox > a{
+	text-align: center;
+}
+.couponBox > a > img{
+	margin : 20px;
 }
 .starR {
 	  background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;

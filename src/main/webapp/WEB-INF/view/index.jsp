@@ -50,23 +50,25 @@
 <div class="indexBox">
 <br>
 	<div class="couponBox">
-		<div style="text-align: center;">
-			<a href="indexController?couponNum=1" class="button" style="margin-top: 30px">
-			5% 매일 쿠폰 받기
+		<div class="section_title_index">COUPON</div>
+			<a href="indexController?couponNum=1">
+			<img src="images/coupon5.jpg" alt="쿠폰 5%">
 			</a>
 			
-			<a href="indexController?couponNum=2" class="button" style="margin-top: 30px">
-			10% 매일 쿠폰 받기
+			<a href="indexController?couponNum=2" >
+			<img src="images/coupon10.jpg" alt="쿠폰 10%">
 			</a>
 			
-			<a href="indexController?couponNum=3" class="button" style="margin-top: 30px">
-			15% 매일 쿠폰 받기
+			<a href="indexController?couponNum=3">
+			<img src="images/coupon15.jpg" alt="쿠폰 15%">
 			</a>
 			
-			<a href="indexController?couponNum=4" class="button" style="margin-top: 30px">
-			20% 매일 쿠폰 받기
+			<a href="indexController?couponNum=4">
+			<img src="images/coupon20.jpg" alt="쿠폰 20%">
 			</a>
-		</div>
+			<br>
+			<span>
+			* 실 결제액 1만원 이상 구매 시 사용 가능 및 쿠폰은 하루에 1번 발급 * </span>
 	</div>
 	
 	<div class="container">
@@ -131,6 +133,8 @@
 <script type="text/javascript">
 		if(${isCouponGet == "true"}) {
 			alert("하루에 쿠폰은 하나만 수령 가능합니다!!");
+		}else if(${isCouponGet == "false"}){
+			alert("발급되었습니다.");
 		}
 </script>
 </html>
