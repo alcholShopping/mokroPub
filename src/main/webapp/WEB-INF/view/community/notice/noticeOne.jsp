@@ -51,8 +51,9 @@
 				            	</td>
 			            	</tr>
 		            	</table>			
-					<!-- 아이디가 admin인 경우만 보이게 해야함 -->
+					<!-- 아이디가 admin인 경우만 보이게 해야함 -->					
 					<div class="adminBtn" style="display:none"><a href="${pageContext.request.contextPath}/deleteNoticeController?noticeNo=${m.noticeNo}" class="btn btn-outline-secondary btn-sm">삭제</a></div>
+					<div><a href="${pageContext.request.contextPath}/noticeListController">목록</a></div>
 					</c:forEach>
 				</div>		
 			</div>

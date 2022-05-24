@@ -92,6 +92,7 @@
 					</c:forEach>
 
 				</table>  
+					<a href="${pageContext.request.contextPath}/consumerOneController">나의 정보</a>
 			</div>  
 	</div>
 </div>

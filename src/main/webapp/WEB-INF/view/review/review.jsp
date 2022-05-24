@@ -65,14 +65,13 @@
 									<td>내용</td>
 									<td colspan="3" class="text-left"><textarea cols="100" rows="12" name="content"></textarea> </td>
 								</tr>	
-								<tr>
+								<tr>	
 									</table>
 									<button type="submit" class="btn btn-outline-secondary ">제출</button>
 							</form>
-	
+								<a href="${pageContext.request.contextPath}/orderAfterController?orderNo=${orderNo}" calss=text-left>주문내역으로</a>
 						</div>
 						<div class="col-sm-1">
-						</div>
 					</div>
 				</div>
 			</div>

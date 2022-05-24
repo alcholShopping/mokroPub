@@ -23,13 +23,13 @@ public class ProductReviewFullController extends HttpServlet {
 		reviewDao = new ReviewDao();
 		List<Map<String, Object>> reviewList = reviewDao.SelectReviewByProductFull(productNo);
 		
-		
-		
+		 
+		request.setAttribute("productNo", productNo);
 		request.setAttribute("reviewList", reviewList);
 		request.getRequestDispatcher("/WEB-INF/view/review/productReviewFull.jsp").forward(request, response);	
 		
 		}
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response, Object productNo) throws ServletException, IOException {
 
 	}
 
