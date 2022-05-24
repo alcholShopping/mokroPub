@@ -111,11 +111,14 @@
 				</c:forEach>
 				<hr>
 				<h3>합계 <span class="float-right"><b>${total}</b>원</span></h3>
+				
+				<c:if test="${fn:length(cartList) != 0}">
 				<!--  주문하기 버튼 -->
-				<a href="${pageContext.request.contextPath}/orderController">
-					<div class="orderBtn">
-					주문하기
-				  	</div>
+					<a href="${pageContext.request.contextPath}/orderController">
+						<div class="orderBtn">
+						주문하기
+					  	</div>
+				</c:if>
 			   </a>
    			</div>
    			</div>

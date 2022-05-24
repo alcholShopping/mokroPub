@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>login</title>
+<title>checkConsumerPw</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Wish shop project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -52,6 +52,7 @@
                               
                               <tr>
                            </table>
+							<a href="${pageContext.request.contextPath}/consumerOneController">나의 정보</a>
                         </form>
                      </div>
                   </div>
