@@ -54,7 +54,7 @@
 								</td>
 							</tr>	
 						</table>
-						<button type="button" onclick="insertNoticeCheck()" class="btn btn-primary">등록하기</button>
+						<button type="button" onclick="insertNoticeCheck()" class="btn btn-outline-secondary">등록하기</button>
 					</form>
 				</div>
 			</div>

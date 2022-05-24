@@ -124,8 +124,7 @@ public class OrderCompleteController extends HttpServlet {
 			int cartCount = cartDao.CartCountNum(consumerId);
 			System.out.println(cartCount + "cartCount=================================");
 			session.setAttribute("cartCount", cartCount);
-			
-			request.setAttribute("discount", discount);
+
 			request.getRequestDispatcher("/WEB-INF/view/order/orderFinish.jsp").forward(request, response);	
 			return;
 		

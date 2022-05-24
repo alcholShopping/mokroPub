@@ -56,11 +56,11 @@
 					</tbody>  	
 				</table>
 				<c:if test="${currentPage > 1}">
-					<a href="${pageContext.request.contextPath}/inquiryListController?currentPage=${currentPage-1}" >이전</a>
+					<a href="${pageContext.request.contextPath}/inquiryListController?currentPage=${currentPage-1}"  class="btn btn-outline-secondary">이전</a>
 				</c:if>
 				<!-- 다음 버튼 -->
 				<c:if test="${currentPage < lastPage}">
-					<a href="${pageContext.request.contextPath}/inquiryListController?currentPage=${currentPage+1}">다음</a>
+					<a href="${pageContext.request.contextPath}/inquiryListController?currentPage=${currentPage+1}" class="btn btn-outline-secondary">다음</a>
 				</c:if>
 			</div>
 		</div>	

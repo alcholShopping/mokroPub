@@ -100,7 +100,7 @@
 									</tr>
 								</table>							
 							</form>
-							<a href="${pageContext.request.contextPath}/indexController">취소</a>								
+							<a href="${pageContext.request.contextPath}/indexController" class="btn btn-outline-secondary">취소</a>								
 							</div>
 						</div>
 					</div>

@@ -58,7 +58,7 @@
 					<form action ="${pageContext.request.contextPath}/answerInquiryController" method="post">
 						<input type="hidden" value="${m.inquiryNo}" name="inquiryNo">
 						<textarea rows="10" cols="70" name="answer"  class="form-control"></textarea>
-						<button type="submit" class="btn btn-primary">등록하기</button>
+						<button type="submit" class="btn btn-outline-secondary">등록하기</button>
 					</form>
 				</c:forEach>
 			</div>		
