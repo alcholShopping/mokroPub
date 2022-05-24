@@ -99,7 +99,6 @@
 								</c:if>	
 							</c:forEach>
 						</table>  
-							<a href="${pageContext.request.contextPath}/consumerOneController">나의 정보</a>
 						</div>
 					</c:if>
 				<div class="col-lg-5">
@@ -123,14 +122,14 @@
    		</div> 
    	</div> 
 
-<c:if test="${fn:length(cartList) > 4}">
+<c:if test="${fn:length(cartList) > 3}">
 	</div>
 		<!-- Footer -->	
 		<jsp:include page="../../../WEB-INF/inc/footer.jsp"></jsp:include>
 	</div>
 </c:if>
 
-<c:if test="${fn:length(cartList) < 5}">
+<c:if test="${fn:length(cartList) < 4}">
 	</div>
 	<!-- Footer -->
 	<div class ="fixFooter">

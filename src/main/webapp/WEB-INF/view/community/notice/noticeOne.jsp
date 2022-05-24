@@ -47,6 +47,7 @@
 			            	</tr>
 			            	<tr>
 				            	<td colspan="3">
+				            	<img src="${pageContext.request.contextPath}/images/${m.photo}" width="100px">
 				            		${m.content}
 				            	</td>
 			            	</tr>

@@ -65,6 +65,7 @@
 <div class ="fixFooter">
 	<jsp:include page="../../../WEB-INF/inc/footer.jsp" ></jsp:include>
 </div>
+	<a href="${pageContext.request.contextPath}/consumerOneController">나의 정보</a>
 </body>
 <script>
 

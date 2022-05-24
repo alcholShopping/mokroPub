@@ -64,7 +64,10 @@
             </div>
          </div>   
       </div>
-   <jsp:include page="../../../WEB-INF/inc/footer.jsp"></jsp:include>   
-   </div>
+     </div>
+<!-- Footer -->
+<div class ="fixFooter">
+	<jsp:include page="../../../WEB-INF/inc/footer.jsp" ></jsp:include>
+</div>
 </body>
 </html>

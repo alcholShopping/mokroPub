@@ -22,32 +22,27 @@
    <div class="super_container">
       <!-- Header -->
       <jsp:include page="../../../WEB-INF/inc/navBar.jsp"></jsp:include>
-	<!-- contents -->
-	<div class="nullbox">
-	</div>
-		<div class="container">
-			<div class="row">
-				<div class="col">
-					<div class="section_title_container text-center">
-						<div class="section_subtitle">
-						목로주점
-						</div>
-						<div class="section_title">
-						PASSWORD CHECK
-						</div>
-						<br>
-                        <form action="${pageContext.request.contextPath}/checkConsumerPwController" method="post">
+   
+      <!-- -------------------------------------- nav 끝-------------------------------------- -->
+      <div class="register">
+         <div class="gallery">
+            <div class="container">
+               <div class="row">
+                  <div class="col">
+                     <div class="register_title text-center">
+                     	<h2>정말 탈퇴하시겠습니까?</h2>
+                        <form action="${pageContext.request.contextPath}/deleteCheckConsumerController" method="post">
                            <table class = "table">
                               <tr>
-                                 <th>비밀번호</th>
+                                 <th>비밀번호 확인:</th>
                                  <th>
-                                    <input type="password" class="form-control" placeholder="비밀번호를 한번 더 입력하세요." name="userPw">
+                                    <input type="password" class="form-control" placeholder="비밀번호를 입력하세요" name="userPw">
                                  </th>
                               </tr>
                            
                               <tr>
                                  <td colspan="2">
-                                    <button type="submit" class="btn btn-primary">입력하기</button>
+                                    <button type="submit" class="btn btn-primary">탈퇴하기</button>
                                  </td>
                               
                               <tr>
@@ -58,10 +53,15 @@
                </div>
             </div>   
          </div>
-
-   <!-- Footer -->
-<div class ="fixFooter">
-	<jsp:include page="../../../WEB-INF/inc/footer.jsp" ></jsp:include>
-</div>
+      </div>
+   </div>
 </body>
+   <script>
+      $(".actionHover").mouseover( function(){ 
+         $(".submenu").stop().slideDown(500); 
+         }) 
+      $(".actionHover").mouseout(function(){
+         $(".submenu").stop().slideUp(1000); 
+      })
+   </script>
 </html>

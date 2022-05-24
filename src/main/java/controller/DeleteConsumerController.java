@@ -27,6 +27,8 @@ public class DeleteConsumerController extends HttpServlet {
 	         response.sendRedirect(request.getContextPath()+"/loginController"); // 로그인컨트롤러로 이동 
 	         return;
 	      }
+	      
+	      
 	      request.getRequestDispatcher("/WEB-INF/view/consumer/checkConsumerPw.jsp").forward(request, response); 
 	}
 
