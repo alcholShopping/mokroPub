@@ -54,7 +54,10 @@
                            </tr>                           
                            <tr>
                               <th><a href="${pageContext.request.contextPath}/myReviewListController">내가 작성한 리뷰</a></th>
-                           </tr>                           
+                           </tr>     
+                            <tr>
+                              <th><a href="${pageContext.request.contextPath}/updatePwInConsumerOneController">비밀번호 수정</a></th>
+                           </tr>                      
                         </table>
                   </div>
                </div>

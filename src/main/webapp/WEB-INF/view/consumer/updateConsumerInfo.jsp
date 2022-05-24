@@ -44,7 +44,7 @@
 												<button type="submit" onclick="javascript: form.action='updateConsumerFindAddressController';">검색하기</button>
 											</div>										
 											<div>
-												<select name="addressResult" class="form-control">
+												<select name="addressResult" class="form-control" value="${m.detailedAddr}">
 													<option value="" >::: 주소 선택 :::</option>
 													<c:forEach var="m" items="${searchList}">
 														<option value="${m.searchAddr} ${m.zipcode}">${m.searchAddr} ${m.zipcode}</option>

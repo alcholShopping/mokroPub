@@ -44,7 +44,7 @@
 					<div class="errorText">${errorText}</div> 
 					<br>
 						<form action="${pageContext.request.contextPath}/updateConsumerPwController" method="post" id="pwForm">
-							<input type="hidden" value="${sessionScope.consumerId}" name="updateId">
+							<input type="hidden" value="${sessionScope.sessionMemberId}" name="updateId">
 							<input type="password" placeholder="변경할 PASSWORD를 입력하세요" class="form-control text-center" name="updatePw" id="updatePw">
 							<span id="pwHelper" class="helper"></span>
 							<br>				
