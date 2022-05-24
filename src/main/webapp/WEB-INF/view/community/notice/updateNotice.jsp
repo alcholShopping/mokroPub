@@ -54,7 +54,7 @@
 						</tr>
 						<tr>
 							<td colspan="2">
-								<textarea rows="10" cols="120" name="content" value="${m.content}"  class="form-control"></textarea>
+								<textarea rows="10" cols="120" name="content" class="form-control">${m.content}</textarea>
 							</td>
 						</tr>
 						</c:forEach>

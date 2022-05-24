@@ -67,7 +67,7 @@
                       </td>
                      <td>
 	                     <c:if test="${item.couponListNo == 0}">없음</c:if> 
-	                     <c:if test="${item.couponListNo != 0}"> ${item.couponListNo}번  쿠폰</c:if> 
+	                     <c:if test="${item.couponListNo != 0}"> ${item.couponListNo}번 쿠폰</c:if> 
                      </td>
                      <td>${item.method}</td>
                      <td>

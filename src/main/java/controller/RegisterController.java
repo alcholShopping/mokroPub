@@ -20,6 +20,8 @@ import vo.*;
 @WebServlet("/registerController")
 public class RegisterController extends HttpServlet {
 	private RegisterDao registerDao = new RegisterDao();
+	private LoginDao loginDao;
+	private ConsumerDao consumerDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 		// 로그인 상태 확인
 		HttpSession session = request.getSession();
@@ -98,6 +100,14 @@ public class RegisterController extends HttpServlet {
 		
 		try {
 			row = registerDao.registerByCustomer(consumer);
+			consumerDao = new ConsumerDao();
+			loginDao = new LoginDao();
+			// 아이디를 번호로 교체
+			int consumerNo = consumerDao.changeConsumerIdToNo(consumerId);
+			// -----------------------------디버깅-----------------------------
+			System.out.println(consumerNo + " <-- consumerNo doGet() insertProductInCartController");
+			loginDao.insertPasswordAndDate(consumerNo, consumerPw);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
