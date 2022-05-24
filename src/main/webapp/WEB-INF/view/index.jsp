@@ -52,19 +52,19 @@
 	<div class="couponBox">
 		<div class="section_title_index">COUPON</div>
 			<a href="indexController?couponNum=1">
-			<img src="images/coupon5.jpg" alt="쿠폰 5%">
+			<img src="images/coupon5.jpg" alt="쿠폰 5%" class="coupon">
 			</a>
 			
-			<a href="indexController?couponNum=2" >
-			<img src="images/coupon10.jpg" alt="쿠폰 10%">
+			<a href="indexController?couponNum=2">
+			<img src="images/coupon10.jpg" alt="쿠폰 10%" class="coupon">
 			</a>
 			
-			<a href="indexController?couponNum=3">
-			<img src="images/coupon15.jpg" alt="쿠폰 15%">
+			<a href="indexController?couponNum=3"> 
+			<img src="images/coupon15.jpg" alt="쿠폰 15%" class="coupon">
 			</a>
 			
 			<a href="indexController?couponNum=4">
-			<img src="images/coupon20.jpg" alt="쿠폰 20%">
+			<img src="images/coupon20.jpg" alt="쿠폰 20%" class="coupon">
 			</a>
 			<br>
 			<span>
@@ -130,11 +130,22 @@
 <script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
 <script src="js/custom.js"></script>
 
-<script type="text/javascript">
-		if(${isCouponGet == "true"}) {
-			alert("하루에 쿠폰은 하나만 수령 가능합니다!!");
-		}else if(${isCouponGet == "false"}){
-			alert("발급되었습니다.");
+<script>
+
+	$('.coupon').on("click",function() {
+		if(${isCouponGet == 0}){	
+			alert("로그인 후 이용해주세요.");
 		}
+	});
+
+
+	if(${isCouponGet == 1}){
+		alert("발급되었습니다.");
+	}
+
+	if(${isCouponGet == 2}) {
+		alert("하루에 쿠폰은 하나만 수령 가능합니다.");
+	}
+	
 </script>
 </html>

@@ -59,6 +59,7 @@ public class IndexController extends HttpServlet {
 		
 		// 세션 로그인 안했을때 : 쿠폰받기 불가능
 		if(sessionMemberId != null) {
+			
 			// 쿠폰 선택을 했을경우면 메서드 실행
 			if(couponNum != 0) {
 				//만약에 내가 허용치 이상(*하루) 의 쿠폰을 수령하려고 할 경우에
@@ -66,19 +67,23 @@ public class IndexController extends HttpServlet {
 					//쿠폰을 안받았으면 insert 받았으면 update
 					if(couponDao.isSameCouponByCouponNum(couponNum, consumerId) == 0) {
 						couponDao.insertCouponListByName(consumerId, couponNum);
-						request.setAttribute("isCouponGet", "fales");
-						System.out.println("새로운쿠폰발급완료");
+						request.setAttribute("isCouponGet", 1);
+						System.out.println("새로운 쿠폰발급완료");
 					} else {
 						couponDao.UpdateCouponListByName(consumerId, couponNum);
-						request.setAttribute("isCouponGet", "fales");
-						System.out.println("쿠폰갯수 업데이트");
+						request.setAttribute("isCouponGet", 1);
+						System.out.println("쿠폰 갯수 업데이트");
 					}
 				} else {
-					request.setAttribute("isCouponGet", "true");
+					request.setAttribute("isCouponGet", 2);
 					System.out.println("이미 허용치 이상의 쿠폰을 수령하셨습니다!!");
 				}
 				
 			}
+
+		}else {
+			request.setAttribute("isCouponGet", 0);
+			System.out.println("로그인후 이용해주십쇼");
 		}
 
 		
@@ -93,6 +98,7 @@ public class IndexController extends HttpServlet {
 			System.out.println(m.get("ranking") + " <-- ranking doGet() bestProductListController");
 		}
 		request.setAttribute("BestProductListIndex", list);
+		request.setAttribute("sessionMemberId", sessionMemberId);
 		request.getRequestDispatcher("/WEB-INF/view/index.jsp").forward(request, response);
 		
 	}

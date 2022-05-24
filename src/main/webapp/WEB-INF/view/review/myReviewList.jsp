@@ -39,11 +39,11 @@
 			</div>
       <div class="row">
          <div class="col">
-					<table class ="table table-bordered">
+					<table class ="table">
 						<tr>
-		                     <td colspan="2">상품정보</td>
-		                     <td colspan="2">리뷰내용</td>	 
-		                     <td>별점</td>                            
+		                     <th colspan="2">상품정보</th>
+		                     <th colspan="2" width="500px">리뷰내용</th>	 
+		                     <th  colspan="2">별점</th>                            
 	                  	</tr>
 	                  	
 					<c:forEach items="${myReviewList}" var="item">					
@@ -69,7 +69,7 @@
 							
 							
 							
-							<td colspan="2">
+							<td colspan="2" width="500px">
 								<c:if test="${item.picture != 'fileX.jpg'}">
 								<img src="./images/${item.picture}" width="80">
 								</c:if>
