@@ -70,7 +70,7 @@
 										</div>												
 										<br>
 										<div>
-											<input type="text" class="form-control" placeholder="302호" name="detailedAddress" id="detailedAddress">
+											<input type="text" class="form-control" placeholder="302호" name="detailedAddress" id="detailedAddress" value="${detailedAddress}">
 											<span id="detailedAddressHelper" class ="helper"></span>
 										</div>
 									</th>
@@ -159,6 +159,13 @@
 </div>
 </body>
 <script>
+
+
+	if( ($('#idHelper').text()) == '중복입니다'){
+		console.log( $('#idHelper').text() + "아이디 상태 확인");
+		 alert('중복');
+	}
+	
 	$('#id').blur(function(){
 		if( ($('#id').val().length < 4) || ($('#id').val().length > 20) ) {
 			console.log('아이디 갯수' + $('#id').val().length);

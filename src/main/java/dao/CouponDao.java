@@ -198,7 +198,7 @@ public class CouponDao {
 					PreparedStatement stmt = null;
 					
 					String sql= " UPDATE consumer_coupon_list "
-							+ " SET COUNT = COUNT + 1 "
+							+ " SET COUNT = COUNT + 1 , update_date = NOW() "
 							+ " WHERE coupon_no = ? && consumer_no = ? ";
 					try {
 						conn = DBUtil.getConnection();

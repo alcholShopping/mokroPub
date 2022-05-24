@@ -69,12 +69,8 @@ public class CartController extends HttpServlet {
 		int consumerId = consumerDao.changeConsumerIdToNo(sessionMemberId);
 		// -----------------------------디버깅-----------------------------
 		System.out.println(consumerId + " <-- consumerId doGet() CartController");
-		
-		
+			
 		Integer.parseInt(request.getParameter("cartNo"));
-		
-		 
-
 		
 		// 장바구니 담긴 갯수 
 		int cartCount = cartDao.CartCountNum(consumerId);

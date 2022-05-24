@@ -65,8 +65,12 @@ public class IndexController extends HttpServlet {
 					//쿠폰을 안받았으면 insert 받았으면 update
 					if(couponDao.isSameCouponByCouponNum(couponNum, consumerId) == 0) {
 						couponDao.insertCouponListByName(consumerId, couponNum);
+						request.setAttribute("isCouponGet", "fales");
+						System.out.println("새로운쿠폰발급완료");
 					} else {
 						couponDao.UpdateCouponListByName(consumerId, couponNum);
+						request.setAttribute("isCouponGet", "fales");
+						System.out.println("쿠폰갯수 업데이트");
 					}
 				} else {
 					request.setAttribute("isCouponGet", "true");
