@@ -34,7 +34,7 @@
 					목로주점
 					</div>
 					<div class="section_title">
-					고객님의 소중한 개인정보 보호를 위해 목로주점 고객님의 비밀번호를 변경해주세요!
+					비밀번호 변경
 					</div>
 					<br>
 					<div class="row">
@@ -45,39 +45,27 @@
 					<form action="logoutController" method="post" name="pwForm">
 						<table class = "table text-center ">
 							<tr>
-								<th>현재 비밀번호</th>
 								<th>
-									<input type="password" class="form-control" name="currentPw" id="currentPw">
+									<input type="password" class="form-control" name="currentPw" id="currentPw" placeholder="현재 비밀번호">
 								</th>
 							</tr>
 							<tr>
-								<th>변경할 비밀번호</th>
 								<th>
-									<input type="password" class="form-control" name="changePw" id="changePw">
+									<input type="password" class="form-control" name="changePw" id="changePw" placeholder="변경할 비밀번호">
 									<span id="ChangePwHelper" class="helper"></span>
 								</th>
 							</tr>
 							<tr>
-								<th>변경할 비밀번호 확인</th>
 								<th>
-									<input type="password" class="form-control" name="checkChangePw" id="checkChangePw">
+									<input type="password" class="form-control" name="checkChangePw" id="checkChangePw" placeholder="변경할 비밀번호 재입력">
 									<span id="checkChangePwHelper" class="helper"></span>
-								</th>
-							</tr>
-							<tr>
-								<th>
 									<input type="hidden" class="form-control" name="check" value="1">
 								</th>
-							</tr>		
-							<tr>
-								<td>
-								<a href="${pageContext.request.contextPath}/indexController">다음에 변경</a>
-								</td>
-								<td>
-								<button type="button" class="btn btn-info text-White btn-block" id="changePwBtn" >비밀번호 변경</button>
-								</td>
-							</tr>								
+							</tr>	
 						</table>
+						<a href="${pageContext.request.contextPath}/indexController"  id="changePwBtn">다음에 변경</a>
+						<button type="button" class="btn btn-info text-White btn-block" id="changePwBtn" >비밀번호 변경</button>
+								
 					</form>			
 					</div>
 					<div class="col-sm-3">
@@ -94,7 +82,8 @@
 </div>
 </body>
 <script>
-
+	 alert('고객님의 소중한 개인정보 보호를 위해 목로주점 고객님의 비밀번호를 변경해주세요!');
+	 
 	$('#changePw').blur(function(){
 		if($('#changePw').val().length < 4) {
 			$('#ChangePwHelper').text('pw는 4자이상');

@@ -94,7 +94,6 @@
                   </tr>               
                </c:forEach>
             </table>  
-            	<a href="${pageContext.request.contextPath}/consumerOneController">나의 정보</a>
          </div>  
    </div>
    <c:if test="${fn:length(orList) > 4}">

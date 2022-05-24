@@ -51,6 +51,7 @@
 		            	</tr>
 		            	<tr>
 			            	<td colspan="3">
+			            	<img src="images/${m.photo}" width="100px">
 			            		${m.content}
 			            	</td>
 		            	</tr>
@@ -61,18 +62,19 @@
 							<div id="adminBtn" style="display:none">
 								<a href="${pageContext.request.contextPath}/answerInquiryController?inquiryNo=${m.inquiryNo}" class="btn btn-outline-secondary btn-sm">답변하기</a>
 								</div>
-							→ ${m.answer}
-								
+							${m.answer}
 							</td>
 						</tr>
 					</table>
-						<div><a href="${pageContext.request.contextPath}/inquiryListController">목록</a></div>
+					<div class="text-center"><a href="${pageContext.request.contextPath}/inquiryListController" class="btn btn-outline-secondary btn-sm">목록보기</a></div>
+					<br>
+					<br>
+					<br>
 				</c:forEach>
 			</div>		
 		</div>
 	</div>
 </div>
-<div class ="fixFooter">
 	<!-- Footer -->	
 	<jsp:include page="../../../../WEB-INF/inc/footer.jsp"></jsp:include>
 </div>

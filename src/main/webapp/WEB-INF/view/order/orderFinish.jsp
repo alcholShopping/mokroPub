@@ -33,8 +33,11 @@
 						<div class="section_subtitle">목로주점</div>
 						<div class="section_title">주문완료</div>
 					</div>
-					<b>주문이 완료 되었습니다.</b><br>
-					<a href="${pageContext.request.contextPath}/orderAfterController">주문 내역 보기</a>
+					<br>
+					<div class="text-center">
+					<b>주문이 완료 되었습니다.</b><br><br>
+					<a href="${pageContext.request.contextPath}/orderAfterController" class="btn btn-outline-secondary">주문 내역 보기</a>
+					</div>
 				</div>
 			</div>
 	</div>
