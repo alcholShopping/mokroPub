@@ -225,30 +225,30 @@ public class ConsumerDao {
 	}
 
 
-//	   // 회원탈되
-//	   public void deleteConsumer(String sessionMemberId, String pw) {
-//		   Connection conn = null;
-//		   PreparedStatement stmt = null;
-//		   ResultSet rs = null;
-//		   String sql = "DELETE FROM consumer where consumer_id = ? AND password = PASSWORD(?) ";
-//			
-//		   try {
-//			   conn = DBUtil.getConnection();
-//			   stmt = conn.prepareStatement(sql);
-//			   stmt.setString(1, sessionMemberId);
-//			   rs = stmt.executeQuery();
-//		       int row = stmt.executeUpdate();  
-//		     } catch (Exception e) {
-//		        e.printStackTrace();
-//		     } finally {
-//		        try {
-//		           rs.close();
-//		           stmt.close();
-//		           conn.close();
-//		        } catch (Exception e) {
-//		           e.printStackTrace();
-//		        }
-//		     }
-//	   }
+	   // 회원탈되
+	   public void deleteConsumer(int consumerId) {
+		   Connection conn = null;
+		   PreparedStatement stmt = null;
+		   ResultSet rs = null;
+		   String sql = "DELETE FROM consumer where consumer_no = ?";
+		   int row = 0;
+		   try {
+			   conn = DBUtil.getConnection();
+			   stmt = conn.prepareStatement(sql);
+			   stmt.setInt(1, consumerId);
+			   rs = stmt.executeQuery();
+		     } catch (Exception e) {
+		        e.printStackTrace();
+		     } finally {
+		        try {
+		           rs.close();
+		           stmt.close();
+		           conn.close();
+		        } catch (Exception e) {
+		           e.printStackTrace();
+		        }
+		     }
+		  
+	   }
 	   
 }

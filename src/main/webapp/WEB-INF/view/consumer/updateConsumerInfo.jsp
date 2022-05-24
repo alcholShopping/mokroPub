@@ -56,8 +56,8 @@
                            <tr>
                               <th>주소 등록</th>         
                               <th>   
-                                 <select name="addressResult" class="form-control" value="${m.detailedAddr}">
-                                    <option value="" >::: 주소 선택 :::</option>
+                                 <select name="addressResult" class="form-control">
+                                    <option value="${consumerList[0].address}" >현재 입력한 주소 : ${consumerList[0].address}</option>
                                     <c:forEach var="m" items="${searchList}">
                                        <option value="${m.searchAddr} ${m.zipcode}">${m.searchAddr} ${m.zipcode}</option>
                                     </c:forEach>
@@ -68,7 +68,7 @@
                               <th>상세주소</th>   
                               <th>                              
                                  <input type="text" class="form-control"
-                                 placeholder="302호" name="detailedAddress" id="detailedAddress">
+                                 placeholder="302호" name="detailedAddress" id="detailedAddress" value="${consumerList[0].detailedAddr}">
                                  <span id="detailedAddressHelper" class="helper"></span>
                               </th>
                            </tr>

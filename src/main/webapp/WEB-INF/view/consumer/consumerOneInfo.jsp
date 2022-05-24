@@ -69,7 +69,7 @@
 						</table>
 					<a href="${pageContext.request.contextPath}/consumerOneController">나의 정보</a>
 					<a href="${pageContext.request.contextPath}/checkConsumerPwController">수정하기</a>
-					<a href="#">탈퇴하기</a>
+					<a href="${pageContext.request.contextPath}/deleteCheckConsumerController">탈퇴하기</a>
 				</div>
 			</div>
 		</div>
