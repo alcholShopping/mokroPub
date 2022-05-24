@@ -46,28 +46,26 @@
                            <td>쿠폰 사용내역</td>
                            <td>결제방법</td>
                            <td>배송현황</td>
-                           <td>결제일</td>      
-                                
+                           <td>결제일</td>                       
                         </tr>
                         <c:forEach items="${orList}" var="item">         
                   <tr>
                      <td>
-	                     <a href="${pageContext.request.contextPath}/productOneController?productNo=${item.productNo}">
-	                     	<img src="images/${item.picture}" width="80px">               
-	                     </a>
+                     <a href="${pageContext.request.contextPath}/productOneController?productNo=${item.productNo}">
+                     	<img src="images/${item.picture}" width="80px">               
+                     </a>
                      </td>
                      <td>
-	                     <a href="${pageContext.request.contextPath}/productOneController?productNo=${item.productNo}">
-	                     ${item.productName} ${item.volume}ml ${item.alcoholLevel}도<br>
-	                         판매가 ${item.price}원   
-	                     </a>
+                     <a href="${pageContext.request.contextPath}/productOneController?productNo=${item.productNo}">
+                     ${item.productName} ${item.volume}ml ${item.alcoholLevel}도<br>
+                         판매가 ${item.price}원   
+                     </a>
                      </td>
                      <td>${item.payment} 원 X ${item.count} 개 <br>
-                      총 ${item.count*item.payment} 원
-                      </td>
+                      총 ${item.count*item.payment} 원</td>
                      <td>
-	                     <c:if test="${item.couponListNo == 0}">없음</c:if> 
-	                     <c:if test="${item.couponListNo != 0}"> ${item.couponListNo}번  쿠폰</c:if> 
+                     <c:if test="${item.couponListNo == 0}">없음</c:if> 
+                     <c:if test="${item.couponListNo != 0}">${item.couponListNo}번 ${item.discount}% 할인 쿠폰</c:if> 
                      </td>
                      <td>${item.method}</td>
                      <td>
@@ -93,6 +91,7 @@
                   </tr>               
                </c:forEach>
             </table>  
+            	<a href="${pageContext.request.contextPath}/consumerOneController">나의 정보</a>
          </div>  
    </div>
    <c:if test="${fn:length(orList) > 4}">

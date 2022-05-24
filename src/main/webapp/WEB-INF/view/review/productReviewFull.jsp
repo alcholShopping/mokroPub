@@ -33,6 +33,9 @@
 					<div class="section_title_container text-center">
 						<div class="section_subtitle">목로주점</div>
 						<div class="section_title">제품 리뷰</div>
+						<div class=text-left>
+							<a href="${pageContext.request.contextPath}/productOneController?productNo=${productNo}">상품상세보기</a>
+						</div> 
 					</div>
 				</div>
 			</div>

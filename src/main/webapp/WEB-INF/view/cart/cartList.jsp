@@ -99,6 +99,7 @@
 								</c:if>	
 							</c:forEach>
 						</table>  
+							<a href="${pageContext.request.contextPath}/consumerOneController">나의 정보</a>
 						</div>
 					</c:if>
 				<div class="col-lg-5">

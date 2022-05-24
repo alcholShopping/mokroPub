@@ -67,6 +67,7 @@
 								<td>${consumerList[0].account}</td>
 							</tr>
 						</table>
+					<a href="${pageContext.request.contextPath}/consumerOneController">나의 정보</a>
 					<a href="${pageContext.request.contextPath}/checkConsumerPwController">수정하기</a>
 					<a href="#">탈퇴하기</a>
 				</div>

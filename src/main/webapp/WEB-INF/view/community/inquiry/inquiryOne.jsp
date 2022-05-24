@@ -50,9 +50,6 @@
 			            	<td class="text-right">${m.createDate}</td>
 		            	</tr>
 		            	<tr>
-		            		<td colspan="3"><img src="images/${m.photo}" width="300px" height="200px">  </td>
-		            	</tr>
-		            	<tr>
 			            	<td colspan="3">
 			            		${m.content}
 			            	</td>
@@ -69,6 +66,7 @@
 							</td>
 						</tr>
 					</table>
+						<div><a href="${pageContext.request.contextPath}/inquiryListController">목록</a></div>
 				</c:forEach>
 			</div>		
 		</div>
