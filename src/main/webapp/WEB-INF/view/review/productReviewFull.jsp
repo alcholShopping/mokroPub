@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>productReviewFull</title>
+<title>cartList</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Wish shop project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,73 +20,70 @@
 
 <body>
 <div class="super_container">
-	<!-- Header -->		
-	<jsp:include page="../../../WEB-INF/inc/navBar.jsp"></jsp:include>
-	<!-- contents -->
-	<div class="nullbox">
-	</div>
-	
-	<!--  구현영역  -->
-	<div class="container">
-	<div class="row">
-				<div class="col">
-					<div class="section_title_container text-center">
-						<div class="section_subtitle">목로주점</div>
-						<div class="section_title">제품 리뷰</div>
-						<div class=text-left>
-							<a href="${pageContext.request.contextPath}/productOneController?productNo=${productNo}">상품상세보기</a>
-						</div> 
-					</div>
-				</div>
-			</div>
-     	<div class="row">
+   <!-- Header -->      
+   <jsp:include page="../../../WEB-INF/inc/navBar.jsp"></jsp:include>
+   <!-- contents -->
+   <div class="nullbox">
+   </div>
+   
+   <!--  구현영역  -->
+   <div class="container">
+   <div class="row">
+            <div class="col">
+               <div class="section_title_container text-center">
+                  <div class="section_subtitle">목로주점</div>
+                  <div class="section_title">제품 리뷰</div>
+                  <div class=text-left>
+                     <a href="${pageContext.request.contextPath}/productOneController?productNo=${productNo}">상품상세보기</a>
+                  </div> 
+               </div>
+            </div>
+         </div>
+        <div class="row">
          <div class="col">
-					<table class ="table table-bordered">
-					<c:forEach items="${reviewList}" var="item">					
-						<tr>
-		                     <td>작성자</td>
-		                     <td>사진</td>
-		                     <td>별점</td>
-		                     <td>내용</td>	                    
-		                     <td>작성일</td>                    
-	                  	</tr>
-	                  	
-						<tr>
+               <table class ="table">
+                  <tr>
+                           <th width="150px">작성자</th>
+                           <th colspan="2">내용</th>                       
+                           <th width="100px">별점</th>
+                           <th width="200px">작성일</th>                    
+                        </tr>
+                  <c:forEach items="${reviewList}" var="item">                                    
+                  <tr>
 
-							<td>
-								${item.name}
-							</td>
-								
-							<td>									
-								<img src="./images/${item.picture}" width="200" height="200">														
-								<c:if test="${item.picture eq fileX}.equals fileX">										
-									<img src="" >														
-								</c:if>
-							</td>
-							
-							<td>
-								${item.star}/5
-							</td>
-							
-							<td>
-								${item.content}
-							</td>
-							
-							<td>
-								${item.createDate}
-							</td>
-
-						
-						</tr>					
-					</c:forEach>
-				</table>  
-			</div>  
-	</div>
+                     <td>
+                        ${item.name}
+                     </td>
+                        
+                     <td>
+                        ${item.content}
+                     </td>
+                     <td>                           
+                        <c:if test="${item.picture != 'fileX.jpg'}">
+                                   <img src="./images/${item.picture}" width="150px">
+                                 </c:if>
+                     </td>
+                     
+                     <td>
+                     <c:forEach var="star" begin="1" end="${item.star}">
+                     <img src="./images/star.svg" width="10">
+                     </c:forEach>
+                     </td>
+                     
+                     <td>
+                        ${item.createDate}
+                     </td>
+                  
+                  </tr>               
+               </c:forEach>
+            </table>  
+         </div>  
+   </div>
 </div>
-	</div>
+   </div>
 </div>
-	<!-- Footer -->	
-	<jsp:include page="../../../WEB-INF/inc/footer.jsp"></jsp:include>
+   <!-- Footer -->   
+   <jsp:include page="../../../WEB-INF/inc/footer.jsp"></jsp:include>
 </div>
 </body>
 
