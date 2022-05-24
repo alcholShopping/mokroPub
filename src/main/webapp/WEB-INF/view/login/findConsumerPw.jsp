@@ -85,6 +85,3 @@
 </div>
 </body>
 </html>
-<script>
-	if()
-</script>

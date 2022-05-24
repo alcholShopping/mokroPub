@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>index</title>
+<title>review</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Wish shop project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -72,13 +72,13 @@
                         <a href="${pageContext.request.contextPath}/orderAfterController?orderNo=${orderNo}" class="text-left">주문내역으로</a>
                   </div>
                   <div class="col-sm-1">
-               </div>
-            </div>
-         </div>
-      </div>   
-   </div>
+             	  </div>
+	            </div>
+	         </div>
+	      </div>   
+	   </div>
+	</div>
 </div>
-
 <!-- Footer -->
 <div class ="fixFooter">
    <jsp:include page="../../../WEB-INF/inc/footer.jsp" ></jsp:include>
