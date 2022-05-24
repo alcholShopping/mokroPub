@@ -70,6 +70,7 @@ public class OrderCompleteController extends HttpServlet {
 		orderCompleteDao = new OrderCompleteDao();
 		
 		int couponNo = orderCompleteDao.selectCouponNo(consumerId, discount);
+		System.out.println(couponNo + "<--- couponNo doPost orderCompleteController ");
 		
 		// 쿠폰의 갯수
 		int UseCouponCount = 0;

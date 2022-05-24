@@ -75,12 +75,7 @@ public class IndexController extends HttpServlet {
 				
 			}
 		}
-		
-		
-		
-		
-		
-		
+
 		
 		// 디버깅
 		for(Map m : list) {

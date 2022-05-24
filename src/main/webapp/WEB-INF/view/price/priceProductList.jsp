@@ -103,7 +103,7 @@
 								
 					<tr>
 						<td>
-							<a href="priceProductListController?startPrice=0&endPrice=9999999&currentPage=${currentPage = 1}">초기화</a>
+							<a href="priceProductListController?startPrice=0&endPrice=9999999&currentPage=1">초기화</a>
 						</td>
 					</tr>
 					</table>
@@ -179,7 +179,7 @@
 		
 				<!-- 다음 버튼 -->
 				<c:if test="${currentPage < lastPage}">
-					<a href="${pageContext.request.contextPath}/priceProductListController?currentPage=${currentPage+1}&startPrice=0&endPrice=5000" class="btn btn-link">다음</a>
+					<a href="${pageContext.request.contextPath}/priceProductListController?currentPage=${currentPage + 1}&startPrice=0&endPrice=5000" class="btn btn-link">다음</a>
 				</c:if>
 			</c:if>
 			<c:if test="${cnt==1}">
@@ -255,7 +255,7 @@
 					<a href="${pageContext.request.contextPath}/priceProductListController?currentPage=${currentPage+1}&startPrice=20000&endPrice=9999999" class="btn btn-link">다음</a>
 				</c:if>
 			</c:if>
-			<c:if test="${cnt == 1 }">
+			<c:if test="${cnt == 1}">
 				<!-- 이전 버튼 -->
 				<c:if test="${currentPage > 1}">
 					<a href="${pageContext.request.contextPath}/priceProductListController?currentPage=${currentPage-1}&startPrice=20000&endPrice=9999999&cnt=1" class="btn btn-link">이전</a>

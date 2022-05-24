@@ -167,9 +167,9 @@
                   <th width="200px" class="text-center">쿠폰목록</th>
                   <td>
                      <select name="selectCoupon" id="selectCoupon" class="form-control">
-                        <option value="0" selected>:: :쿠폰 선택 :::</option>   
+                        <option value="0" selected>:::쿠폰 선택 :::</option>   
                         <c:forEach var="c" items="${couponList}">
-                           <option value="${c.discount}" name="couponNo">
+                           <option value="${c.discount}" value="${c.couponNo}">
                            ${c.discount}% 할인쿠폰 ${c.count}개 유효기간:${c.validity}까지</option>
                         </c:forEach>
                      </select>

@@ -38,6 +38,7 @@ public class PriceProductListController extends HttpServlet {
 		// 현재 페이지 , 마지막 페이지
 		if(request.getParameter("currentPage") != null) {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+			System.out.println(currentPage + " <-- currentPage doGet() PriceProductListController if");
 		}
 		
 		int rowPerPage = 6;
@@ -45,7 +46,7 @@ public class PriceProductListController extends HttpServlet {
 		int lastPage = (int)(Math.ceil((double)totalData/(double)rowPerPage)); 
 		// -----------------------------디버깅-----------------------------
 		System.out.println(currentPage + " <-- currentPage doGet() PriceProductListController");	
-		System.out.println(totalData + " <-- currentPage doGet() PriceProductListController");
+		System.out.println(totalData + " <-- totalData doGet() PriceProductListController");
 		System.out.println(rowPerPage + " <-- rowPerPage doGet() PriceProductListController");
 		System.out.println(beginRow + " <-- beginRow doGet() PriceProductListController");
 		System.out.println(currentPage + " <-- currentPage doGet() PriceProductListController");
