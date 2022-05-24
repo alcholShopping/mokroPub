@@ -57,6 +57,11 @@ public class IndexController extends HttpServlet {
 		
 		couponDao = new CouponDao();
 		
+		//회원탈퇴 했을때
+		if((String)session.getAttribute("deleteId") != null) {
+			request.setAttribute("deleteId", (String)session.getAttribute("deleteId"));
+		}
+				
 		// 세션 로그인 안했을때 : 쿠폰받기 불가능
 		if(sessionMemberId != null) {
 			

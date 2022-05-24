@@ -17,8 +17,19 @@
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
 <link href="plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
 
+<script type="text/javascript">
+
+	if(${deleteId == "true"}) {
+		alert("회원탈퇴 되었습니다!!");
+	}
+</script>
 </head>
 <body>
+	<c:if test="${deleteId != null}">
+		<%
+			session.setAttribute("deleteId", "false");
+		%>
+	</c:if>
 <div class="super_container">
 	<!-- Header -->	
 	<jsp:include page="/WEB-INF/inc/navBar.jsp"></jsp:include>

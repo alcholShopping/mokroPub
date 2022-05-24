@@ -60,9 +60,13 @@ public class DeleteCheckConsumerController extends HttpServlet {
          System.out.println("비밀번호가 일치합니다.");
          
          consumerDao.deleteConsumer(consumerId);
-        	 System.out.println("계정이 정상적으로 삭제되었습니다. ============================================================================================================================================================================================================");
-        	 //삭제하고 세션을 초기화해야겠지?
-             request.getSession().invalidate(); // session 갱신 메서드 : 기존 session을 지우고 새로운 새션을 부여함
+    	 System.out.println("계정이 정상적으로 삭제되었습니다. ============================================================================================================================================================================================================");
+    	 //삭제하고 세션을 초기화해야겠지?
+         request.getSession().invalidate(); // session 갱신 메서드 : 기존 session을 지우고 새로운 새션을 부여함
+         
+         String deleteId = "true";
+         HttpSession session2 = request.getSession();
+         session2.setAttribute("deleteId", deleteId);
          response.sendRedirect(request.getContextPath() + "/indexController");
       } else {
          response.sendRedirect(request.getContextPath() + "/consumerOneInfoController");
