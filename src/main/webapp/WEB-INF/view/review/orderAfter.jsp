@@ -45,6 +45,7 @@
                            <td>결제금액</td>
                            <td>쿠폰 사용내역</td>
                            <td>결제방법</td>
+                           <td>주소</td>
                            <td>배송현황</td>
                            <td>결제일</td>                       
                         </tr>
@@ -64,12 +65,13 @@
                      <td>${item.payment} 원 X ${item.count} 개 <br>
                       총 ${item.count*item.payment} 원</td>
                      <td>
-           				 <c:if test="${item.couponListNo == 1}">${item.couponListNo}번 쿠폰 5% 할인</c:if> 	                                             	                                                         
-	                     <c:if test="${item.couponListNo == 2}">${item.couponListNo}번 쿠폰 10% 할인</c:if> 
-	                     <c:if test="${item.couponListNo == 3}"> ${item.couponListNo}번 쿠폰 15% 할인</c:if> 
-						 <c:if test="${item.couponListNo == 4}"> ${item.couponListNo}번 쿠폰 20% 할인</c:if> 
+           				 <c:if test="${item.couponListNo == 1}">쿠폰 5% 할인</c:if> 	                                             	                                                         
+	                     <c:if test="${item.couponListNo == 2}"> 쿠폰 10% 할인</c:if> 
+	                     <c:if test="${item.couponListNo == 3}"> 쿠폰 15% 할인</c:if> 
+						 <c:if test="${item.couponListNo == 4}">쿠폰 20% 할인</c:if> 
                      </td>
                      <td>${item.method}</td>
+                     <td>${item.address} <br>${item.detailedAddress}</td>       
                      <td>
                         ${item.status}
                         <input type="hidden" value="${item.status}" id="status">
