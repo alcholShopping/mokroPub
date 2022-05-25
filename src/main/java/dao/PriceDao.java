@@ -20,7 +20,7 @@ public class PriceDao {
 		Product product = null;
 		String sql = "SELECT product_no productNo,name,price,volume,alcohol_level alcoholLevel,picture FROM product WHERE price between ? and ? ORDER BY price asc LIMIT ?,? ";
 		try {
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/mokroPub","root","java1234");
+			conn = DBUtil.getConnection();
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, startPrice);
 			stmt.setInt(2, endPrice);
@@ -68,7 +68,7 @@ public class PriceDao {
 		Product product = null;
 		String sql = "SELECT product_no productNo,name,price,volume,alcohol_level alcoholLevel,picture FROM product WHERE price between ? and ? ORDER BY price desc LIMIT ? ,?";
 		try {
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/mokroPub","root","java1234");
+			conn = DBUtil.getConnection();
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, startPrice);
 			stmt.setInt(2, endPrice);

@@ -40,7 +40,7 @@
                 문의사항이 없습니다.<br>
              </div>
           </c:if>
-         <c:forEach items="${inquiryList}" var="item">
+        
           <c:if test="${fn:length(inquiryList) != null}">
             <table class ="table table-hover">
                <thead>
@@ -51,6 +51,7 @@
                      <th class="text-center" width="200px">작성시간</th>
                   </tr>
                </thead>
+                <c:forEach items="${inquiryList}" var="item">
                </tbody>
                   <tr>
                      <td class="text-center"><a href="${pageContext.request.contextPath}/inquiryOneController?inquiryNo=${item.inquiryNo}">${item.inquiryNo}</a></td>
@@ -59,10 +60,10 @@
                      <td class="text-center"><a href="${pageContext.request.contextPath}/inquiryOneController?inquiryNo=${item.inquiryNo}">${item.createDate}</a></td>
                   </tr>
                </tbody>
-               </tbody>     
+                </c:forEach>                
             </table>
          </c:if>
-      </c:forEach>            
+     
             <c:if test="${currentPage > 1}">
                <a href="${pageContext.request.contextPath}/inquiryListController?currentPage=${currentPage-1}" >이전</a>
             </c:if>

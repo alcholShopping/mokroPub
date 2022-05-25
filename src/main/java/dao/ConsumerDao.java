@@ -76,7 +76,7 @@ public class ConsumerDao {
     PreparedStatement stmt = null;
     ResultSet rs = null;
 	    
-	String sql = " SELECT password FROM Consumer WHERE consumer_id = ? ";
+	String sql = " SELECT password FROM consumer WHERE consumer_id = ? ";
 	      
 	try {
 		conn = DBUtil.getConnection();

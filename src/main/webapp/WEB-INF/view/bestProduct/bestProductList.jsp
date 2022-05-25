@@ -16,63 +16,60 @@
 <link href="plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-	<div class="super_container">
-		<!-- Header -->
-		<jsp:include page="../../../WEB-INF/inc/navBar.jsp"></jsp:include>
-		<!-- contents -->
-		<div class="nullbox"></div>
-		<div class="container">
-			<div class="row">
-				<div class="col">
-					<div class="section_title_container text-center">
-						<div class="section_subtitle">목로주점</div>
-						<div class="section_title">인기순</div>
-					</div>
-				</div>
-			</div>
-			<div class="row products_container">
+   <div class="super_container">
+      <!-- Header -->
+      <jsp:include page="../../../WEB-INF/inc/navBar.jsp"></jsp:include>
+      <!-- contents -->
+      <div class="nullbox"></div>
+      <div class="container">
+         <div class="row">
+            <div class="col">
+               <div class="section_title_container text-center">
+                  <div class="section_subtitle">목로주점</div>
+                  <div class="section_title">인기순</div>
+               </div>
+            </div>
+         </div>
+         <div class="row products_container">
 
-				<!-- Product -->
-				<c:forEach items="${BestProductList}" var="item">
+            <!-- Product -->
+            <c:forEach items="${BestProductList}" var="item">
 
-					<div class="col-lg-4 product_col">
+               <div class="col-lg-4 product_col">
 
-						<div class="product">
+                  <div class="product">
 
-							<div class="product_image">
-								<a href="${pageContext.request.contextPath}/productOneController?productNo=${item.productNo}">
-									<img src="images/${item.picture}" alt="">
-									<div class="product_option_box">
-										<span class="product_option_rank">${item.ranking}</span>
-									</div>
-								</a>
-							</div>
-							<div class="product_content clearfix">
-								<div class="product_info">
-									<div class="product_name">
-										<a href="${pageContext.request.contextPath}/productOneController?productNo=${item.productNo}">
-											${item.name} ${item.volume}ml ${item.alcoholLevel}도</a>
-									</div>
-									<div class="product_price">
-										<a href="${pageContext.request.contextPath}/productOneController?productNo=${item.productNo}">
-											${item.price}원 </a>
-									</div>
-								</div>
-								<div class="product_options">
-									<a href="${pageContext.request.contextPath}/insertProductInCartController?productNo=${item.productNo}">
-										<div class="product_buy product_option">
-											<img src="images/shopping-bag-white.svg" alt="">
-										</div>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</c:forEach>
-			</div>
-		</div>
-		<!-- Footer -->
-		<jsp:include page="../../../WEB-INF/inc/footer.jsp"></jsp:include>
-	</div>
+                     <div class="product_image">
+                        <a href="${pageContext.request.contextPath}/productOneController?productNo=${item.productNo}">
+                           <img src="images/${item.picture}" alt="">
+                        </a>
+                     </div>
+                     <div class="product_content clearfix">
+                        <div class="product_info">
+                           <div class="product_name">
+                              <a href="${pageContext.request.contextPath}/productOneController?productNo=${item.productNo}">
+                                 ${item.name} ${item.volume}ml ${item.alcoholLevel}도</a>
+                           </div>
+                           <div class="product_price">
+                              <a href="${pageContext.request.contextPath}/productOneController?productNo=${item.productNo}">
+                                 ${item.price}원 </a>
+                           </div>
+                        </div>
+                        <div class="product_options">
+                           <a href="${pageContext.request.contextPath}/insertProductInCartController?productNo=${item.productNo}">
+                              <div class="product_buy product_option">
+                                 <img src="images/shopping-bag-white.svg" alt="">
+                              </div>
+                           </a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </c:forEach>
+         </div>
+      </div>
+      <!-- Footer -->
+      <jsp:include page="../../../WEB-INF/inc/footer.jsp"></jsp:include>
+   </div>
 </body>
 </html>

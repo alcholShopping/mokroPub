@@ -100,9 +100,6 @@
 						<div class="product_image">
 							<a href="${pageContext.request.contextPath}/productOneController?productNo=${item.productNo}">
 								<img src="images/${item.picture}" alt="">
-								<div class="product_option_box">
-									<span class="product_option_rank">${item.ranking}</span>
-								</div>
 							</a>
 						</div>
 						<div class="product_content clearfix">
